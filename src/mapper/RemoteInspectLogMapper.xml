@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nky.dao.doctor.RemoteInspectLogDao" >
+  <resultMap id="BaseResultMap" type="com.nky.entity.doctor.RemoteInspectLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="vip_or_doctor" property="vipOrDoctor" jdbcType="CHAR" />
+    <result column="remote_inspect_code" property="remoteInspectCode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.nky.entity.doctor.RemoteInspectLog" extends="BaseResultMap" >
+    <result column="des" property="des" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, vip_or_doctor, remote_inspect_code, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    des
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from remote_inspect_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from remote_inspect_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.nky.entity.doctor.RemoteInspectLog" >
+    insert into remote_inspect_log (id, vip_or_doctor, remote_inspect_code, 
+      create_time, des)
+    values (#{id,jdbcType=BIGINT}, #{vipOrDoctor,jdbcType=CHAR}, #{remoteInspectCode,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{des,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nky.entity.doctor.RemoteInspectLog" >
+    update remote_inspect_log
+    <set >
+      <if test="vipOrDoctor != null" >
+        vip_or_doctor = #{vipOrDoctor,jdbcType=CHAR},
+      </if>
+      <if test="remoteInspectCode != null" >
+        remote_inspect_code = #{remoteInspectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

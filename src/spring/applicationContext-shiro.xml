@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
+	default-lazy-init="true">
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login.html" />
+		<property name="successUrl" value="/login.html" />
+		<property name="unauthorizedUrl" value="/unauthorized.html" />
+		<property name="filterChainDefinitions">
+			<value>
+				/login.html = authc
+     			/doctor/add.html* = anon
+				/doctor/save.json* = anon	
+				/js/**=anon
+				/sysAuth/**=perms["SYSAUTH:SHOW"]
+				/sysUser/**=perms["SYSUSER:SHOW"]
+				/sysRole/**=perms["SYSROLE:SHOW"]
+				/dicDefine/**=perms["DICDEFINE:SHOW"]
+				/departmentInfo/**=perms["department:show"]
+				/sysParameter/**=perms["sysParameter:show"]
+				/vip/**=perms["vip:show"]
+				/ztdi/** = perms["ztdi:show"]
+				/stat/** = authc
+				/extractManage/**=perms["extractManage:show"]
+				/noextract/**=perms["noextract:show"]
+				/yesextract/**=perms["yesextract:show"]
+				
+				/urlPic/**=perms["urlPic:show"]
+				/zhibo.html=perms["sp:show"]
+				/vipInspectData/**=anon
+				/vip/createEcg**=anon
+				
+			</value>
+		</property>
+		<property name="filters">
+			<map>
+				<entry key="authc" value-ref="authenticationFilter" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="authenticationRealm" />
+		<property name="cacheManager" ref="shiroCacheManager" />
+	</bean>
+
+	<bean id="authenticationRealm" class="com.sys.service.shiro.AuthenticationRealm">
+		<property name="authorizationCacheName" value="authorization" />
+	</bean>
+
+	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:/ehcache.xml" />
+		<property name="shared" value="true" />
+	</bean>
+	
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehCacheManager" />
+	</bean>
+
+	<bean id="authenticationFilter" class="com.sys.interceptor.AuthenticationFilter" />
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager" />
+		<property name="arguments" ref="securityManager" />
+	</bean>
+
+	<!-- capthca -->
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<constructor-arg>
+					<props>
+						<prop key="kaptcha.session.key">code</prop>
+						<!-- 验证码宽度 -->
+						<prop key="kaptcha.image.width">100</prop>
+						<!-- 验证码高度 -->
+						<prop key="kaptcha.image.height">40</prop>
+						<!-- 生成验证码内容范围 -->
+						<!-- <prop key="kaptcha.textproducer.char.string">0123456789</prop> -->
+						<!-- 验证码个数 -->
+						<prop key="kaptcha.textproducer.char.length">4</prop>
+						<!-- 是否有边框 -->
+						<prop key="kaptcha.border">yes</prop>
+						<!-- 边框颜色 -->
+						<prop key="kaptcha.border.color">105,179,90</prop>
+						<!-- 边框厚度 -->
+						<prop key="kaptcha.border.thickness">1</prop>
+						<!-- 验证码字体颜色 -->
+						<prop key="kaptcha.textproducer.font.color">blue</prop>
+						<!-- 验证码字体大小 -->
+						<prop key="kaptcha.textproducer.font.size">35</prop>
+						<!-- 验证码所属字体样式 -->
+						<prop key="kaptcha.textproducer.font.names">BKamrnBd,宋体,楷体,微软雅黑,valley,Credit,Bell,nyala,Arial</prop>
+						<!-- 干扰线颜色 -->
+<!-- 						<prop key="kaptcha.noise.color">blue</prop> -->
+						<!-- 验证码文本字符间距 -->
+						<prop key="kaptcha.textproducer.char.space">3</prop>
+<!-- 					<prop key="kaptcha.obscurificator.impl">com.google.code.kaptcha.impl.ShadowGimpy</prop> -->
+						<!-- 去掉干扰线 -->
+						<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+ 					</props>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+</beans>

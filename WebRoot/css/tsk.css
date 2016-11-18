@@ -1,0 +1,7 @@
+.tsk,.tsk .hd,.tsk .bd{clear:both;overflow:hidden;}
+.tsk{width:523px;height:203px;border:1px solid #ccc;}
+.tsk .hd{height:30px;background:#ccc;}
+.tsk .hd h3{float:left;}
+.an_close{float:right;display:block;text-align:center;width:16px;height:16px;background:#f90;overflow:hidden;}
+.tsk .bd{text-align:center;line-height:30px;}
+

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sys.dao.company.DepartmentDao" >
+  <resultMap id="BaseResultMap" type="com.sys.entity.company.Department" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tId" property="tId" jdbcType="INTEGER" />
+    <result column="pId" property="pId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.sys.entity.company.Department" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, edit_time,  code, name,  status,tId,pId,
+    is_delete, description, remark
+  </sql>
+  <sql id="Blob_Column_List" >
+    description, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_department
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_department
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sys.entity.company.Department" >
+    insert into t_department (id, create_time, edit_time, code, 
+      name, status,pId,
+      is_delete, description, remark
+      )
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{editTime,jdbcType=TIMESTAMP}, 
+      #{code,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},#{pId,jdbcType=INTEGER},
+      #{isDelete,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sys.entity.company.Department" >
+    insert into t_department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="editTime != null" >
+        edit_time,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="pId != null" >
+        pId,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sys.entity.company.Department" >
+    update t_department
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editTime != null" >
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        pId = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sys.entity.company.Department" >
+    update t_department
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      pId = #{pId,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sys.entity.company.Department" >
+    update t_department
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      code = #{code,jdbcType=VARCHAR},
+      pId = #{pId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+	<select id="getDepartmentList" parameterType="com.sys.entity.company.Department"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_department 
+		WHERE 1=1 
+		<if test="id!=null">
+			AND id = #{id,jdbcType=CHAR}
+		</if>
+		<if test="tId!=null">
+			AND tId = #{tId,jdbcType=CHAR}
+		</if>
+		<if test="skipNo != -1">
+			LIMIT #{skipNo},#{pageSize}
+		</if>
+<!--		 ORDER BY tId-->
+	</select>
+	<select id="getCount" parameterType="com.sys.entity.company.Department"
+		resultType="INTEGER">
+		SELECT COUNT(*) FROM
+		t_department
+		WHERE 1=1
+	</select>
+	<select id="getTidSeq" parameterType="com.sys.entity.company.Department"
+		resultType="INTEGER">
+		select max(tid)+1 as tid from t_department
+	</select>
+	<select id="departmentList" parameterType="com.sys.entity.company.Department"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_department
+		WHERE 1=1 
+		<if test="id!=null">
+			AND id = #{id,jdbcType=CHAR}
+		</if>
+		<if test="tId!=null">
+			AND tId = #{tId,jdbcType=CHAR}
+		</if>
+<!--		 ORDER BY tId-->
+	</select>
+
+	<select id="findByDepartId" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from t_department
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+	<delete id="deleteById" parameterType="java.lang.Integer" >
+	    delete from t_department
+	    where id = #{id,jdbcType=INTEGER}
+  	</delete>
+	<delete id="deleteByTId" parameterType="java.lang.Integer" >
+	    delete from t_department
+	    where tId = #{tId,jdbcType=INTEGER}
+  	</delete>
+
+	<sql id="Department_Column_List">
+		c.id, c.create_time, c.edit_time, c.hospital_id, c.hoptial_name, c.name, c.code,
+		c.status,
+		c.tId,
+		c.pId,
+		c.is_delete, 
+		c.description,
+		c.remark
+	</sql>
+	
+	<select id="checkDeptName" resultType="INTEGER">
+		select count(1) from t_department where name = #{name} and pId = #{pId}
+		<if test="id != null">
+			and id != #{id}
+		</if>
+	</select>
+</mapper>

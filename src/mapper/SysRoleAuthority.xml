@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.sys.SysRoleAuthorityDao">
+	<sql id="table">
+		sys_role_authority
+	</sql>
+	
+	<select id="getAuthorityByRoleId" parameterType="INTEGER" resultType="String">
+		select role_authority AS roleAuthority FROM <include refid="table"/> 
+		WHERE role_id =#{roleId}
+	</select>
+	
+	<select id="getAuthorityByRoleIds" resultType="String">
+		select DISTINCT role_authority AS roleAuthority FROM <include refid="table"/> 
+		WHERE role_id in 
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">  
+  			#{item}  
+ 		</foreach> 
+	</select>
+	
+	<insert id="addRoleAuthority" parameterType="com.sys.entity.sys.SysRoleAuthority">
+		INSERT INTO <include refid="table"/>
+		(role_id,role_authority)
+		VALUES (#{roleId},#{roleAuthority})
+	</insert>
+	
+	<delete id="deleteRoleAuthority" parameterType="com.sys.entity.sys.SysRoleAuthority">
+		DELETE FROM <include refid="table"/> WHERE role_id=#{roleId} and role_authority = #{roleAuthority}
+	</delete>
+	
+</mapper>

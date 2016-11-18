@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.area.AreaDao">
+	<sql id="table_name">
+		t_area
+	</sql>
+
+	<select id="findRoots" resultType="com.sys.entity.area.Area">
+		select * from
+		<include refid="table_name"/>
+		WHERE parent is null order by orders desc
+	</select>
+	
+	<select id="getList" resultType="com.sys.entity.area.Area">
+		select * from
+		<include refid="table_name"/>
+		 order by orders desc
+	</select>
+	
+	<select id="findAreaById" resultType="com.sys.entity.area.Area" parameterType="INTEGER">
+		select * from
+		<include refid="table_name"/>
+		where id=#{id}
+	</select>
+	
+	<select id="getChildren" parameterType="INTEGER"
+		resultType="com.sys.entity.area.Area">
+		SELECT * FROM <include refid="table_name"/> WHERE parent=#{id} order by id asc
+	</select>
+
+	<update id="updateArea" parameterType="com.sys.entity.area.Area">
+		UPDATE
+		<include refid="table_name" />
+		<set>
+			<if test="name!=null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="full_name!=null">
+				full_name = #{full_name,jdbcType=VARCHAR},
+			</if>
+			<if test="tree_path!=null">
+				tree_path = #{tree_path,jdbcType=VARCHAR},
+			</if>
+			<if test="parent!=null">
+				parent = #{parent,jdbcType=INTEGER},
+			</if>
+			modify_date=NOW()
+		</set>
+		WHERE id=#{id,jdbcType=INTEGER}
+	</update>
+
+	<insert id="addArea" parameterType="com.sys.entity.area.Area">
+		INSERT INTO <include refid="table_name" />
+		(name,full_name,tree_path,parent,create_date,modify_date)
+		VALUES
+		(#{name,jdbcType=VARCHAR},#{full_name,jdbcType=VARCHAR},#{tree_path,jdbcType=VARCHAR},#{parent,jdbcType=INTEGER},NOW(),NOW())
+	</insert>
+	
+	<delete id="delArea" parameterType="INTEGER">
+		delete from
+		<include refid="table_name" />
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+</mapper>

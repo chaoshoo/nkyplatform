@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.auth.DicDefineDao">
+	<sql id="table">
+		dic_define
+	</sql>
+	
+	
+	<select id="getDicDefineList"  parameterType="com.sys.entity.auth.DicDefine"
+			resultType="com.sys.entity.auth.DicDefine">
+		select id,dic_type AS dicType,dic_typename AS dicTypeName,sys_flag AS sysFlag,
+			dic_remark AS dicRemark
+		 FROM <include refid="table"/> 
+		 where 1=1
+		 <if test="dicType!=null">
+		 and dic_type like CONCAT('%',#{dicType},'%')
+		 </if>
+		 <if test="dicTypeName!=null">
+		 and dic_typename like CONCAT('%',#{dicTypeName},'%')
+		 </if>
+		 ORDER BY create_date DESC
+		 <if test="skipNo != -1">
+			LIMIT #{skipNo},#{pageSize}
+		</if>
+		
+	</select>
+	
+	<select id="getCount"  parameterType="com.sys.entity.auth.DicDefine" resultType="INTEGER">
+		SELECT COUNT(*)  FROM <include refid="table"/> 
+		where 1=1
+		 <if test="dicType!=null">
+		 and dic_type like CONCAT('%',#{dicType},'%')
+		 </if>
+		 <if test="dicTypeName!=null">
+		 and dic_typename like CONCAT('%',#{dicTypeName},'%')
+		 </if>
+	</select>
+	
+	
+	<insert id="addDicDefine" parameterType="com.sys.entity.auth.DicDefine">
+		INSERT INTO <include refid="table"/>
+		(dic_type,dic_typename,dic_remark,sys_flag,create_date)
+		VALUES (#{dicType},#{dicTypeName},#{dicRemark},#{sysFlag},#{dateTime})
+	</insert>
+	
+
+	<delete id="delDicDefine" parameterType="INTEGER">
+		DELETE FROM <include refid="table"/> WHERE id=#{id,jdbcType=INTEGER}
+	</delete>
+	<update id="updateDicDefine" parameterType="com.sys.entity.auth.DicDefine">
+		UPDATE <include refid="table"/>
+		<set>
+		<if test="dicType!=null">
+		dic_type = #{dicType},
+		</if>
+		<if test="dicTypeName!=null">
+		dic_typename=#{dicTypeName},
+		</if>
+		<if test="sysFlag!=null">
+		sys_flag=#{sysFlag},
+		</if>
+		<if test="dicRemark!=null">
+		dic_remark=#{dicRemark},
+		</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+</mapper>

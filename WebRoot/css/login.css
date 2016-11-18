@@ -1,0 +1,23 @@
+.logP{min-width:1000px;height:620px;padding-bottom:120px;background:#4cc2ea url(../img/bg_log.png) 0 100% repeat-x;}
+.logP .inn,.footer{clear:both;width:1000px;margin:0 auto;overflow:hidden;}
+.footer{text-align:center;line-height:22px;}
+.logP .inn{height:620px;background:url(../img/bg_log2.jpg) 0 40px no-repeat;}
+.logP .inn2{background-image: url(../img/bg_log2_2.jpg);}
+.dlC2,.dlC2 li{overflow:hidden;}
+.dlC2{float:right;width:286px;height:426px;padding:95px 45px 0;margin-top:40px;background:url(../img/bg_log3.jpg) 0 0 no-repeat;}
+.dlC2 li{clear:both;width:100%;font:normal 14px/36px "microsoft yahei";text-align:center;height:36px;}
+.an_dl{display:block;text-indent:-999px;width:265px;height:48px;margin:0 auto;background:url(../img/bg_btn.png) 0 0 no-repeat;overflow:hidden;}
+.l_ts{color:#f60a41;}
+.dlC2 li.dl01,.dlC2 li.dl02,.dlC2 li.dl06{margin-bottom:24px;border-bottom:1px solid #fff;}
+.dlC2 li.dl03,.dlC2 li.dl07{height:65px;}
+.dxC{float:left;color:#242729;}
+.dxC input{vertical-align:middle;}
+.wjmm{float:right;color:#969a9d;text-decoration:underline;}
+.d_input{position:relative;clear:both;font:normal 14px/32px "microsoft yahei";height:35px;overflow:hidden;text-shadow:1px 1px 1px #74b2c2;}
+.d_input i{position:absolute;top:7px;left:5px;display:block;width:26px;height:24px;background:url(../img/bg_log2.png) 0 0 no-repeat;overflow:hidden;}
+.d_input .i_02{background-position:0 -40px;}
+.d_input label{position:absolute;top:0;left:0;z-index:10;color:#fff;padding-left:46px;line-height:36px;}
+.d_input .inputC{position:absolute;z-index:50;top:0;right:0;font:normal 14px/16px "microsoft yahei";width:226px;color:#fff;padding:7px 10px 9px;background:none;border:none;outline:none;overflow:hidden;text-shadow:1px 1px 1px #74b2c2;}
+.focus label{display:none;}
+.yzm,.dl07 .l_ts{float:left;}
+.yzm{margin-right:15px;}

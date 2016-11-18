@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nky.dao.doctor.RemoteInspectDao" >
+  <resultMap id="BaseResultMap" type="com.nky.entity.doctor.RemoteInspect" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="vip_code" property="vipCode" jdbcType="VARCHAR" />
+    <result column="doctor_code" property="doctorCode" jdbcType="VARCHAR" />
+    <result column="hospital_code" property="hospitalCode" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="affirm_time" property="affirmTime" jdbcType="TIMESTAMP" />
+    <result column="isZd" property="iszd" jdbcType="TINYINT" />
+    <result column="isDeal" property="isdeal" jdbcType="TINYINT" />
+    <result column="zd_begin_time" property="zdBeginTime" jdbcType="TIMESTAMP" />
+    <result column="zd_end_Time" property="zdEndTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, vip_code, doctor_code, hospital_code, order_time, affirm_time, isZd, isDeal, 
+    zd_begin_time, zd_end_Time, create_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from remote_inspect
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from remote_inspect
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.nky.entity.doctor.RemoteInspect" >
+    insert into remote_inspect (id, code, vip_code, 
+      doctor_code, hospital_code, order_time, 
+      affirm_time, isZd, isDeal, 
+      zd_begin_time, zd_end_Time, create_time, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{vipCode,jdbcType=VARCHAR}, 
+      #{doctorCode,jdbcType=VARCHAR}, #{hospitalCode,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{affirmTime,jdbcType=TIMESTAMP}, #{iszd,jdbcType=TINYINT}, #{isdeal,jdbcType=TINYINT}, 
+      #{zdBeginTime,jdbcType=TIMESTAMP}, #{zdEndTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nky.entity.doctor.RemoteInspect" >
+    update remote_inspect
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCode != null" >
+        vip_code = #{vipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null" >
+        doctor_code = #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalCode != null" >
+        hospital_code = #{hospitalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="affirmTime != null" >
+        affirm_time = #{affirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iszd != null" >
+        isZd = #{iszd,jdbcType=TINYINT},
+      </if>
+      <if test="isdeal != null" >
+        isDeal = #{isdeal,jdbcType=TINYINT},
+      </if>
+      <if test="zdBeginTime != null" >
+        zd_begin_time = #{zdBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zdEndTime != null" >
+        zd_end_Time = #{zdEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="videoDiagnoseOper">
+  	update remote_inspect set
+  	<choose>
+  		<when test='flag == "S"'>
+  			isZd = 1,isDeal = 1,zd_begin_time = now() where id = #{id}
+  		</when>
+  		<when test='flag == "E"'>
+  			isZd = 1,isDeal = 1,zd_end_time = now() where id = #{id}
+  		</when>
+  		<when test='flag == "D"'>
+  			isDeal = 2 where id = #{id}
+  		</when>
+  		<otherwise>
+  			isDeal = -1 where 1 = 2
+  		</otherwise>
+  	</choose>
+  </update>
+</mapper>

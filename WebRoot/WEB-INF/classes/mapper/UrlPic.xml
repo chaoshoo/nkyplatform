@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.url.UrlPicDao">
+	<sql id="table">
+		t_url_pic
+	</sql>
+	
+	<select id="getList" parameterType="com.sys.entity.url.UrlPic" resultType="com.sys.entity.url.UrlPic">
+		SELECT
+		id,title,option_id,url,url_pic_type,sort,create_time,url_link
+		FROM <include refid="table"/>
+		WHERE 1=1
+		<if test="title!=null">
+			AND title like CONCAT('%',#{title},'%')
+		</if>
+		ORDER BY create_time DESC
+		LIMIT #{skipNo},#{pageSize}
+	</select>
+	
+	<select id="count" parameterType="com.sys.entity.url.UrlPic" resultType="INTEGER">
+		SELECT COUNT(*) FROM <include refid="table" />
+		WHERE 1=1
+		<if test="title!=null">
+			AND title like CONCAT('%',#{title},'%')
+		</if>
+	</select>
+	
+	<insert id="save" parameterType="com.sys.entity.url.UrlPic">
+		INSERT INTO <include refid="table"/>
+		(title,
+		option_id,
+		url,
+		url_pic_type,
+		create_time,
+		sort,
+		url_link)
+		VALUES 
+		(#{title},
+		#{option_id},
+		#{url},
+		#{url_pic_type},
+		#{create_time},
+		#{sort},
+		#{url_link})
+	</insert>
+	
+	<update id="update" parameterType="com.sys.entity.url.UrlPic">
+		UPDATE <include refid="table" />
+		<set>
+		<if test="title!=null">
+				title = #{title}
+			</if>
+			<if test="option_id!=null">
+				,option_id = #{option_id}
+			</if>
+			<if test="url!=null">
+				,url = #{url}
+			</if>
+			<if test="url_pic_type!=null">
+				,url_pic_type = #{url_pic_type}
+			</if>
+			<if test="sort!=null">
+				,sort = #{sort}
+			</if>
+			<if test="url_link!=null">
+				,url_link = #{url_link}
+			</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.sys.entity.url.UrlPic">
+		DELETE FROM <include refid="table"/>
+		WHERE id = #{id}
+	</delete>
+</mapper>

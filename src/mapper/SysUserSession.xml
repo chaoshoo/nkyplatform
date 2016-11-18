@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.sys.SysUserSessionDao">
+
+	<select id="getSysUserSessionBySessionId" parameterType="INTEGER"  resultType="com.sys.entity.sys.SysUserSession">
+		SELECT * FROM sys_user_session WHERE user_id = #{userId,jdbcType=BIGINT}
+	</select>
+
+	<insert id="addUserSession" parameterType="SysAuth">
+		INSERT INTO sys_user_session
+		(session_id,user_id,last_login_ip,last_login_time)
+		VALUES (#{sessionId,jdbcType=VARCHAR},#{userId,jdbcType=BIGINT},#{lastLoginIp,jdbcType=VARCHAR},#{lastLoginTime,jdbcType=TIMESTAMP})
+	</insert>
+	
+	<update id="updateSysUserSessionBySessionId">
+		UPDATE sys_user_session  
+		<set>
+		session_id = #{sessionId,jdbcType=VARCHAR},last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},last_login_time=#{lastLoginTime,jdbcType=TIMESTAMP}
+		</set>
+		WHERE user_id = #{userId,jdbcType=BIGINT}
+	</update>
+	
+</mapper>

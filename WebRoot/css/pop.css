@@ -1,0 +1,81 @@
+.bzC, .bzC li, .fgx {
+	clear: both;
+	width: 100%;
+	overflow: hidden;
+}
+.fgx {
+	width: 98%;
+	height: 1px;
+	margin: 0 auto;
+	border-bottom: 1px dashed #ccc;
+}
+.bzC {
+	line-height: 22px;
+	padding: 5px 0;
+}
+.bzC .b01, .bzC .b02 {
+	float: left;
+}
+.bzC .b01 {
+	margin-right: 15px;
+}
+.bzC label {
+	float: left;
+	padding: 0 5px;
+}
+.b03 .b_info {
+	padding: 0 3px 0 58px;
+	word-wrap: break-word;
+}
+.bzC .fcH {
+	color: #666;
+}
+/*diP*/
+.biC, .biC li {
+	clear: both;
+	font-size: 12px;
+	list-style:none;
+	width: 100%;
+	overflow: hidden;
+}
+.biP {
+	clear: both;
+	border: 1px solid #ccc;
+	border-left: none;
+	border-bottom: none;
+	margin: 5px 5px 10px;
+}
+.biC li {
+	float:left;
+	height: 24px;
+	line-height: 24px;
+	border-bottom: 1px solid #ccc;
+}
+.biC label, .biC span ,.biC .inputC,.biC .inputC2{
+	float:left;
+	padding: 0 5px;
+	overflow: hidden;
+}
+.biC label {
+	text-align:right;
+	width: 75px;
+	border-right: 1px solid #ccc;
+}
+.biC .label2,.biC .label3{width:30px;}
+.biC .label3{width:40px;}
+.biC span {
+	height:23px;
+	width: 105px;
+	display:block;
+}
+.biC .inputC,.biC .inputC2{
+	width:200px;
+	height:18px;
+	line-height:18px;
+	margin-top:2px;
+	border:1px solid #ccc;
+}
+.biC .inputC2{width:90px;}
+.biC .w_auto{width:auto;}
+.biC li.yzpic{height:110px;}
+.biC li.yzpic label,.biC li.yzpic span{height:100px;padding:5px;}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.sys.dao.parameter.SysParameterDao">
+
+	<sql id="table">
+		t_sys_parameter
+	</sql>
+
+	<update id="updateSysParameter" parameterType="com.sys.entity.parameter.SysParameter">
+		UPDATE
+		<include refid="table" />
+		<set>
+			<if test="name!=null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultValue!=null">
+				default_value = #{defaultValue,jdbcType=VARCHAR},
+			</if>
+			<if test="soft!=null">
+				soft= #{soft,jdbcType=INTEGER},
+			</if>
+			<if test="description!=null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="isEffective!=null">
+				is_effective = #{isEffective,jdbcType=INTEGER},
+			</if>
+		</set>
+		WHERE id=#{id,jdbcType=INTEGER}
+	</update>
+
+	<insert id="addSysParameter" parameterType="com.sys.entity.parameter.SysParameter">
+		INSERT INTO <include refid="table" />
+		(create_time,name,default_value,code,soft,description,is_effective)
+		VALUES
+		(#{createTime,jdbcType=TIMESTAMP},#{name,jdbcType=VARCHAR},#{defaultValue,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR},#{soft,jdbcType=INTEGER},#{description,jdbcType=VARCHAR},#{isEffective,jdbcType=INTEGER})
+	</insert>
+
+	<select id="getCount" parameterType="com.sys.entity.parameter.SysParameter"
+		resultType="INTEGER">
+		SELECT COUNT(*) FROM
+		<include refid="table" />
+		WHERE 1=1
+		<if test="name!=null">
+		 and name like CONCAT('%',#{name},'%')
+		 </if>
+	</select>
+
+	<select id="getSysParameterList" parameterType="com.sys.entity.parameter.SysParameter"
+		resultType="com.sys.entity.parameter.SysParameter">
+		SELECT id,create_time createTime,name,default_value defaultValue,code ,description,is_effective isEffective,soft
+		FROM <include refid="table" />
+		where 1=1
+		 <if test="name!=null">
+		 and name like CONCAT('%',#{name},'%')
+		 </if>
+		 ORDER BY soft ASC
+		<if test="skipNo != -1">
+			LIMIT #{skipNo},#{pageSize}
+		</if>
+	</select>
+	
+	<delete id="delSysParameter" parameterType="INTEGER">
+		delete from
+		<include refid="table" />
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+</mapper>

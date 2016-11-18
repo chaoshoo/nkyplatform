@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.sys.dao.sys.SysUserDao">
+
+	<sql id="table">
+		sys_user
+	</sql>
+	<select id="getSysUserById" parameterType="java.lang.Integer"
+		resultType="com.sys.entity.sys.SysUser">
+		SELECT sys_user_id AS userId, user_name AS userName, user_pwd AS
+		userPwd, user_mail AS userMail, role_id AS roleId, created_time AS
+		createdTime, created_by AS createdBy, updated_time AS updatedTime,
+		updated_by AS updatedBy, is_effective as isEffective,partner_id  as partnerId,partner_name AS parnterName,department_id as departmentId,sys_job,sys_state,sys_id,group_name FROM <include refid="table"/> WHERE sys_user_id=#{userId}
+	</select>
+	
+	<select id="getSysUserBySysId" parameterType="STRING"
+		resultType="com.sys.entity.sys.SysUser">
+		SELECT sys_user_id AS userId, user_name AS userName, user_pwd AS
+		userPwd, user_mail AS userMail, role_id AS roleId, created_time AS
+		createdTime, created_by AS createdBy, updated_time AS updatedTime,
+		updated_by AS updatedBy, is_effective as isEffective,partner_id  as partnerId,partner_name AS parnterName,department_id as departmentId,sys_job,sys_state,sys_id,group_name FROM <include refid="table"/> WHERE sys_id=#{sys_id}
+	</select>
+
+	<select id="getLoginInfo" parameterType="com.sys.entity.sys.SysUser"
+		resultType="com.sys.entity.sys.SysUser">
+		SELECT sys_user_id AS userId, user_name AS userName, user_pwd AS
+		userPwd, user_mail AS userMail, role_id AS roleId, created_time AS
+		createdTime, created_by AS createdBy, updated_time AS updatedTime, DEPARTMENT_ID departmentId, 
+		updated_by AS updatedBy,partner_id AS partnerId,partner_name AS parnterName,sys_job,sys_state,sys_id
+		FROM <include refid="table" />
+		WHERE is_effective=1 AND user_mail=#{userMail,jdbcType=VARCHAR} AND user_pwd = md5(#{userPwd,jdbcType=VARCHAR})
+	</select>
+
+	<update id="updateSysUser" parameterType="com.sys.entity.sys.SysUser">
+		UPDATE
+		<include refid="table" />
+		<set>
+			<if test="userName!=null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="userPwd!=null">
+				user_pwd = md5(#{userPwd,jdbcType=VARCHAR}),
+			</if>
+			<if test="userMail!=null">
+				user_mail = #{userMail,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId!=null">
+				role_id=#{roleId,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedTime!=null">
+				updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedBy!=null">
+				updated_by = #{updatedBy,jdbcType=INTEGER},
+			</if>
+			<if test="isEffective!=null">
+				is_effective = #{isEffective,jdbcType=TIMESTAMP},
+			</if>
+			<if test="departmentId!=null">
+				department_id = #{departmentId,jdbcType=VARCHAR},
+			</if>
+			<if test="partnerId!=null">
+				partner_id = #{partnerId,jdbcType=VARCHAR},
+			</if>
+			<if test="sys_job!=null">
+				sys_job = #{sys_job,jdbcType=VARCHAR},
+			</if>
+			<if test="sys_state!=null">
+				sys_state = #{sys_state,jdbcType=VARCHAR},
+			</if>
+			<if test="sys_id!=null">
+				sys_id = #{sys_id,jdbcType=VARCHAR},
+			</if>
+			<if test="group_name!=null">
+				group_name = #{group_name,jdbcType=VARCHAR},
+			</if>
+			<if test="remark!=null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="partnerName!=null">
+				partner_name = #{partnerName,jdbcType=VARCHAR}
+			</if>
+		</set>
+		WHERE sys_user_id=#{userId,jdbcType=INTEGER}
+	</update>
+
+	<insert id="addSysUser" parameterType="com.sys.entity.sys.SysUser">
+		<selectKey resultType="java.lang.Integer" keyProperty="adminId"
+			order="AFTER">
+			SELECT LAST_INSERT_ID() as id from
+			<include refid="table" />
+			order by sys_user_id limit 1
+		</selectKey>
+		INSERT INTO sys_user
+		(user_name,user_pwd,user_mail,role_id,created_time,created_by,updated_time,updated_by,is_effective,partner_id,partner_name,department_id,sys_job,sys_state,sys_id,remark,group_name)
+		VALUES
+		(#{userName,jdbcType=VARCHAR},md5(#{userPwd,jdbcType=VARCHAR}),#{userMail,jdbcType=VARCHAR},#{roleId,jdbcType=VARCHAR},#{createdTime,jdbcType=TIMESTAMP},#{createdBy,jdbcType=INTEGER},
+		#{updatedTime,jdbcType=TIMESTAMP},0,#{isEffective},#{partnerId,jdbcType=VARCHAR},#{partnerName,jdbcType=VARCHAR},#{departmentId,jdbcType=VARCHAR},#{sys_job,jdbcType=VARCHAR},
+		#{sys_state,jdbcType=VARCHAR},#{sys_id,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{group_name,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="getCount" parameterType="com.sys.entity.sys.SysUser"
+		resultType="INTEGER">
+		SELECT COUNT(*) FROM
+		<include refid="table" />
+		WHERE 1=1
+		<if test="userName!=null">
+			AND user_name like CONCAT('%','${userName}','%' )
+		</if>
+		<if test="userMail!=null">
+			AND user_mail like CONCAT('%','${userMail}','%' )
+		</if>
+		<if test="group_name!=null">
+			AND group_name like CONCAT('%','${group_name}','%' )
+		</if>
+		<if test="departmentId!=null">
+			AND	department_id = #{departmentId,jdbcType=VARCHAR}
+		</if>
+		<if test="roleId!=null">
+			AND	role_id like CONCAT('%','${roleId}','%' )
+		</if>
+	</select>
+	
+	<select id="getCountByUserMail" parameterType="com.sys.entity.sys.SysUser"
+		resultType="INTEGER">
+		SELECT COUNT(*) FROM
+		<include refid="table" />
+		WHERE 1=1
+		<if test="userMail!=null">
+			AND user_mail = #{userMail,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<select id="getUserList" parameterType="com.sys.entity.sys.SysUser"
+		resultType="com.sys.entity.sys.SysUser">
+		SELECT sys_user_id userId,user_name userName,user_pwd userPwd,
+		user_mail userMail,role_id roleId,created_time createdTime,
+		created_by createdBy,updated_time updatedTime,updated_by updatedBy,
+		is_effective isEffective,partner_id partnerId,partner_name partnerName,
+		department_id departmentId,group_name,sys_job,sys_state,sys_id,remark
+		FROM <include refid="table" /> 
+		WHERE 1=1
+		<if test="userName!=null">
+			AND user_name like CONCAT('%','${userName}','%' )
+		</if>
+		<if test="userMail!=null">
+			AND user_mail like CONCAT('%','${userMail}','%' )
+		</if>
+		<if test="group_name!=null">
+			AND group_name like CONCAT('%','${group_name}','%' )
+		</if>
+		<if test="departmentId!=null">
+			AND	department_id = #{departmentId,jdbcType=VARCHAR}
+		</if>
+		<if test="roleId!=null">
+			AND	role_id like CONCAT('%','${roleId}','%' )
+		</if>
+		<if test="skipNo != -1">
+			LIMIT #{skipNo},#{pageSize}
+		</if>
+	</select>
+	
+	<delete id="dropAccountByMail" parameterType="STRING">
+		delete from
+		<include refid="table" />
+		WHERE user_mail = #{userMail}
+	</delete>
+	
+	<delete id="delUser" parameterType="INTEGER">
+		delete from
+		<include refid="table" />
+		WHERE sys_user_id = #{id,jdbcType=INTEGER}
+	</delete>
+</mapper>

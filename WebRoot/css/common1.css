@@ -1,0 +1,32 @@
+html,body{ min-height: 100%; }
+img {
+border: 0px;
+vertical-align: middle; 
+}
+a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,hr,html,i,iframe,img,input,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,textarea,tfoot,th,thead,time,tr,tt,u,ul,var,video,button,input,textarea
+	{
+	margin: 0;
+	padding: 0;
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,button,textarea,p,blockquote,th,td,input
+	{
+	margin: 0;
+	padding: 0;
+	word-break: break-all;
+	transition: all 0.5s ease !important;
+}
+
+input:hover,textarea:hover,button:hover,select:hover {
+	filter: alpha(opacity = 50) !important;
+	-moz-opacity: 0.8 !important;
+	-khtml-opacity: 0.8 !important;
+	opacity: 0.8 !important;
+}
+body {
+	
+	background-color: #eee;
+	color: #535353;
+	margin: 0;
+	width: 100%;
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.sys.SysAuthDao">
+	<sql id="table">
+		sys_auth
+	</sql>
+	
+	<select id="getLeftAuth" parameterType="com.sys.entity.sys.SysAuth" resultType="com.sys.entity.sys.SysAuth">
+		SELECT auth_id authId,auth_name authName,auth_action authAction,pid FROM <include refid="table"/> 
+		WHERE auth_id IN (SELECT auth_id FROM sys_role_auth WHERE role_id = #{roleId}) AND is_effective != 0
+		ORDER BY auth_seq desc,created_time
+	</select>
+	
+	<select id="getLeftAuth1" parameterType="String" resultType="com.sys.entity.sys.SysAuth">
+		SELECT auth_id authId,auth_name authName,auth_action authAction,pid FROM <include refid="table"/> 
+		WHERE authority IN (SELECT role_authority FROM sys_role_authority WHERE role_id in (#{roleId})) AND is_effective != 0 AND auth_type='menu'
+		ORDER BY auth_seq desc,created_time
+	</select>
+	
+	<select id="getParentAuth" parameterType="com.sys.entity.sys.SysAuth" resultType="com.sys.entity.sys.SysAuth">
+		SELECT auth_id AS authId,auth_name AS authName FROM <include refid="table"/> WHERE  is_effective = 1 and auth_type = 'menu'  order by   auth_seq desc
+	</select>
+	
+	
+	
+	<select id="getParentAuthByRole" parameterType="INTEGER" resultType="com.sys.entity.sys.SysAuth">
+		SELECT auth_id AS authId,auth_name AS authName FROM <include refid="table"/> WHERE pid=0 AND role_id = #{roleId} AND is_effective = 1
+	</select>
+	
+	<select id="getSysAuthList" parameterType="com.sys.entity.sys.SysAuth"  resultType="com.sys.entity.sys.SysAuth">
+		SELECT auth_id AS authId,auth_name AS authName,auth_action AS authAction,pid,auth_seq AS authSeq,is_effective AS isEffective
+		,authority,auth_type AS authType FROM <include refid="table"/> 
+		WHERE is_effective != 0
+		ORDER BY authSeq desc,created_time
+		<if test="skipNo != -1">
+			LIMIT #{skipNo},#{pageSize}
+		</if>
+	</select>
+	
+	<select id="getSysAuthListTree" parameterType="com.sys.entity.sys.SysAuth"  resultType="com.sys.entity.sys.SysAuth">
+		SELECT auth_id AS authId,auth_name AS authName,auth_action AS authAction,pid,auth_seq AS authSeq,is_effective AS isEffective
+		,authority,auth_type AS authType FROM <include refid="table"/> 
+		<if test="authId==null">
+			WHERE pid=0
+		</if>
+		<if test="authId!=null">
+			WHERE pid=#{authId}
+		</if>
+		ORDER BY authSeq desc,created_time
+		<!-- WHERE is_effective != 0 -->
+		<if test="skipNo != -1">
+			LIMIT #{skipNo},#{pageSize}
+		</if>
+	</select>
+	
+	<select id="getSysAuthByPid" parameterType="INTEGER" resultType="com.sys.entity.sys.SysAuth">
+		SELECT auth_id authId,auth_name authName,auth_action authAction,pid,authority
+		FROM <include refid="table"/> 
+		WHERE authority IN (SELECT role_authority FROM sys_role_authority WHERE role_id = #{roleId}) AND is_effective != 0
+	</select>
+	<select id="getCount" parameterType="com.sys.entity.sys.SysAuth"  resultType="INTEGER">
+		SELECT COUNT(1) 
+		FROM <include refid="table"/> 
+		WHERE 1=1 
+		<if test="pid!=null">
+			AND pid= #{pid}
+		</if>
+	</select>
+	<update id="updateSysAuth" parameterType="com.sys.entity.sys.SysAuth">
+		UPDATE <include refid="table"/>
+		<set>
+		<if test="authName!=null">
+		auth_name = #{authName},
+		</if>
+		<if test="updatedTime!=null">
+		updated_time=#{updatedTime},
+		</if>
+		<if test="pid!=null">
+		pid=#{pid},
+		</if>
+		<if test="authAction!=null">
+		auth_action=#{authAction},
+		</if>
+		<if test="authSeq!=null">
+		auth_seq=#{authSeq},
+		</if>
+		<if test="isEffective!=null">
+		is_effective = #{isEffective},
+		</if>
+		<if test="authority!=null">
+		authority = #{authority},
+		</if>
+		<if test="authType!=null">
+		auth_type = #{authType}
+		</if>
+		</set>
+		WHERE auth_id = #{authId}
+	</update>
+	<insert id="addSysAuth" parameterType="com.sys.entity.sys.SysAuth">
+		INSERT INTO <include refid="table"/>
+		(auth_name,auth_action,auth_seq,pid,created_time,updated_time,is_effective,authority,auth_type)
+		VALUES (#{authName},#{authAction},#{authSeq},#{pid},#{createdTime},#{updatedTime},#{isEffective},#{authority},#{authType})
+	</insert>
+	
+	<delete id="delSysAuth" parameterType="INTEGER">
+		DELETE FROM <include refid="table"/> WHERE auth_id=#{id,jdbcType=INTEGER}
+	</delete>
+</mapper>

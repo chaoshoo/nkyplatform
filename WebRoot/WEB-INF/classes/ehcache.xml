@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+
+	<diskStore path="temp/cache" />
+
+	<cache name="authorization" maxElementsInMemory="100000" timeToIdleSeconds="1800"  timeToLiveSeconds="3600" eternal="false" overflowToDisk="false" />
+	
+   	<cache name="passwordRetryCache" maxEntriesLocalHeap="2000"
+		eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="0"
+		overflowToDisk="false" statistics="true">
+	</cache>
+   
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="300"
+            timeToLiveSeconds="600"
+            overflowToDisk="true"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LFU"
+            />
+	
+</ehcache>

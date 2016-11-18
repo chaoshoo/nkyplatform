@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.auth.DicDao">
+	<sql id="table">
+		dic
+	</sql>
+	
+	<select id="getDic" parameterType="String" resultType="com.sys.entity.auth.Dic">
+		select dic_type AS dicType,dic_name AS dicName,dic_value AS dicValue FROM <include refid="table"/> 
+		WHERE dic_type=#{dicType}
+	</select>
+	
+	<select id="getDicList" parameterType="INTEGER" resultType="com.sys.entity.auth.Dic">
+		select id ,dic_type AS dicType,dic_name AS dicName,dic_value AS dicValue,
+		sys_flag AS sysFlag ,dic_remark AS dicRemark , dic_remark1 AS dicRemark1,belong_name AS belongName  
+		FROM <include refid="table"/> 
+		WHERE dic_type= (select dic_type from dic_define  where id =#{id} )
+	</select>
+	
+	<insert id="addDic" parameterType="com.sys.entity.auth.Dic">
+		INSERT INTO <include refid="table"/>
+		(dic_type,dic_name,dic_value,sys_flag,dic_remark,dic_remark1,belong_name)
+		VALUES (#{dicType},#{dicName},#{dicValue},#{sysFlag},#{dicRemark},#{dicRemark1},#{belongName})
+	</insert>
+	<delete id="delDic" parameterType="INTEGER">
+		DELETE FROM <include refid="table"/> WHERE id=#{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="delDicByType" parameterType="INTEGER">
+		DELETE FROM <include refid="table"/> WHERE dic_type= (select dic_type from dic_define  where id =#{id} )
+	</delete>
+</mapper>
