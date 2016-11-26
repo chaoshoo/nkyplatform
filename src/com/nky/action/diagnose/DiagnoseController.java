@@ -83,7 +83,7 @@ public class DiagnoseController extends BaseAction{
 					+ " where r.vip_code=v.vip_code and r.doctor_code=d.code and r.id="+id;
 			Record r = Db.findFirst(sql);
 			if(r != null){
-				messageService.saveMessage("2", r.get("did")+"", r.get("id")+"", "很遗憾,你预约"+r.get("name")+"被拒绝了。");
+				messageService.saveMessage("2", r.get("did")+"", r.get("id")+"", "Unfortunately,Your reservation"+r.get("name")+"Been rejected。");
 			}
 		}
 		return result;

@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>支付后台</title>
+		<title>Payment background</title>
 		<%@include file="/head.jsp"%>
 		<link rel="stylesheet" type="text/css" href="css/jquery/tree/zTreeStyle.css" />
 		<link rel="stylesheet" href="css/all.css" />
@@ -15,30 +15,30 @@
 	</head>
 	<body class="easyui-layout">
 		<div id="common_search common_search_nopadding">
-			<button id="add" class="btn btn-success" data-options="iconCls:'icon-add'" onclick="clickAdd()"><i class="icon-plus"></i>&nbsp;添加部门</button>
-			<button id="update" class="btn btn-success" data-options="iconCls:'icon-edit'" onclick="editPrivilege()"><i class="icon-edit"></i>&nbsp;修改部门</button>
-			<button id="delete" class="btn btn-success" data-options="iconCls:'icon-remove'" onclick="delPrivilege()"><i class="icon-remove"></i>&nbsp;删除部门 </button>
+			<button id="add" class="btn btn-success" data-options="iconCls:'icon-add'" onclick="clickAdd()"><i class="icon-plus"></i>&nbsp;Add Department</button>
+			<button id="update" class="btn btn-success" data-options="iconCls:'icon-edit'" onclick="editPrivilege()"><i class="icon-edit"></i>&nbsp;Modification Department</button>
+			<button id="delete" class="btn btn-success" data-options="iconCls:'icon-remove'" onclick="delPrivilege()"><i class="icon-remove"></i>&nbsp;Department deleted </button>
 		</div>
 	<div id="root_layout">
 		
 		<table id="departmentInfo_table"></table>
 		<div id="saveUpdateDepartment_detail_dialog"
-			data-options="closed:true,modal:true,title:'部门信息',iconCls:'icon-save'"
+			data-options="closed:true,modal:true,title:'Department information',iconCls:'icon-save'"
 			style="padding:5px;width:700px;height:300px;">
 			<form action="departmentInfo/getList.json" id="saveUpdateDepartment_detail_form">
 				<input type="hidden" id="id">
 				<table>
 					<tr>
-						<td style="min-width: 100px">上级部门</td>
+						<td style="min-width: 100px">Superior department</td>
 						<td width="150px;">
 							<select id="parent">
-								<option value="${0}">--选择--</option>
+								<option value="${0}">--Choose--</option>
 								<c:forEach items="${departMentLst}" var="departLst">
 									<option value="${departLst.tId}" >${departLst.name}</option>
 								</c:forEach>
 							</select>
 						</td>
-						<td style="min-width: 100px">部门名称</td>
+						<td style="min-width: 100px">Department name</td>
 						<td width="150px;">
 <!--							<select id="departmentName">-->
 <!--								<m:getItems name="ksmc"></m:getItems>-->
@@ -48,17 +48,17 @@
 					</tr>
 					
 					<tr>
-						<td style="min-width: 100px">部门描述</td>
+						<td style="min-width: 100px">Department description</td>
 						<td width="150px;">
 							<input type="text" id="description"/>
 						</td>
-						<td style="min-width: 100px">备注</td>
+						<td style="min-width: 100px">Remarks</td>
 						<td width="150px;">
 							<input type="text" id="remark"/>
 						</td>
 					</tr>
 					<tr>
-						<td style="min-width: 100px">状态</td>
+						<td style="min-width: 100px">state</td>
 						<td width="150px;">
 							<select id="status">
 								<m:getItems name="status"></m:getItems>
@@ -82,16 +82,16 @@
 		</table>
 		<div id="rMenu" class="easyui-menu" style="position: absolute; display: none;width:120px;">
 			<div id="m_add" onclick="addPrivilege();">
-				<li>增加</li>
+				<li>increase</li>
 			</div>
 			<div id="m_edit" onclick="editPrivilege();">
-				<li>编辑</li>
+				<li>edit</li>
 			</div>
 			<div id="m_del" onclick="delPrivilege();">
-				<li>删除</li>
+				<li>delete</li>
 			</div>
 <!--			<div id="m_show" onclick="queryPrivilege();">-->
-<!--				<li>查看</li>-->
+<!--				<li>See</li>-->
 <!--			</div>-->
 		</div>
 </body>

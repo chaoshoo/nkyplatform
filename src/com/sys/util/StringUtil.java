@@ -88,7 +88,7 @@ public class StringUtil extends StringUtils {
 		try {
 			return ConvertUtils.convert(value, toType);
 		} catch (Exception e) {
-			throw new Exception("String转" + toType + "对象出错");
+			throw new Exception("Stringturn" + toType + "Error object");
 		}
 	}
 

@@ -60,7 +60,7 @@ public class FileUploadAction {
 			}
 			if(filename.length() < 1){
 				upload.setSuccess(false);
-				upload.setMsg("上传失败，文件为空");
+				upload.setMsg("Upload failed，File is empty");
 			}else{
 				upload.setSuccess(true);
 				upload.setFileUrl(filename.substring(1));

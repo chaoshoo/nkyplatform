@@ -117,11 +117,11 @@ public class AreaTreepathController {
 			}
 		}
 		if(num == ids.length) {
-			data.setMsg("删除成功");
+			data.setMsg("Deleted");
 		}else if(num == 0){
-			data.setMsg("不能删除拥有子节点的区域");
+			data.setMsg("Can not remove region with sub node");
 		}else {
-			data.setMsg("拥有子节点的区域未删除");
+			data.setMsg("The area with the child node is not deleted");
 		}
 		return data;
 	}

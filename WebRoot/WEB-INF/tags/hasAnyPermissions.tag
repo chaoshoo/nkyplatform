@@ -3,8 +3,8 @@
 <%@ tag import="java.util.Arrays" %>
 <%@ tag import="org.apache.shiro.subject.Subject" %>
 <%@ tag pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ attribute name="name" type="java.lang.String" required="true" description="权限字符串列表" %>
-<%@ attribute name="delimiter" type="java.lang.String" required="false" description="权限字符串列表分隔符" %>
+<%@ attribute name="name" type="java.lang.String" required="true" description="Authorization string list" %>
+<%@ attribute name="delimiter" type="java.lang.String" required="false" description="Authorization string list separator" %>
 <%
 
     if(!StringUtils.hasText(delimiter)) {

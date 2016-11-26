@@ -2,7 +2,7 @@ var regexEnum = {
 	intege : "^-?[1-9]\\d*$", // 整数
 	intege1 : "^[1-9]\\d*$", // 正整数
 	intege2 : "^-[1-9]\\d*$", // 负整数
-	num : "^([+-]?)\\d*\\.?\\d+$", // 数字
+	num : "^([+-]?)\\d*\\.?\\d+$", // number
 	num1 : "^[1-9]\\d*|0$", // 正数（正整数 + 0）
 	num2 : "^-[1-9]\\d*|0$", // 负数（负整数 + 0）
 	decmal : "^([+-]?)\\d*\\.\\d+$", // 浮点数
@@ -16,80 +16,80 @@ var regexEnum = {
 	color : "^[a-fA-F0-9]{6}$", // 颜色
 	url : "^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&=]*)?$", // url
 	chinese : "^[\\u4E00-\\u9FA5\\uF900-\\uFA2D]+$", // 仅中文
-	ascii : "^[\\x00-\\xFF]+$", // 仅ACSII字符
-	zipcode : "^\\d{6}$", // 邮编
-	mobile : "^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$", // 手机
-	ip4 : "^(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)$", // ip地址
+	ascii : "^[\\x00-\\xFF]+$", // 仅ACSIIcharacter
+	zipcode : "^\\d{6}$", // Zip code
+	mobile : "^13[0-9]{9}|15[012356789][0-9]{8}|18[0256789][0-9]{8}|147[0-9]{8}$", // Mobile phone
+	ip4 : "^(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)$", // ipaddress
 	notempty : "^\\S+$", // 非空
-	picture : "(.*)\\.(jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga)$", // 图片
+	picture : "(.*)\\.(jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga)$", // picture
 	rar : "(.*)\\.(rar|zip|7zip|tgz)$", // 压缩文件
-	date : "^\\d{4}(\\-|\\/|\.)\\d{1,2}\\1\\d{1,2}$", // 日期
+	date : "^\\d{4}(\\-|\\/|\.)\\d{1,2}\\1\\d{1,2}$", // Date,
 	qq : "^[1-9]*[1-9][0-9]*$", // QQ号码
 	tel : "^(([0\\+]\\d{2,3}-)?(0\\d{2,3})-)?(\\d{7,8})(-(\\d{3,}))?$", // 电话号码的函数(包括验证国内区号,国际区号,分机号)
 	username : "^\\w+$", // 用来用户注册。匹配由数字、26个英文字母或者下划线组成的字符串
-	letter : "^[A-Za-z]+$", // 字母
+	letter : "^[A-Za-z]+$", // Letter
 	letter_u : "^[A-Z]+$", // 大写字母
 	letter_l : "^[a-z]+$", // 小写字母
-	idcard : "^[1-9]([0-9]{14}|[0-9]{17})$" // 身份证
+	idcard : "^[1-9]([0-9]{14}|[0-9]{17})$" // ID
 }
 
 var aCity = {
-	11 : "北京",
-	12 : "天津",
-	13 : "河北",
-	14 : "山西",
-	15 : "内蒙古",
-	21 : "辽宁",
-	22 : "吉林",
-	23 : "黑龙江",
-	31 : "上海",
-	32 : "江苏",
-	33 : "浙江",
-	34 : "安徽",
-	35 : "福建",
-	36 : "江西",
-	37 : "山东",
-	41 : "河南",
-	42 : "湖北",
-	43 : "湖南",
-	44 : "广东",
-	45 : "广西",
-	46 : "海南",
-	50 : "重庆",
-	51 : "四川",
-	52 : "贵州",
-	53 : "云南",
-	54 : "西藏",
-	61 : "陕西",
-	62 : "甘肃",
-	63 : "青海",
-	64 : "宁夏",
-	65 : "新疆",
-	71 : "台湾",
-	81 : "香港",
-	82 : "澳门",
-	91 : "国外"
+	11 : "beijing",
+	12 : "tianjin",
+	13 : "hebei",
+	14 : "shanxi",
+	15 : "innermongolia",
+	21 : "liaoning",
+	22 : "jilin",
+	23 : "heilongjiang",
+	31 : "shanghai",
+	32 : "jiangsu",
+	33 : "zhejiang",
+	34 : "anhui",
+	35 : "fujian",
+	36 : "jiangxi",
+	37 : "shandong",
+	41 : "henan",
+	42 : "hubei",
+	43 : "hunan",
+	44 : "guangdong",
+	45 : "guangxi",
+	46 : "hainan",
+	50 : "chongqing",
+	51 : "sichuan",
+	52 : "guizhou",
+	53 : "yunnan",
+	54 : "tibet",
+	61 : "shaanxi",
+	62 : "gansu",
+	63 : "qinghai",
+	64 : "ningxia",
+	65 : "xinjiang",
+	71 : "taiwan",
+	81 : "hongkong",
+	82 : "macau",
+	91 : "abroad"
 }
 
 function isCardID(sId) {
 	var iSum = 0;
 	var info = "";
 	if (!/^\d{17}(\d|x)$/i.test(sId))
-		return "你输入的身份证长度或格式错误";
+		return "The length or format of your ID is wrong.";
 	sId = sId.replace(/x$/i, "a");
 	if (aCity[parseInt(sId.substr(0, 2))] == null)
-		return "你的身份证地区非法";
+		return "Your ID area is invalid";
 	sBirthday = sId.substr(6, 4) + "-" + Number(sId.substr(10, 2)) + "-"
 			+ Number(sId.substr(12, 2));
 	var d = new Date(sBirthday.replace(/-/g, "/"));
 	if (sBirthday != (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d
 			.getDate()))
-		return "身份证上的出生日期非法";
+		return "Birth date on ID card is invalid";
 	for (var i = 17; i >= 0; i--)
 		iSum += (Math.pow(2, i) % 11) * parseInt(sId.charAt(17 - i), 11);
 	if (iSum % 11 != 1)
-		return "你输入的身份证号非法";
-	return true;// aCity[parseInt(sId.substr(0,2))]+","+sBirthday+","+(sId.substr(16,1)%2?"男":"女")
+		return "The ID number you entered is invalid";
+	return true;// aCity[parseInt(sId.substr(0,2))]+","+sBirthday+","+(sId.substr(16,1)%2?"male":"female")
 }
 
 // 短时间，形如 (13:04:06)

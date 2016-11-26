@@ -52,7 +52,7 @@
         // 简单的兼容性检测
         if(typeof window.URL === 'undefined' ||
           typeof document.createElement('canvas').getContext !== 'function'){
-          var error = new Error('不支持此设备');
+          var error = new Error('Device not supported');
 
           // 错误回调
           if (typeof that.defaults.fail === 'function') {
@@ -83,7 +83,7 @@
 
         img.crossOrigin = "*";
         img.onerror = function() {
-          var error = new Error('图片加载失败');
+          var error = new Error('Image loading failed');
           // 读取文件失败
           if (typeof that.defaults.fail === 'function') {
             that.defaults.fail(error);

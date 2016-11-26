@@ -13,7 +13,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>Ning Kang Yuan management platform</title>
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=path%>/css/all.css" />
 <link rel="stylesheet" href="<%=path%>/css/jquery/easyui.css" />
@@ -25,28 +25,28 @@
 <script type="text/javascript" src="<%=path%>/js/device/device.js?v=20160824"></script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'设备查询'" class="regionCenter">
+	<div data-options="region:'center',title:'Device query'" class="regionCenter">
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="goods/tail/detail.json" id="query_form">		
-			设备SN&nbsp;&nbsp;<input
+			equipmentSN&nbsp;&nbsp;<input
 				type="text" id="FIT-LIKE-sn" name="FIT-LIKE-sn"/> &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add to</button>
 		 </form>
 		</div>
 		<table id="base_table"></table>
         <div id="editfrom_dialog"></div>
 	</div>
 	
-	<div id="device_doctor_id" data-options="closed:true,modal:true,title:'设备关联医生'" style="padding: 5px; width: 880px; height: 500px;">
-				&nbsp;设备：<span id="deviceSnDiv"></span>
-				&nbsp;是否已关联设备：<select id="deviceSnStatus" name="deviceSnStatus" onchange="dataGridReload()">
-			      <option value="1">已关联</option> 
-			      <option value="0">未关联</option> 
+	<div id="device_doctor_id" data-options="closed:true,modal:true,title:'Device associated doctor'" style="padding: 5px; width: 880px; height: 500px;">
+				&nbsp;equipment：<span id="deviceSnDiv"></span>
+				&nbsp;Whether it has been associated with the device：<select id="deviceSnStatus" name="deviceSnStatus" onchange="dataGridReload()">
+			      <option value="1">Connected</option> 
+			      <option value="0">Not related</option> 
 				</select> 
 			<table id="device_doctor_table"></table>
 	</div>
@@ -61,7 +61,7 @@ $(function() {
 //初始化弹出框
 $('#device_doctor_id').dialog({
 	buttons:[ {
-		text:'关闭',
+		text:'Close',
 		handler:function(){
 			$('#device_doctor_id').dialog('close');
 		}
@@ -104,18 +104,18 @@ function initGridDoctor(){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...', 
+        loadMsg: 'One moment please...', 
 		idField:'ID',
 		columns:[[
-			{field:'NAME',title:'医生',width:100}
-			,{field:'HOSPITALNAME',title:'医院',width:100}
-			,{field:'STATUS',title:'状态',width:100},
-			{field:'ID',title:'操作',width:120,
+			{field:'NAME',title:'Doctor',width:100}
+			,{field:'HOSPITALNAME',title:'Hospital',width:100}
+			,{field:'STATUS',title:'state',width:100},
+			{field:'ID',title:'operation',width:120,
 				formatter:function(value,row){
-					if(row.STATUS == "已关联"){
-						return  '<a href="javascript:unbind('+value+','+deviceidt+')">解除关联</a> &nbsp;';
-					}else if(row.STATUS == "未关联"){
-						return  '<a href="javascript:bind('+value+','+deviceidt+')">关联设备</a> &nbsp;';
+					if(row.STATUS == "Connected"){
+						return  '<a href="javascript:unbind('+value+','+deviceidt+')">Release Association</a> &nbsp;';
+					}else if(row.STATUS == "Not related"){
+						return  '<a href="javascript:bind('+value+','+deviceidt+')">Related equipment</a> &nbsp;';
 					}
 					return "";
 
@@ -138,10 +138,10 @@ function doctor(idt,sn){
 
 function formatterDateTime2(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : "0"
                     + (date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date
                     .getDate())
             + " "
@@ -176,10 +176,10 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'DEVICE_ID',title:'设备ID',width:100},
-		    {field:'SN',title:'设备SN',width:100},
-		    {field:'DEVICE_TYPESTR',title:'设备类型',width:100},
-		    {field:'PRODUCT_TIME',title:'生产时间',width:100,
+		    {field:'DEVICE_ID',title:'equipmentID',width:100},
+		    {field:'SN',title:'equipmentSN',width:100},
+		    {field:'DEVICE_TYPESTR',title:'Equipment type',width:100},
+		    {field:'PRODUCT_TIME',title:'Production time',width:100,
 		    	formatter : function(value) {
 					if(value == null || value == ""){
 						return "";
@@ -188,7 +188,7 @@ function initDataGrid(){
 					return myformatter(date);
 				}
 		    },
-		    {field:'DELIVER_TIME',title:'发货时间',width:100,
+		    {field:'DELIVER_TIME',title:'Delivery time',width:100,
 		    	formatter : function(value) {
 					if(value == null || value == ""){
 						return "";
@@ -197,11 +197,11 @@ function initDataGrid(){
 					return formatterDateTime2(date);
 				}
 		    },
-			{field:'ID',title:'操作',width:120,
+			{field:'ID',title:'operation',width:120,
 				formatter:function(value,row){
-					var str = '<a href="javascript:openedit(\'false\','+value+')">修改</a> &nbsp;';
-					str +=' &nbsp;<a  href="javascript:del('+value+')" ><font color="red">删除</font></a> &nbsp;';
-					str +=' &nbsp;<a  href="javascript:doctor('+value+',\''+row.SN+'\')" ><font color="red">关联医生</font></a>';
+					var str = '<a href="javascript:openedit(\'false\','+value+')">modify</a> &nbsp;';
+					str +=' &nbsp;<a  href="javascript:del('+value+')" ><font color="red">delete</font></a> &nbsp;';
+					str +=' &nbsp;<a  href="javascript:doctor('+value+',\''+row.SN+'\')" ><font color="red">Associate doctor</font></a>';
 					return str;
 
 				}

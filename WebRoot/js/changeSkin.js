@@ -17,5 +17,3 @@ function switchSkin(skinName){
 	    $("#cssfile").attr("href","css/"+ skinName +".css"); //设置不同皮肤
 		$.cookie( "MyCssSkin" ,  skinName , { path: '/', expires: 10 });
 }
-
-

@@ -6,7 +6,7 @@
 <%@include file="/head.jsp"%>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>慢病筛查</title>
+<title>Screening for chronic diseases</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="<%=basePath%>js/common/jquery/jquery-1.9.1.js"></script>
@@ -27,54 +27,54 @@
   <div data-options="region:'center',title:'慢性病管理'" class="regionCenter">
     <div id="common_search" class="common_search common_search_nopadding">       
      <form action="" id="ques_qry_form">
-	     		&nbsp;客户编码<input type="text"   id="FIT-vip_code" style="width: 100px;" name="FIT-vip_code"/>
+	     		&nbsp;Customer code<input type="text"   id="FIT-vip_code" style="width: 100px;" name="FIT-vip_code"/>
 				&nbsp;姓  名<input type="text" id="FIT-real_name" style="width: 100px;" name="FIT-real_name"/>
-				&nbsp;性  别
+				&nbsp;Gender  别
 					<select id=FIT-sex name="FIT-sex" >
-				      <option value="">-请选择-</option>
+				      <option value="">-Please select-</option>
 					  <m:getItems name="gender"></m:getItems>
 					</select>
 				&nbsp;电  话&nbsp;<input type="text"   id="FIT-mobile" style="width: 100px;" name="FIT-mobile"/>
-				&nbsp;年龄范围:<input type="text"  id="FIT-GEQ-age" name="FIT-GEQ-age" style="width: 50px;"/>
+				&nbsp;Age range:<input type="text"  id="FIT-GEQ-age" name="FIT-GEQ-age" style="width: 50px;"/>
 				-<input type="text"  id="FIT-LEQ-age" name="FIT-LEQ-age" style="width: 50px;"/>
-       <!-- hospitals 2B C 标签-->
+       <!-- hospitals 2B C Label-->
 	       	<c:if test="${currentUser.roles eq '1'}">
-	       	<br/><br/>&nbsp;医  院<select id="FIT-hospital" name="FIT-hospital">
-				      <option value="">-请选择-</option> 
+	       	<br/><br/>&nbsp;medicine  courtyard<select id="FIT-hospital" name="FIT-hospital">
+				      <option value="">-Please select-</option> 
 				      <c:forEach var="item" items="${hospitals}">
 								<option value="${item.value }"><c:out value="${item.key }" /></option>
 					  </c:forEach>
 					</select> 
 	       	</c:if>
-	       	<!-- 医生的检索，是管理员或医院才可以看的 -->
+	       	<!-- Doctor index，It's an administrator or a hospital. -->
 	       	<c:if test="${currentUser.roles eq '2' or currentUser.roles eq '1'}">
 	       		<c:if test="${currentUser.roles eq '2'}"><br/><br/><br/></c:if>
-	         	&nbsp; 医生编码&nbsp;<input type="text" id="FIT-doctorc" name="FIT-doctorc"/>  
-	         	&nbsp;医生名字&nbsp;<input type="text" id="FIT-doctor" name="FIT-doctor"/> 
+	         	&nbsp; Doctor code&nbsp;<input type="text" id="FIT-doctorc" name="FIT-doctorc"/>  
+	         	&nbsp;Doctor name&nbsp;<input type="text" id="FIT-doctor" name="FIT-doctor"/> 
 	         </c:if>
 	  		<br/>&nbsp;是否慢病
 	            <select id="FIT-ischronic" name="FIT-ischronic" >
-			      <option value="">-请选择-</option>
+			      <option value="">-Please select-</option>
 				  <m:getItems name="ischronic"></m:getItems>
 				</select>
-	            &nbsp;体检时间
+	            &nbsp;Physical examination time
 	            <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="FIT-beginTime" id="FIT-beginTime" />
-                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="FIT-end_time" id="FIT-end_time" />
+                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="FIT-end_time" id="FIT-end_time" />
 					<button onclick="openGroupPush();" type="button" class="btn btn-success">选择指标类型</button>
-			    	<input type="radio" id="FIT-cond" name="FIT-cond" value="or" />或者
+			    	<input type="radio" id="FIT-cond" name="FIT-cond" value="or" />perhaps
 			    	<input type="radio" id="FIT-cond"  checked="checked" name="FIT-cond" value="and" />并且
-			<br/>&nbsp;慢性病类型
+			<br/>&nbsp;Chronic disease types
 					<c:forEach var="item" items="${illtype}" varStatus="status">
 	       				<input type="checkbox" name="illtypebox" value="${item.key }" >&nbsp;${item.value }&nbsp;&nbsp;</input>
 	       				  <c:if test="${status.count%8==0}" ></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</c:if>
 				  	</c:forEach>
-	          	<br/>&nbsp;疾病类型
+	          	<br/>&nbsp;Disease types
 	            <select id="FIT-ill_type" name="FIT-ill_type" >
-			      <option value="">-请选择-</option>
+			      <option value="">-Please select-</option>
 				  <m:getItems name="ill_type"></m:getItems>
 				</select>
 		           <button type="button" id="diagnose_search" class="btn btn-success">
-	        			查&nbsp;询
+	        			check&nbsp;Inquiry
 	     			 </button> 
 	 </form> 
        

@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>医生出访</title>
+<title>Doctor visits</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -20,7 +20,7 @@
 <script type="text/javascript" src="js/visit/selHospital.js"></script>
 </head>
 <body class="easyui-layout">
-  <div data-options="region:'center',title:'医生出访'" class="regionCenter">
+  <div data-options="region:'center',title:'Doctor visits'" class="regionCenter">
     <div id="common_search" class="common_search common_search_nopadding">   
     <input type="hidden" id="type" name="type" value="${type}" />	
     <form action="" id="visit_qry_form">
@@ -35,13 +35,13 @@
 		 
 		<table id="dataTable">
 		    <tr>
-	            <td>会员名称</td>
+	            <td>Member name</td>
 	            <td><input type="text" id="vip_name" style="width: 200px;" /></td>
-	            <td>出访时间</td>
+	            <td>Visit time</td>
 	            <td><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
-                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
-                <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>查&nbsp;询</button>  
-                <button type="button" id="visit_add" class="btn btn-success"><i class="icon-plus"></i>增&nbsp;加 </button>  
+                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
+                <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>check&nbsp;Inquiry</button>  
+                <button type="button" id="visit_add" class="btn btn-success"><i class="icon-plus"></i>increase&nbsp;plus </button>  
                 </td>
 			</tr>
 		</table> 
@@ -49,22 +49,22 @@
      <c:if test="${type == 'S'}">
      	<table id="dataTable">
      		<tr>
-	            <td>医&nbsp;&nbsp;院</td>
+	            <td>medicine&nbsp;&nbsp;courtyard</td>
 	            <td> <input style="width: 200px;"  type ="text" id="hospitalname" name="hospitalname" value="" readonly="readonly"/>					    
-	  				<button type="button" id="hospital_qry_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">选择医院</button> 
+	  				<button type="button" id="hospital_qry_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">Select hospital</button> 
 	  			</td>
-	            <td>科&nbsp;&nbsp;室</td>
+	            <td>section&nbsp;&nbsp;room</td>
 	            <td><input style="width: 200px;"  class="easyui-combobox" id="office_code" name="office_code"  value=""/> </td>
-	            <td>会员名称</td>
+	            <td>Member name</td>
 	            <td><input type="text" id="vip_name"  style="width: 200px;"/></td>
 	         </tr>
 			 <tr>
-	            <td>医生名称</td>
+	            <td>Doctor name</td>
 	            <td> <input type="text" id="doctor_name"  style="width: 200px;" /></td>
-	            <td>出访时间</td>
+	            <td>Visit time</td>
 	            <td colspan='3'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
-                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
-                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>查&nbsp;询</button>
+                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
+                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>check&nbsp;Inquiry</button>
                  </td>
 			</tr>
 		</table> 
@@ -72,18 +72,18 @@
 	 <c:if test="${type == 'H'}">
 		<table id="dataTable">
      		<tr>
-	            <td>科&nbsp;&nbsp;室</td>
+	            <td>section&nbsp;&nbsp;room</td>
 	            <td> <input style="width: 200px;"  class="easyui-combobox" id="office_code" name="office_code"  value=""/>
-	            <td>会员名称</td>
+	            <td>Member name</td>
 	            <td><input type="text" id="vip_name"  style="width: 200px;"/></td>
-	            <td>医生名称</td>
+	            <td>Doctor name</td>
 	            <td> <input type="text" id="doctor_name"  style="width: 200px;" /></td>
 			</tr>
 			<tr>
-	            <td>出访时间</td>
+	            <td>Visit time</td>
 	            <td colspan='5'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
-                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
-                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>查&nbsp;询</button>
+                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
+                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>check&nbsp;Inquiry</button>
                 </td>
 			</tr>
 		</table> 
@@ -92,36 +92,36 @@
       </form>          
  	
       <!-- <button type="button" id="visit_reset" class="btn btn-success btn-success-small">
-        	重&nbsp;置
+        	Re&nbsp;The
       </button>      -->
      
     </div>
  
     <table id="visit_table"></table>
     
-    <div id="visit_detail_dialog" data-options="closed:true,modal:true,title:'出访信息',iconCls:'icon-save'" style="padding: 5px; width: 580px; height: 395px;">
+    <div id="visit_detail_dialog" data-options="closed:true,modal:true,title:'Visit information',iconCls:'icon-save'" style="padding: 5px; width: 580px; height: 395px;">
       <form action="" id="visit_detail_form">
         <input type="hidden" id="visitId">
         <table style="margin-left: 10px">
           <tr>
-            <td style="width:80px;">会员名称：</td>
+            <td style="width:80px;">Member name：</td>
             <td><input type="text" id="vipName" readonly > <input type="hidden" id="vipId"></td>
-            <a id="btnSelVip" class="easyui-linkbutton" data-options="iconCls:'icon-search'" >&nbsp;选择会员</a>
+            <a id="btnSelVip" class="easyui-linkbutton" data-options="iconCls:'icon-search'" >&nbsp;Select members</a>
           </tr>                
           <tr>
-            <td style="width:80px;">开始时间：</td>
+            <td style="width:80px;">start time：</td>
             <td>
             <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="beginTime" /> 
             </td>
           </tr>
           <tr>
-            <td style="width:80px;">结束时间：</td>
+            <td style="width:80px;">End time：</td>
             <td>
             <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width: 200px;" name="endTime" id="endTime" />
             </td>
           </tr>
           <tr>
-            <td style="width:80px;">出访内容：</td>
+            <td style="width:80px;">Visit content：</td>
             <td>
             <textarea  style="width: 300px;" rows="3" cols="20" id="content" name="content"></textarea>
             </td>

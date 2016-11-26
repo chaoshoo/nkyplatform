@@ -128,7 +128,7 @@ public class SysDb {
 	 * @throws Exception */
 	public SysSequence getSequence(String seqName) throws Exception {
 		if (seqName == null || seqName.length() <= 0) {
-			throw new Exception("seqName不能为空");
+			throw new Exception("seqNameCan not be empty");
 		}
 		//在事务中存取序列号
 		SysSequence po = doInTransaction(seqName.toUpperCase(),new Object[] {seqName});
@@ -221,4 +221,3 @@ public class SysDb {
 //		}
 //	}
 }
-

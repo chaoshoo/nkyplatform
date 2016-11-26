@@ -30,7 +30,7 @@ function loadLeftData(){
     					$("#leftContainer").append('<li class="leftDivLi">'+list[listIndex].authName+'</li><li id=li_'+listIndex+' class="leftDivLi_"></li>');
     					var $li = $("#leftContainer li").last();
         				$li.append("<ul></ul>");
-        				var $lili = $li.children("ul");//前一个li展示一级菜单名称，后一个li的ul列表展示其下所有二级菜单
+        				var $lili = $li.children("ul");//前一个li展示一级菜单名称，后一个liTheul列表展示其下所有二级菜单
         				
         				for(var i=0;i<list.length;i++){//内循环获取相应二级菜单
         					if(auth_id==list[i].pid&&list[i].pid!=0){//二级菜单

@@ -38,7 +38,7 @@ if(name != null){
 	$("#"+imageuploadid+"_url").val(name);
 	$("#"+imageuploadid+"_div").html('<img onclick="imgclick(this)" src="'+name+'" height="50" width="50" />');
 }else{
-	$.messager.alert(titleInfo,'上传图片失败！');
+	$.messager.alert(titleInfo,'Upload picture failed！');
 }
 }
 
@@ -53,14 +53,14 @@ function imgUpload(file,callback) {
 //		$("<div class=\"datagrid-mask\"></div>").css({display:"block",width:"100%",height:$(window).height()}).appendTo(".window");
 //		$("<div class=\"datagrid-mask-msg\" style=\"z-index:10000;line-height:15px;\"></div>").html("正在努力上传，请稍等。。。").appendTo(".window").css({display:"block",left:"190px",top:""});		
 		var win = $.messager.progress({
-			title:'图片上传。',
-			msg:'正在努力上传，请稍等。。。',
+			title:'Picture upload。',
+			msg:'Uploading，One moment please。。。',
 			interval: 0
 		});
 		intevalid = setInterval('changeprocessvalue()',500);
 		jQuery().picUploadLR(file.id,callback,false);
 	} else {
-		$.messager.alert("提示", "只能上传图片！", "warning");
+		$.messager.alert("Prompt", "Can only upload pictures！", "warning");
 		$(file).val("");
 	}
 }
@@ -88,7 +88,7 @@ function imgUpload4pub(file,callback) {
 	if (file_type == '.gif' || file_type == '.jpg' || file_type == '.jpeg'|| file_type == '.bmp' || file_type == '.png') {
 		jQuery().picUploadLR(file.id,callback,true);
 	} else {
-		$.messager.alert("提示", "只能上传图片！", "warning");
+		$.messager.alert("Prompt", "Can only upload pictures！", "warning");
 		$(file).val("");
 	}
 }
@@ -147,11 +147,11 @@ function  imgclick(obj){
 	                		if(xhr.responseText && xhr.responseText.length<=128){//响应文本太长可能是网页数据
 	                			callback(xhr.responseText,id);
 	                		}else{
-	                			$.messager.alert("提示", "上传图片出错!", "warning");
+	                			$.messager.alert("Prompt", "Error uploading image!", "warning");
 	                		}
 	             		}
 	                };
-	                xhr.send(JSON.stringify(data)); // 发送base64
+	                xhr.send(JSON.stringify(data)); // Sendbase64
 	            }, 100);
 	            }
 	        });
@@ -171,8 +171,8 @@ function imglookinit(lookdivid){
 
 
 function imgShow(outerdiv, innerdiv, bigimg, _this){
-    var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
-    $(bigimg).attr("src", src);//设置#bigimg元素的src属性
+    var src = _this.attr("src");//获取当前点击的pimg元素中的srcattribute
+    $(bigimg).attr("src", src);//Set up#bigimg元素的srcattribute
      /*获取当前点击图片的真实大小，并显示弹出层及大图*/
     $("<img/>").attr("src", src).load(function(){
         var windowW = $(window).width();//获取当前窗口宽度
@@ -197,7 +197,7 @@ function imgShow(outerdiv, innerdiv, bigimg, _this){
          $(bigimg).css("width",imgWidth);//以最终的宽度对图片缩放
         var w = (windowW-imgWidth)/2;//计算图片与窗口左边距
         var h = (windowH-imgHeight)/2;//计算图片与窗口上边距
-        $(innerdiv).css({"top":h, "left":w});//设置#innerdiv的top和left属性
+        $(innerdiv).css({"top":h, "left":w});//Set up#innerdivThetopandleftattribute
         $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
     });
     $(outerdiv).click(function(){//再次点击淡出消失弹出层

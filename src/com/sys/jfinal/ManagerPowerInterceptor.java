@@ -47,7 +47,7 @@ public class ManagerPowerInterceptor implements Interceptor {
 				if(menus!=null&&menus.isEmpty()==false){
 					if(checkPower(menus,ai.getActionKey(),code)){//链接或安全码匹配
 						ctrl.setAttr("powersafecodelist",MemcacheTool.mcc.get("powersafecodelist"+sid));
-						ai.invoke();//注意 一定要执行此方法
+						ai.invoke();//Be careful 一定要执行此方法
 					}else{
 						f=true;
 					}
@@ -58,7 +58,7 @@ public class ManagerPowerInterceptor implements Interceptor {
 			if(f)
 			ctrl.renderText("{\"statusCode\":300,\"message\":\"<font color='red'><B>您未有此操作权限！请勿越权操作！<br>请重新登录获得最新权限设置！</B></font>\"}");
 			*/
-			ai.invoke();//注意 一定要执行此方法
+			ai.invoke();//Be careful 一定要执行此方法
 	}
 	private boolean checkPower(List<Record> menus,String url,String safecode){
 		for(Record m:menus){

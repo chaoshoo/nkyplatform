@@ -3984,7 +3984,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var width = getTextWidth(text, textFont);
 	        // FIXME 高度计算比较粗暴
-	        var lineHeight = getTextWidth('国', textFont);
+	        var lineHeight = getTextWidth('country', textFont);
 	        var height = textLineLen * lineHeight;
 
 	        var rect = new BoundingRect(0, 0, width, height);
@@ -4135,7 +4135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var minChar = retrieve(options.minChar, 0);
 	        // FIXME
 	        // Other languages?
-	        var cnCharWidth = getTextWidth('国', textFont);
+	        var cnCharWidth = getTextWidth('country', textFont);
 	        // FIXME
 	        // Consider proportional font?
 	        var ascCharWidth = getTextWidth('a', textFont);
@@ -15155,7 +15155,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    ctx.textBaseline = 'alphabetic';
 	                }
 
-	                var lineHeight = textContain.measureText('国', ctx.font).width;
+	                var lineHeight = textContain.measureText('country', ctx.font).width;
 
 	                var textLines = text.split('\n');
 	                for (var i = 0; i < textLines.length; i++) {
@@ -29280,7 +29280,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            geoIndex: 0,
 
 	            // symbol: null,        // 图形类型
-	            symbolSize: 10,          // 图形大小，半宽（半径）参数，当图形为方向或菱形则总宽度为symbolSize * 2
+	            symbolSize: 10,          // 图形大小，半宽（半径）parameter，当图形为方向或菱形则总宽度为symbolSize * 2
 	            // symbolRotate: null,  // 图形旋转控制
 
 	            large: false,
@@ -31883,7 +31883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    module.exports = function (geo) {
 	        if (geo.map === 'china') {
 	            geo.regions.push(new Region(
-	                '南海诸岛', points, geoCoord
+	                'The South China Sea Islands', points, geoCoord
 	            ));
 	        }
 	    };
@@ -31898,13 +31898,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var zrUtil = __webpack_require__(4);
 
 	    var coordsOffsetMap = {
-	        '南海诸岛' : [32, 80],
+	        'The South China Sea Islands' : [32, 80],
 	        // 全国
-	        '广东': [0, -10],
-	        '香港': [10, 5],
-	        '澳门': [-10, 10],
+	        'guangdong': [0, -10],
+	        'hongkong': [10, 5],
+	        'macau': [-10, 10],
 	        //'北京': [-10, 0],
-	        '天津': [5, 5]
+	        'tianjin': [5, 5]
 	    };
 
 	    module.exports = function (geo) {
@@ -39158,7 +39158,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            axisLine: {
 	                // 默认显示，属性show控制显示与否
 	                show: true,
-	                lineStyle: {       // 属性lineStyle控制线条样式
+	                lineStyle: {       // attributelineStyle控制线条样式
 	                    color: [[0.2, '#91c7ae'], [0.8, '#63869e'], [1, '#c23531']],
 	                    width: 30
 	                }
@@ -44809,7 +44809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            geoIndex: 0,
 
 	            // symbol: null,        // 图形类型
-	            symbolSize: 10          // 图形大小，半宽（半径）参数，当图形为方向或菱形则总宽度为symbolSize * 2
+	            symbolSize: 10          // 图形大小，半宽（半径）parameter，当图形为方向或菱形则总宽度为symbolSize * 2
 	            // symbolRotate: null,  // 图形旋转控制
 
 	            // large: false,
@@ -52049,12 +52049,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            clear: 'M22,14.7l30.9,31 M52.9,14.7L22,45.7 M4.7,16.8V4.2h13.1 M26,4.2h7.8 M41.6,4.2h7.8 M70.3,16.8V4.2H57.2 M4.7,25.9v8.6 M70.3,25.9v8.6 M4.7,43.2v12.6h13.1 M26,55.8h7.8 M41.6,55.8h7.8 M70.3,43.2v12.6H57.2' // jshint ignore:line
 	        },
 	        title: {
-	            rect: '矩形选择',
-	            polygon: '圈选',
-	            lineX: '横向选择',
-	            lineY: '纵向选择',
-	            keep: '保持选择',
-	            clear: '清除选择'
+	            rect: 'rectangular selection',
+	            polygon: 'select',
+	            lineX: 'Lateral selection',
+	            lineY: 'Vertical selection',
+	            keep: 'Keep choice',
+	            clear: 'clear selection'
 	        }
 	    };
 
@@ -55218,7 +55218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            zlevel: 0,
 	            z: 4,
 
-	            seriesIndex: null,       // 所控制的series indices，默认所有有value的series.
+	            seriesIndex: null,       // 所控制Theseries indices，默认所有有valueTheseries.
 
 	                                    // set min: 0, max: 200, only for campatible with ec2.
 	                                    // In fact min max should not have default value.
@@ -55246,15 +55246,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            borderColor: '#ccc',       // 值域边框颜色
 	            contentColor: '#5793f3',
 	            inactiveColor: '#aaa',
-	            borderWidth: 0,            // 值域边框线宽，单位px，默认为0（无边框）
-	            padding: 5,                // 值域内边距，单位px，默认各方向内边距为5，
+	            borderWidth: 0,            // 值域边框线宽，Companypx，默认为0（无边框）
+	            padding: 5,                // 值域内边距，Companypx，默认各方向内边距为5，
 	                                       // 接受数组分别设定上右下左边距，同css
 	            textGap: 10,               //
 	            precision: 0,              // 小数精度，默认为0，无小数点
 	            color: null,               //颜色（deprecated，兼容ec2，顺序同pieces，不同于inRange/outOfRange）
 
 	            formatter: null,
-	            text: null,                // 文本，如['高', '低']，兼容ec2，text[0]对应高值，text[1]对应低值
+	            text: null,                // text，如['高', 'low']，兼容ec2，text[0]对应高值，text[1]对应low值
 	            textStyle: {
 	                color: '#333'          // 值域文字颜色
 	            }
@@ -55929,7 +55929,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                zrUtil.bind(this._dragHandle, this, 'all', true)
 	            ));
 
-	            var textRect = visualMapModel.textStyleModel.getTextRect('国');
+	            var textRect = visualMapModel.textStyleModel.getTextRect('country');
 	            var textSize = mathMax(textRect.width, textRect.height);
 
 	            // Handle
@@ -59085,7 +59085,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            backgroundColor: 'rgba(0,0,0,0)',   // 时间轴背景颜色
 	            borderColor: '#ccc',               // 时间轴边框颜色
-	            borderWidth: 0,                    // 时间轴边框线宽，单位px，默认为0（无边框）
+	            borderWidth: 0,                    // 时间轴边框线宽，Companypx，默认为0（无边框）
 
 	            orient: 'horizontal',              // 'vertical'
 	            inverse: false,
@@ -59222,7 +59222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            autoPlay: false,
 	            rewind: false,                     // 反向播放
 	            loop: true,
-	            playInterval: 2000,                // 播放时间间隔，单位ms
+	            playInterval: 2000,                // 播放时间间隔，Companyms
 
 	            currentIndex: 0,
 
@@ -60650,14 +60650,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    SaveAsImage.defaultOption = {
 	        show: true,
 	        icon: 'M4.7,22.9L29.3,45.5L54.7,23.4M4.6,43.6L4.6,58L53.8,58L53.8,43.6M29.2,45.1L29.2,0',
-	        title: '保存为图片',
+	        title: 'Save as picture',
 	        type: 'png',
 	        // Default use option.backgroundColor
 	        // backgroundColor: '#fff',
 	        name: '',
 	        excludeComponents: ['toolbox'],
 	        pixelRatio: 1,
-	        lang: ['右键另存为图片']
+	        lang: ['Right click Save as image']
 	    };
 
 	    SaveAsImage.prototype.unusable = !env.canvasSupported;
@@ -60731,10 +60731,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	            tiled: 'M2.3,2.2h22.8V25H2.3V2.2z M35,2.2h22.8V25H35V2.2zM2.3,35h22.8v22.8H2.3V35z M35,35h22.8v22.8H35V35z'
 	        },
 	        title: {
-	            line: '切换为折线图',
-	            bar: '切换为柱状图',
-	            stack: '切换为堆叠',
-	            tiled: '切换为平铺'
+	            line: 'Switch to a broken line',
+	            bar: 'Switch to histogram',
+	            stack: 'Switch to stack',
+	            tiled: 'Switch to tile'
 	        },
 	        option: {},
 	        seriesIndex: {}
@@ -61164,8 +61164,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        contentToOption: null,
 
 	        icon: 'M17.5,17.3H33 M17.5,17.3H33 M45.4,29.5h-28 M11.5,2v56H51V14.8L38.4,2H11.5z M38.4,2.2v12.7H51 M45.4,41.7h-28',
-	        title: '数据视图',
-	        lang: ['数据视图', '关闭', '刷新'],
+	        title: 'Data view',
+	        lang: ['Data view', 'Close', 'Refresh'],
 	        backgroundColor: '#fff',
 	        textColor: '#000',
 	        textareaColor: '#fff',
@@ -61409,8 +61409,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            back: 'M22,1.4L9.9,13.5l12.3,12.3 M10.3,13.5H54.9v44.6 H10.3v-26'
 	        },
 	        title: {
-	            zoom: '区域缩放',
-	            back: '区域缩放还原'
+	            zoom: 'Zone zoom',
+	            back: 'Region scale reduction'
 	        }
 	    };
 
@@ -61857,7 +61857,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Restore.defaultOption = {
 	        show: true,
 	        icon: 'M3.8,33.4 M47,18.9h9.8V8.7 M56.3,20.1 C52.1,9,40.5,0.6,26.8,2.1C12.6,3.7,1.6,16.2,2.1,30.6 M13,41.1H3.1v10.2 M3.7,39.9c4.2,11.1,15.8,19.5,29.5,18 c14.2-1.6,25.2-14.1,24.7-28.5',
-	        title: '还原'
+	        title: 'Restore'
 	    };
 
 	    var proto = Restore.prototype;

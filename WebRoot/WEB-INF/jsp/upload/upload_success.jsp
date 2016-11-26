@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>Ning Kang Yuan management platform</title>
 </head>
 <body>
-	文件上传成功!
+	File uploaded!
 </body>
 </html>

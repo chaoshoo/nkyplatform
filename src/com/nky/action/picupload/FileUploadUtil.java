@@ -71,7 +71,7 @@ public class FileUploadUtil {
 		try {
 			FileUtils.writeByteArrayToFile(new File(uploadDir+imgFilePath),data);//写图片数据到文件
 		} catch (IOException e) {
-			throw new Exception("保存图片出错",e);
+			throw new Exception("Save image error",e);
 		}
 		
 		return imgFilePath;
@@ -113,7 +113,7 @@ public class FileUploadUtil {
 		try {
 			fileData.transferTo(new File(imgFilePath));//将图片移动到指定目录下
 		} catch (IOException e) {
-			throw new Exception("文件转存出错",e);
+			throw new Exception("File transfer error",e);
 		}
 		
 		return destFilename;

@@ -45,7 +45,7 @@ public class FileUtil {
 			return bufferToHex(messagedigest.digest());
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOG.info("获得文件MD5失败......");
+			LOG.info("获得文件MD5fail......");
 			return null;
 		}
 	}

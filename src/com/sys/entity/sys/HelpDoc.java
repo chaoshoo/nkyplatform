@@ -11,7 +11,7 @@ public class HelpDoc {
 	public String uploadTime;
 	public String downloadUrl;
 	public String remark;
-	public int status;  //0正常  -1冻结
+	public int status;  //0normal  -1冻结
 	public int getId() {
 		return id;
 	}

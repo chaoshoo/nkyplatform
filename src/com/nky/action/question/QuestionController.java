@@ -76,7 +76,7 @@ public class QuestionController extends BaseAction{
 				Record r = Db.findFirst("select * from t_vip where vip_code=(select vip_code from vip_questions vq where  vq.id=?)",ques.getVip_questions_id());
 				Record r2 = Db.findFirst("select * from doctor where code=?",ques.getAnswer_code());
 				if(r != null && r2 != null){
-					messageService.saveMessage("1", r2.get("id")+"", r.get("id")+"", "收到"+r2.get("name")+"回复，请查看我的留言");
+					messageService.saveMessage("1", r2.get("id")+"", r.get("id")+"", "Received"+r2.get("name")+"Reply，Please check my message.");
 				}
 			}
 		} catch (Exception e) {

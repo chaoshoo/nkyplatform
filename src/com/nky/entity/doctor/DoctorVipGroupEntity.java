@@ -8,7 +8,7 @@ import com.sys.jfinal.TableBind;
 public class DoctorVipGroupEntity extends JFinalEntity {
 	private	String	name	;//	群组名字
 	private	String	doctor_code	;//	医生编号
-	private	Date	create_time	;//	创建时间
+	private	Date	create_time	;//	Created time
 	public String getName() {
 		return name;
 	}

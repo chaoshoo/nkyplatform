@@ -2,7 +2,7 @@
 <%@ tag import="java.util.List" %>
 <%@ tag import="java.util.HashMap" %>
 <%@ tag pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ attribute name="name" type="java.lang.String" required="true" description="角色列表" %>
+<%@ attribute name="name" type="java.lang.String" required="true" description="Role list" %>
 
 <%
 	List list = DicSingleton.getInstance().getDic(name);

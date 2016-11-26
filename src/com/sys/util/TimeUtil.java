@@ -213,7 +213,7 @@ public class TimeUtil {
 
 	static public String getDateStrZhCn(Date date) {
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+		SimpleDateFormat format = new SimpleDateFormat("yyyyyearMMmonthddday");
 		return format.format(date);
 	}
 

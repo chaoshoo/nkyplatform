@@ -39,7 +39,7 @@
 			<level>ERROR</level>
 		</filter>
 	</appender> 
-	<!-- ONLINE 关闭SQL和其他无关信息
+	<!-- ONLINE CloseSQLOther irrelevant information
 	<logger name="ch.qos.logback"  level="WARN" /> 
 	<logger name="org" level="WARN" />
 	<logger name="net.sf.ehcache" level="INFO" />
@@ -51,7 +51,7 @@
 	 -->
 	
 	<!-- 
-	DEVELOP 可以打出SQL及更多细节-->
+	DEVELOP Can playSQLAnd more details-->
 	<logger name="ch.qos.logback"  level="DEBUG" /> 
 	<logger name="org" level="INFO" />
 	<logger name="net.sf.ehcache" level="DEBUG" />
@@ -64,7 +64,7 @@
 	
 	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
-		<!-- jetty时，可以把下面2行注释掉 -->
+		<!-- jettytime，Can take the following2Line comment -->
 		<!-- <appender-ref ref="FILE_INFO" />
 		<appender-ref ref="FILE_ERROR" /> -->
 	</root>

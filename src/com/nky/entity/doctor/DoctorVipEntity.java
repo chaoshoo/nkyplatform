@@ -9,7 +9,7 @@ public class DoctorVipEntity extends JFinalEntity {
 	private	String	doctor_code	;//	医生编号
 	private	String	vip_code	;//	会员编号
 	private	Long	group_id	;//	医生会员组
-	private	Date	create_time	;//	创建时间
+	private	Date	create_time	;//	Created time
 	public String getDoctor_code() {
 		return doctor_code;
 	}

@@ -17,19 +17,19 @@ var onMouseOutFixTextHtml = '<DIV class="txt-info-mouseout">$data$</DIV>';
 
 // 初始状态，加其它几种状态
 var passwordStrengthStatusHtml = [
-		'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog0"></B><EM class=st2>强</EM></P>',
-		'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog1"></B><EM class=st2>强</EM></P>',
-		'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog2"></B><EM class=st2>强</EM></P>',
-		'<P id=passStrong class="pswState">强度：<EM class=st1>弱</EM><B class="progressImage prog3"></B><EM class=st2>强</EM></P>'];
+		'<P id=passStrong class="pswState">Strength：<EM class=st1>weak</EM><B class="progressImage prog0"></B><EM class=st2>strong</EM></P>',
+		'<P id=passStrong class="pswState">Strength：<EM class=st1>weak</EM><B class="progressImage prog1"></B><EM class=st2>strong</EM></P>',
+		'<P id=passStrong class="pswState">Strength：<EM class=st1>weak</EM><B class="progressImage prog2"></B><EM class=st2>strong</EM></P>',
+		'<P id=passStrong class="pswState">Strength：<EM class=st1>weak</EM><B class="progressImage prog3"></B><EM class=st2>strong</EM></P>'];
 
-var passwordStrengthText = ['密码强度：弱', '密码强度：中', '密码强度：强']
+var passwordStrengthText = ['Password strength：weak', 'Password strength：in', 'Password strength：strong']
 // 密码强度校验规则(flag=1(数字)+2(小写)+4(大写)+8(特殊字符)的组合，value里的0表示跟密码一样长,1表示起码1个长度)
 var passwordStrengthRule = [{
 			level : 1,
 			rule : [{
 						flag : 1,
 						value : [0]
-					}, // 数字
+					}, // number
 					{
 						flag : 2,
 						value : [0]
@@ -48,7 +48,7 @@ var passwordStrengthRule = [{
 					{
 						flag : 9,
 						value : [1, 1]
-					}, // 数字(>=1)+特符>=1)
+					}, // number(>=1)+特符>=1)
 					{
 						flag : 10,
 						value : [1, 1]
@@ -60,11 +60,11 @@ var passwordStrengthRule = [{
 					{
 						flag : 3,
 						value : [1, 1]
-					}, // 数字(>=1)+小写(>=1)
+					}, // number(>=1)+小写(>=1)
 					{
 						flag : 5,
 						value : [1, 1]
-					}, // 数字(>=1)+大写(>=1)
+					}, // number(>=1)+大写(>=1)
 					{
 						flag : 6,
 						value : [1, 1]
@@ -75,11 +75,11 @@ var passwordStrengthRule = [{
 			rule : [{
 						flag : 11,
 						value : [1, 1, 1]
-					}, // 数字(>=1)+小写(>=1)+特符(>=1)
+					}, // number(>=1)+小写(>=1)+特符(>=1)
 					{
 						flag : 13,
 						value : [1, 1, 1]
-					}, // 数字(>=1)+大写(>=1)+特符(>=1)
+					}, // number(>=1)+大写(>=1)+特符(>=1)
 					{
 						flag : 14,
 						value : [1, 1, 1]
@@ -87,6 +87,6 @@ var passwordStrengthRule = [{
 					{
 						flag : 7,
 						value : [1, 1, 1]
-					} // 数字(>=1)+小写(>=1)+大写(>=1)
+					} // number(>=1)+小写(>=1)+大写(>=1)
 			]
 		}];

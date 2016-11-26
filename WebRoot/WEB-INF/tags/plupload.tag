@@ -24,8 +24,8 @@
 <script type="text/javascript" src="plupload/js/plupload.full.min.js"></script>
 
 <div id="${id}_<%=uuid%>">
-	<a id="${id}_pickfiles" href="javascript:;">选择</a> 
-	<div id="${id}_container_filelist" class="upload-ok-con">您的浏览器不支持Flash或者HTML5.</div>
+	<a id="${id}_pickfiles" href="javascript:;">Choose</a> 
+	<div id="${id}_container_filelist" class="upload-ok-con">Your browser does not supportFlashperhapsHTML5.</div>
 </div>
 
 <script type="text/javascript">
