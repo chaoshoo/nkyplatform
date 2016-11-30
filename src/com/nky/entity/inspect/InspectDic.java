@@ -12,7 +12,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
  */
 public class InspectDic {
 	private String dicName;//C01
-	private String dicValue;//血压
+	private String dicValue;//blood pressure
 
 	private Map<String, InspectKpiConfig> inspectMap = new HashMap<String,InspectKpiConfig>();
 

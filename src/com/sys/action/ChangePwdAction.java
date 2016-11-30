@@ -44,19 +44,19 @@ public class ChangePwdAction {
 				user.getSysUser().setUserPwd(new1);
 			} else {
 				map.put("code", "1");
-				map.put("msg",  "原密码错误");
+				map.put("msg",  "Original password error");
 				return JSON.toJSONString(map);
 			}
 			sysUserDao.updateSysUser(user.getSysUser());
 			map.put("code", "0");
-			map.put("msg",  "密码修改成功！");
+			map.put("msg",  "Password modification done！");
 			return JSON.toJSONString(map);
 		} else if("H".equals(sysType)) {
 			String pwd = user.getHospital().getPwd().toLowerCase();
 			String oldMd5 = MD5Util.MD5(old, "utf-8").toLowerCase();
 			if (!pwd.equals(oldMd5)) {
 				map.put("code", "1");
-				map.put("msg",  "原密码错误");
+				map.put("msg",  "Original password error");
 				return JSON.toJSONString(map);
 			}
 			try {
@@ -67,18 +67,18 @@ public class ChangePwdAction {
 				user.getHospital().setPwd(pwd);
 				e.printStackTrace();
 				map.put("code", "1");
-				map.put("msg",  "密码修改失败！");
+				map.put("msg",  "Password modification failed！");
 				return JSON.toJSONString(map);
 			}
 			map.put("code", "0");
-			map.put("msg",  "密码修改成功！");
+			map.put("msg",  "Password modification done！");
 			return JSON.toJSONString(map);
 		}else if("D".equals(sysType)) {
 			String pwd = user.getDoctor().getPassword().toLowerCase();
 			String oldMd5 = MD5Util.MD5(old, "utf-8").toLowerCase();
 			if (!pwd.equals(oldMd5)) {
 				map.put("code", "1");
-				map.put("msg",  "原密码错误");
+				map.put("msg",  "Original password error");
 				return JSON.toJSONString(map);
 			}
 			try {
@@ -89,15 +89,15 @@ public class ChangePwdAction {
 				user.getDoctor().setPassword(pwd);
 				e.printStackTrace();
 				map.put("code", "1");
-				map.put("msg",  "密码修改失败！");
+				map.put("msg",  "Password modification failed！");
 				return JSON.toJSONString(map);
 			}
 			map.put("code", "0");
-			map.put("msg",  "密码修改成功！");
+			map.put("msg",  "Password modification done！");
 			return JSON.toJSONString(map);
 		}
 		map.put("code", "1");
-		map.put("msg",  "密码修改失败！");
+		map.put("msg",  "Password modification failed！");
 		return JSON.toJSONString(map);
 	}
 }

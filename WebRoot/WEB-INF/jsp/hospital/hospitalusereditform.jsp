@@ -9,11 +9,11 @@
         <input type="hidden" id="hospitaluserid" name="hospitaluserid" value="${user.id}">
          <table id="productTable">
           <tr>
-            <td>电话号码<font>*</font></td>
+            <td>Phone number<font>*</font></td>
             <td><input style="width: 200px;" type="text" id="edittel" name="tel" value="${user.tel}"/></td>
           </tr>
           <tr>
-            <td>名字</td>
+            <td>Name</td>
             <td><input style="width: 200px;" type="text" id="editusername" name="username" value="${user.username}" /></td>
           </tr>
         </table>
@@ -22,10 +22,10 @@
 					<tr><td>					
 			       <div id="savediv" >
 				      <button type="button" id="du_save_button" onclick="ducommit()" class="btn btn-success btn-success-small" style="margin-left: 20px;">
-				        	保存
+				        	Save
 				      </button>
 				      <button type="button" id="du_cancle_button" onclick="dialogClose()" class="btn btn-success btn-success-small" style="margin-left: 20px;">
-				        	取消
+				        	cancel
 				      </button>
 			      </div>
 			      
@@ -36,7 +36,7 @@
 var vparameter = {};
 function ducommit(){
 	if($("#edittel").val()==null || $("#edittel").val()==""){
-		$.messager.alert(titleInfo,'请输入电话号码!');
+		$.messager.alert(titleInfo,'Please enter the phone number!');
 		return;
 	}
 	 parameter={};
@@ -45,7 +45,7 @@ function ducommit(){
 	 parameter['id']=$("#hospitaluserid").val();
 	$.post("hospital/saveuser.json",parameter,function(data){
 		if(data.code==1){
-			$.messager.alert(titleInfo,"修改成功！");
+			$.messager.alert(titleInfo,"Changed！");
 			dialogClose();
 			$('#hospital_user_table').datagrid('reload');
 		}else{

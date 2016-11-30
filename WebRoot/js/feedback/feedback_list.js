@@ -27,21 +27,21 @@ $(function() {
 function initDialog() {
 	
 	$('#feedback_add_dialog').dialog({
-		title : '处理',
+		title : 'Handle',
 		width : 450,
 		height : 330,
 		closed : true,
 		title : '',
 		closed : true,
 		buttons : [{
-			text : '处理',
+			text : 'Handle',
 			iconCls : 'icon-ok',
 			handler : function() {
 				//插入
 				save("1");
 			}
 		},{
-			text : '取消',
+			text : 'cancel',
 			iconCls : 'icon-cancel',
 			handler : function() {
 				$('#feedback_add_dialog').dialog('close');
@@ -59,7 +59,7 @@ function initCombobox() {
 		editable : false,
 		url : 'pubData/getDicList.json?dicType=feedback_type',
 		onLoadSuccess : function(data) {
-			$('#feedback_type').combobox('setValue',"请选择");
+			$('#feedback_type').combobox('setValue',"Please select");
 		}
 	});
 }
@@ -81,7 +81,7 @@ function initDataGrid(){
 		singleSelect:true,	//只能单选
 		idField:'id',
 		columns:[[
-			{field:'feedback_type',title:'意见反馈类型',width:100
+			{field:'feedback_type',title:'Opinion feedback type',width:100
 				//formatter:function(value){
 					//if("zllc"==value){
 						//return '租赁流程';
@@ -98,25 +98,25 @@ function initDataGrid(){
 					//}
 				//}
 			},
-			{field:'feedback_content',title:'建议内容',width:100},
-			{field:'contact_way',title:'联系方式',width:100},
-			{field:'is_handle',title:'是否处理',width:70,
+			{field:'feedback_content',title:'Recommended content',width:100},
+			{field:'contact_way',title:'Contact ]',width:100},
+			{field:'is_handle',title:'Whether to deal with',width:70,
 				formatter:function(value){
 					if(1==value){
-						return '是';
+						return 'yes';
 					}else if(0==value){
-						return '否';
+						return 'no';
 					}
 				}
 		},
-			{field:'remark',title:'备注',width:100},
-			{field : 'create_time',title : '创建时间',width : 100,
+			{field:'remark',title:'Remarks',width:100},
+			{field : 'create_time',title : 'Created time',width : 100,
 				formatter : function(value) {
 					var date = new Date(value);
 					return formatterDateTime(date);
 				}
 			},
-			{field : 'handle_time',title : '处理时间',width : 100,
+			{field : 'handle_time',title : 'processing time',width : 100,
 				formatter : function(value) {
 					if(value==null){
 						return "";
@@ -126,9 +126,9 @@ function initDataGrid(){
 					}
 				}
 			},
-			{field:'id',title:'操作',width:70,
+			{field:'id',title:'operation',width:70,
 					formatter:function(value,row,index){
-						return '<a href = javascript:compile('+value+')>处理</a>';
+						return '<a href = javascript:compile('+value+')>Handle</a>';
 					}
 			}
 		]],
@@ -143,7 +143,7 @@ function save(value) {
 	var id = $('#id').val();
 	var remark = $('#remark').val();
 	if (remark == "") {
-		$.messager.alert('提示','请输入备注');
+		$.messager.alert('Prompt','Please enter remarks');
 		return;
 	}
 	var feedback = {
@@ -157,14 +157,14 @@ function save(value) {
 						$('#feedback_add_dialog').dialog('close');
 						$.messager.show({
 							title : titleInfo,
-							msg : '处理成功！',
+							msg : 'Done！',
 							timeout : timeoutValue,
 							showType : 'slide'
 						});
 						$('#feedback_table').datagrid(
 								'load', parameter);
 					} else {
-						$.messager.alert('提示', '操作失败');
+						$.messager.alert('Prompt', 'operation failed');
 					}
 				},'json');
 			}
@@ -180,7 +180,7 @@ function compile(value) {
 	$('#feedback_content').val(row.feedback_content);
 	$('#contact_way').val(row.contact_way);
 	
-	$('#feedback_add_dialog').dialog('setTitle','修改图片路径');
+	$('#feedback_add_dialog').dialog('setTitle','Change image path');
 	$('#feedback_add_dialog').dialog('open');
 }
 
@@ -189,10 +189,10 @@ function compile(value) {
  */
 function formatterDateTime(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
                     + (date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date
                     .getDate())
             + " "

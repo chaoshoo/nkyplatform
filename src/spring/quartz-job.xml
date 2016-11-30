@@ -6,33 +6,33 @@
 
 	<bean id="clearTmpJpgQuartzService" class="com.nky.action.task.ClearTmpJpgQuartzService">
 	</bean>
-	<!-- 定义调用对象和调用对象的方法 -->
+	<!-- Method for defining calling object and calling object -->
 	<bean id="jobtask_runbatch"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<!-- 调用的类 -->
+		<!-- Class of call -->
 		<property name="targetObject">
 			<ref bean="clearTmpJpgQuartzService" />
 		</property>
 
-		<!-- 调用类中的方法 -->
+		<!-- Method in calling class -->
 		<property name="targetMethod">
 			<value>start</value>
 		</property>
 	</bean>
 
-	<!-- 每5分钟执行一次 -->
+	<!-- each5Perform every minute -->
 	<bean id="doTime"
 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail">
 			<ref bean="jobtask_runbatch" />
 		</property>
-		<!-- cron表达式 0 3 0 ? * * 0 0 12 * * ? -->
+		<!-- cronExpression 0 3 0 ? * * 0 0 12 * * ? -->
 		<property name="cronExpression">
 			<value>0 */1 * * * ?</value>
 		</property>
 	</bean>
 
-	<!--总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+	<!--General management class If willlazy-init='false'Then the container will execute the scheduler -->
 	<bean id="startQuertz" lazy-init="false" autowire="no"
 		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">

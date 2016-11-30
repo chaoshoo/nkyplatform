@@ -24,12 +24,12 @@
    			onOpen : function() {
    				/*
    				$.messager.progress({
-   					title : '提示',
+   					title : 'Prompt',
    					text : '数据处理中，请稍后....'
    				}); */
    			}
    		}, options);
-   		opts.modal = true;// 强制此dialog为模式化，无视传递过来的modal参数
+   		opts.modal = true;// 强制此dialog为模式化，无视传递过来的modalparameter
    		return $.modalDialog.handler = $('<div/>').dialog(opts);
    	}
    };

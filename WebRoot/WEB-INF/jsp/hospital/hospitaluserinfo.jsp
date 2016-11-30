@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -21,17 +21,17 @@
 <body>
 	<div class="mbx">
 		<div class="inn">
-			<span class="fcB">个人信息</span>
+			<span class="fcB">Personal information</span>
 		</div>
 	</div>
 	<div class="nrP">
 		<div class="xgP" id="content">
 			<ul class="xgC">
-				<li><label class="label">医院编码:</label>&nbsp; ${hospitaladmin.hospital_code}  </li>
-				<li><label class="label">医院名称:</label>&nbsp; ${hospital_name}</li>
-				<li><label class="label">用户手机号:</label>&nbsp; ${hospitaladmin.tel}</li>
-				<li><label class="label">用户名称:</label>&nbsp; ${hospitaladmin.username} </li>
-				<li><label class="label">创建时间:</label>&nbsp; ${createtimestr}</li>
+				<li><label class="label">Hospital code:</label>&nbsp; ${hospitaladmin.hospital_code}  </li>
+				<li><label class="label">Hospital name:</label>&nbsp; ${hospital_name}</li>
+				<li><label class="label">User phone number:</label>&nbsp; ${hospitaladmin.tel}</li>
+				<li><label class="label">User name:</label>&nbsp; ${hospitaladmin.username} </li>
+				<li><label class="label">Created time:</label>&nbsp; ${createtimestr}</li>
 			</ul>
 		</div>
 	</div>

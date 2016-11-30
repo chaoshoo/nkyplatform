@@ -127,7 +127,7 @@ public class ChronicService {
 			if(vip_code!=null&&!"".equals(vip_code)){
 				addSql = addSql.replace("$$$", " and dv.vip_code in ("+vip_code+") $$$");
 			}else{
-				if(timeFalg){//医生--医院角色，不加限制条件
+				if(timeFalg){//Doctor--医院角色，不加限制条件
 					addSql = addSql.replace("$$$", " and dv.vip_code in ('') $$$");
 				}
 			}

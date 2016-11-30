@@ -49,7 +49,7 @@ public class JFinalDb extends Db {
 			}
 		}
 		if (paras.size() < 1) {
-			throw new Exception("删除必须要条件");
+			throw new Exception("Delete must condition");
 		}
 		return Db.update(sql.toString(), paras.toArray());
 	}
@@ -172,7 +172,7 @@ public class JFinalDb extends Db {
 				try {
 					Reflections.setFieldValue(t, key.toLowerCase(), record.get(key));
 				} catch (Exception e) {
-					log.error(clazz.getName() + "类变量" + key.toLowerCase() + "没有set方法");
+					log.error(clazz.getName() + "类变量" + key.toLowerCase() + "没有setMethod");
 				}
 			}
 		} catch (ClassNotFoundException e) {

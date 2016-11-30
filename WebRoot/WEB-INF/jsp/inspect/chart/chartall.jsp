@@ -142,23 +142,23 @@
 		<tr style="width: 100%;" class="trheight">
 			<td class="abtn"  align="center">
 				<c:if test="${data.frontPage < data.currentPage }">
-					<!--  <a id="nextup" class="w3-btn w3-round-xxlarge" href="<%=baseChartPath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${resolution}/${data.frontPage }.html">上一页</a>--> 
-					<input type="button" id="nextup" class=" subtitlebutton"  onfocus="addclass('nextup')" onblur="removeclass('nextup')" onClick="next(${data.frontPage })" value="上一页"></input>
+					<!--  <a id="nextup" class="w3-btn w3-round-xxlarge" href="<%=baseChartPath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${resolution}/${data.frontPage }.html">Previous page</a>--> 
+					<input type="button" id="nextup" class=" subtitlebutton"  onfocus="addclass('nextup')" onblur="removeclass('nextup')" onClick="next(${data.frontPage })" value="Previous page"></input>
 					
 				</c:if>
 				<c:if test="${data.nextPage > data.currentPage }">
-					<!-- <a id="nextdown"  class="w3-btn w3-round-xxlarge" href="<%=baseChartPath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${resolution}/${data.nextPage }.html">下一页</a>-- -->
-					<input type="button" id="nextdown" class=" subtitlebutton"  onfocus="addclass('nextdown')" onblur="removeclass('nextdown')" onClick="next(${data.nextPage })" value="下一页"></input>
+					<!-- <a id="nextdown"  class="w3-btn w3-round-xxlarge" href="<%=baseChartPath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${resolution}/${data.nextPage }.html">next page</a>-- -->
+					<input type="button" id="nextdown" class=" subtitlebutton"  onfocus="addclass('nextdown')" onblur="removeclass('nextdown')" onClick="next(${data.nextPage })" value="next page"></input>
 				</c:if>
 			</td> 
 		</tr><%-- 
 		<tr style="width: 100%;" class="trheight2">
 			<td class="abtn2" align="center">
 				<c:if test="${data.frontPage < data.currentPage }">
-					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.frontPage }.html">上一页</a> 
+					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.frontPage }.html">Previous page</a> 
 				</c:if>
 				<c:if test="${data.nextPage > data.currentPage }">
-					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.nextPage }.html">下一页</a>
+					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/chartall/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.nextPage }.html">next page</a>
 				</c:if>
 			</td> 
 		</tr> --%>

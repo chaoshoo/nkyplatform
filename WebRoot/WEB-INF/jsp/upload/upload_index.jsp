@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 </head>
 <body>
 	<form action="multipart.html" method="post" enctype="multipart/form-data">

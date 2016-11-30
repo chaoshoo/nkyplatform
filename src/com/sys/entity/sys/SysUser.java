@@ -39,9 +39,9 @@ public class SysUser extends Entity {
 
 	private String partnerId; // 商户编号
 
-	private String partnerName; // 商户名称
+	private String partnerName; // Merchant name
 
-	private String departmentId; // 部门id
+	private String departmentId; // departmentid
 	
 	/**
 	 * 部门名称

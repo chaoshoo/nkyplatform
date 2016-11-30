@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -21,18 +21,18 @@
 <body>
 	<div class="mbx">
 		<div class="inn">
-			<span class="fcB">个人信息</span>
+			<span class="fcB">Personal information</span>
 		</div>
 	</div>
 	<div class="nrP">
 		<div class="xgP" id="content">
 			<ul class="xgC">
-				<li><label class="label">用户ID:</label>&nbsp; ${user.userId}  </li>
-				<li><label class="label">登录账号:</label>&nbsp; ${user.userMail}</li>
-				<li><label class="label">用户名称:</label>&nbsp; ${user.userName}</li>
-				<li><label class="label">部门总称:</label>&nbsp; ${user.group_name} </li>
-				<li><label class="label">创建时间:</label>&nbsp; ${createtimestr}</li>
-				<li><label class="label">备注信息:</label>&nbsp; ${user.remark}</li>
+				<li><label class="label">userID:</label>&nbsp; ${user.userId}  </li>
+				<li><label class="label">Login account:</label>&nbsp; ${user.userMail}</li>
+				<li><label class="label">User name:</label>&nbsp; ${user.userName}</li>
+				<li><label class="label">Department general information:</label>&nbsp; ${user.group_name} </li>
+				<li><label class="label">Created time:</label>&nbsp; ${createtimestr}</li>
+				<li><label class="label">Remark information:</label>&nbsp; ${user.remark}</li>
 			</ul>
 		</div>
 	</div>

@@ -47,15 +47,15 @@ public class ClearTmpJpgQuartzService {
 							if(fs != null){
 								for(File ft : fs){
 									boolean flag2 = ft.delete();
-									LOG.info("文件 {} 已生存了5分钟以上，删除: {}",new Object[]{name,flag2});
+									LOG.info("file {} 已生存了5分钟以上，delete: {}",new Object[]{name,flag2});
 								}
 							}
 							
 							boolean flag = f.delete();
-							LOG.info("文件夹 {} 已生存了5分钟以上，删除: {}",new Object[]{name,flag});
+							LOG.info("文件夹 {} 已生存了5分钟以上，delete: {}",new Object[]{name,flag});
 						}else{
 							boolean flag = f.delete();
-							LOG.info("file {} 已生存了5分钟以上，删除: {}",new Object[]{name,flag});
+							LOG.info("file {} 已生存了5分钟以上，delete: {}",new Object[]{name,flag});
 						}
 					}
 				}

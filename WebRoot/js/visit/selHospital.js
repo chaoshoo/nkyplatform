@@ -1,7 +1,7 @@
 function addhospital(){
 	
 	   $.modalDialog({
-			title : '选择医院',
+			title : 'Select hospital',
 			width : 850,
 			height : 520,
 			href : 'hospital/select.html',

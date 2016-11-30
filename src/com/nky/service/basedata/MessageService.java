@@ -34,7 +34,7 @@ public class MessageService {
 	 */
 	public boolean saveMessage(String type,String sender,String reciver,String content){
 		Record r1 = new Record();
-		r1.set("msg_type", "1").set("creator", sender).set("title", "提示").set("content", content)
+		r1.set("msg_type", "1").set("creator", sender).set("title", "Prompt").set("content", content)
 		.set("create_time", new Date());
 		boolean flag = Db.save("message", r1);
 		if(flag){

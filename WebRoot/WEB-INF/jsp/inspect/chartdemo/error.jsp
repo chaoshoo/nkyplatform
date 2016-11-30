@@ -51,7 +51,7 @@
 </header>
 <body  style="background-image:url(<%=basePath%>/img/chart/chartbg.png)">
 <div class="container">
-	出错了。${message }
+	Error。${message }
 </div>
 </body>
 </html>

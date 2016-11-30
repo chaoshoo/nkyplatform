@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>远程咨询管理</title>
+<title>Remote consultation management</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -27,7 +27,7 @@
 </style>
 </head>
 <body class="easyui-layout" onkeydown="IM.EV_keyCode(event)">
-  <div data-options="region:'center',title:'远程咨询管理'" class="regionCenter">
+  <div data-options="region:'center',title:'Remote consultation management'" class="regionCenter">
     <div id="common_search" class="common_search common_search_nopadding">       
       <input type="hidden" id="type" name="type" value="${type}" />
       <input type="hidden" id="doctorCode" name="doctorCode" value="${currentUser.codeId}" />
@@ -40,25 +40,25 @@
 		 </div>
 			<table id="dataTable">
 			     <tr>
-		            <td>会员名称</td>
+		            <td>Member name</td>
 		            <td><input type="text" id="vip_name" style="width: 200px;" /></td>
-		            <td>会员身份证</td>
+		            <td>Membership card</td>
 		            <td><input type="text" id="papers_num" style="width: 200px;" /></td>
-		            <td>会员手机</td>
+		            <td>Member phone</td>
 		            <td><input type="text" id="mobile" style="width: 200px;" /></td>
 		         </tr>
 				 <tr>
-		            <td>处理状态</td>
+		            <td>Processing status</td>
 		            <td>  <select id="status" style="width: 200px;" >
-		            		 <option value ="">全部</option> 
-							 <option value ="1">已处理</option> 
-							 <option value ="0">未处理</option> 
+		            		 <option value ="">All</option> 
+							 <option value ="1">Processed</option> 
+							 <option value ="0">Untreated</option> 
 						 </select>
 				    </td>
-		            <td>预约时间</td>
+		            <td>Appointment time</td>
 		            <td colspan='3'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
-	                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
-	                <button type="button" id="diagnose_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>查&nbsp;询</button>   
+	                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
+	                <button type="button" id="diagnose_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>check&nbsp;Inquiry</button>   
 	                </td>
 				</tr>
 			</table> 
@@ -66,35 +66,35 @@
 	     <c:if test="${type == 'S'}">
 	     	<table id="dataTable">
 	     		<tr>
-		            <td>医&nbsp;&nbsp;院</td>
+		            <td>medicine&nbsp;&nbsp;courtyard</td>
 		            <td> <input style="width: 150px;"  type ="text" id="hospitalname" name="hospitalname" value="" readonly="readonly"/>					    
-		  				<button type="button" id="hospital_qry_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">选择医院</button> 
+		  				<button type="button" id="hospital_qry_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">Select hospital</button> 
 		  			</td>
-		            <td>科&nbsp;&nbsp;室</td>
+		            <td>section&nbsp;&nbsp;room</td>
 		            <td><input style="width: 200px;"  class="easyui-combobox" id="office_code" name="office_code"  value=""/> </td>
-		            <td>会员名称</td>
+		            <td>Member name</td>
 		            <td><input type="text" id="vip_name"  style="width: 200px;"/></td>
 		        </tr>
 				<tr>
-		            <td>医生名称</td>
+		            <td>Doctor name</td>
 		            <td> <input type="text" id="doctor_name"  style="width: 200px;" /></td>
-		            <td>会员手机</td>
+		            <td>Member phone</td>
 		            <td><input type="text" id="mobile" style="width: 200px;" /></td>
-		            <td>处理状态</td>
+		            <td>Processing status</td>
 		            <td>  <select id="status" style="width: 200px;" >
-		            		 <option value ="">全部</option> 
-							 <option value ="1">已处理</option> 
-							 <option value ="0">未处理</option> 
+		            		 <option value ="">All</option> 
+							 <option value ="1">Processed</option> 
+							 <option value ="0">Untreated</option> 
 						 </select>
 				    </td>
 				</tr>
 				<tr>
-					<td>会员身份证</td>
+					<td>Membership card</td>
 		            <td><input type="text" id="papers_num" style="width: 200px;" /></td>
-		            <td>预约时间</td>
+		            <td>Appointment time</td>
 		            <td colspan='3'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
-	                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
-					<button type="button" id="diagnose_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>查&nbsp;询</button>   
+	                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
+					<button type="button" id="diagnose_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>check&nbsp;Inquiry</button>   
 					</td>
 				</tr>
 			</table> 
@@ -102,31 +102,31 @@
 		 <c:if test="${type == 'H'}">
 			<table id="dataTable">
 				<tr>
-		            <td>科&nbsp;&nbsp;室</td>
+		            <td>section&nbsp;&nbsp;room</td>
 		            <td> <input style="width: 200px;"  class="easyui-combobox" id="office_code" name="office_code"  value=""/></td>
-		            <td>会员身份证</td>
+		            <td>Membership card</td>
 		            <td><input type="text" id="papers_num" style="width: 200px;" /></td>
-		            <td>会员手机</td>
+		            <td>Member phone</td>
 		            <td><input type="text" id="mobile" style="width: 200px;" /></td>
 		        </tr>
 				<tr>
-		            <td>会员名称</td>
+		            <td>Member name</td>
 		            <td><input type="text" id="vip_name"  style="width: 200px;"/></td>
-		            <td>医生名称</td>
+		            <td>Doctor name</td>
 		            <td> <input type="text" id="doctor_name"  style="width: 200px;" /></td>
-		            <td>处理状态</td>
+		            <td>Processing status</td>
 		            <td>  <select id="status" style="width: 200px;" >
-		            		 <option value ="">全部</option> 
-							 <option value ="1">已处理</option> 
-							 <option value ="0">未处理</option> 
+		            		 <option value ="">All</option> 
+							 <option value ="1">Processed</option> 
+							 <option value ="0">Untreated</option> 
 						 </select>
 				    </td>
 				 </tr>
 				 <tr>
-		            <td>预约时间</td>
+		            <td>Appointment time</td>
 		            <td colspan='5'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
-	                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
-	                <button type="button" id="diagnose_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>查&nbsp;询</button> 
+	                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
+	                <button type="button" id="diagnose_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>check&nbsp;Inquiry</button> 
 	                </td>
 				</tr>
 			</table> 
@@ -134,7 +134,7 @@
 	 </form> 
       
     <!--   <button type="button" id="diagnose_reset" class="btn btn-success btn-success-small">
-        	重&nbsp;置
+        	Re&nbsp;The
       </button>  -->
     </div>
  
@@ -142,7 +142,7 @@
     <div id="lvjing" style="display: none; z-index: 668888; position: absolute; margin-left: 0px; padding-left: 0px; left: 0px; top: 0px; height: 0px; width: 0px;">
 		<canvas id="lvjing_canvas" style="border:1px solid #aaa; display: block;"></canvas>
 	</div>
-    <div id="diagnose_operation_dialog" class="easyui-dialog" data-options="closed:true,modal:true,title:'远程咨询',iconCls:'icon-save'" style="width: 644px; height: 450px;">
+    <div id="diagnose_operation_dialog" class="easyui-dialog" data-options="closed:true,modal:true,title:'Remote consultation',iconCls:'icon-save'" style="width: 644px; height: 450px;">
     	<input type="hidden" id="callerId" name="callerId" value="" />
      	<div id="pop_videoView" style="display: block; width: 636px; position: absolute; top: 36px;left: 3px; margin: 5px 0 5px 0;height:397px">
 			<canvas id="videoViewCanvas" style="width:100%;height:100%;z-index: 50;position: absolute;top:0px;left:0px;"></canvas>
@@ -159,7 +159,7 @@
     <div id="diagnose_detail_dialog" data-options="closed:true,modal:true,title:'查看信息',iconCls:'icon-save'" style="padding: 5px; width: 750px; height: 550px;">
      	<br>
      	<input type="hidden" id="remoteInspectCode">
-     	咨询内容：<span id='diagnose_content'></span> 
+     	Consulting content：<span id='diagnose_content'></span> 
      	<br>
      	<br>
      	<table id="diagnose_detail_table" class="easyui-datagrid" style="height:280px;width:700px;"
@@ -167,14 +167,14 @@
 			<thead>
 				<tr>
 					<th data-options="field:'id',hidden:true"></th>
-					<th data-options="field:'answer_name',width:50">回复人名称</th>
-					<th data-options="field:'des',width:100">回复内容</th>
-					<th data-options="field:'create_time',width:50">回复时间</th>
+					<th data-options="field:'answer_name',width:50">Replier name</th>
+					<th data-options="field:'des',width:100">Reply content</th>
+					<th data-options="field:'create_time',width:50">Reply time</th>
 				</tr>
 			</thead>
 		</table>
      	<div id="answer_div">
-     		回&nbsp;复： <textarea  style="width: 300px;" rows="2" cols="20" id="answer_content" name="answer_content"></textarea>
+     		return&nbsp;complex： <textarea  style="width: 300px;" rows="2" cols="20" id="answer_content" name="answer_content"></textarea>
      	</div>  
     </div>
   </div>

@@ -305,8 +305,8 @@ public class Reflections {
 	public static String getAnnotationTableBind(final Class<?> clazz) throws Exception{
 		TableBind table = clazz.getAnnotation(TableBind.class);
 		if(table == null || table.name().length() < 1){
-			logger.error("没有添加TableBind的注解");
-			throw new Exception("没有添加TableBind的注解");
+			logger.error("Not addedTableBindAnnotation");
+			throw new Exception("Not addedTableBindAnnotation");
 		}else{
 			return table.name();
 		}

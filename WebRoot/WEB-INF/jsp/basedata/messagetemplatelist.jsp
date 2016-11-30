@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -50,11 +50,11 @@ function del(id){  //删除操作
 	var rowInfo =  $('#base_table').datagrid('getSelected');
 	if(rowInfo){
 		//设置弹出框信息 
-	    $.messager.confirm('确认','确认删除?',function(row){  
+	    $.messager.confirm('confirm','confirm删除?',function(row){  
 	        if(row){  
 	        	$.post('messagetemplate/del.json?id='+rowInfo.ID,function(data){
 	    			if(data.code==1){
-	    				$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+	    				$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
 	    			}else{
 	            		//alert("删除失败");
 	    				$.messager.alert(titleInfo,data.msg);
@@ -73,11 +73,11 @@ function del(id){  //删除操作
  */
 function submit_model_window(){
 	if($("#form-title").val()==null || $("#form-title").val()==""){
-		$.messager.alert(titleInfo,'请输入消息标题!');
+		$.messager.alert(titleInfo,'Please enter a message header!');
 		return;
 	} 
 	if($("#form-content").val()==null || $("#form-content").val()==""){
-		$.messager.alert(titleInfo,'请输入消息内容!');
+		$.messager.alert(titleInfo,'Please enter the message content!');
 		return;
 	} 
 	var formdata = $.serializeObject($("#user_detail_form"));
@@ -87,7 +87,7 @@ function submit_model_window(){
 		$.post("messagetemplate/update.json",formdata,function(data){
 			if(data.code==1){
 				$('#detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'更新成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Updated！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -98,7 +98,7 @@ function submit_model_window(){
 		$.post("messagetemplate/save.json",formdata,function(data){
 			if(data.code==1){
 				$('#detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -123,12 +123,12 @@ $(function() {
 	//初始化弹出框
 	$('#user_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -165,28 +165,28 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'TITLE',title:'模板名字',width:100},
-		    {field:'CONTENT',title:'模板内容',width:100},
-			{field : 'MSG_TYPE',title : '模板类型',width : 100,
+		    {field:'TITLE',title:'Template Name',width:100},
+		    {field:'CONTENT',title:'Template Content',width:100},
+			{field : 'MSG_TYPE',title : 'Template Type',width : 100,
 				formatter : function(value) {
 					if(value != null && value != ""){
 						if(value == 1){
-							return "文本";
+							return "text";
 						}else if(value == 2){
-							return "链接";
+							return "link";
 						} 
 					}
 					return "";
 				}
-			}, {field : 'CREATE_TIME',title : '创建时间',width : 100,
+			}, {field : 'CREATE_TIME',title : 'Created time',width : 100,
 				formatter : function(value) {
 					var date = new Date(value);
 					return formatterDateTime(date);
 				}
 			},
-			{field:'ID',title:'操作',width:120,
+			{field:'ID',title:'operation',width:120,
 				formatter:function(value,row){ 
-					return  '<a href="javascript:openedit('+value+')">修改</a> &nbsp;<a onclick="javascript:del(\''+row.value+'\')" ><font color="red">删除</font></a>';
+					return  '<a href="javascript:openedit('+value+')">modify</a> &nbsp;<a onclick="javascript:del(\''+row.value+'\')" ><font color="red">delete</font></a>';
 				}
 			}
 		]],
@@ -202,18 +202,18 @@ function initDataGrid(){
 	<div data-options="region:'center',title:'消息模板查询'" class="regionCenter">
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="#" id="query_form">		
-			&nbsp;&nbsp;&nbsp;&nbsp; 模板名称&nbsp;&nbsp;<input type="text" id="FIT-LIKE-title" name="FIT-LIKE-title"/>
-			消息类型:<select id="FIT-EQ-msg_type" name="FIT-EQ-msg_type">
-			      	 <option value="">-请选择-</option> 
-			     	 <option value="1">文本</option>
-			     	 <option value="2">链接</option>
+			&nbsp;&nbsp;&nbsp;&nbsp; Template Name&nbsp;&nbsp;<input type="text" id="FIT-LIKE-title" name="FIT-LIKE-title"/>
+			Message type:<select id="FIT-EQ-msg_type" name="FIT-EQ-msg_type">
+			      	 <option value="">-Please select-</option> 
+			     	 <option value="1">text</option>
+			     	 <option value="2">link</option>
 				</select> 
 				
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
 		 </form>
 		</div>
 		<table id="base_table"></table>
@@ -224,22 +224,22 @@ function initDataGrid(){
         <input type="hidden" id="form-id" name="id" />
         <table style="margin-left: 10px"> 
 			<tr id="code_tr" >
-				<td>消息类型</td>
+				<td>Message type</td>
 				<td>
 				<select id="form-msg_type" name="msg_type">
-			     	 <option value="1">文本</option>
-			     	 <option value="2">链接</option>
+			     	 <option value="1">text</option>
+			     	 <option value="2">link</option>
 				</select> 
 				</td>
 			</tr>
 			<tr>
-				<td>消息标题</td>
+				<td>Message title</td>
 				<td>
 				<input style="width: 200px;" type="text" id="form-title" name="title"  maxlength="50"/>
 				</td>
 			</tr>
 			<tr>
-				<td style="width: 70px;">消息内容</td>
+				<td style="width: 70px;">Message content</td>
 				<td>
 				<textarea style="width: 200px;" rows="3" cols="20" id="form-content" name="content"></textarea>
 				</td>

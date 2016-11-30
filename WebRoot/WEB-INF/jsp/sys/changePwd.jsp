@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="css/common.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" href="css/jquery/easyui.css" />
@@ -21,22 +21,22 @@
 <body>
 	<div class="mbx">
 		<div class="inn">
-			<span class="fcB">修改密码</span>
+			<span class="fcB">Change password</span>
 		</div>
 	</div>
 	<div class="nrP">
 		<div class="xgP" id="content">
 			<ul class="xgC">
-				<li><label class="label"> 请输入原始密码：</label> <input
+				<li><label class="label"> Please enter the original password：</label> <input
 					type="password" class="inputC" id="old"/></li>
-				<li class="x02"><label class="label"> 请输入新密码：</label> <input
+				<li class="x02"><label class="label"> Please enter a new password：</label> <input
 					type="password" class="inputC" id="new1"/>
-					<p class="x_ts">密码由6-16字母、数字、符号组成，区分大小写</p></li>
-				<li><label class="label"> 请确认新密码：</label> <input
+					<p class="x_ts">Password by6-16Letter、number、Symbol composition，Case sensitive</p></li>
+				<li><label class="label"> Please confirm new password：</label> <input
 					type="password" class="inputC" id="new2"/>
-					 <!-- <span class="i_cw">请输入正确的密码</span> -->
+					 <!-- <span class="i_cw">Please enter the correct password.</span> -->
 				</li>
-				<li><a href="javascript:void(0)" class="an_qd" onclick="doChange()">确定</a></li>
+				<li><a href="javascript:void(0)" class="an_qd" onclick="doChange()">Confirmed</a></li>
 			</ul>
 		</div>
 	</div>
@@ -49,17 +49,17 @@ function doChange(){
 	var new2=$("#new2").val();
 	if(new1!=new2){
 //		alert("新密码前后不一致，请确认！");
-		$.messager.alert(titleInfo,"新密码前后不一致，请确认！");
+		$.messager.alert(titleInfo,"Inconsistent before and after the new password，Please confirm！");
 		return false;
 	}
 	if(old==new1){
 //		alert("新旧密码不能相同，请确认！");
-		$.messager.alert(titleInfo,"新旧密码不能相同，请确认！");
+		$.messager.alert(titleInfo,"Old and new passwords can not be the same，Please confirm！");
 		return false;
 	}
 	if(new1.length<6||new1.length>16){
 
-		$.messager.alert(titleInfo,"新密码位数不规范，请确认！");
+		$.messager.alert(titleInfo,"New password number is not standardized，Please confirm！");
 		return false;
 	}
 	var url = "changepwd/doChangePwd.json";

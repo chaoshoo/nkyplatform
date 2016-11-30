@@ -69,13 +69,13 @@ public class MessageTemplateAction extends BaseAction {
 			if (null == entity || StringUtils.isEmpty(entity.getTitle()) || StringUtils.isEmpty(entity.getContent())
 					|| null == entity.getMsg_type()) {
 				d.setCode(0);
-				d.setMsg("添加失败，数据不合法！");
+				d.setMsg("Add failed，Data is not valid！");
 				return d;
 			}
 			
 			if(entity.getTitle().length()>50){
 				d.setCode(0);
-				d.setMsg("添加失败，标题过长！");
+				d.setMsg("Add failed，Title is too long！");
 				return d;
 			}
 			
@@ -86,7 +86,7 @@ public class MessageTemplateAction extends BaseAction {
 					loginUserId, getSession().getRoles(), entity.getTitle());
 			if (record != null) {
 				d.setCode(0);
-				d.setMsg("添加失败，该模板名已经使用过！");
+				d.setMsg("Add failed，The template name is already used.！");
 				return d;
 			} else {
 				entity.setCreate_time(new Date());
@@ -102,7 +102,7 @@ public class MessageTemplateAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("保存失败，请联系系统管理员");
+		d.setMsg("Save failed，Please contact system administrator");
 		return d;
 	}
 
@@ -114,19 +114,19 @@ public class MessageTemplateAction extends BaseAction {
 			if (null == entity || null == entity.getId() || StringUtils.isEmpty(entity.getTitle())
 					|| StringUtils.isEmpty(entity.getContent()) || null == entity.getMsg_type()) {
 				d.setCode(0);
-				d.setMsg("修改失败，数据不合法！");
+				d.setMsg("Change failed，Data is not valid！");
 				return d;
 			}
 			
 			if(entity.getTitle().length()>50){
 				d.setCode(0);
-				d.setMsg("添加失败，标题过长！");
+				d.setMsg("Add failed，Title is too long！");
 				return d;
 			}
 			Record record = Db.findFirst("select * from message_template where id = ?", entity.getId());
 			if (record == null) {
 				d.setCode(0);
-				d.setMsg("修改失败，请求非法！");
+				d.setMsg("Change failed，Invalid request！");
 				return d;
 			}
 
@@ -141,7 +141,7 @@ public class MessageTemplateAction extends BaseAction {
 						loginUserId, getSession().getRoles(), entity.getTitle());
 				if (recordDuplicate != null) {
 					d.setCode(0);
-					d.setMsg("修改失败，编码已经使用过！");
+					d.setMsg("Change failed，Code has been used.！");
 					return d;
 				}
 			}
@@ -158,7 +158,7 @@ public class MessageTemplateAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(1);
-		d.setMsg("修改失败，请联系系统管理员");
+		d.setMsg("Change failed，Please contact system administrator");
 		return d;
 	}
 
@@ -176,11 +176,11 @@ public class MessageTemplateAction extends BaseAction {
 				d.setCode(1);
 			} else {
 				d.setCode(0);
-				d.setMsg("删除失败");
+				d.setMsg("Delete failed");
 			}
 		} else {
 			d.setCode(0);
-			d.setMsg("删除失败,数据不全");
+			d.setMsg("Delete failed,Incomplete data");
 		}
 		return d;
 	}

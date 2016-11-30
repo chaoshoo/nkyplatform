@@ -35,10 +35,10 @@
 		<td width="25%" style="color:#FFF;font-size: 36px;line-height: 50px;">${data.title }</td>
 		<td width="50%">
 			<c:if test="${data.frontPage < data.currentPage }">
-				<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>/vipInspectData/charts/${data.cardCode }/${data.inspectCode }/${data.code }/${data.frontPage }.html">上一页</a> 
+				<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>/vipInspectData/charts/${data.cardCode }/${data.inspectCode }/${data.code }/${data.frontPage }.html">Previous page</a> 
 			</c:if>
 			<c:if test="${data.nextPage > data.currentPage }">
-				<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>/vipInspectData/charts/${data.cardCode }/${data.inspectCode }/${data.code }/${data.nextPage }.html">下一页</a>
+				<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>/vipInspectData/charts/${data.cardCode }/${data.inspectCode }/${data.code }/${data.nextPage }.html">next page</a>
 			</c:if>
 		</td>
 		<td width="25%"></td>
@@ -58,7 +58,7 @@ $(function () {
         },
 		exporting:{ enabled:false }, 
 		legend:{ enabled:false },
-        lang: {  noData: "暂时没有数据" },
+        lang: {  noData: "No data" },
         noData: {   style: { fontWeight: 'bold', fontSize: '15px',  color: '#FFF' } },
         title: {  text: '', style: {  color: '#FFF', fontWeight: 'bold', fontSize: '12px' } }, 
         loading: {

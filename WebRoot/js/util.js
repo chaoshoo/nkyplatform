@@ -30,13 +30,13 @@ function checkEmail(val) {
 
 function checkUrl(url) {// 验证url
 	var regex = "^((https|http|ftp|rtsp|mms)?://)"
-	+ "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftp的user@
+	+ "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftpTheuser@
 	+ "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
-	+ "|" // 允许IP和DOMAIN（域名）
+	+ "|" // 允许IPandDOMAIN（域名）
 	+ "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
 	+ "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名
 	+ "[a-z]{2,6})" // first level domain- .com or .museum
-	+ "(:[0-9]{1,4})?" // 端口- :80
+	+ "(:[0-9]{1,4})?" // port- :80
 	+ "((/?)|" // a slash isn't required if there is no file name
 	+ "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
 	var regExp = new RegExp(regex);
@@ -50,7 +50,7 @@ function checkPos(val) {
 
 //身份证校验,成功返回true
 function validateIdCard(obj) {
-	var aCity = {11 : "北京", 12 : "天津", 13 : "河北", 14 : "山西", 15 : "内蒙古", 21 : "辽宁", 22 : "吉林", 23 : "黑龙江", 31 : "上海", 32 : "江苏", 33 : "浙江", 34 : "安徽", 35 : "福建", 36 : "江西", 37 : "山东", 41 : "河南", 42 : "湖北", 43 : "湖南", 44 : "广东", 45 : "广西", 46 : "海南", 50 : "重庆", 51 : "四川", 52 : "贵州", 53 : "云南", 54 : "西藏", 61 : "陕西", 62 : "甘肃", 63 : "青海", 64 : "宁夏", 65 : "新疆", 71 : "台湾", 81 : "香港", 82 : "澳门", 91 : "国外" };
+	var aCity = {11 : "北京", 12 : "天津", 13 : "河北", 14 : "山西", 15 : "内蒙古", 21 : "辽宁", 22 : "吉林", 23 : "黑龙江", 31 : "上海", 32 : "江苏", 33 : "浙江", 34 : "安徽", 35 : "福建", 36 : "江西", 37 : "山东", 41 : "河南", 42 : "湖北", 43 : "湖南", 44 : "广东", 45 : "广西", 46 : "海南", 50 : "重庆", 51 : "四川", 52 : "贵州", 53 : "云南", 54 : "西藏", 61 : "陕西", 62 : "甘肃", 63 : "青海", 64 : "宁夏", 65 : "新疆", 71 : "台湾", 81 : "香港", 82 : "澳门", 91 : "abroad" };
 	var iSum = 0;
 	var strIDno = obj;
 	var idCardLength = strIDno.length;
@@ -120,9 +120,9 @@ function luhmCheck(bankno){
 		return false;
 	}
     var lastNum = bankno.substr(bankno.length - 1, 1);// 取出最后一位（与luhm进行比较）
-    var first15Num = bankno.substr(0,bankno.length - 1);// 前15或18位
+    var first15Num = bankno.substr(0,bankno.length - 1);// ago15or18position
     var newArr = new Array();
-    for(var i = first15Num.length - 1; i > -1; i--) {    // 前15或18位倒序存进数组
+    for(var i = first15Num.length - 1; i > -1; i--) {    // ago15or18位倒序存进数组
         newArr.push(first15Num.substr(i, 1));
     }
     var arrJiShu = new Array();  // 奇数位*2的积 <9
@@ -165,10 +165,10 @@ function luhmCheck(bankno){
     var k = parseInt(sumTotal) % 10 == 0 ? 10 : parseInt(sumTotal) % 10;        
     var luhm = 10-k;
     if(lastNum == luhm) {
-    	$("#banknoInfo").html("Luhm验证通过");
+    	$("#banknoInfo").html("LuhmVerified");
     	return true;
     } else {
-    	$("#banknoInfo").html("银行卡号必须符合Luhm校验");
+    	$("#banknoInfo").html("Bank card number must be in line withLuhmcheck");
     	return false;
     }   
 }
@@ -210,10 +210,10 @@ String.prototype.rtrim = function() {
 Date.prototype.Format = function(fmt) { //author: meizz 
 	var o = {
 		"M+" : this.getMonth() + 1, //月份 
-		"d+" : this.getDate(), //日 
-		"h+" : this.getHours(), //小时 
-		"m+" : this.getMinutes(), //分 
-		"s+" : this.getSeconds(), //秒 
+		"d+" : this.getDate(), //day 
+		"h+" : this.getHours(), //hour 
+		"m+" : this.getMinutes(), //branch 
+		"s+" : this.getSeconds(), //second 
 		"q+" : Math.floor((this.getMonth() + 3) / 3), //季度 
 		"S" : this.getMilliseconds()
 	//毫秒 

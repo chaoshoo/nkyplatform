@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
@@ -21,36 +21,36 @@
 <script type="text/javascript" src="js/sys/trea_list.js"></script>
 </head>
 <body class="easyui-layout">
-  <div data-options="region:'center',title:'会计管理'" class="regionCenter">
+  <div data-options="region:'center',title:'accounting management'" class="regionCenter">
     <div id="common_search" class="common_search">
-      <input type="button" id="trea_add" class="btn btn-success" value="添加">
-      &nbsp;&nbsp;&nbsp;&nbsp; 会计名字：
+      <input type="button" id="trea_add" class="btn btn-success" value="Add">
+      &nbsp;&nbsp;&nbsp;&nbsp; Accounting name：
       <input type="text" id="treasurerName1" />
-      <input type="button" id="auth_search" class="btn btn-success" value="查询" />
-      <input type="button" id="auth_reset" class="btn btn-success" value="重置" />
+      <input type="button" id="auth_search" class="btn btn-success" value="query" />
+      <input type="button" id="auth_reset" class="btn btn-success" value="Reset" />
     </div>
     <table id="trea_table"></table>
   </div>
-  <div id="trea_detail_dialog" data-options="closed:true,modal:true,title:'添加',iconCls:'icon-save'" style="padding: 5px; width: 500px; height: 400px;">
+  <div id="trea_detail_dialog" data-options="closed:true,modal:true,title:'Add',iconCls:'icon-save'" style="padding: 5px; width: 500px; height: 400px;">
     <form action="" id="trea_detail_form">
       <input type="hidden" id="treasurerId">
       <table>
         <tr>
-          <td>会计名字：</td>
+          <td>Accounting name：</td>
           <td><input type="text" id="treasurerName"></td>
         </tr>
         <tr>
-          <td>会计头像：</td>
+          <td>Accounting icon：</td>
           <td><input type="text" id="treasurerPhoto"></td>
         </tr>
         <tr>
-          <td>会计类型：</td>
+          <td>Accounting type：</td>
           <td><select id="treasurerType">
               <m:getItems name="treasurerType" />
           </select></td>
         </tr>
         <tr>
-          <td>会计描述：</td>
+          <td>Accounting description：</td>
           <td><textarea name="treasurerDesc" class="ckeditor" id="treasurerDesc"></textarea> <script type="text/javascript">
                       CKEDITOR.replace('treasurerDesc');
                     </script></td>

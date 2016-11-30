@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -46,11 +46,11 @@ function dataGridload(param){
 }
 
 function del(code){  //删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){  
+    $.messager.confirm('confirm','confirm删除?',function(row){  
         if(row){  
         	$.post('office/del.json?code='+code,function(data){
     			if(data.code==1){
-    				$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+    				$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
     			}else{
             		//alert("删除失败");
     				$.messager.alert(titleInfo,data.msg);
@@ -67,11 +67,11 @@ function del(code){  //删除操作
  */
 function submit_model_window(){
 	if($("#kscode").val()==null || $("#kscode").val()==""){
-		$.messager.alert(titleInfo,'请输入科室编码!');
+		$.messager.alert(titleInfo,'Please enter the department code!');
 		return;
 	} 
 	if($("#ksname").val()==null || $("#ksname").val()==""){
-		$.messager.alert(titleInfo,'请输入科室名称!');
+		$.messager.alert(titleInfo,'Please enter the Department name!');
 		return;
 	} 
 	var formdata = $.serializeObject($("#user_detail_form"));
@@ -81,7 +81,7 @@ function submit_model_window(){
 		$.post("office/update.json",formdata,function(data){
 			if(data.code==1){
 				$('#detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'更新成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Updated！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -92,7 +92,7 @@ function submit_model_window(){
 		$.post("office/save.json",formdata,function(data){
 			if(data.code==1){
 				$('#detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -117,12 +117,12 @@ $(function() {
 	//初始化弹出框
 	$('#user_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -158,18 +158,18 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'CODE',title:'科室编码',width:100},
-		    {field:'NAME',title:'科室名字',width:100},
-		    {field:'DES',title:'备注',width:100},
-			{field : 'CREATE_TIME',title : '创建时间',width : 100,
+		    {field:'CODE',title:'department code',width:100},
+		    {field:'NAME',title:'department name',width:100},
+		    {field:'DES',title:'Remarks',width:100},
+			{field : 'CREATE_TIME',title : 'Created time',width : 100,
 				formatter : function(value) {
 					var date = new Date(value);
 					return formatterDateTime(date);
 				}
 			},
-			{field:'ID',title:'操作',width:120,
+			{field:'ID',title:'operation',width:120,
 				formatter:function(value,row){ 
-					return  '<a href="javascript:openedit('+value+')">修改</a> &nbsp;<a onclick="javascript:del(\''+row.CODE+'\')" ><font color="red">删除</font></a>';
+					return  '<a href="javascript:openedit('+value+')">modify</a> &nbsp;<a onclick="javascript:del(\''+row.CODE+'\')" ><font color="red">delete</font></a>';
 					//return '<a href="javascript:initPassWord('+value+')">初始化密码</a> <a href="javascript:userEdit('+value+')">编辑</a> <a   onclick="del('+value+')" ><font color="red">删除</font></a>';
 				}
 			}
@@ -187,12 +187,12 @@ function initDataGrid(){
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="goods/tail/detail.json" id="query_form">		
-			&nbsp;&nbsp;&nbsp;&nbsp; 科室名称&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-name"/>
+			&nbsp;&nbsp;&nbsp;&nbsp; Department name&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-name"/>
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
 		 </form>
 		</div>
 		<table id="base_table"></table>
@@ -203,13 +203,13 @@ function initDataGrid(){
         <input type="hidden" id="ksid" name="id" />
         <table style="margin-left: 10px"> 
 			<tr id="code_tr" >
-				<td>科室编码</td>
+				<td>department code</td>
 				<td>
 				<input style="width: 200px;" type="text" id="kscode" name="code" />
 				</td>
 			</tr>
 			<tr>
-				<td>科室名字</td>
+				<td>department name</td>
 				<td>
 				<input style="width: 200px;" type="text" id="ksname" name="name"  />
 				</td>

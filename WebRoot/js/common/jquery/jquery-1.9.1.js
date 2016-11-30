@@ -9639,5 +9639,5 @@ function getAppBasePath() {
 		return "";
 	}
 }
-var titleInfo="提示信息";
+var titleInfo="Prompt information";
 var timeoutValue=2000;

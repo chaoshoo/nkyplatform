@@ -99,7 +99,7 @@ public final class SysId {
 					seqEnd = end;
 //					log.debug("GET SEQ OUTPUT PARAMS !start = " + start + ";end= " + end + ";id= " + id);
 				} catch (Throwable t) {
-					throw new RuntimeException("取得序列号失败: " + seqName, t);
+					throw new RuntimeException("Failed to obtain serial number: " + seqName, t);
 				}
 			}
 			log.debug("GET SEQ OUTPUT PARAMS ! seqName = " + seqName + ",id= " + id +"start = " + seqStart + ",end= " + seqEnd );

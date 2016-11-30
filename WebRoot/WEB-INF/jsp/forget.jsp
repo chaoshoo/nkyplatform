@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="css/common.css" />
 <link rel="stylesheet" type="text/css" href="css/tsk.css">
 </head>
@@ -11,8 +11,8 @@
 <div class="container"> 
 	<div class="tsk">
 		<div class="bd">
-			<h4>忘记密码怎么办？</h4>
-			<p>如果您忘记密码,请发邮件</strong> 邮箱，我们会在第一时间为您找回密码。</p>
+			<h4>Forget password?？</h4>
+			<p>If you forget your password,Please send email</strong> mailbox，We will be the first time for you to find the password。</p>
 		</div>
 	</div>
 </div>

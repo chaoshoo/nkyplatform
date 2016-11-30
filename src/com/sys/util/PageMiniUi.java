@@ -6,7 +6,7 @@ class PageMiniUi{
 
 	public static final int DEFAULT_PAGE_SIZE = 30;
 	protected int pageSize = DEFAULT_PAGE_SIZE;
-	protected int pageIndex=0;//从0开始
+	protected int pageIndex=0;//from0start
 	protected int total;
 	protected List<?> data;
 	

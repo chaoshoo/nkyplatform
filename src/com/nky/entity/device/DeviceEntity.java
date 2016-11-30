@@ -6,12 +6,12 @@ import com.sys.jfinal.JFinalEntity;
 import com.sys.jfinal.TableBind;
 @TableBind(name="device")
 public class DeviceEntity extends JFinalEntity{
-	private	String	device_id;// '设备ID',
-	private	String	device_type;//'设备类型',
+	private	String	device_id;// 'equipmentID',
+	private	String	device_type;//'Equipment type',
 	private	String	sn;//'SN',
 	private	Date	product_time;// '生成时间',
-	private	Date	deliver_time;// '发货时间',
-	private	Date	create_time;// '创建时间',
+	private	Date	deliver_time;// 'Delivery time',
+	private	Date	create_time;// 'Created time',
 	private String remark;
 	public String getDevice_id() {
 		return device_id;

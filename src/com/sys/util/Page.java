@@ -9,7 +9,7 @@ public class Page extends PageMiniUi {
 	public static final int DEFAULT_PAGE_SIZE = 20;
 
 	private int pageSize = DEFAULT_PAGE_SIZE;
-	private int pageNow=1;//从1开始
+	private int pageNow=1;//from1start
 	
 	private int begin=0;
 	private int end=0;

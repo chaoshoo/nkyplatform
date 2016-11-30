@@ -189,7 +189,7 @@ public class DiagnoseService {
 	{
 		JSONObject json = new JSONObject();
 		json.put("result", "failure");
-		json.put("info", "请核实参数后重新尝试");
+		json.put("info", "Please verify parameters and try again");
 		if(!(StringUtils.isEmpty(id) || StringUtils.isEmpty(flag)))
 		{
 			if(remoteInspectDao.videoDiagnoseOper(id, flag) > 0)

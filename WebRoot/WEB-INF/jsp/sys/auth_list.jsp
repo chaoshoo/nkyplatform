@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css"
 	href="css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="css/all.css" />
@@ -23,51 +23,51 @@
 <script type="text/javascript" src="js/sys/auth_list.js"></script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'权限管理'" class="regionCenter">
+	<div data-options="region:'center',title:'Authority management'" class="regionCenter">
 		<div id="common_search" class="common_search">
-			<button type="button" id="auth_add" class="btn btn-success btn-nomargin"><i class="icon-plus"></i>&nbsp;添加权限</button>
+			<button type="button" id="auth_add" class="btn btn-success btn-nomargin"><i class="icon-plus"></i>&nbsp;add permission</button>
 		</div>
 		<table id="auth_table"></table>
 		<div id="auth_detail_dialog"
-			data-options="closed:true,modal:true,title:'权限设置',iconCls:'icon-save'"
+			data-options="closed:true,modal:true,title:'Permission settings',iconCls:'icon-save'"
 			style="padding:5px;width:500px;height:360px;">
 			<form action="" id="auth_detail_form">
 				<input type="hidden" id="authId">
 				<table>
 					<tr>
-						<td>权限名称</td>
+						<td>Permission name</td>
 						<td><input type="text" id="authName">
 						</td>
 					</tr>
 					<tr>
-						<td>父级编号</td>
+						<td>Parent number</td>
 						<td><select id="pid"></select>
 						</td>
 					</tr>
 					<tr>
-						<td>展示顺序</td>
+						<td>Display order</td>
 						<td><input type="text" value="1" id="authSeq">
 						</td>
 					</tr>
 					<tr>
-						<td>权限类型</td>
+						<td>Permission type</td>
 						<td><select id="authType">
 								<m:getItems name="authType" />
 						</select>
 						</td>
 					</tr>
 					<tr>
-						<td>权限编码</td>
+						<td>Authority code</td>
 						<td><input type="text" id="authority">
 						</td>
 					</tr>
 					<tr>
-						<td>连接路径</td>
+						<td>Connection path</td>
 						<td><input type="text" id="authAction">
 						</td>
 					</tr>
 					<tr>
-						<td>是否发布</td>
+						<td>Whether release</td>
 						<td><select id="isEffective">
 								<m:getItems name="isEffective" />
 						</select>

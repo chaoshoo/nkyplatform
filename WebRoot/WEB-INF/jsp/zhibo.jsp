@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>好医家直播</title>
+    <title>Good doctors live</title>
     <link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/Buttons/2.0.0/css/buttons.min.css">
     <link href="//nos.netease.com/vod163/nep.min.css" rel="stylesheet">
 </head>
@@ -19,12 +19,12 @@
     }
 </style>
 <body>
-    <h1>好医家直播</h1>
+    <h1>Good doctors live</h1>
     
     <video id="my-video" class="video-js" x-webkit-airplay="allow" webkit-playsinline controls poster="1.jpg" preload="auto" width="640" height="480" data-setup="{}">
     </video>
     <div class="row">
-        <button class="button button-primary button-pill button-large" onclick="playNow()">开始播放</button>
+        <button class="button button-primary button-pill button-large" onclick="playNow()">Start playing</button>
     </div>
    <div class="m-panel-container">
         <div class="m-panel-half">
@@ -38,7 +38,7 @@
         var testBtnList = document.getElementsByClassName('testBtn');
         videojs.options.flash.swf = "//nos.netease.com/vod163/nep.test.swf"
         var myPlayer = neplayer('my-video', {}, function() {
-            console.log('播放器初始化完成');
+            console.log('Player initialization complete');
         });
         var playerTech = videojs("my-video").tech({ IWillNotUseThisInPlugins: true });
         myPlayer.onPlayState(1,function(){
@@ -59,7 +59,7 @@
                 type;
 			
             if (url === '') {
-               alert('请输入播放地址');
+               alert('Please enter a play address');
                return;
             }
             switch (urlType) {

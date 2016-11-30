@@ -18,4 +18,3 @@ function switchSkin(skinName){
 		$.cookie( "MyCssSkin" ,  skinName , { path: '/', expires: 10 });
 }
 
-

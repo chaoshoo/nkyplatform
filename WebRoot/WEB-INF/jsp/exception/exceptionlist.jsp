@@ -6,7 +6,7 @@
 <%@include file="/head.jsp"%>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>挂号管理</title>
+<title>Registered management</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -27,16 +27,16 @@
      <form action="" id="ques_qry_form">
 		<table id="dataTable">
 		    <tr>
-	            <td>检查人<td>
+	            <td>Check man<td>
 	            <td> <input style="width: 200px;"  type ="text" id="real_name"/>					    
 	  			</td>
-	            <td>检查指标</td>
+	            <td>Inspection index</td>
 	            <td><input style="width: 200px;" type ="text" id="inspect_code" /> </td>
 	            <td>检查证件</td>
 	            <td> <input type="text" id="card_code"  style="width: 200px;" /></td>
 	          <td>
 	           <button type="button" id="diagnose_search" class="btn btn-success">
-        	查&nbsp;询
+        	check&nbsp;Inquiry
      			 </button> 
 	          </td>
 			</tr>
@@ -56,41 +56,41 @@
         <input type="hidden" id="dataid" name="id" />
         <table style="margin-left: 10px"> 
 			<tr id="code_tr" >
-				<td style="width: 60px;" id="prtd">脉率</td>
+				<td style="width: 60px;" id="prtd">Pulse rate</td>
 				<td id="prinput">
 				<input  type="text" id="pr" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
-				<td style="width: 60px;" id="systd">收缩压</td>
+				<td style="width: 60px;" id="systd">Systolic Blood Pressure</td>
 				<td id="sysinput">
 				<input  type="text" id="sys" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
 			</tr>
 				<tr id="code_tr" >
-				<td id="diatd">舒张压</td>
+				<td id="diatd">Diastolic Blood Pressure</td>
 				<td id="diainput">
 				<input  type="text" id="dia" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
-				<td id="glu0td">随机血糖</td>
+				<td id="glu0td">Random blood glucose</td>
 				<td id="glu0input">
 				<input  type="text" id="glu0" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
 			</tr>
 				<tr id="code_tr" >
-				<td id="glu1td">餐前血糖</td>
+				<td id="glu1td">Pre-meal blood glucose</td>
 				<td id="glu1input">
 				<input  type="text" id="glu1" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
-				<td id="glu2td">餐后血糖</td>
+				<td id="glu2td">Postprandial blood glucose</td>
 				<td id="glu2input">
 				<input  type="text" id="glu2" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
 			</tr>
 				<tr id="code_tr" >
-				<td id="heighttd">身高</td>
+				<td id="heighttd">height</td>
 				<td id="heightinput">
 				<input  type="text" id="height" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
-				<td id="weighttd">体重</td>
+				<td id="weighttd">weight</td>
 				<td id="weightinput">
 				<input  type="text" id="weight" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
@@ -100,17 +100,17 @@
 				<td id="bmiinput">
 				<input  type="text" id="bmi" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
-				<td id="temptd">体温</td>
+				<td id="temptd">temperature</td>
 				<td id="tempinput">
 				<input  type="text" id="temp" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
 			</tr>
 				<tr id="code_tr" >
-				<td id="spo2td">血氧</td>
+				<td id="spo2td">Oxygen</td>
 				<td id="spo2input">
 				<input  type="text" id="spo2" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
-				<td id="pr2td">脉率2</td>
+				<td id="pr2td">Pulse rate2</td>
 				<td id="pr2input">
 				<input  type="text" id="pr2" name="title"  maxlength="50" disabled="disabled"/>
 				</td>
@@ -172,7 +172,7 @@
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>处理意见</td>
+				<td>Processing opinion</td>
 				<td colspan="3">
 					<textarea  rows="4" cols="20" id="dealResultShow" name="dealResultShow"></textarea>
 				</td>

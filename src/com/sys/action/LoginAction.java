@@ -80,17 +80,17 @@ public class LoginAction {
 			req.setAttribute("modulus", modulus);
 			req.setAttribute("exponent", exponent);
 			if (loginFailure != null && loginFailure.indexOf("UnknownAccountException") > -1) {
-				req.setAttribute("logfail", "账号或密码错误");
+				req.setAttribute("logfail", "Account or password incorrect");
 			} else if (loginFailure != null && loginFailure.indexOf("UnsupportedTokenException") > -1) {
-				req.setAttribute("logfail", "验证码错误");
+				req.setAttribute("logfail", "Verification code error");
 			} else if (user != null && "-1".equals(user.getIsvalid())) {
-				req.setAttribute("logfail", "账号禁用");
+				req.setAttribute("logfail", "accounts disabled");
 			} else if (user != null && "0".equals(user.getIsvalid()) && "3".equals(user.getRoles())) {
-				req.setAttribute("logfail", "账号待审核");
+				req.setAttribute("logfail", "Account pending audit");
 			}else if (user != null && "0".equals(user.getIsvalid()) && "2".equals(user.getRoles())) {
-				req.setAttribute("logfail", "账号无效");
+				req.setAttribute("logfail", "Invalid account");
 			}else if (user != null && !"1".equals(user.getIsvalid()) && "3".equals(user.getRoles())) {
-				req.setAttribute("logfail", "账号禁用，请联系管理员");
+				req.setAttribute("logfail", "accounts disabled，Please contact administrator");
 			} else {
 				req.setAttribute("logfail", "");
 			}
