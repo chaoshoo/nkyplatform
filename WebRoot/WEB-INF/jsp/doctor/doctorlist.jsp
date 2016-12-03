@@ -23,7 +23,7 @@
 <script type="text/javascript" src="<%=basePath%>js/common/common.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/form.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/openDialog.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/doctor/doctor.js?v=20160824"></script>
+<script type="text/javascript" src="<%=basePath%>js/doctor/doctor.js?v=20161128"></script>
 <script type="text/javascript" src="<%=basePath%>js/area/jquery.lSelect.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/area/area.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/resizeimg/lrz.pc.min.js?v=20150714"></script>

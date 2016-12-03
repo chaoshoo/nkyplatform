@@ -23,7 +23,7 @@
 <script type="text/javascript" src="<%=basePath%>js/common/common.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/form.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/openDialog.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/doctor/doctor.js?v=20160824"></script>
+<script type="text/javascript" src="<%=basePath%>js/doctor/doctor.js?v=20161128"></script>
 <script type="text/javascript" src="<%=basePath%>js/area/jquery.lSelect.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/area/area.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/resizeimg/lrz.pc.min.js?v=20150714"></script>
@@ -54,6 +54,12 @@
 						<td>
 					    	<input style="width: 200px;"  type ="text" id="tel" name="tel" value="${doctor.tel}" />
 						</td>
+					</tr>
+		          <tr>	
+						<td>身份证:<font color="red">*</font></td>
+						<td >
+					    	<input style="width: 200px;"  type ="text" id="idCard" name="idCard" value="${doctor.idCard}" />
+						</td> 
 					</tr>
 					<tr>	
 						<td>性别</td>

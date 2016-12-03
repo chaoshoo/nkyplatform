@@ -44,11 +44,16 @@
 	
 	<div id="device_doctor_id" data-options="closed:true,modal:true,title:'设备关联医生'" style="padding: 5px; width: 880px; height: 500px;">
 				&nbsp;设备：<span id="deviceSnDiv"></span>
-				&nbsp;是否已关联设备：<select id="deviceSnStatus" name="deviceSnStatus" onchange="dataGridReload()">
+				&nbsp;是否已关联设备：<select id="deviceSnStatus" name="deviceSnStatus">
 			      <option value="1">已关联</option> 
 			      <option value="0">未关联</option> 
 				</select> 
-			<table id="device_doctor_table"></table>
+				医生：<input type="text" id="FIT-LIKE-doctor" name="FIT-LIKE-doctor"/>  
+				<button type="button" id="auth_search" onclick="dataGridReload()"  class="btn btn-success  "><i class="icon-search"></i>&nbsp;查询</button>
+				
+			<div style="padding: 5px; width: 830px; height: 350px;">
+				<table id="device_doctor_table" style="width: 90%"></table>
+			</div>
 	</div>
 	
 </body>
@@ -71,17 +76,55 @@ $('#device_doctor_id').dialog({
 var deviceidt = 0;
 
 function getparam(){
-	return {"FIT-EQ-id":deviceidt,"FIT-EQ-status":$("#deviceSnStatus").val()};
+	return {"FIT-EQ-id":deviceidt,"FIT-EQ-status":$("#deviceSnStatus").val(),"FIT-LIKE-doctor":$("#FIT-LIKE-doctor").val()};
 }
 
 function bind(doctorId,deviceId){
-	console.log("bind:"+doctorId+","+deviceId);
-	dataGridReload();
-}
+	//console.log("bind:"+doctorId+","+deviceId);
+	var str = "确定绑定？";
+    $.messager.confirm('确认',str,function(row){  
+        if(row){  
+            $.ajax({  
+            	 type:"POST",
+                url:'device/docbind.json?doctorId='+doctorId+"&deviceId="+deviceId,    
+                success:function(data){
+                	if(data.code==1) {
+                		 $.messager.show({title:titleInfo,msg:'绑定成功！',timeout:timeoutValue,showType:'slide'});
+         				 dataGridReload();
+                	}else{
+                		 $.messager.alert(titleInfo,data.msg);
+                	}
+                } ,
+                fail:function(){
+                	$.messager.alert(titleInfo,'绑定失败！');
+                }
+            });  
+        }  
+    })  
+} 
 
 function unbind(doctorId,deviceId){
-	console.log("unbind:"+doctorId+","+deviceId);
-	dataGridReload();
+	//console.log("unbind:"+doctorId+","+deviceId);
+	var str = "确定解绑？";
+    $.messager.confirm('确认',str,function(row){  
+        if(row){  
+            $.ajax({  
+            	 type:"POST",
+                url:'device/docunbind.json?doctorId='+doctorId+"&deviceId="+deviceId,    
+                success:function(data){
+                	if(data.code==1) {
+                		 $.messager.show({title:titleInfo,msg:'解绑成功！',timeout:timeoutValue,showType:'slide'});
+         				 dataGridReload();
+                	}else{
+                		 $.messager.alert(titleInfo,data.msg);
+                	}
+                } ,
+                fail:function(){
+                	$.messager.alert(titleInfo,'解绑失败！');
+                }
+            });  
+        }  
+    })  
 }
 
 /**
@@ -125,6 +168,12 @@ function initGridDoctor(){
 		pagination:true,
 		rownumbers:true 
 	});  
+	
+	$('#device_doctor_table').datagrid('resize',{
+	       width:800,
+	       heigth:400
+   });
+	console.log("device_doctor_table");
 }
 
 //关联医生

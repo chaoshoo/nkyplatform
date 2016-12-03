@@ -94,6 +94,10 @@ function dcommit(type){
 		$.messager.alert(titleInfo,'请输入医生电话号码!');
 		return;
 	}
+	if($("#idCard").val()==null || $("#idCard").val()==""){
+		$.messager.alert(titleInfo,'请输入医生身份证号!');
+		return;
+	}
 	if($("#hospitalname").val()==null || $("#hospitalname").val()==""){
 		$.messager.alert(titleInfo,'请选择医院!');
 		return;
