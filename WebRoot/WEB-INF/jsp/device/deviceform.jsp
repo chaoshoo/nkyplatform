@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css"
 	href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
@@ -32,42 +32,42 @@
 		<input type="hidden" id="id" name="id" value="${device.id}" />
 		<table id="dataTable">
 			<tr id="code_tr" style="display: none">
-				<td>设备ID</td>
+				<td>equipmentID</td>
 				<td><input style="width: 200px;" type="text" id="device_id"
 					name="device_id" value="${device.device_id}" readonly="readonly" /></td>
 			</tr>
 			<tr id="time_tr" style="display: none">
-				<td>创建时间</td>
+				<td>Created time</td>
 				<td><input style="width: 200px;" type="text" id="create_time"
 					name="create_timestr" value="${create_timestr}" readonly="readonly" /></td>
 			</tr>
 			<tr>
-				<td>设备类型<font color="red">*</font></td>
+				<td>Equipment type<font color="red">*</font></td>
 				<td><input style="width: 200px;" class="easyui-combobox"
 					id="device_type" name="device_type" value="${device.device_type}" />
 				</td>
 			</tr>
 			<tr>
-				<td>设备SN<font color="red">*</font></td>
+				<td>equipmentSN<font color="red">*</font></td>
 				<td><input style="width: 200px;" type="text" id="sn" name="sn"
 					value="${device.sn}" /></td>
 			</tr>
 			<tr>
-				<td>生产日期</td>
+				<td>Date of manufacture</td>
 				<td><input style="height: 20px; width: 200px;"
 					class="easyui-datebox" id="product_time" name="product_timestr"
 					value="${device.product_time}"
 					data-options="formatter:myformatter,parser:myparser" /></td>
 			</tr>
 			<tr>
-				<td>发货日期</td>
+				<td>the date of issuance</td>
 				<td><input style="height: 20px; width: 200px;"
 					class="easyui-datetimebox" id="deliver_time" name="deliver_timestr"
 					value="${device.deliver_time}"
 					data-options="formatter:formattime,parser:timeparser" /></td>
 			</tr>
 			<tr>
-				<td style="width: 70px;">备注</td>
+				<td style="width: 70px;">Remarks</td>
 				<td><textarea style="width: 200px;" rows="3" cols="20"
 						id="remark" name="remark">${device.remark}</textarea></td>
 			</tr>
@@ -78,11 +78,11 @@
 					<div id="savediv">
 						<button type="button" id="d_save_button" onclick="dcommit()"
 							class="btn btn-success btn-success-small"
-							style="margin-left: 20px;">保存</button>
+							style="margin-left: 20px;">Save</button>
 						<button type="button" id="d_cancle_button"
 							onclick="dialogClose2()"
 							class="btn btn-success btn-success-small"
-							style="margin-left: 20px;">取消</button>
+							style="margin-left: 20px;">cancel</button>
 					</div>
 				</td>
 			</tr>

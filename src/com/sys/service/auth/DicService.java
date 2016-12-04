@@ -13,7 +13,7 @@ public class DicService {
 	@Autowired
 	DicDao dicMapper;
 	/**
-	 * 获取下拉列表
+	 * Gets the drop - down list
 	 * @param dicType
 	 * @return
 	 */
@@ -22,7 +22,7 @@ public class DicService {
 		return list;
 	}
 	/**
-	 * 获取所有的dic
+	 * Get alldic
 	 * @return
 	 */
 	public List<Dic> getDicList(Integer id){
@@ -30,7 +30,7 @@ public class DicService {
 		return list;
 	}
 	/**
-	 * 添加字典属性
+	 * Add dictionary attributes
 	 * @param sysAuth
 	 * @return
 	 */

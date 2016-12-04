@@ -17,7 +17,7 @@ import com.sys.util.HttpClient;
 
 
 /**
- * 定时器控制类
+ * Timer control class
  * @author lenovo
  *
  */
@@ -26,8 +26,8 @@ import com.sys.util.HttpClient;
 public class TimerAction {
 	
 	/**
-	 * 03:00 执行
-	 * 百度 合作商 信息同步
+	 * 03:00 implement
+	 * Baidu Cooperative business Information synchronization
 	 * 
 	 */
 	@RequestMapping("/baidusync")

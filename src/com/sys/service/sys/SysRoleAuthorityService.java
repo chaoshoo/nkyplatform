@@ -43,7 +43,7 @@ public class SysRoleAuthorityService {
 	
 	
 	/**
-	 * 添加
+	 * Add
 	 * @return
 	 */
 	public int addSysAuth(SysRoleAuthority sysRoleAuth) {
@@ -57,7 +57,7 @@ public class SysRoleAuthorityService {
 	}
 	
 	/**
-	 * 修改用户
+	 * Modify user
 	 * @param sysRole
 	 * @return
 	 */

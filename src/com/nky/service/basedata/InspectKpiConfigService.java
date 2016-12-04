@@ -8,7 +8,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see InspectKpiConfigEntity
  * @author Ken
- * @version 2016年9月1日
+ * @version 2016year9month1day
  */
 @Service
 public class InspectKpiConfigService {

@@ -19,7 +19,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mosaddek">
 <meta name="keyword" content="">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/font-awesome.css" rel="stylesheet" />
@@ -28,20 +28,20 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<header class="header white-bg"> <a href="#" class="logo" style="color: #FFF;font-weight:bold">宁康园管理平台
+<header class="header white-bg"> <a href="#" class="logo" style="color: #FFF;font-weight:bold">GD Administration
 <!-- 
 <img src="img/index/logo.png" width="300" height="43">
  -->
 </a>
   <div class="top-nav ">
     <ul class="nav pull-right top-menu" style=" padding-top:10px;">
-      <li style="color:#fff; margin-top:10px; "><i class=" icon-user" style="color: #fff; font-size:16px; position:relative;top:1px;"></i>欢迎您，<font style="color:#A3FF00;">${currentUser.name }</font> &nbsp;<c:choose><c:when test="${type eq 'doctor'}">医生</c:when><c:when test="${type eq 'hospital'}">医院</c:when><c:when test="${type eq 'sys'}">管理员</c:when></c:choose>&nbsp;</li>
-      <li class="dropdown dropdown1"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="username"><i class="icon-cog"></i>&nbsp;设置</span> <b class="caret"></b> </a>
+      <li style="color:#fff; margin-top:10px; "><i class=" icon-user" style="color: #fff; font-size:16px; position:relative;top:1px;"></i>Welcome，<font style="color:#A3FF00;">${currentUser.name }</font> &nbsp;<c:choose><c:when test="${type eq 'doctor'}">Doctor</c:when><c:when test="${type eq 'hospital'}">Hospital</c:when><c:when test="${type eq 'sys'}">Admin</c:when></c:choose>&nbsp;</li>
+      <li class="dropdown dropdown1"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="username"><i class="icon-cog"></i>&nbsp;Config</span> <b class="caret"></b> </a>
         <ul class="dropdown-menu extended logout">
           <div class="log-arrow-up"></div>
-          <li><a href="javascript:void(0)" onclick="Open('修改密码','changepwd/changePwd.html')"><i class=" icon-suitcase"></i>修改密码</a></li>
-          <li><a href="javascript:void(0)" onclick="Open('我的信息','myinfo/info.html')"><i class=" icon-suitcase"></i>我的信息</a></li>
-          <li><a href="logout.html?type=${type}"><i class="icon-key"></i>退出</a></li>
+          <li><a href="javascript:void(0)" onclick="Open('Change password','changepwd/changePwd.html')"><i class=" icon-suitcase"></i>Change password</a></li>
+          <li><a href="javascript:void(0)" onclick="Open('My message','myinfo/info.html')"><i class=" icon-suitcase"></i>My message</a></li>
+          <li><a href="logout.html?type=${type}"><i class="icon-key"></i>Sign out</a></li>
         </ul>
       </li>
     </ul>
@@ -54,7 +54,7 @@
       <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"> <i id="left-tip" class=" icon-double-angle-left"></i></div>
     </div>
     <ul class="sidebar-menu" id="nav-accordion">
-      <li> <a href="#"> <i class="icon-list-ul" style="color:#fff;"></i><span style="font-weight:bold; color:#fff; font-size:16px;">菜单</span> </a>
+      <li> <a href="#"> <i class="icon-list-ul" style="color:#fff;"></i><span style="font-weight:bold; color:#fff; font-size:16px;">menu</span> </a>
         <div class="dcjq-parent1"></div>
       </li>
       
@@ -84,7 +84,7 @@
 
 <section id="main-content">
 	<div class="quick-actions_homepage-top"></div>
-	<!--tabs展现区 -->
+	<!--tabsDisplay area -->
 	<div id="tabs" class="easyui-tabs" fit="true" border="false" >
 	</div>
 </section>
@@ -106,7 +106,7 @@ $(document).ready(function(e) {
 //在右边center区域打开菜单，新增tab
 function Open(text, url) { 
 	var closableVal = true;
-	if(text == "首页"){
+	if(text == "home page"){
 		closableVal = false;
 	}
     if ($("#tabs").tabs('exists', text)) {

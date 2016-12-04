@@ -127,7 +127,7 @@ public class ChronicService {
 			if(vip_code!=null&&!"".equals(vip_code)){
 				addSql = addSql.replace("$$$", " and dv.vip_code in ("+vip_code+") $$$");
 			}else{
-				if(timeFalg){//医生--医院角色，不加限制条件
+				if(timeFalg){//Doctor--Hospital role，Without limitation
 					addSql = addSql.replace("$$$", " and dv.vip_code in ('') $$$");
 				}
 			}
@@ -200,7 +200,7 @@ public class ChronicService {
 		}
 		if(vip_code!=null&&!"".equals(vip_code)){
 			qrySql+=" and s.vip_code in("+vip_code+") ";
-		}else if(timeFalg||newadd){//有查询条件，但是vip_code没数据
+		}else if(timeFalg||newadd){//Query condition，howevervip_codeNo data
 			qrySql+=" and s.vip_code in('') ";
 		}
 		

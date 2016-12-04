@@ -5,13 +5,13 @@
 </head>
 <body class="easyui-layout">
 	<form action="hospital/saveuser.json" id="hospital_user_form">
-			&nbsp;&nbsp;&nbsp;&nbsp; 电话号码&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp; Phone number&nbsp;&nbsp;
 			<input type="text" id="FIT-LIKE-tel" name="FIT-LIKE-tel"/>
-			&nbsp;&nbsp;&nbsp;&nbsp; 名字&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp; Name&nbsp;&nbsp;
 			<input type="text" id="username" name="username"/>
 			<input type="hidden" id="FIT-hospital_code" name="FIT-hospital_code"/>
 
-		<button type="button" id="hospital_user_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+		<button type="button" id="hospital_user_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
 </form>
 		<table id="hospital_user_table"></table>
 <script type="text/javascript">
@@ -23,7 +23,7 @@ $(function() {
 		var tel = $("#FIT-LIKE-tel").val();
 		var username = $("#username").val();
 		if(tel==null || tel==""){
-			$.messager.alert(titleInfo,'请输入管理员电话号码!');
+			$.messager.alert(titleInfo,'Please enter your administrator phone number!');
 			return;
 		}
 		 parameter={};
@@ -32,7 +32,7 @@ $(function() {
 		 parameter['hospital_code']=hospital_code;
 		$.post("hospital/saveuser.json",parameter,function(data){
 			if(data.code==1){
-				$.messager.alert(titleInfo,"添加成功！");
+				$.messager.alert(titleInfo,"Added！");
 				$('#hospital_user_table').datagrid('reload');
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -41,15 +41,15 @@ $(function() {
 	});
 });
 /**
- * 初始化数据表格
+ * Initialize data form
  */
  function formatterDateTime(date) {
 	    var datetime = date.getFullYear()
-	            + "-"// "年"
+	            + "-"// "year"
 	            + /*((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
 	                    + (date.getMonth() + 1))*/
 	            ((date.getMonth() + 1) < 10 ?('0'+(date.getMonth() + 1)):(date.getMonth() + 1))
-	            + "-"// "月"
+	            + "-"// "month"
 	            + (date.getDate() < 10 ? "0" + date.getDate() : date
 	                    .getDate())
 	            + " "
@@ -79,29 +79,29 @@ function inituserDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'TEL',title:'管理员手机号',width:200},
-		    {field:'USERNAME',title:'管理员名字',width:200},
-		    {field:'CREATE_TIME',title:'创建时间',width:200,
+		    {field:'TEL',title:'Administrator phone number',width:200},
+		    {field:'USERNAME',title:'Administrator name',width:200},
+		    {field:'CREATE_TIME',title:'Created time',width:200,
 		    	formatter : function(value) {
 					 var date = new Date(value);
 					return formatterDateTime(date);
 				}},
-		    {field:'ISVALID',title:'是否有效',width:100,
+		    {field:'ISVALID',title:'Whether effective',width:100,
 		    	formatter:function(value){
 		    		if(value=='1'){
-		    			return '有效';
+		    			return 'effective';
 		    		}else if(value=='0'){
-		    			return '无效';
+		    			return 'invalid';
 		    		}
 		    		return '';
 				}
 		    },
-			{field:'ID',title:'操作',width:200,
+			{field:'ID',title:'Operation',width:200,
 				formatter:function(value,row){
-					return '<a href="javascript:openedituser('+value+')">修改</a> &nbsp;'
-					+'<a onclick="operator(1,\''+value+'\')">启用</a> &nbsp;'
-					+'<a onclick="operator(0,\''+value+'\')" ><font color="red">禁用</font></a> &nbsp;'
-					+'<a onclick="resetuserpwd(\''+value+'\')" >重置密码</a>';
+					return '<a href="javascript:openedituser('+value+')">modify</a> &nbsp;'
+					+'<a onclick="operator(1,\''+value+'\')">Enable</a> &nbsp;'
+					+'<a onclick="operator(0,\''+value+'\')" ><font color="red">Disable</font></a> &nbsp;'
+					+'<a onclick="resetuserpwd(\''+value+'\')" >reset password</a>';
 				}
 		}
 		]],
@@ -111,47 +111,47 @@ function inituserDataGrid(){
         }
 	}); 
 }	
-function operator(type,id){  //删除操作  
-	var str = "确认启用？";
+function operator(type,id){  //Delete operation  
+	var str = "Confirm enable？";
 	if(type== 0){
-		str = "确认禁用？";
+		str = "Confirm disable？";
 	}
-    $.messager.confirm('确认',str,function(row){  
+    $.messager.confirm('confirm',str,function(row){  
         if(row){  
             $.ajax({  
             	 type:"POST",
                 url:'hospital/opertor.json?id='+id+"&isvalid="+type,    
                 success:function(data){
                 	if(data.code==1) {
-                		 $.messager.show({title:titleInfo,msg:'操作成功！',timeout:timeoutValue,showType:'slide'});
+                		 $.messager.show({title:titleInfo,msg:'Successful operation！',timeout:timeoutValue,showType:'slide'});
                 		 $('#hospital_user_table').datagrid('reload');
                 	}else{
                 		 $.messager.alert(titleInfo,data.msg);
                 	}
                 } ,
                 fail:function(){
-                	$.messager.alert(titleInfo,'操作失败！');
+                	$.messager.alert(titleInfo,'operation failed！');
                 }
             });  
         }  
     })  
   }  
 function resetuserpwd(id){ 
-	var str = "确认重置密码为123456？";
-    $.messager.confirm('确认',str,function(row){  
+	var str = "Confirm to reset password123456？";
+    $.messager.confirm('confirm',str,function(row){  
         if(row){  
             $.ajax({  
             	 type:"POST",
                 url:'hospital/resetpwd.json?id='+id,    
                 success:function(data){
                 	if(data.code==1) {
-                		 $.messager.show({title:titleInfo,msg:'操作成功！',timeout:timeoutValue,showType:'slide'});
+                		 $.messager.show({title:titleInfo,msg:'Successful operation！',timeout:timeoutValue,showType:'slide'});
                 	}else{
                 		 $.messager.alert(titleInfo,data.msg);
                 	}
                 } ,
                 fail:function(){
-                	$.messager.alert(titleInfo,'操作失败！');
+                	$.messager.alert(titleInfo,'operation failed！');
                 }
             });  
         }  
@@ -159,7 +159,7 @@ function resetuserpwd(id){
   }  
 function openedituser(id){
 	add = false;
-	openDialog('修改管理员','hospital/edituser.html?id='+id,'400','300');
+	openDialog('Change administrator','hospital/edituser.html?id='+id,'400','300');
 }
 </script>
 </body>

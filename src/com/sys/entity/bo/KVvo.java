@@ -1,9 +1,9 @@
 package com.sys.entity.bo;
 
 /**
- * 键值对.
+ * The key to.
  * @author Ken
- * @version 2016年10月12日
+ * @version 2016year10month12day
  */
 public class KVvo {
 

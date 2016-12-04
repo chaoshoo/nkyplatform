@@ -32,13 +32,13 @@ $(function() {
 	//初始化弹出框
 	$('#visit_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 				
 			}
 		},{
-			text:'取 消',
+			text:'take eliminate',
 			handler:function(){
 				$('#visit_detail_dialog').dialog('close');
 			}
@@ -99,12 +99,12 @@ function submit_model_window(){
 	var visitId = $("#visitId").val();
 	var vipId = $("#vipId").val();
 	if(vipId==null||vipId==''){		
-		$.messager.alert(titleInfo,'请填选择会员!');
+		$.messager.alert(titleInfo,'Please select members!');
 		return;
 	}
 	var content = $("#content").val();
 	if(content==null||content==''){
-		$.messager.alert(titleInfo,'请填写出访记录!');
+		$.messager.alert(titleInfo,'Please input visit record!');
 		return;
 	}	
 	
@@ -124,20 +124,20 @@ function submit_model_window(){
 		$.post("visit/updateVisit.json",visitInfo,function(data){
 			if(data.code==1){
 				$('#visit_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				$('#visit_table').datagrid('load',parameter);
 			}else{				
-				$.messager.alert(titleInfo,'修改失败！');
+				$.messager.alert(titleInfo,'Change failed！');
 			}
 		},"json");
 	}else{
 		$.post("visit/addVisit.json",visitInfo,function(data){
 			if(data.code==1){
 				$('#visit_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				$('#visit_table').datagrid('load',parameter);
 			}else {
-				$.messager.alert(titleInfo,'添加失败！');
+				$.messager.alert(titleInfo,'Add failed！');
 			}
 		},"json");
 	}
@@ -160,18 +160,18 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'vip_name',title:'会员名称',width:80},
-				{field:'visit_user',title:'会员标识',hidden:true},
-				{field:'content',title:'出访内容',width:100},	
-				{field:'hospital_name',title:'医院名称',width:80},	
-				{field:'office_name',title:'科室名称',width:80},	
-				{field:'doctor_name',title:'医生名称',width:80},	
-				{field:'begin_time',title:'开始时间',width:150},
-				{field:'end_time',title:'结束时间',width:150},
-				{field:'create_time',title:'创建时间',width:150},				
-				{field:'visitid',title:'操作',width:85,
+				{field:'vip_name',title:'Member name',width:80},
+				{field:'visit_user',title:'Member identification',hidden:true},
+				{field:'content',title:'Visit content',width:100},	
+				{field:'hospital_name',title:'Hospital name',width:80},	
+				{field:'office_name',title:'Department name',width:80},	
+				{field:'doctor_name',title:'Doctor name',width:80},	
+				{field:'begin_time',title:'start time',width:150},
+				{field:'end_time',title:'End time',width:150},
+				{field:'create_time',title:'Created time',width:150},				
+				{field:'visitid',title:'Operation',width:85,
 						formatter:function(value){
-							return '<a href="javascript:visitEdit('+value+')">编辑</a>';
+							return '<a href="javascript:visitEdit('+value+')">edit</a>';
 						}
 				}
 		]],
@@ -216,14 +216,14 @@ function generateDialog(rowInfo){
 
 function vipDialogShow(flag){
 	$('#dialog_select_vip').dialog({
-		title: '选择会员',
+		title: 'Select members',
 		width: 600,
 		height: 500,
 		cache: false,
 		href: 'visit/vipDialog.html',
 		modal: true,
 		buttons:[{
-			text:'确认',
+			text:'confirm',
 			handler:function(){
 				var ssobj  = $('#dialog_select_vip').dialog('panel').find('#dg_vip');
 				var checkedRows = $(ssobj).datagrid('getChecked');
@@ -236,7 +236,7 @@ function vipDialogShow(flag){
 				$('#dialog_select_vip').panel('close');
 			}
 		},{
-			text:'关闭',
+			text:'Close',
 			handler:function(){
 				$('#dialog_select_vip').panel('close');
 			}

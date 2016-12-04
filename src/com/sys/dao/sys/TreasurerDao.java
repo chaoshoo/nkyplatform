@@ -8,42 +8,42 @@ import com.sys.entity.sys.Treasurer;
 public interface TreasurerDao extends BaseDao<Treasurer> {
 
 	/**
-	 * 查询单个会计信息
+	 * Query a single accounting information
 	 * @param treasurerId
 	 * @return
 	 */
 	public List<Treasurer> getTreaById(int treasurerId);
 
 	/**
-	 * 获取会计列表
-	 * @param condition 当skipNo=-1时，获取符合条件的全部结果集；否则返回请求页结果集
+	 * Get a list of accounting
+	 * @param condition WhenskipNo=-1time，Obtain all results set for the condition.；Otherwise, the result set of the requested page is returned
 	 * @return
 	 */
 	public List<Treasurer> getTreaList(Treasurer condition);
 
 	/**
-	 * 修改会计信息
+	 * Revision of accounting information
 	 * @param treasurer
 	 * @return
 	 */
 	public int updateTrea(Treasurer treasurer);
 
 	/**
-	 * 添加会计
+	 * Add accounting
 	 * @param treasurer
 	 * @return
 	 */
 	public int addTrea(Treasurer treasurer);
 
 	/**
-	 * 删除会计
+	 * Delete accounting
 	 * @param treasurerId
 	 * @return
 	 */
 	public int delTrea(int treasurerId);
 	
 	/**
-	 * 获得数量 
+	 * Get quantity 
 	 * @param treasurer
 	 * @return
 	 */

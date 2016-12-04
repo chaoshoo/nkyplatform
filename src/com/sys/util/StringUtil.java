@@ -17,16 +17,16 @@ public class StringUtil extends StringUtils {
 	final static Pattern INT_PATTERN = Pattern.compile("^[-\\+]?[\\d]+$");
 
 	/**
-	 * 判断一个字符串是不是整数
+	 * To determine whether a string is an integer
 	 * 
 	 * @param str
-	 * @return boolean 如果是整数，返回true；否则返回false
+	 * @return boolean If it is an integer，Returntrue；Otherwise returnfalse
 	 */
 	public static boolean isInteger(String str) {
 		return INT_PATTERN.matcher(str).matches();
 	}
 	/**
-	 * 首字母转大写
+	 * First capital letters
 	 * 
 	 * @param str
 	 * @return
@@ -39,7 +39,7 @@ public class StringUtil extends StringUtils {
 		}
 	}
 	/**
-	 * 字母全部转小写  去掉下画线，下画组后第一个字母转大写
+	 * All letters to lower case  Remove the line，After the first letter of the next letter to the group
 	 * @param str
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public class StringUtil extends StringUtils {
 	}
 
 	/**
-	 * 判断手机号
+	 * Mobile phone number
 	 * 
 	 * @param mobiles
 	 * @return
@@ -88,7 +88,7 @@ public class StringUtil extends StringUtils {
 		try {
 			return ConvertUtils.convert(value, toType);
 		} catch (Exception e) {
-			throw new Exception("String转" + toType + "对象出错");
+			throw new Exception("Stringturn" + toType + "Error object");
 		}
 	}
 
@@ -110,7 +110,7 @@ public class StringUtil extends StringUtils {
 	}
 	
 	/**
-	 * 从小到大排序  组成字符串用逗号分隔  ids暂只支持数字
+	 * Order from small to large  Comma separated list of components  idsTemporary support number
 	 * @param ids  
 	 * @return
 	 */

@@ -6,61 +6,61 @@ class PageMiniUi{
 
 	public static final int DEFAULT_PAGE_SIZE = 30;
 	protected int pageSize = DEFAULT_PAGE_SIZE;
-	protected int pageIndex=0;//从0开始
+	protected int pageIndex=0;//from0start
 	protected int total;
 	protected List<?> data;
 	
 	/**  
-	 * 获取pageSize
+	 * ObtainpageSize
 	 * @return pageSize pageSize  
 	 */
 	public int getPageSize() {
 		return pageSize;
 	}
 	/** 
-	 * 设置pageSize 
+	 * ConfigpageSize 
 	 * @param pageSize pageSize 
 	 */
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 	/**  
-	 * 获取pageIndex
+	 * ObtainpageIndex
 	 * @return pageIndex pageIndex  
 	 */
 	public int getPageIndex() {
 		return pageIndex;
 	}
 	/** 
-	 * 设置pageIndex 
+	 * ConfigpageIndex 
 	 * @param pageIndex pageIndex 
 	 */
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
 	}
 	/**  
-	 * 获取total
+	 * Obtaintotal
 	 * @return total total  
 	 */
 	public int getTotal() {
 		return total;
 	}
 	/** 
-	 * 设置total 
+	 * Configtotal 
 	 * @param total total 
 	 */
 	public void setTotal(int total) {
 		this.total = total;
 	}
 	/**  
-	 * 获取data
+	 * Obtaindata
 	 * @return data data  
 	 */
 	public List<?> getData() {
 		return data;
 	}
 	/** 
-	 * 设置data 
+	 * Configdata 
 	 * @param data data 
 	 */
 	public void setData(List<?> data) {

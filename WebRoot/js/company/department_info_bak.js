@@ -6,12 +6,12 @@ $(function() {
 	//初始化弹出框
 	$('#saveUpdateDepartment_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#saveUpdateDepartment_detail_dialog').dialog('close');
 			}
@@ -36,7 +36,7 @@ function findDepartment(id){
 	var rowInfo =  $('#departmentInfo_table').datagrid('getSelected');
 	var fid=rowInfo.id;
 	$('#departmentInfo_detail_dialog').dialog({    
-	    title: '医院科室信息',    
+	    title: 'Hospital department information',    
 	    width: 600,    
 	    height: 400,    
 	    closed: false,    
@@ -72,20 +72,20 @@ function submit_model_window(){
 		$.post("departmentInfo/updateDepartment.json",department,function(data){
 			if(data.code==1){
 				$('#saveUpdateDepartment_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				$('#departmentInfo_table').datagrid('load',parameter);
 			}else{
-					$.messager.alert(titleInfo,'修改失败！');
+					$.messager.alert(titleInfo,'Change failed！');
 				}
 		},"json");
 	}else{
 		$.post("departmentInfo/addDepartment.json",department,function(data){
 			if(data.code==1){
 				$('#saveUpdateDepartment_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				$('#departmentInfo_table').datagrid('load',parameter);
 			}else{
-				$.messager.alert(titleInfo,'添加失败！');
+				$.messager.alert(titleInfo,'Add failed！');
 			}
 		},"json");
 	}
@@ -108,16 +108,16 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-			{field:'name',title:'部门名称',width:100},
-			{field:'description',title:'部门描述',width:100},
-			{field:'status',title:'状态',width:100,
+			{field:'name',title:'Department name',width:100},
+			{field:'description',title:'Department description',width:100},
+			{field:'status',title:'state',width:100,
 					formatter:function(value){
 				return util.getValueBykeyDic('status',value);
 			 }
 			},
-			{field:'id',title:'操作',width:70,
+			{field:'id',title:'Operation',width:70,
 					formatter:function(value){
-						return '<a href="javascript:departmentEdit(this)">修改</a>&nbsp;<a   onclick="del(this)" ><font color="red">删除</font></a>';
+						return '<a href="javascript:departmentEdit(this)">modify</a>&nbsp;<a   onclick="del(this)" ><font color="red">delete</font></a>';
 					}
 			}
 		]],
@@ -128,11 +128,11 @@ function initDataGrid(){
 	});
 }
 
-function del(id){  //删除操作  
+function del(id){  //Delete operation  
 	$('#departmentInfo_table').datagrid('selectRecord',id);
 	var rowInfo =  $('#departmentInfo_table').datagrid('getSelected');
 	var fid=rowInfo.id;
-    $.messager.confirm('确认','确认删除?',function(row){  
+    $.messager.confirm('confirm','confirm deletion?',function(row){  
         if(row){  
             $.ajax({  
                 url:'departmentInfo/delDepartment.html?id='+fid,    

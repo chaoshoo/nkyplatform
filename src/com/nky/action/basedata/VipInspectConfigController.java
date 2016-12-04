@@ -27,16 +27,16 @@ import com.sys.entity.bo.ScriptPage;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * 使用示例：
-1.获取所有的检测指标 C01: C02 . 包括他们下面的指标及阀值
+ * Use example：
+1.Get all the test indexes C01: C02 . They include the following indicators and threshold
 http://localhost:8080/nkyplatform/vipInspectConfig/getAllInspect.json
-2.获取所有某一个检测指标代码的数据 C01下面的指标及阀值
+2.Get all the data of a test indicator code C01Below the threshold and index
 http://localhost:8080/nkyplatform/vipInspectConfig/getInspect/C01.json
-3.获取所有某一个检测指标代码的数据 C01下面的指标SYS de 阀值
+3.Get all the data of a test indicator code C01The following indicatorsSYS de threshold
 http://localhost:8080/nkyplatform/vipInspectConfig/getInspectValues/C01/SYS.json
- * 检测指标接口.
+ * Test index interface.
  * @author Ken
- * @version 2016年8月22日
+ * @version 2016year8month22day
  */
 @Controller
 @RequestMapping(value = "/vipInspectConfig")
@@ -48,7 +48,7 @@ public class VipInspectConfigController  extends BaseAction {
 	}
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -83,7 +83,7 @@ public class VipInspectConfigController  extends BaseAction {
 				}
 			}
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;
@@ -91,7 +91,7 @@ public class VipInspectConfigController  extends BaseAction {
 	
 	/**
 	 * http://localhost:8080/nkyplatform/vipInspectConfig/officeall.json
-	 * {"1001":{"code":"1001","name":"骨科","pic":"/nkywx/img/icon_niaosuan.png","des":null,"description":null},"1003":{"code":"1003","name":"泌尿科","pic":null,"des":null,"description":null},"1002":{"code":"1002","name":"胸图","pic":null,"des":null,"description":null},"1004":{"code":"1004","name":"心脏科","pic":null,"des":null,"description":null}}
+	 * {"1001":{"code":"1001","name":"orthopaedics","pic":"/nkywx/img/icon_niaosuan.png","des":null,"description":null},"1003":{"code":"1003","name":"Urology Department","pic":null,"des":null,"description":null},"1002":{"code":"1002","name":"The chest figure","pic":null,"des":null,"description":null},"1004":{"code":"1004","name":"Cardiac section","pic":null,"des":null,"description":null}}
 	 */
 	@RequestMapping(value = "/officeall", method = RequestMethod.GET)
 	@ResponseBody
@@ -101,7 +101,7 @@ public class VipInspectConfigController  extends BaseAction {
 	
 	/**
 	 * http://localhost:8080/nkyplatform/vipInspectConfig/office/1001.json
-	 * {"code":"1001","name":"骨科","pic":"/nkywx/img/icon_niaosuan.png","des":null,"description":null}
+	 * {"code":"1001","name":"orthopaedics","pic":"/nkywx/img/icon_niaosuan.png","des":null,"description":null}
 	 */
 	@RequestMapping(value = "/office/{code}", method = RequestMethod.GET)
 	@ResponseBody
@@ -110,15 +110,15 @@ public class VipInspectConfigController  extends BaseAction {
 	}
 	
 	/**
-	 * 获取所有的检测指标 C01: C02 . 包括他们下面的指标
+	 * Get all the test indexes C01: C02 . Include the following indicators
 	 * {
 	"C01": {
 	    "dicName": "C01",
-	    "dicValue": "血压",
+	    "dicValue": "blood pressure",
 	    "inspectMap": {
 	        "PR": {
 	            "code": "PR",
-	            "name": "脉率",
+	            "name": "Pulse rate",
 	            "isfz": null,
 	            "unit": "bpm",
 	            "inspectCode": "C01",
@@ -130,7 +130,7 @@ public class VipInspectConfigController  extends BaseAction {
 	        },
 	        "SYS": {
 	            "code": "SYS",
-	            "name": "收缩压",
+	            "name": "Systolic Blood Pressure",
 	            "isfz": null,
 	            "unit": "mmHg",
 	            "inspectCode": "C01",
@@ -167,7 +167,7 @@ public class VipInspectConfigController  extends BaseAction {
 	        },
 	        "DIA": {
 	            "code": "DIA",
-	            "name": "舒张压",
+	            "name": "Diastolic Blood Pressure",
 	            "isfz": null,
 	            "unit": "mmHg",
 	            "inspectCode": "C01",
@@ -181,11 +181,11 @@ public class VipInspectConfigController  extends BaseAction {
 	},
 	"C02": {
 	    "dicName": "C02",
-	    "dicValue": "血糖",
+	    "dicValue": "blood sugar",
 	    "inspectMap": {
 	        "GLU2": {
 	            "code": "GLU2",
-	            "name": "餐后血糖",
+	            "name": "Postprandial blood glucose",
 	            "isfz": null,
 	            "unit": "mmol/L",
 	            "inspectCode": "C02",
@@ -197,7 +197,7 @@ public class VipInspectConfigController  extends BaseAction {
 	        },
 	        "GLU1": {
 	            "code": "GLU1",
-	            "name": "餐前血糖",
+	            "name": "Pre-meal blood glucose",
 	            "isfz": null,
 	            "unit": "mmol/L",
 	            "inspectCode": "C02",
@@ -209,7 +209,7 @@ public class VipInspectConfigController  extends BaseAction {
 	        },
 	        "GLU0": {
 	            "code": "GLU0",
-	            "name": "随机血糖",
+	            "name": "Random blood glucose",
 	            "isfz": null,
 	            "unit": "mmol/L",
 	            "inspectCode": "C02",
@@ -230,14 +230,14 @@ public class VipInspectConfigController  extends BaseAction {
 	}
 
 	/**
-	 * 获取所有某一个检测指标代码的数据 C01下面的指标
+	 * Get all the data of a test indicator code C01The following indicators
 	 * {
 	"dicName": "C01",
-	"dicValue": "血压",
+	"dicValue": "blood pressure",
 	"inspectMap": {
 	    "PR": {
 	        "code": "PR",
-	        "name": "脉率",
+	        "name": "Pulse rate",
 	        "isfz": null,
 	        "unit": "bpm",
 	        "inspectCode": "C01",
@@ -249,7 +249,7 @@ public class VipInspectConfigController  extends BaseAction {
 	    },
 	    "SYS": {
 	        "code": "SYS",
-	        "name": "收缩压",
+	        "name": "Systolic Blood Pressure",
 	        "isfz": null,
 	        "unit": "mmHg",
 	        "inspectCode": "C01",
@@ -286,7 +286,7 @@ public class VipInspectConfigController  extends BaseAction {
 	    },
 	    "DIA": {
 	        "code": "DIA",
-	        "name": "舒张压",
+	        "name": "Diastolic Blood Pressure",
 	        "isfz": null,
 	        "unit": "mmHg",
 	        "inspectCode": "C01",
@@ -306,10 +306,10 @@ public class VipInspectConfigController  extends BaseAction {
 	}
 
 	/**
-	 * 获取所有某一个检测指标代码的数据 C01下面的指标
+	 * Get all the data of a test indicator code C01The following indicators
 	 * {
 	"code": "SYS",
-	"name": "收缩压",
+	"name": "Systolic Blood Pressure",
 	"isfz": null,
 	"unit": "mmHg",
 	"inspectCode": "C01",

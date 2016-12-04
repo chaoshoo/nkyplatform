@@ -8,35 +8,35 @@ import com.sys.jfinal.TableBind;
 @TableBind(name = "doctor")
 public class DoctorEntity extends JFinalEntity {
 
-	private String code;//	医生编码
+	private String code;//	Doctor code
 
-	private String name;//	医生名字
+	private String name;//	Doctor name
 
-	private String area;//	省市区
+	private String area;//	Provincial city
 
-	private String address;//	详细地址
+	private String address;//	Detailed address
 
-	private String tel;//	电话
+	private String tel;//	Telephone
 
-	private Integer sex;//	性别,1男，0女
+	private Integer sex;//	Gender,1male，0female
 
-	private Date birthday;//	生日
+	private Date birthday;//	Birthday
 
-	private String hospital_code;//	医院编号
+	private String hospital_code;//	Hospital number
 
-	private String office_code;//	科室编号
+	private String office_code;//	Department number
 
-	private String edu;//	学历
+	private String edu;//	Education
 
-	private String title;//	职称
+	private String title;//	Title
 
-	private String special;//	特长
+	private String special;//	Specialty
 
-	private String info;//	简介
+	private String info;//	Introduction
 
-	private Integer isvalid;//	是否有效,1有效，0无效
+	private Integer isvalid;//	Whether effective,1effective，0invalid
 
-	private Date create_time;//	创建时间
+	private Date create_time;//	Created time
 
 	private String password;
 

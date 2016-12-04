@@ -1,6 +1,6 @@
 /**
- * 检测相关业务包.
+ * Test related business package.
  * @author Ken
- * @version 2016年8月17日
+ * @version 2016year8month17day
  */
 package com.nky.action.inspect;

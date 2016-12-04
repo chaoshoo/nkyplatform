@@ -278,7 +278,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 						uploadSize         : 0, // The size in bytes of the upload queue
 						queueBytesUploaded : 0, // The size in bytes that have been uploaded for the current upload queue
 						uploadQueue        : [], // The files currently to be uploaded
-						errorMsg           : '上传失败:'
+						errorMsg           : 'Upload failed:'
 					};
 
 					// Save references to all the objects
@@ -568,7 +568,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			var settings = this.settings;
 
 			// Reset some queue info
-			this.queueData.errorMsg       = '上传失败:';
+			this.queueData.errorMsg       = 'Upload failed:';
 			this.queueData.filesReplaced  = 0;
 			this.queueData.filesCancelled = 0;
 
@@ -606,7 +606,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			// Load the swfupload settings
 			var settings = this.settings;
 			if(settings.queueSizeLimit==0){
-				alert("只能上传一个附件!");
+				alert("Can only upload one attachment!");
 				//alert("最多上传五个附件!");
 				return;
 			}
@@ -615,7 +615,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			for (var n in this.queueData.files) {
 				queuedFile = this.queueData.files[n];
 				if (queuedFile.uploaded != true && queuedFile.name == file.name) {
-					var replaceQueueItem = confirm('文件 "' + file.name + '" 已经存在了.确定覆盖之前的文件?');
+					var replaceQueueItem = confirm('file "' + file.name + '" Existing.Determine the file before covering?');
 					if (!replaceQueueItem) {
 						this.cancelUpload(file.id);
 						this.queueData.filesCancelled++;
@@ -682,20 +682,20 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
 						if (settings.queueSizeLimit > errorMsg) {
 							//this.queueData.errorMsg += '\最多能上传五个附件，还可以上传 ' + errorMsg + '个.';
-							this.queueData.errorMsg += '\一次只能上传一个附件.';
+							this.queueData.errorMsg += '\Upload one attachment each time.';
 						} else {
 							//this.queueData.errorMsg += '最多能上传五个附件， 还可以上传' + settings.queueSizeLimit + '个.';
-							this.queueData.errorMsg += '一次只能上传一个附件.';
+							this.queueData.errorMsg += 'Upload one attachment each time.';
 						}
 						break;
 					case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-						this.queueData.errorMsg += '文件 "' + file.name + '" 超过规定文件大小 (' + settings.fileSizeLimit + ').';
+						this.queueData.errorMsg += 'file "' + file.name + '" Oversized (' + settings.fileSizeLimit + ').';
 						break;
 					case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
-						this.queueData.errorMsg += '文件 "' + file.name + '" 是空的.';
+						this.queueData.errorMsg += 'file "' + file.name + '" Be empty.';
 						break;
 					case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
-						this.queueData.errorMsg += '文件"' + file.name + '" 不属于 (' + settings.fileTypeDesc + ').';
+						this.queueData.errorMsg += 'file"' + file.name + '" Not belong (' + settings.fileTypeDesc + ').';
 						break;
 				}
 			}

@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * 封装Root Element 是 Collection的情况.
+ * encapsulationRoot Element yes CollectionSituation.
  * 
  * @author vincent
  */

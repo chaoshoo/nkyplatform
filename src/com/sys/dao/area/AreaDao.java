@@ -5,52 +5,52 @@ import java.util.List;
 import com.sys.dao.BaseDao;
 import com.sys.entity.area.Area;
 /**
- * 三级区域dao
+ * Three level regiondao
  * @author liuchang
  *
  */
 public interface AreaDao extends BaseDao<Area>{
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @return
 	 */
 	public List<Area> findRoots();
 	
 	/**
-	 * 获取列表
+	 * Get list
 	 * @return
 	 */
 	public List<Area> getList();
 	
 	/**
-	 * 获取区域byId
+	 * Acquisition areabyId
 	 * @return
 	 */
 	public Area findAreaById(int id);
 	
 	/**
-	 * 获取列表
+	 * Get list
 	 * @return
 	 */
 	public List<Area> getChildren(int id);
 	
 	/**
-	 * 修改
+	 * modify
 	 * @param area
 	 * @return
 	 */
 	public int updateArea(Area area);
 	
 	/**
-	 * 新增
+	 * Newly added
 	 * @param area
 	 * @return
 	 */
 	public int addArea(Area area);
 	
 	/**
-	 * 删除
+	 * delete
 	 * @param id
 	 * @return
 	 */

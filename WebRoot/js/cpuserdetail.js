@@ -1,5 +1,5 @@
 $(function() {
-	lll();// 独立用户数
+	lll();// Number of independent users
 });
 
 function getCpDataInit(){

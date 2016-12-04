@@ -3,9 +3,9 @@ package com.nky.dao.basedata;
 import com.sys.jfinal.JdbcSql;
 
 /**
- * 用户咨询查询.
+ * User consultation.
  * @author Ken
- * @version 2016年9月8日 下午1:37:38
+ * @version 2016year9month8day Afternoon1:37:38
  */
 public class VipQuestionsQuerySql extends JdbcSql {
 

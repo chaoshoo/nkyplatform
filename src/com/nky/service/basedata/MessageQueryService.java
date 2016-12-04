@@ -8,7 +8,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see MessageQueryEntity
  * @author Ken
- * @version 2016年9月8日 下午2:07:17
+ * @version 2016year9month8day Afternoon2:07:17
  */
 @Service
 public class MessageQueryService {

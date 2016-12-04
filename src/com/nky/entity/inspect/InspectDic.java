@@ -6,13 +6,13 @@ import java.util.Map;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 /**
- * dic字典表. inspect_code dic_type.
+ * dicDictionary table. inspect_code dic_type.
  * @author Ken
- * @version 2016年8月22日
+ * @version 2016year8month22day
  */
 public class InspectDic {
 	private String dicName;//C01
-	private String dicValue;//血压
+	private String dicValue;//blood pressure
 
 	private Map<String, InspectKpiConfig> inspectMap = new HashMap<String,InspectKpiConfig>();
 

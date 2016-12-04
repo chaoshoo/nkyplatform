@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <meta name="meituan_check">
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -111,17 +111,17 @@
 </head>
 <body>
          <div class="mui-content-padded">
-				<a id="nextup" class="mui-login-input"  onClick="next(-1)" >上一页</a>
-				<a id="nextdown" class="mui-login-input" onClick="next(1)">下一页</a>
+				<a id="nextup" class="mui-login-input"  onClick="next(-1)" >Previous page</a>
+				<a id="nextdown" class="mui-login-input" onClick="next(1)">next page</a>
 		 </div>	  
 		<input type="hidden" name="cardCode" id="cardCode" value="${cardCode}">
 		<input type="hidden" name="inspectCode" id="inspectCode" value="${inspectCode}">
 		<input type="hidden" name="code" id="code" value="${code}">
 		<p class="title"><span id="spetime_time"></span></p>
 		<table id="base_table"  class="table table-striped table-bordered" >
-		<!--  <tr><th>名称</th><th>检测值</th><th>参考值</th></tr>-->
+		<!--  <tr><th>Name</th><th>Detection value</th><th>reference value</th></tr>-->
 		</table>
-		<p class="title">&nbsp;第<span id="pagenum">0</span>条,共${total}条检测数据</p>
+		<p class="title">&nbsp;No.<span id="pagenum">0</span>strip,common${total}Bar test data</p>
 
 	
 </body>
@@ -149,7 +149,7 @@ $(function() {
 
 function list(){
 	var cardCode = $("#cardCode").val();
-	var html = "<thead><tr><th>检查项</th><th>检测值</th><th>参考值</th> </tr></thead>";
+	var html = "<thead><tr><th>Check item</th><th>Detection value</th><th>reference value</th> </tr></thead>";
 	$.ajax({
 		url:"vipInspectData/getDatac06.json?v="+new Date().getTime(),
 		type:"get",
@@ -157,7 +157,7 @@ function list(){
 		data:"cardCode="+cardCode+"&page="+page,
 		success:function(data){
 			if(data.flag=='true'){
-				$("#spetime_time").html("&nbsp;检测时间:"+data.inspect_time);
+				$("#spetime_time").html("&nbsp;Detection time:"+data.inspect_time);
 				$("#pagenum").html(page);
 				html+="<tbody>";
 				$.each(data.list, function(i, item){   

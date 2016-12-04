@@ -7,9 +7,9 @@ import com.sys.jfinal.TableBind;
 import com.sys.util.Reflections;
 
 /**
- * 检查指标.
+ * Inspection index.
  * @author Ken
- * @version 2016年9月1日
+ * @version 2016year9month1day
  */
 @TableBind(name = "inspect_kpi_config")
 public class InspectKpiConfigEntity extends JFinalEntity {

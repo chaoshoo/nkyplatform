@@ -7,9 +7,9 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import com.sys.jfinal.JFinalEntity;
 
 /**
- * remote_inspect_log远程咨询详细对话.
+ * remote_inspect_logRemote consultation detailed dialogue.
  * @author Ken
- * @version 2016年9月8日 下午1:06:16
+ * @version 2016year9month8day Afternoon1:06:16
  */
 public class RemoteInspectLogQueryEntity extends JFinalEntity {
 

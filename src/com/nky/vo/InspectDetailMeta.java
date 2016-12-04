@@ -1,9 +1,9 @@
 package com.nky.vo;
 
 /**
- * 检查详情的列表，如脉率，舒张压.
+ * Check list of details，Such as pulse rate，Diastolic Blood Pressure.
  * @author Ken
- * @version 2016年9月27日
+ * @version 2016year9month27day
  */
 public class InspectDetailMeta {
 

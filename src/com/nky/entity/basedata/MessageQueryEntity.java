@@ -6,9 +6,9 @@ import com.sys.jfinal.JFinalEntity;
 import com.sys.util.Reflections;
 
 /**
- * message消息查询，用于客户管理处的查询.
+ * messageMessage query，Query for customer management.
  * @author Ken
- * @version 2016年9月8日 下午2:05:20
+ * @version 2016year9month8day Afternoon2:05:20
  */
 public class MessageQueryEntity extends JFinalEntity {
 

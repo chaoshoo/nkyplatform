@@ -10,7 +10,7 @@ import com.sys.entity.area.Area;
 import com.sys.entity.bo.ScriptPage;
 
 /**
- * 区域
+ * region
  * @author liuchang
  *
  */
@@ -21,7 +21,7 @@ public class AreaService{
 	private AreaDao areaDao;
 
 	/**
-	 * 获取区域列表
+	 * Get area list
 	 * @param area
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class AreaService{
 	}
 
 	/**
-	 * 获取子集
+	 * Get subset
 	 * @return
 	 */
 	public List<Area> getChildren(int id){
@@ -41,7 +41,7 @@ public class AreaService{
 	}
 	
 	/**
-	 * 获取区域信息
+	 * Get area information
 	 * @param id
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public class AreaService{
 	}
 	
 	/**
-	 * 修改区域信息
+	 * Modify area information
 	 * @param area
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class AreaService{
 	}
 
 	/**
-	 * 添加区域信息
+	 * Add area information
 	 * @param area
 	 * @return
 	 */
@@ -69,7 +69,7 @@ public class AreaService{
 	}
 
 	/**
-	 * 删除
+	 * delete
 	 * @param id
 	 * @return
 	 */

@@ -5,34 +5,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>支付后台</title>
+<title>Payment background</title>
 <%@include file="/head.jsp"%>
 
 <script type="text/javascript" src="<%=basePath%>js/company/department_info.js"></script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'部门信息'" class="regionCenter">
+	<div data-options="region:'center',title:'Department information'" class="regionCenter">
 		<div id="common_search" class="common_search">
 			<button type="button" id="departmentInfo_add" class="btn btn-success  icon-plus"
-				 >&nbsp;添加部门</button>
+				 >&nbsp;Add Department</button>
 		</div>
 		<table id="departmentInfo_table"></table>
 		<div id="saveUpdateDepartment_detail_dialog"
-			data-options="closed:true,modal:true,title:'部门信息',iconCls:'icon-save'"
+			data-options="closed:true,modal:true,title:'Department information',iconCls:'icon-save'"
 			style="padding:5px;width:500px;height:300px;">
 			<form action="departmentInfo/getList.json" id="saveUpdateDepartment_detail_form">
 				<input type="hidden" id="id">
 				<table>
 					<tr>
-						<td>公司名称：</td>
-						<td width="150px;">乐租
+						<td>Company name：</td>
+						<td width="150px;">Le rent
 <!--							<select id="hospitalId">-->
 <!--								<c:forEach items="${list}" var="list">-->
 <!--									<option value="${list.hospitalId}">${list.hospitalName}</option>-->
 <!--								</c:forEach>-->
 <!--							</select>-->
 						</td>
-						<td>部门名称：</td>
+						<td>Department name：</td>
 						<td width="150px;">
 <!--							<select id="departmentName">-->
 <!--								<m:getItems name="ksmc"></m:getItems>-->
@@ -42,17 +42,17 @@
 					</tr>
 					
 					<tr>
-						<td>部门描述：</td>
+						<td>Department description：</td>
 						<td width="150px;">
 							<input type="text" id="description"/>
 						</td>
-						<td>备注：</td>
+						<td>Remarks：</td>
 						<td width="150px;">
 							<input type="text" id="remark"/>
 						</td>
 					</tr>
 					<tr>
-						<td>状态：</td>
+						<td>state：</td>
 						<td width="150px;">
 							<select id="status">
 								<m:getItems name="status"></m:getItems>
@@ -63,7 +63,7 @@
 				</table>
 			</form>
 		</div>
-		<!-- 查看详情 -->
+		<!-- View details -->
 		<div id="departmentInfo_detail_dialog"
 			>
 		</div>

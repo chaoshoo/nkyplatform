@@ -11,9 +11,9 @@ import com.sys.singleton.AuthoritySingleton;
 import com.sys.singleton.DicSingleton;
 
 /**   
- * @Description Spring应用监听器,用于Spring启动完成后执行特定初始化方法
+ * @Description SpringThe application of the listener,Be used forSpringPerforms a specific initialization method after startup
  * @author shiwencai   
- * @date 2015年11月4日 上午9:01:46
+ * @date 2015year11month4day morning9:01:46
  */
 
 @Repository
@@ -24,7 +24,7 @@ public class SpringApplicationListener implements ApplicationListener<ContextRef
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		if ( event.getApplicationContext (). getParent() == null){
-			logger.info("初始化begin--->...");
+			logger.info("Initializationbegin--->...");
 			init();
 		}
 		

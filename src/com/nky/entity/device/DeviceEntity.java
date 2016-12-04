@@ -10,30 +10,30 @@ import com.sys.jfinal.TableBind;
 ALTER TABLE `device` ADD UNIQUE INDEX `UQ_DEVICE_SN` (`sn`) USING BTREE ;
 
 CREATE TABLE `device_doctor` ( 
-  `deviceid` bigint(20) NOT NULL COMMENT '设备ID',
-  `doctorid` bigint(20) NOT NULL COMMENT '医生ID', 
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间', 
+  `deviceid` bigint(20) NOT NULL COMMENT 'equipmentID',
+  `doctorid` bigint(20) NOT NULL COMMENT 'DoctorID', 
+  `create_time` datetime DEFAULT NULL COMMENT 'Created time', 
   PRIMARY KEY (`deviceid`,`doctorid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='设备关联医生表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Device associated doctor';
 
 
  * @author Ken
- * @version 2016年11月18日
+ * @version 2016year11month18day
  */
 @TableBind(name = "device")
 public class DeviceEntity extends JFinalEntity {
 
-	private String device_id;// '设备ID',
+	private String device_id;// 'equipmentID',
 
-	private String device_type;//'设备类型',
+	private String device_type;/`Equipment type',
 
 	private String sn;//'SN',
 
-	private Date product_time;// '生成时间',
+	private Date product_time;// 'Generation time',
 
-	private Date deliver_time;// '发货时间',
+	private Date deliver_time;// 'Delivery time',
 
-	private Date create_time;// '创建时间',
+	private Date create_time;// 'Created time',
 
 	private String remark;
 

@@ -3,9 +3,9 @@ package com.nky.dao.basedata;
 import com.sys.jfinal.JdbcSql;
 
 /**
- * ecg列表数据
+ * ecgList data
  * @author Ken
- * @version 2016年10月27日 下午9:14:35
+ * @version 2016year10month27day Afternoon9:14:35
  */
 public class VipInspectEcgSql extends JdbcSql {
 

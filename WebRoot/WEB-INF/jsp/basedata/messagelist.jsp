@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -22,19 +22,19 @@
 var parameter = {};
 var dataForm={};
 /**
- * 数据表格刷新
+ * Data table refresh
  * @param param
  */
 function dataGridload(param){
 	$('#base_table').datagrid('reload');
 }
 
-function del(code){  //删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){  
+function del(code){  //Delete operation  
+    $.messager.confirm('confirm','confirm deletion?',function(row){  
         if(row){  
         	$.post('message/del.json?code='+code,function(data){
     			if(data.code==1){
-    				$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+    				$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
     			}else{
             		//alert("删除失败");
     				$.messager.alert(titleInfo,data.msg);
@@ -64,12 +64,12 @@ $(function() {
 	//初始化弹出框
 	$('#user_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -88,7 +88,7 @@ $(function() {
 	
 });
 
-/** 初始化数据表格 */
+/** Initialize data form */
 function initDataGrid(){
 	$('#base_table').datagrid({
 		iconCls:'icon-save',
@@ -105,31 +105,31 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'MSG_TYPE',title:'类型',width:100,
+		    {field:'MSG_TYPE',title:'type',width:100,
 				formatter : function(value) {
 					if(value == 1 ){
 						return "1";
 					}else if(value == 2){
 						return "2";
 					}else{
-						return "其他";
+						return "Other";
 					}
 				}
 			},
-		    {field:'TITLE',title:'标题',width:100},
-		    {field:'CONTENT',title:'内容',width:100}, 
-		    {field:'ISVALID',title:'是否有效',width:100,
+		    {field:'TITLE',title:'Title',width:100},
+		    {field:'CONTENT',title:'content',width:100}, 
+		    {field:'ISVALID',title:'Whether effective',width:100,
 				formatter : function(value) {
 					if(value == 1 ){
-						return "有效";
+						return "effective";
 					}else if(value == 0){
-						return "无效";
+						return "invalid";
 					}else{
-						return "未知状态";
+						return "Unknown state";
 					}
 				}
 			},
-			{field : 'CREATE_TIME',title : '创建时间',width : 100,
+			{field : 'CREATE_TIME',title : 'Created time',width : 100,
 				formatter : function(value) {
 					var date = new Date(value);
 					return formatterDateTime(date);
@@ -146,17 +146,17 @@ function initDataGrid(){
 </script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'消息管理'" class="regionCenter">
+	<div data-options="region:'center',title:'Message management'" class="regionCenter">
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="" id="query_form">		
-			&nbsp;&nbsp;&nbsp;&nbsp; 标题&nbsp;&nbsp;<input type="text" id="FIT-LIKE-title" name="FIT-LIKE-title"/>
-			 &nbsp;&nbsp;内容&nbsp;&nbsp;<input type="text" id="FIT-LIKE-content" name="FIT-LIKE-content"/>
+			&nbsp;&nbsp;&nbsp;&nbsp; Title&nbsp;&nbsp;<input type="text" id="FIT-LIKE-title" name="FIT-LIKE-title"/>
+			 &nbsp;&nbsp;content&nbsp;&nbsp;<input type="text" id="FIT-LIKE-content" name="FIT-LIKE-content"/>
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<!-- <button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button> -->
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<!-- <button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button> -->
 		 </form>
 		</div>
 		<table id="base_table"></table>

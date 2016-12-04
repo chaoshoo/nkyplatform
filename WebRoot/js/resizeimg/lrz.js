@@ -9,7 +9,7 @@
     var ua = detect.parse(navigator.userAgent);
 
     /**
-     * 客户端压缩图片
+     * Client compressed image
      * @param file
      * @param [options]
      * @constructor
@@ -44,7 +44,7 @@
       constructor: Lrz,
 
       /**
-       * 初始化
+       * Initialization
        */
       init: function() {
         var that = this;
@@ -52,7 +52,7 @@
         // 简单的兼容性检测
         if(typeof window.URL === 'undefined' ||
           typeof document.createElement('canvas').getContext !== 'function'){
-          var error = new Error('不支持此设备');
+          var error = new Error('Device not supported');
 
           // 错误回调
           if (typeof that.defaults.fail === 'function') {
@@ -71,7 +71,7 @@
       },
 
       /**
-       * 生成base64
+       * generatebase64
        * @param file
        * @param callback
        */
@@ -83,7 +83,7 @@
 
         img.crossOrigin = "*";
         img.onerror = function() {
-          var error = new Error('图片加载失败');
+          var error = new Error('Image loading failed');
           // 读取文件失败
           if (typeof that.defaults.fail === 'function') {
             that.defaults.fail(error);
@@ -176,7 +176,7 @@
 
 
               /**
-               * 包装回调
+               * Packaging callback
                */
               function _resultCallback(results) {
                 // 释放内存
@@ -208,7 +208,7 @@
           },
 
           /**
-           * 获得图片的缩放尺寸
+           * Get the zoom size of the picture
            * @param img
            * @returns {{w: (Number), h: (Number)}}
            */
@@ -242,7 +242,7 @@
         },
 
         /**
-         * 根据旋转角度重置之前设定的宽高
+         * Set the width high according to the rotation angle reset
          * @param resize
          * @param orientation
          * @return

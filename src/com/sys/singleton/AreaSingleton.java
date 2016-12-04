@@ -16,7 +16,7 @@ import com.sys.entity.area.Area;
 import com.sys.service.RedisService;
 import com.sys.util.SpringUtil;
 /**
- * 三级区域--单例模式
+ * Three level region--Singleton pattern
  * @author liuchang
  *
  */
@@ -41,7 +41,7 @@ public class AreaSingleton {
 	}
 	
 	/**
-	 * 赋值
+	 * assignment
 	 */
 	private void loadData(){
 		try {
@@ -77,7 +77,7 @@ public class AreaSingleton {
 		
 
 	/**
-	 * 重新加载  参数为true 则要清理redis数据
+	 * Reload  Parameters fortrue To clean upredisdata
 	 */
 	public void reload() {
 			redisService.delByReg(RedisTypeEnum.AREAPARENT.toId());
@@ -85,7 +85,7 @@ public class AreaSingleton {
 		loadData();
 	}
 	/**
-	 * 获取省
+	 * Get province
 	 * @return
 	 */
 	public List<Area> getProvince() {
@@ -101,7 +101,7 @@ public class AreaSingleton {
 		}
 	}
 	/*
-	 * 根据id获取子区域
+	 * according toidAcquisition sub region
 	 * @param id
 	 * @return
 	 */
@@ -125,4 +125,3 @@ public class AreaSingleton {
 	
 
 }
-

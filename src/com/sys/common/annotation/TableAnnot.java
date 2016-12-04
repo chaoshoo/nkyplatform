@@ -5,29 +5,29 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 /**
- * 数据库注解类
+ * Database annotation class
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TableAnnot {
-	/** 表名*/
+	/** Table name*/
 	public String tableName();
-	/** 主键*/
+	/** Primary key*/
 	public String primaryKey() default "";
 
-	/** 字段注解信息*/
+	/** Field annotation information*/
 	@Target(ElementType.FIELD)
 	@Retention(RetentionPolicy.RUNTIME)
 	@interface column {
-		/** 列名*/
+		/** Column name*/
 		public String columnName();
-		/** 列的值，一般用于主键*/
+		/** Column value，Generally used for primary key*/
 		public String columnValue() default "";
-		/** 默认值*/
+		/** Default value*/
 		public String defalut() default "";
 		/**
-		 * 是否为主键
-		 * true:主键
+		 * Whether to be the primary key
+		 * true:Primary key
 		 */
 		public boolean isPrimary() default false;
 	}

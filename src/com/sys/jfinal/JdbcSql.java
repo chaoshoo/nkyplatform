@@ -6,9 +6,9 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 /**
- * <p> 继承并在子类中的static代码块中国put sqlid到jdbcSql map中
- * <p> sqlid  全名要规范  类名+名字
- * <p>示例: jdbcSql.put("HospitalSql_selecttest", "select * from hospital  where 1=1 ${where}");
+ * <p> Inherited and in the subclassstaticCode block Chinaput sqlidreachjdbcSql mapin
+ * <p> sqlid  Full name to be standardized  The class name+Name
+ * <p>Sample: jdbcSql.put("HospitalSql_selecttest", "select * from hospital  where 1=1 ${where}");
  */
 public class JdbcSql {
 	
@@ -31,7 +31,7 @@ public class JdbcSql {
 	 * 
 	 * @param sqlid
 	 * @param map
-	 * @param returnParams  返回的参数结果集
+	 * @param returnParams  Returned parameter result set
 	 * @return
 	 */
 	public static String getAutoSql(String sqlid,Map<String,Object> map,List<Object> returnParams){

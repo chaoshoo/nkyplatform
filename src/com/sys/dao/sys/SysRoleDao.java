@@ -9,42 +9,42 @@ import com.sys.entity.sys.SysRole;
 public interface SysRoleDao extends BaseDao<SysRole> {
 
 	/**
-	 * 查找所有的角色
-	 * @param condition 当skipNo=-1时，获取符合条件的全部结果集；否则返回请求页结果集
+	 * Find all the characters
+	 * @param condition WhenskipNo=-1time，Obtain all results set for the condition.；Otherwise, the result set of the requested page is returned
 	 * @return
 	 */
 	public List<SysRole> getSysRoleList(SysRole condition);
 	
 	/**
-	 * 查找所有有效角色的id和name
-	 * @param condition 当skipNo=-1时，获取符合条件的全部结果集；否则返回请求页结果集
+	 * Finding all valid charactersidandname
+	 * @param condition WhenskipNo=-1time，Obtain all results set for the condition.；Otherwise, the result set of the requested page is returned
 	 * @return
 	 */
 	public List<SysRole> getAllSysRoleList();
 
 	/**
-	 * 修改系统角色
+	 * Modify system role
 	 * @param sysRole
 	 * @return
 	 */
 	public int updateSysRole(SysRole sysRole);
 
 	/**
-	 * 添加系统角色
+	 * Add system role
 	 * @param sysRole
 	 * @return
 	 */
 	public int addSysRole(SysRole sysRole);
 
 	/**
-	 * 查询数量
+	 * Query number
 	 * @param sysRole
 	 * @return
 	 */
 	public int getCount(SysRole sysRole);
 
 	/**
-	 * 删除
+	 * delete
 	 * @param roleId
 	 * @return
 	 */

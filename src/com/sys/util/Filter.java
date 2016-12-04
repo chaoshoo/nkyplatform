@@ -8,7 +8,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 /**
- * 筛选
+ * screen
  * 
  * @author lezu Team
  * @version 3.0
@@ -18,51 +18,51 @@ public class Filter implements Serializable {
 	private static final long serialVersionUID = -8712382358441065075L;
 
 	/**
-	 * 运算符
+	 * operator
 	 */
 	public enum Operator {
 
-		/** 执行sql */
+		/** implementsql */
 		sql,
 		
-		/** 等于 */
+		/** Be equal to */
 		eq,
 
-		/** 不等于 */
+		/** Not equal */
 		ne,
 
-		/** 大于 */
+		/** greater than */
 		gt,
 
-		/** 小于 */
+		/** less than */
 		lt,
 
-		/** 大于等于 */
+		/** Greater than or equal to */
 		ge,
 
-		/** 小于等于 */
+		/** Less than or equal to */
 		le,
 
-		/** 相似 */
+		/** Be similar */
 		like,
 
-		/** 包含 */
+		/** Contain */
 		in,
-		/** 不包含 */
+		/** Does not contain */
 		notIn,
 
-		/** 为Null */
+		/** byNull */
 		isNull,
 
-		/** 不为Null */
+		/** Not forNull */
 		isNotNull;
 
 		/**
-		 * 从String中获取Operator
+		 * fromStringGet inOperator
 		 * 
 		 * @param value
-		 *            值
-		 * @return String对应的operator
+		 *            value
+		 * @return StringCorrespondingoperator
 		 */
 		public static Operator fromString(String value) {
 			return Operator.valueOf(value.toLowerCase());
@@ -99,36 +99,36 @@ public class Filter implements Serializable {
 		}
 	}
 
-	/** 默认是否忽略大小写 */
+	/** Default ignore case */
 	private static final boolean DEFAULT_IGNORE_CASE = false;
 
-	/** 属性 */
+	/** attribute */
 	private String property;
 
-	/** 运算符 */
+	/** operator */
 	private Operator operator;
 
-	/** 值 */
+	/** value */
 	private Object value;
 
-	/** 是否忽略大小写 */
+	/** Ignore case */
 	private Boolean ignoreCase = DEFAULT_IGNORE_CASE;
 
 	/**
-	 * 初始化一个新创建的Filter对象
+	 * Initialize a newly createdFilterobject
 	 */
 	public Filter() {
 	}
 
 	/**
-	 * 初始化一个新创建的Filter对象
+	 * Initialize a newly createdFilterobject
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param operator
-	 *            运算符
+	 *            operator
 	 * @param value
-	 *            值
+	 *            value
 	 */
 	public Filter(String property, Operator operator, Object value) {
 		this.property = property;
@@ -142,16 +142,16 @@ public class Filter implements Serializable {
 	}
 
 	/**
-	 * 初始化一个新创建的Filter对象
+	 * Initialize a newly createdFilterobject
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param operator
-	 *            运算符
+	 *            operator
 	 * @param value
-	 *            值
+	 *            value
 	 * @param ignoreCase
-	 *            忽略大小写
+	 *            ignore case
 	 */
 	public Filter(String property, Operator operator, Object value, boolean ignoreCase) {
 		this.property = property;
@@ -161,165 +161,165 @@ public class Filter implements Serializable {
 	}
 
 	/**
-	 * 返回等于筛选
+	 * Returns equal to filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 等于筛选
+	 *            value
+	 * @return Equal screening
 	 */
 	public static Filter eq(String property, Object value) {
 		return new Filter(property, Operator.eq, value);
 	}
 
 	/**
-	 * 返回等于筛选
+	 * Returns equal to filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
+	 *            value
 	 * @param ignoreCase
-	 *            忽略大小写
-	 * @return 等于筛选
+	 *            ignore case
+	 * @return Equal screening
 	 */
 	public static Filter eq(String property, Object value, boolean ignoreCase) {
 		return new Filter(property, Operator.eq, value, ignoreCase);
 	}
 
 	/**
-	 * 返回不等于筛选
+	 * Return is not equal to filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 不等于筛选
+	 *            value
+	 * @return Not equal to screening
 	 */
 	public static Filter ne(String property, Object value) {
 		return new Filter(property, Operator.ne, value);
 	}
 
 	/**
-	 * 返回不等于筛选
+	 * Return is not equal to filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
+	 *            value
 	 * @param ignoreCase
-	 *            忽略大小写
-	 * @return 不等于筛选
+	 *            ignore case
+	 * @return Not equal to screening
 	 */
 	public static Filter ne(String property, Object value, boolean ignoreCase) {
 		return new Filter(property, Operator.ne, value, ignoreCase);
 	}
 
 	/**
-	 * 返回大于筛选
+	 * Return greater than filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 大于筛选
+	 *            value
+	 * @return Greater than screening
 	 */
 	public static Filter gt(String property, Object value) {
 		return new Filter(property, Operator.gt, value);
 	}
 
 	/**
-	 * 返回小于筛选
+	 * Return less than filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 小于筛选
+	 *            value
+	 * @return Less than screening
 	 */
 	public static Filter lt(String property, Object value) {
 		return new Filter(property, Operator.lt, value);
 	}
 
 	/**
-	 * 返回大于等于筛选
+	 * Return is greater than or equal to the filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 大于等于筛选
+	 *            value
+	 * @return Greater than or equal to the filter
 	 */
 	public static Filter ge(String property, Object value) {
 		return new Filter(property, Operator.ge, value);
 	}
 
 	/**
-	 * 返回小于等于筛选
+	 * Returns less than equal to filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 小于等于筛选
+	 *            value
+	 * @return Less than or equal to the filter
 	 */
 	public static Filter le(String property, Object value) {
 		return new Filter(property, Operator.le, value);
 	}
 
 	/**
-	 * 返回相似筛选
+	 * Return similar filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 相似筛选
+	 *            value
+	 * @return Similar screening
 	 */
 	public static Filter like(String property, Object value) {
 		return new Filter(property, Operator.like, value);
 	}
 
 	/**
-	 * 返回包含筛选
+	 * Return contains filter
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 * @param value
-	 *            值
-	 * @return 包含筛选
+	 *            value
+	 * @return Include filter
 	 */
 	public static Filter in(String property, Object value) {
 		return new Filter(property, Operator.in, value);
 	}
 
 	/**
-	 * 返回为Null筛选
+	 * Return asNullscreen
 	 * 
 	 * @param property
-	 *            属性
-	 * @return 为Null筛选
+	 *            attribute
+	 * @return byNullscreen
 	 */
 	public static Filter isNull(String property) {
 		return new Filter(property, Operator.isNull, null);
 	}
 
 	/**
-	 * 返回不为Null筛选
+	 * Return not forNullscreen
 	 * 
 	 * @param property
-	 *            属性
-	 * @return 不为Null筛选
+	 *            attribute
+	 * @return Not forNullscreen
 	 */
 	public static Filter isNotNull(String property) {
 		return new Filter(property, Operator.isNotNull, null);
 	}
 
 	/**
-	 * 返回忽略大小写筛选
+	 * Return ignore case filter
 	 * 
-	 * @return 忽略大小写筛选
+	 * @return Ignore case selection
 	 */
 	public Filter ignoreCase() {
 		this.ignoreCase = true;
@@ -327,76 +327,76 @@ public class Filter implements Serializable {
 	}
 
 	/**
-	 * 获取属性
+	 * get attribute
 	 * 
-	 * @return 属性
+	 * @return attribute
 	 */
 	public String getProperty() {
 		return property;
 	}
 
 	/**
-	 * 设置属性
+	 * set a property
 	 * 
 	 * @param property
-	 *            属性
+	 *            attribute
 	 */
 	public void setProperty(String property) {
 		this.property = property;
 	}
 
 	/**
-	 * 获取运算符
+	 * Get operator
 	 * 
-	 * @return 运算符
+	 * @return operator
 	 */
 	public Operator getOperator() {
 		return operator;
 	}
 
 	/**
-	 * 设置运算符
+	 * Set operator
 	 * 
 	 * @param operator
-	 *            运算符
+	 *            operator
 	 */
 	public void setOperator(Operator operator) {
 		this.operator = operator;
 	}
 
 	/**
-	 * 获取值
+	 * Get value
 	 * 
-	 * @return 值
+	 * @return value
 	 */
 	public Object getValue() {
 		return value;
 	}
 
 	/**
-	 * 设置值
+	 * Set value
 	 * 
 	 * @param value
-	 *            值
+	 *            value
 	 */
 	public void setValue(Object value) {
 		this.value = value;
 	}
 
 	/**
-	 * 获取是否忽略大小写
+	 * Gets whether to ignore case size
 	 * 
-	 * @return 是否忽略大小写
+	 * @return Ignore case
 	 */
 	public Boolean getIgnoreCase() {
 		return ignoreCase;
 	}
 
 	/**
-	 * 设置是否忽略大小写
+	 * Set whether to ignore case
 	 * 
 	 * @param ignoreCase
-	 *            是否忽略大小写
+	 *            Ignore case
 	 */
 	public void setIgnoreCase(Boolean ignoreCase) {
 		this.ignoreCase = ignoreCase;

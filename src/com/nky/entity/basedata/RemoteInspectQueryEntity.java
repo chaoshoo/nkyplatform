@@ -7,9 +7,9 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import com.sys.jfinal.JFinalEntity;
 
 /**
- * 远程咨询表.
+ * Remote consultation table.
  * @author Ken
- * @version 2016年9月7日
+ * @version 2016year9month7day
  */
 public class RemoteInspectQueryEntity extends JFinalEntity {
 

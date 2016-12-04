@@ -33,16 +33,16 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 	@Autowired
 	SysAuthService sysAuthService;
 
-	/** 默认"加密密码"参数名称 */
+	/** default"Encryption password"Parameter name */
 	private static final String DEFAULT_EN_PASSWORD_PARAM = "password";
 
-	/** 默认"验证码"参数名称 */
+	/** default"Verification Code"Parameter name */
 	private static final String DEFAULT_KAPTCHA_PARAM = "kaptcha";
 
-	/** "加密密码"参数名称 */
+	/** "Encryption password"Parameter name */
 	private String enPasswordParam = DEFAULT_EN_PASSWORD_PARAM;
 
-	/** "验证码"参数名称 */
+	/** "Verification Code"Parameter name */
 	private String kaptcha = DEFAULT_KAPTCHA_PARAM;
 	
 	@Override
@@ -87,7 +87,7 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         
 		String url = this.getSuccessUrl();
-		httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + url);	//页面跳转
+		httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + url);	//Page Jump
 		return false;
 	}
 
@@ -101,7 +101,7 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 	}
 	
 	/**
-	 * 重写登录地址
+	 * Override login address
 	 */
 //	@Override
 //	protected void redirectToLogin(ServletRequest request,ServletResponse response) throws IOException {
@@ -116,30 +116,30 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
 //	}
 
 	/**
-	 * 获取验证码
+	 * Get verification code
 	 * 
 	 * @param servletRequest
 	 *            ServletRequest
-	 * @return 验证码
+	 * @return Verification Code
 	 */
 	protected String getKaptcha(ServletRequest servletRequest) {
 		return WebUtils.getCleanParam(servletRequest, kaptcha);
 	}
 
 	/**
-	 * 获取"加密密码"参数名称
+	 * Obtain"Encryption password"Parameter name
 	 * 
-	 * @return "加密密码"参数名称
+	 * @return "Encryption password"Parameter name
 	 */
 	public String getEnPasswordParam() {
 		return enPasswordParam;
 	}
 
 	/**
-	 * 设置"加密密码"参数名称
+	 * Config"Encryption password"Parameter name
 	 * 
 	 * @param enPasswordParam
-	 *            "加密密码"参数名称
+	 *            "Encryption password"Parameter name
 	 */
 	public void setEnPasswordParam(String enPasswordParam) {
 		this.enPasswordParam = enPasswordParam;

@@ -4,12 +4,12 @@ $(function() {
 	//初始化弹出框
 	$('#user_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				dealResult();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -61,27 +61,27 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'real_name',title:'检查人',width:100},
-				{field:'inspect_time',title:'检查时间',width:100},
-				{field:'inspect_code',title:'检查指标',width:50,
+				{field:'real_name',title:'Check man',width:100},
+				{field:'inspect_time',title:'Check time',width:100},
+				{field:'inspect_code',title:'Inspection index',width:50,
 					formatter:function(value){
 						return util.getValueBykeyDic('inspect_code',value);
 					 }
 				},
-				{field:'deal_result',title:'处理意见',width:100},
-				{field:'deal_state',title:'处理状态',width:100,
+				{field:'deal_result',title:'Processing opinion',width:100},
+				{field:'deal_state',title:'Processing status',width:100,
 					formatter:function(value){
 						if(1==value){
-							return '未处理';
+							return 'Untreated';
 						}else if(0==value){
-							return '已处理';
+							return 'Processed';
 						}
 					 }},	
-				{field:'deal_time',title:'处理时间',width:100},	
-				{field:'id',title:'操作',width:85,
+				{field:'deal_time',title:'processing time',width:100},	
+				{field:'id',title:'Operation',width:85,
 						formatter:function(value,row){
 //							return '<a href="javascript:openedit('+value+',0)">详情处理</a> &nbsp;<a onclick="javascript:openedit(\''+value+'\',1)" ><font color="red">处理</font></a>';
-							return '<a href="javascript:openedit('+value+',0)">详情及处理</a>';
+							return '<a href="javascript:openedit('+value+',0)">Details and processing</a>';
 						},
 				}
 		]],
@@ -182,7 +182,7 @@ function dealResult(){
 	//获取处理意见
 	var dealResult = $("#dealResultShow").val();
 	if(dealResult==null || dealResult==""){
-		$.messager.alert(titleInfo,'请输入处理意见!');
+		$.messager.alert(titleInfo,'Please input processing!');
 		return;
 	}
 	var id = $("#inspectdataid").val();
@@ -190,7 +190,7 @@ function dealResult(){
 		$.post("exception/update.json?id="+id+"&dealResult="+encodeURI(encodeURI(dealResult))+"&dataid="+dataid,function(data){
 			if(data.code==0){
 				$('#user_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'处理成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Done！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -203,7 +203,6 @@ function dealResult(){
 function dataGridload(param){
 	$('#diagnose_table').datagrid('reload');
 }
-
 
 
 

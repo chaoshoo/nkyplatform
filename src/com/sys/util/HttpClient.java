@@ -25,7 +25,7 @@ import org.apache.http.impl.conn.PoolingClientConnectionManager;
 
 public class HttpClient {
 	/**
-	 * 拼接成一个url然后自动请求该url
+	 * Splice into oneurlAnd then automatically request theurl
 	 * 
 	 * @return
 	 * @throws IOException
@@ -47,7 +47,7 @@ public class HttpClient {
 			connection.connect();
 			// 发送数据到服务器并使用Reader读取返回的数据
 			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
-			String lines = ""; // 定义返回值
+			String lines = ""; // Define return value
 			String infoString = "";
 			while ((lines = reader.readLine()) != null) {
 				infoString += lines;

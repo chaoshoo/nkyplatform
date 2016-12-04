@@ -8,7 +8,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see VipQuestionsLogQueryEntity
  * @author Ken
- * @version 2016年9月8日 下午1:39:22
+ * @version 2016year9month8day Afternoon1:39:22
  */
 @Service
 public class VipQuestionsLogQueryService {

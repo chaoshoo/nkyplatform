@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
@@ -23,14 +23,14 @@
 <script type="text/javascript" src="js/area/area_info.js"></script>
 </head>
 <body class="easyui-layout">
-<div data-options="region:'center',title:'区域管理'" class="regionCenter">
+<div data-options="region:'center',title:'Regional management'" class="regionCenter">
 	<div id="common_search">
 		&nbsp;&nbsp;
-		<button id="add"  class="btn btn-success" data-options="iconCls:'icon-add'" style="border:1px ;" onclick="privilege('add')"><i class="icon-plus"></i>&nbsp;添加</button>
-		<button id="update" class="btn btn-success" data-options="iconCls:'icon-add'"  style="border:1px ;" onclick="privilege('edit')"><i class="icon-edit"></i>&nbsp;修改</button>
-		<button id="del" class="btn btn-success" data-options="iconCls:'icon-add'"  style="border:1px ;" onclick="privilege('del')"><i class="icon-remove"></i>&nbsp;删除</button>
+		<button id="add"  class="btn btn-success" data-options="iconCls:'icon-add'" style="border:1px ;" onclick="privilege('add')"><i class="icon-plus"></i>&nbsp;Add</button>
+		<button id="update" class="btn btn-success" data-options="iconCls:'icon-add'"  style="border:1px ;" onclick="privilege('edit')"><i class="icon-edit"></i>&nbsp;modify</button>
+		<button id="del" class="btn btn-success" data-options="iconCls:'icon-add'"  style="border:1px ;" onclick="privilege('del')"><i class="icon-remove"></i>&nbsp;delete</button>
 	</div>
-	<!-- 分类树结构 -->
+	<!-- Classification tree structure -->
 	<table id="area_tree">
 		<tr>
 			<td colspan="2">
@@ -42,20 +42,20 @@
 	</table>
 	
 	<div id="saveUpdateArea_detail_dialog"
-		data-options="closed:true,modal:true,title:'区域信息',iconCls:'icon-save'"
+		data-options="closed:true,modal:true,title:'Regional information',iconCls:'icon-save'"
 	style="padding:5px;width:500px;height:350px;">
 		<form action="area/findAreaById.json" id="saveUpdateArea_detail_form">
 			<input type="hidden" id="id">
 			<table>
 				<tr>
-					<td>父级区域：</td>
+					<td>Parent area：</td>
 					<td>
 						<input type="hidden" id="pid">
 						<input type="text" id="pname" readonly/>
 					</td>
 				</tr>
 				<tr>
-					<td>区域名称：</td>
+					<td>Area name：</td>
 					<td>
 						<input type="text" id="name">
 					</td>

@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.sys.common.adapter.MapAdapter;
 
 /**
- * 封装Root Element 是 Map的情况.
+ * encapsulationRoot Element yes MapSituation.
  * 
  * @author vincent
  */

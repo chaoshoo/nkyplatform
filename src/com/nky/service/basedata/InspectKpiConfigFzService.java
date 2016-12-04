@@ -8,7 +8,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see InspectKpiConfigFzEntity
  * @author Ken
- * @version 2016年9月2日
+ * @version 2016year9month2day
  */
 @Service
 public class InspectKpiConfigFzService {

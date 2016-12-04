@@ -13,7 +13,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -31,18 +31,18 @@
 
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'医院查询'" class="regionCenter">
+	<div data-options="region:'center',title:'Hospital inquiry'" class="regionCenter">
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="goods/tail/detail.json" id="query_form">		
-			&nbsp;&nbsp;&nbsp;&nbsp; 医院名称&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-h.name"/>
-			&nbsp;&nbsp;&nbsp;&nbsp; 医院编码&nbsp;&nbsp;<input
+			&nbsp;&nbsp;&nbsp;&nbsp; Hospital name&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-h.name"/>
+			&nbsp;&nbsp;&nbsp;&nbsp; Hospital code&nbsp;&nbsp;<input
 				type="text" id="FIT-h-code" name="FIT-code"/> &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<button type="button" id="hospital_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<button type="button" id="hospital_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
 		 </form>
 		</div>
 		<table id="base_table"></table>
@@ -59,7 +59,7 @@ $(function() {
 
 
 /**
- * 初始化数据表格
+ * Initialize data form
  */
 function initDataGrid(){
 	$('#base_table').datagrid({
@@ -77,20 +77,20 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'CODE',title:'医院编码',width:100},
-		    {field:'NAME',title:'医院名称',width:200},
-		    {field:'LEVER',title:'医院级别',width:100,
+		    {field:'CODE',title:'Hospital code',width:100},
+		    {field:'NAME',title:'Hospital name',width:200},
+		    {field:'LEVER',title:'Hospital level',width:100,
 		    	formatter:function(value){
 		    		var LEVER = value;
 		    		return levermap[LEVER];
 				}
 		    },
-			{field:'AREANAME',title:'医院地址',width:200},
-			{field:'ID',title:'操作',width:120,
+			{field:'AREANAME',title:'Hospital address',width:200},
+			{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){
-					return '<a href="javascript:adduser(\''+row.CODE+'\')">管理员</a> &nbsp;'
-					+'<a href="javascript:openedit('+value+')">修改</a> &nbsp;'
-					+'<a   onclick="del(\''+row.CODE+'\')" ><font color="red">删除</font></a>';
+					return '<a href="javascript:adduser(\''+row.CODE+'\')">Admin</a> &nbsp;'
+					+'<a href="javascript:openedit('+value+')">modify</a> &nbsp;'
+					+'<a   onclick="del(\''+row.CODE+'\')" ><font color="red">delete</font></a>';
 				}
 		}
 		]],

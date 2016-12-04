@@ -37,12 +37,12 @@ function date2str(x, y) {
 $(function () {
 Highcharts.setOptions({
 	lang: {
-		months: ['一月', '二月', '三月', '四月', '五月', '六月',  '七月', '八月', '九月', '十月', '十一月', '十二月'],
-		shortMonths: ['一月', '二月', '三月', '四月', '五月', '六月',  '七月', '八月', '九月', '十月', '十一月', '十二月'],
-		weekdays: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] 
+		months: ['January', 'February', 'March', 'April', 'May', 'June',  'July', 'August', 'September', 'October', 'November', 'December'],
+		shortMonths: ['January', 'February', 'March', 'April', 'May', 'June',  'July', 'August', 'September', 'October', 'November', 'December'],
+		weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] 
 	}
 });
-	/**A7FFFF 搏/分 xAxis: {
+	/**A7FFFF Stroke/branch xAxis: {
             minPadding: 0.05,
             maxPadding: 0.05
         },
@@ -71,7 +71,7 @@ Highcharts.setOptions({
 			}
         },
         lang: {
-            noData: "暂时没有数据"
+            noData: "No data"
         },
         noData: {
             style: {
@@ -119,7 +119,7 @@ Highcharts.setOptions({
         },
         yAxis: {
             title: {
-                text: '搏/分', 
+                text: 'Stroke/branch', 
 				style: {
 					color: '#FFF',
 					fontSize: '15px',
@@ -171,21 +171,21 @@ Highcharts.setOptions({
                     style: {
                         fontWeight: 'bold'
                     },formatter:function() {
-							return this.y+" 搏/分";
+							return this.y+" Stroke/branch";
 					}
                 },
 				labels:{
 					formatter:function() {
-							return this.y+" 搏/分";
+							return this.y+" Stroke/branch";
 					}
 				}
 				
             }
         },
         series: [{
-            name: '脉搏',
+            name: 'pulse',
             data: [{
-					name: '数字',
+					name: 'number',
 					color: '#86F1FD',
 					y: 70
 				}, 69, 95, 15, 18, 21, 25, 26, 23, 18, 13, 96]

@@ -8,7 +8,7 @@
 	$.fn.extend({
 		lSelect: function(options) {
 			var settings = {
-				choose: "请选择...",
+				choose: "Please select...",
 				emptyValue: "",
 				cssStyle: {"margin-right": "4px"},
 				url: null,

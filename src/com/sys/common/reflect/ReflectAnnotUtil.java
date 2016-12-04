@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ReflectAnnotUtil {
 	/**
-	 * 是否对其进行反射
+	 * Whether to reflect on it
 	 */
 	public boolean isReflect() default true;
 }

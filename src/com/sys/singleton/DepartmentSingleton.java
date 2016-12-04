@@ -15,7 +15,7 @@ import com.sys.util.SpringUtil;
 
 
 /**
- * 部门单例
+ * Department single case
  * @author Administrator
  *
  */
@@ -44,7 +44,7 @@ public class DepartmentSingleton {
 	}
 
 	/**
-	 * 加载数据
+	 * Load data
 	 */
 	private void loadData(int flag) {
 		if(flag ==0 && redisService.exists(RedisTypeEnum.DEPARTMENT.toId())){
@@ -61,7 +61,7 @@ public class DepartmentSingleton {
 	}
 	
 	/**
-	 * 赋值
+	 * assignment
 	 */
 	public void setData(){
 		String sql = "select *  from  t_department ";
@@ -70,14 +70,14 @@ public class DepartmentSingleton {
 	}
 
 	/**
-	 * 重新加载
+	 * Reload
 	 */
 	public void reloadData() {
 		loadData(1);
 	}
 	
 	/**
-	 * 获取部门list
+	 * Acquisition Departmentlist
 	 * 
 	 * @return
 	 */
@@ -89,9 +89,9 @@ public class DepartmentSingleton {
 	}
 	
 	/**
-	 * 通过id获取部门名称
+	 * adoptidGet department name
 	 * 
-	 * @param id 部门id
+	 * @param id departmentid
 	 * @return
 	 */
 	public String getDepartmentById(String id) {

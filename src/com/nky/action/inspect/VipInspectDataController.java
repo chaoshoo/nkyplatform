@@ -42,35 +42,35 @@ public class VipInspectDataController {
 	
 	private static Map<String,String[]> CHART_UNIT_NAME_MAP = new HashMap<String,String[]>();
 	static {
-		CHART_UNIT_NAME_MAP.put("C1", new String[]{"血压计历史记录","毫米汞柱","收缩压/舒张压","mmHg"});
-		CHART_UNIT_NAME_MAP.put("C2", new String[]{"脉率历史记录","搏/分","脉率","bpm"});
-		CHART_UNIT_NAME_MAP.put("C3", new String[]{"血糖历史记录","毫摩尔/升","血糖","mmol/L"});
-		CHART_UNIT_NAME_MAP.put("C4", new String[]{"收缩压历史记录","毫米汞柱","收缩压","mmHg"});
-		CHART_UNIT_NAME_MAP.put("C5", new String[]{"舒张压历史记录","毫米汞柱","舒张压","mmHg"});
-		CHART_UNIT_NAME_MAP.put("C6", new String[]{"随机血糖历史记录","毫摩尔/升","血糖","mmol/L"});
-		CHART_UNIT_NAME_MAP.put("C7", new String[]{"餐前血糖历史记录","毫摩尔/升","血糖","mmol/L"});
-		CHART_UNIT_NAME_MAP.put("C8", new String[]{"餐后血糖历史记录","毫摩尔/升","血糖","mmol/L"});
-		CHART_UNIT_NAME_MAP.put("SYS", new String[]{"收缩压历史记录","毫米汞柱","收缩压","mmHg"});
-		CHART_UNIT_NAME_MAP.put("DIA", new String[]{"舒张压历史记录","毫米汞柱","舒张压","mmHg"});
+		CHART_UNIT_NAME_MAP.put("C1", new String[]{"Blood pressure gauge history","Mm Hg","Systolic Blood Pressure/Diastolic Blood Pressure","mmHg"});
+		CHART_UNIT_NAME_MAP.put("C2", new String[]{"Pulse rate history","Stroke/branch","Pulse rate","bpm"});
+		CHART_UNIT_NAME_MAP.put("C3", new String[]{"Blood glucose history","Mmol/rise","blood sugar","mmol/L"});
+		CHART_UNIT_NAME_MAP.put("C4", new String[]{"History of systolic blood pressure","Mm Hg","Systolic Blood Pressure","mmHg"});
+		CHART_UNIT_NAME_MAP.put("C5", new String[]{"Diastolic blood pressure history","Mm Hg","Diastolic Blood Pressure","mmHg"});
+		CHART_UNIT_NAME_MAP.put("C6", new String[]{"Random blood glucose history","Mmol/rise","blood sugar","mmol/L"});
+		CHART_UNIT_NAME_MAP.put("C7", new String[]{"Pre-meal blood glucose history","Mmol/rise","blood sugar","mmol/L"});
+		CHART_UNIT_NAME_MAP.put("C8", new String[]{"Postprandial blood glucose history","Mmol/rise","blood sugar","mmol/L"});
+		CHART_UNIT_NAME_MAP.put("SYS", new String[]{"History of systolic blood pressure","Mm Hg","Systolic Blood Pressure","mmHg"});
+		CHART_UNIT_NAME_MAP.put("DIA", new String[]{"Diastolic blood pressure history","Mm Hg","Diastolic Blood Pressure","mmHg"});
 		
 		//上面的都会被弃用,2016.9.7
-		CHART_UNIT_NAME_MAP.put("SYS-DIA", new String[]{"血压历史记录","毫米汞柱","收缩压/舒张压","mmHg"});
-		CHART_UNIT_NAME_MAP.put("PR", new String[]{"脉率历史记录","搏/分","脉率","bpm"});
-		CHART_UNIT_NAME_MAP.put("GLU0", new String[]{"随机血糖历史记录","毫摩尔/升","随机血糖","mmol/L"});
-		CHART_UNIT_NAME_MAP.put("GLU1", new String[]{"餐前血糖历史记录","毫摩尔/升","餐前血糖","mmol/L"});
-		CHART_UNIT_NAME_MAP.put("GLU2", new String[]{"餐后血糖历史记录","毫摩尔/升","餐后血糖","mmol/L"});
+		CHART_UNIT_NAME_MAP.put("SYS-DIA", new String[]{"Blood pressure history","Mm Hg","Systolic Blood Pressure/Diastolic Blood Pressure","mmHg"});
+		CHART_UNIT_NAME_MAP.put("PR", new String[]{"Pulse rate history","Stroke/branch","Pulse rate","bpm"});
+		CHART_UNIT_NAME_MAP.put("GLU0", new String[]{"Random blood glucose history","Mmol/rise","Random blood glucose","mmol/L"});
+		CHART_UNIT_NAME_MAP.put("GLU1", new String[]{"Pre-meal blood glucose history","Mmol/rise","Pre-meal blood glucose","mmol/L"});
+		CHART_UNIT_NAME_MAP.put("GLU2", new String[]{"Postprandial blood glucose history","Mmol/rise","Postprandial blood glucose","mmol/L"});
 		
 		//2016-09-22
-		CHART_UNIT_NAME_MAP.put("HEIGHT", new String[]{"身高历史记录","cm","身高","cm"});
-		CHART_UNIT_NAME_MAP.put("WEIGHT", new String[]{"体重历史记录","kg","体重","kg"});
-		CHART_UNIT_NAME_MAP.put("BMI", new String[]{"BMI历史记录","","BMI",""});
-		CHART_UNIT_NAME_MAP.put("BMI-WH", new String[]{"BMI历史记录","","BMI",""});
+		CHART_UNIT_NAME_MAP.put("HEIGHT", new String[]{"History of height","cm","height","cm"});
+		CHART_UNIT_NAME_MAP.put("WEIGHT", new String[]{"Weight history","kg","weight","kg"});
+		CHART_UNIT_NAME_MAP.put("BMI", new String[]{"BMIHistory record","","BMI",""});
+		CHART_UNIT_NAME_MAP.put("BMI-WH", new String[]{"BMIHistory record","","BMI",""});
 
-		CHART_UNIT_NAME_MAP.put("TEMP", new String[]{"体温历史记录","℃","体温","℃"}); 
+		CHART_UNIT_NAME_MAP.put("TEMP", new String[]{"Temperature History","℃","temperature","℃"}); 
 		
-		CHART_UNIT_NAME_MAP.put("SPO2", new String[]{"血氧历史记录","","血氧",""});
-		CHART_UNIT_NAME_MAP.put("PR2", new String[]{"脉率历史记录","搏/分","脉率","bpm"});
-		CHART_UNIT_NAME_MAP.put("SPO2-PR2", new String[]{"血氧历史记录","","",""});
+		CHART_UNIT_NAME_MAP.put("SPO2", new String[]{"Blood oxygen history","","Oxygen",""});
+		CHART_UNIT_NAME_MAP.put("PR2", new String[]{"Pulse rate history","Stroke/branch","Pulse rate","bpm"});
+		CHART_UNIT_NAME_MAP.put("SPO2-PR2", new String[]{"Blood oxygen history","","",""});
 //		
 //		CHART_UNIT_NAME_MAP.put("LEU", new String[]{"白细胞历史记录","","",""});
 		
@@ -89,7 +89,7 @@ public class VipInspectDataController {
 	}
 	
 	/**
-	 * 就身份证号  必须填写  card_code   也就是身份证号   后面证件填写 也还是填   身份证 全局唯一标识会员用户  
+	 * On ID card number  Must fill  card_code   ID card number   Fill in the following documents Also fill in   ID Global unique identification member user  
 	 * @param map
 	 * @param cardCode
 	 * @param inspectCode
@@ -99,12 +99,12 @@ public class VipInspectDataController {
 	public String chart(ModelMap map,@PathVariable("cardCode") String cardCode,
 			@PathVariable("inspectCode") String inspectCode,@PathVariable("detailCode") String detailCode,@PathVariable("page") Integer page){
 		if(StringUtils.isEmpty(cardCode) || StringUtils.isEmpty(inspectCode)){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		Record vipRecord = Db.findFirst("select VIP_CODE,AGE,SEX,NICK_NAME from t_vip  where card_code =?  and isvalid = 1 limit 1",cardCode);
 		if(vipRecord == null){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		//保留数据
@@ -142,7 +142,7 @@ public class VipInspectDataController {
 				//如果有详细的指标配置，就按详细的年龄和性别来，如果没有，就用默认的
 				if(kpiRecordFz != null && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MAX")) && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MIN"))){
 					sb.append(r.getStr("NAME"));
-					sb.append("正常范围:");
+					sb.append("normal range:");
 					sb.append(kpiRecordFz.getStr("FZ_MIN"));
 //					sb.append(vo.getUnit());
 					sb.append("~");
@@ -151,7 +151,7 @@ public class VipInspectDataController {
 					sb.append("    ");
 				}else  if(StringUtils.isNotEmpty(r.getStr("KPI_MAX")) && StringUtils.isNotEmpty(r.getStr("KPI_MIN"))){
 					sb.append(r.getStr("NAME"));
-					sb.append("正常范围:");
+					sb.append("normal range:");
 					sb.append(r.getStr("KPI_MIN"));
 //					sb.append(vo.getUnit());
 					sb.append("~");
@@ -161,7 +161,7 @@ public class VipInspectDataController {
 				}
 			}
 		}
-		vo.setInfo(sb.toString()); //提示信息
+		vo.setInfo(sb.toString()); //Prompt information
 		
 		Record totalRecord = Db.findFirst("select count(*) as TOTAL  from vip_inspect_data where card_code = ? and inspect_code = ?",cardCode,inspectCode);
 		Long totalData = totalRecord.getLong("TOTAL");
@@ -175,7 +175,7 @@ public class VipInspectDataController {
 					,cardCode,inspectCode,vo.getCurrentIndex(),vo.getPageSize());
 			Set<Long> INSPECT_TIME_SET = new HashSet<Long>();
 			List<String> categories = new ArrayList<String>();
-			List<BigDecimal> s1 = new ArrayList<BigDecimal>();//数据类型需要改,我靠
+			List<BigDecimal> s1 = new ArrayList<BigDecimal>();//Data type needs to be changed,I rely on
 			List<BigDecimal> s2 = new ArrayList<BigDecimal>();
 			List<BigDecimal> s3 = new ArrayList<BigDecimal>();
 			int total = 0;
@@ -188,7 +188,7 @@ public class VipInspectDataController {
 						total --;
 						continue;
 					}
-					categories.add(DateUtil.dateForString(new Date(tmp.getTimestamp("INSPECT_TIME").getTime()), "MM-dd HH:mm"));//X轴 
+					categories.add(DateUtil.dateForString(new Date(tmp.getTimestamp("INSPECT_TIME").getTime()), "MM-dd HH:mm"));//Xaxis 
 					if(StringUtils.isNotEmpty(detailCode) ){
 						maxLine = 1;
 						vo.setSerie1Name(DETAILCODE_NAME_MAP.get(detailCode));
@@ -259,7 +259,7 @@ public class VipInspectDataController {
 	}
 	
 	/**
-	 * 就身份证号  必须填写  card_code   也就是身份证号   后面证件填写 也还是填   身份证 全局唯一标识会员用户  
+	 * On ID card number  Must fill  card_code   ID card number   Fill in the following documents Also fill in   ID Global unique identification member user  
 	 * http://localhost:8080/nkyplatform//vipInspectData/charts/420222198101010001/C01/C2/1.html
 	 * @param map
 	 * @param cardCode
@@ -270,12 +270,12 @@ public class VipInspectDataController {
 	public String charts(ModelMap map,@PathVariable("cardCode") String cardCode,@PathVariable("inspectCode") String inspectCode,
 			@PathVariable("code") String code,@PathVariable("page") Integer page){
 		if(StringUtils.isEmpty(cardCode) || StringUtils.isEmpty(inspectCode) || StringUtils.isEmpty(code) || null == page || page < 0){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		Record vipRecord = Db.findFirst("select VIP_CODE,AGE,SEX,NICK_NAME from t_vip  where card_code =?  and isvalid = 1 limit 1",cardCode);
 		if(vipRecord == null){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		try{
@@ -313,7 +313,7 @@ public class VipInspectDataController {
 					//如果有详细的指标配置，就按详细的年龄和性别来，如果没有，就用默认的
 					if(kpiRecordFz != null && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MAX")) && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MIN"))){
 						sb.append(r.getStr("NAME"));
-						sb.append("正常范围:");
+						sb.append("normal range:");
 						sb.append(kpiRecordFz.getStr("FZ_MIN"));
 						sb.append(vo.getUnit());
 						sb.append("~");
@@ -322,7 +322,7 @@ public class VipInspectDataController {
 						sb.append("    ");
 					}else  if(StringUtils.isNotEmpty(r.getStr("KPI_MAX")) && StringUtils.isNotEmpty(r.getStr("KPI_MIN"))){
 						sb.append(r.getStr("NAME"));
-						sb.append("正常范围:");
+						sb.append("normal range:");
 						sb.append(r.getStr("KPI_MIN"));
 						sb.append(vo.getUnit());
 						sb.append("~");
@@ -332,7 +332,7 @@ public class VipInspectDataController {
 					}
 				}
 			}
-			vo.setInfo(sb.toString()); //提示信息
+			vo.setInfo(sb.toString()); //Prompt information
 			String xtSql = "";
 			if(code.equals("C6")){
 				xtSql += " and GLU0 is not null";
@@ -353,7 +353,7 @@ public class VipInspectDataController {
 						,cardCode,inspectCode,vo.getCurrentIndex(),vo.getPageSize());
 				Set<Long> INSPECT_TIME_SET = new HashSet<Long>();
 				List<String> categories = new ArrayList<String>();
-				List<BigDecimal> s1 = new ArrayList<BigDecimal>();//数据类型需要改,我靠
+				List<BigDecimal> s1 = new ArrayList<BigDecimal>();//Data type needs to be changed,I rely on
 				List<BigDecimal> s2 = new ArrayList<BigDecimal>();
 				List<BigDecimal> s3 = new ArrayList<BigDecimal>();
 				int total = 0;
@@ -366,7 +366,7 @@ public class VipInspectDataController {
 							total --;
 							continue;
 						}
-						categories.add(DateUtil.dateForString(new Date(tmp.getTimestamp("INSPECT_TIME").getTime()), "MM-dd HH:mm"));//X轴 
+						categories.add(DateUtil.dateForString(new Date(tmp.getTimestamp("INSPECT_TIME").getTime()), "MM-dd HH:mm"));//Xaxis 
 						int i = 0;
 						for(String entry : CODE_SET){
 							i ++;
@@ -413,8 +413,8 @@ public class VipInspectDataController {
 			vo.setMaxLine(maxLine);
 			map.addAttribute("data",vo);
 		}catch(Exception e){
-			LOG.error("查询图表失败",e);
-			map.addAttribute("message","请稍后再试!");
+			LOG.error("Query graph failed",e);
+			map.addAttribute("message","Please try later.!");
 			return "inspect/chartdemo/error";
 		}
 		//error.jsp
@@ -422,7 +422,7 @@ public class VipInspectDataController {
 	}
 	
 	/**
-	 * 就身份证号  必须填写  card_code   也就是身份证号   后面证件填写 也还是填   身份证 全局唯一标识会员用户  
+	 * On ID card number  Must fill  card_code   ID card number   Fill in the following documents Also fill in   ID Global unique identification member user  
 	 * http://localhost:8080/nkyplatform//vipInspectData/charts/420222198101010001/C01/C2/1.html
 	 * @param map
 	 * @param cardCode
@@ -433,12 +433,12 @@ public class VipInspectDataController {
 	public String inspectchart(ModelMap map,@PathVariable("cardCode") String cardCode,@PathVariable("inspectCode") String inspectCode,
 			@PathVariable("code") String code,@PathVariable("page") Integer page){
 		if(StringUtils.isEmpty(cardCode) || StringUtils.isEmpty(inspectCode) || StringUtils.isEmpty(code) || null == page || page < 0){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		Record vipRecord = Db.findFirst("select VIP_CODE,AGE,SEX,NICK_NAME from t_vip  where card_code =?  and isvalid = 1 limit 1",cardCode);
 		if(vipRecord == null){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		try{
@@ -450,7 +450,7 @@ public class VipInspectDataController {
 			
 			//kpi的数据
 			List<Record> desRecordList = Db.find("select DISTINCT des from inspect_kpi_config  where inspect_code  =?",inspectCode);
-			List<InspectSubTitleVo> CHART_SUBTITLE_LIST = new ArrayList<InspectSubTitleVo>();//所有的图表的列表
+			List<InspectSubTitleVo> CHART_SUBTITLE_LIST = new ArrayList<InspectSubTitleVo>();//List of all the charts
 			boolean matchTab = false;
 			Set<String> nametemp = Sets.newHashSet();
 			if(desRecordList != null){
@@ -487,14 +487,14 @@ public class VipInspectDataController {
 				if(!matchTab){
 					CHART_SUBTITLE_LIST.get(0).setChecked(true);
 					vo.setSubTitle(CHART_SUBTITLE_LIST.get(0));
-					code =CHART_SUBTITLE_LIST.get(0).getCode();//如果没有，就用默认第一个来查询 
+					code =CHART_SUBTITLE_LIST.get(0).getCode();//Without，With the default first to query 
 					vo.setUnit(CHART_SUBTITLE_LIST.get(0).getUnit());
 					vo.setCode(code);
 				}
 				vo.setSubTab(CHART_SUBTITLE_LIST);
 				
 			}else{
-				map.addAttribute("message","暂无图表数据!");
+				map.addAttribute("message","No chart data!");
 				return "inspect/chartdemo/error";
 			}
 			
@@ -525,7 +525,7 @@ public class VipInspectDataController {
 					//如果有详细的指标配置，就按详细的年龄和性别来，如果没有，就用默认的
 					if(kpiRecordFz != null && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MAX")) && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MIN"))){
 						sb.append(r.getStr("NAME"));
-						sb.append("正常范围:");
+						sb.append("normal range:");
 						sb.append(kpiRecordFz.getStr("FZ_MIN"));
 //						sb.append(vo.getUnit());
 						sb.append("~");
@@ -534,7 +534,7 @@ public class VipInspectDataController {
 						sb.append("    ");
 					}else  if(StringUtils.isNotEmpty(r.getStr("KPI_MAX")) && StringUtils.isNotEmpty(r.getStr("KPI_MIN"))){
 						sb.append(r.getStr("NAME"));
-						sb.append("正常范围:");
+						sb.append("normal range:");
 						sb.append(r.getStr("KPI_MIN"));
 //						sb.append(vo.getUnit());
 						sb.append("~");
@@ -544,7 +544,7 @@ public class VipInspectDataController {
 					}
 				}
 			}
-			vo.setInfo(sb.toString()); //提示信息
+			vo.setInfo(sb.toString()); //Prompt information
 			String xtSql = "";
 
 			if(inspectCode.equals("C01")){ 
@@ -583,7 +583,7 @@ public class VipInspectDataController {
 						,cardCode,inspectCode,vo.getCurrentIndex(),vo.getPageSize());
 				Set<Long> INSPECT_TIME_SET = new HashSet<Long>();
 				List<String> categories = new ArrayList<String>();
-				List<BigDecimal> s1 = new ArrayList<BigDecimal>();//数据类型需要改,我靠
+				List<BigDecimal> s1 = new ArrayList<BigDecimal>();//Data type needs to be changed,I rely on
 				List<BigDecimal> s2 = new ArrayList<BigDecimal>();
 				List<BigDecimal> s3 = new ArrayList<BigDecimal>();
 				int total = 0;
@@ -597,7 +597,7 @@ public class VipInspectDataController {
 							continue;
 						}
 						Date tt = new Date(tmp.getTimestamp("INSPECT_TIME").getTime());
-						categories.add(DateUtil.dateForString(tt, "MM-dd")+"<br/>"+DateUtil.dateForString(tt, "HH:mm"));//X轴 
+						categories.add(DateUtil.dateForString(tt, "MM-dd")+"<br/>"+DateUtil.dateForString(tt, "HH:mm"));//Xaxis 
 						int i = 0;
 						for(String entry : CODE_SET){
 							i ++;
@@ -644,8 +644,8 @@ public class VipInspectDataController {
 			vo.setMaxLine(maxLine);
 			map.addAttribute("data",vo);
 		}catch(Exception e){
-			LOG.error("查询图表失败",e);
-			map.addAttribute("message","请稍后再试!");
+			LOG.error("Query graph failed",e);
+			map.addAttribute("message","Please try later.!");
 			return "inspect/chartdemo/error";
 		}
 		//error.jsp
@@ -654,7 +654,7 @@ public class VipInspectDataController {
 	
 	
 	/**
-	 * 就身份证号  必须填写  card_code   也就是身份证号   后面证件填写 也还是填   身份证 全局唯一标识会员用户  
+	 * On ID card number  Must fill  card_code   ID card number   Fill in the following documents Also fill in   ID Global unique identification member user  
 	 * http://localhost:8080/nkyplatform//vipInspectData/charts/420222198101010001/C01/C2/1.html
 	 * @param map
 	 * @param cardCode
@@ -665,12 +665,12 @@ public class VipInspectDataController {
 	public String chartall(ModelMap map,@PathVariable("cardCode") String cardCode,@PathVariable("inspectCode") String inspectCode,
 			@PathVariable("code") String code,@PathVariable("resolution") String resolution,@PathVariable("page") Integer page){
 		if(StringUtils.isEmpty(cardCode) || StringUtils.isEmpty(inspectCode) || StringUtils.isEmpty(code) || null == page || page < 0){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		Record vipRecord = Db.findFirst("select VIP_CODE,AGE,SEX,NICK_NAME from t_vip  where card_code =?  and isvalid = 1 limit 1",cardCode);
 		if(vipRecord == null){
-			map.addAttribute("message","数据不全!");
+			map.addAttribute("message","Incomplete data!");
 			return "inspect/chartdemo/error";
 		}
 		try{
@@ -682,7 +682,7 @@ public class VipInspectDataController {
 			
 			//kpi的数据
 			List<Record> desRecordList = Db.find("select DISTINCT des from inspect_kpi_config  where inspect_code  =?",inspectCode);
-			List<InspectSubTitleVo> CHART_SUBTITLE_LIST = new ArrayList<InspectSubTitleVo>();//所有的图表的列表
+			List<InspectSubTitleVo> CHART_SUBTITLE_LIST = new ArrayList<InspectSubTitleVo>();//List of all the charts
 			boolean matchTab = false;
 			if(desRecordList != null){
 				Set<String> nametemp = Sets.newHashSet();
@@ -721,14 +721,14 @@ public class VipInspectDataController {
 				if(!matchTab){
 					CHART_SUBTITLE_LIST.get(0).setChecked(true);
 					vo.setSubTitle(CHART_SUBTITLE_LIST.get(0));
-					code =CHART_SUBTITLE_LIST.get(0).getCode();//如果没有，就用默认第一个来查询 
+					code =CHART_SUBTITLE_LIST.get(0).getCode();//Without，With the default first to query 
 					vo.setUnit(CHART_SUBTITLE_LIST.get(0).getUnit());
 					vo.setCode(code);
 				}
 				vo.setSubTab(CHART_SUBTITLE_LIST);
 				
 			}else{
-				map.addAttribute("message","暂无图表数据!");
+				map.addAttribute("message","No chart data!");
 				return "inspect/chartdemo/error";
 			}
 			
@@ -759,7 +759,7 @@ public class VipInspectDataController {
 					//如果有详细的指标配置，就按详细的年龄和性别来，如果没有，就用默认的
 					if(kpiRecordFz != null && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MAX")) && StringUtils.isNotEmpty(kpiRecordFz.getStr("FZ_MIN"))){
 						sb.append(r.getStr("NAME"));
-						sb.append("正常范围:");
+						sb.append("normal range:");
 						sb.append(kpiRecordFz.getStr("FZ_MIN"));
 //						sb.append(vo.getUnit());
 						sb.append("~");
@@ -768,7 +768,7 @@ public class VipInspectDataController {
 						sb.append("    ");
 					}else  if(StringUtils.isNotEmpty(r.getStr("KPI_MAX")) && StringUtils.isNotEmpty(r.getStr("KPI_MIN"))){
 						sb.append(r.getStr("NAME"));
-						sb.append("正常范围:");
+						sb.append("normal range:");
 						sb.append(r.getStr("KPI_MIN"));
 //						sb.append(vo.getUnit());
 						sb.append("~");
@@ -778,7 +778,7 @@ public class VipInspectDataController {
 					}
 				}
 			}
-			vo.setInfo(sb.toString()); //提示信息
+			vo.setInfo(sb.toString()); //Prompt information
 			String xtSql = "";
 			if(inspectCode.equals("C01")){ 
 				xtSql += " and SYS is not null";
@@ -813,7 +813,7 @@ public class VipInspectDataController {
 						,cardCode,inspectCode,vo.getCurrentIndex(),vo.getPageSize());
 				Set<Long> INSPECT_TIME_SET = new HashSet<Long>();
 				List<String> categories = new ArrayList<String>();
-				List<BigDecimal> s1 = new ArrayList<BigDecimal>();//数据类型需要改,我靠
+				List<BigDecimal> s1 = new ArrayList<BigDecimal>();//Data type needs to be changed,I rely on
 				List<BigDecimal> s2 = new ArrayList<BigDecimal>();
 				List<BigDecimal> s3 = new ArrayList<BigDecimal>();
 				int total = 0;
@@ -827,7 +827,7 @@ public class VipInspectDataController {
 							continue;
 						}
 						Date tt = new Date(tmp.getTimestamp("INSPECT_TIME").getTime());
-						categories.add(DateUtil.dateForString(tt, "MM-dd")+"<br/>"+DateUtil.dateForString(tt, "HH:mm"));//X轴 
+						categories.add(DateUtil.dateForString(tt, "MM-dd")+"<br/>"+DateUtil.dateForString(tt, "HH:mm"));//Xaxis 
 						int i = 0;
 						for(String entry : CODE_SET){
 							i ++;
@@ -874,8 +874,8 @@ public class VipInspectDataController {
 			vo.setMaxLine(maxLine);
 			map.addAttribute("data",vo);
 		}catch(Exception e){
-			LOG.error("查询图表失败",e);
-			map.addAttribute("message","请稍后再试!");
+			LOG.error("Query graph failed",e);
+			map.addAttribute("message","Please try later.!");
 			return "inspect/chartdemo/error";
 		}
 		
@@ -904,7 +904,7 @@ public class VipInspectDataController {
 //	}
 	
 	/**
-	 * 保留2位小数.
+	 * Retain2Bit decimal.
 	 * @param key
 	 * @param rTmp
 	 * @return
@@ -925,7 +925,7 @@ public class VipInspectDataController {
 	
 	@RequestMapping(value = "/error")
 	public String error(ModelMap map,HttpServletRequest req) {
-		map.addAttribute("message","数据不全！");
+		map.addAttribute("message","Incomplete data！");
 		return "inspect/chartdemo/error";
 	}
 

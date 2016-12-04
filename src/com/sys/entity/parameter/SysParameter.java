@@ -7,21 +7,21 @@ import com.sys.entity.Entity;
 
 public class SysParameter extends Entity {
 
-	private Integer id;  //主键
+	private Integer id;  //Primary key
 	
-	private String code;  //编码
+	private String code;  //Code
 
-	private String name;  //名称
+	private String name;  //Name
 
-	private String defaultValue;   //默认值
+	private String defaultValue;   //Default value
 	
-	private Integer soft;  //排序号
+	private Integer soft;  //Sort number
 	
-	private String description;   //说明
+	private String description;   //Explain
 	
-	private Integer isEffective;  //是否开启
+	private Integer isEffective;  //Whether to open
 	
-	private Date createTime;  //修改时间
+	private Date createTime;  //Modification time
 	
 
 	public String toString(){

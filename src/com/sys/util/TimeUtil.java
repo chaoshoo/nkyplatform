@@ -30,7 +30,7 @@ public class TimeUtil {
 
 	private String timeEnd;
 
-	/** timeStart 取得。
+	/** timeStart Obtain。
 	 * 
 	 * @return timeStart */
 	public String getTimeStart() {
@@ -38,15 +38,15 @@ public class TimeUtil {
 		return timeStart;
 	}
 
-	/** timeStart 設定。
+	/** timeStart Set up。
 	 * 
-	 * @param timeStart 設定 */
+	 * @param timeStart Set up */
 	public void setTimeStart(String timeStart) {
 
 		this.timeStart = timeStart;
 	}
 
-	/** timeEnd 取得。
+	/** timeEnd Obtain。
 	 * 
 	 * @return timeEnd */
 	public String getTimeEnd() {
@@ -54,9 +54,9 @@ public class TimeUtil {
 		return timeEnd;
 	}
 
-	/** timeEnd 設定。
+	/** timeEnd Set up。
 	 * 
-	 * @param timeEnd 設定 */
+	 * @param timeEnd Set up */
 	public void setTimeEnd(String timeEnd) {
 
 		this.timeEnd = timeEnd;
@@ -97,7 +97,7 @@ public class TimeUtil {
 		return new TimeUtil(df.format(date) + "00:00:00", df.format(date) + "23:59:59");
 	}
 
-	/** 取今天开始时间。
+	/** Take today start time。
 	 * 
 	 * @return */
 	public static String getTodayStart() {
@@ -109,7 +109,7 @@ public class TimeUtil {
 		return time;
 	}
 
-	/** 取今天结束时间。
+	/** Take this end time。
 	 * 
 	 * @return */
 	public static String getTodayEnd() {
@@ -127,7 +127,7 @@ public class TimeUtil {
 		return Integer.toString(calendar.get(Calendar.YEAR));
 	}
 
-	/** 得到本月的第一天
+	/** Get the first day of the month.
 	 * 
 	 * @return */
 	public static String getMonthFirstDay() {
@@ -138,7 +138,7 @@ public class TimeUtil {
 		return df.format(calendar.getTime());
 	}
 
-	/** 得到本月的最后一天
+	/** Get the last day of the month.
 	 * 
 	 * @return */
 	public static String getMonthLastDay() {
@@ -149,7 +149,7 @@ public class TimeUtil {
 		return df.format(calendar.getTime());
 	}
 
-	/** 取YYYY-MM-dd日期开始时间。
+	/** takeYYYY-MM-ddDate start time。
 	 * 
 	 * @return */
 	public static String getDatetimeStart(String date) {
@@ -159,7 +159,7 @@ public class TimeUtil {
 		return time;
 	}
 
-	/** 取YYYY-MM-dd日期结束时间。
+	/** takeYYYY-MM-ddDate end time。
 	 * 
 	 * @return */
 	public static String getDatetimeEnd(String date) {
@@ -213,7 +213,7 @@ public class TimeUtil {
 
 	static public String getDateStrZhCn(Date date) {
 
-		SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+		SimpleDateFormat format = new SimpleDateFormat("yyyyyearMMmonthddday");
 		return format.format(date);
 	}
 

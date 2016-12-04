@@ -39,7 +39,7 @@ public class DoctorAction extends BaseAction {
 	}
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -153,11 +153,11 @@ public class DoctorAction extends BaseAction {
 		Record record = Db.findFirst("select * from doctor where tel=?",entity.getTel());
 		if(record != null && StringUtils.isEmpty(entity.getCode())){
 			d.setCode(0);
-			d.setMsg("电话号码已被其它医生使用，请核实电话号码");
+			d.setMsg("Phone numbers have been used by other doctors.，Please check your phone number.");
 			return d;
 		}else if(record != null && !record.getStr("code").equals(entity.getCode())){
 			d.setCode(0);
-			d.setMsg("电话号码已被其它医生使用，请核实电话号码");
+			d.setMsg("Phone numbers have been used by other doctors.，Please check your phone number.");
 			return d;
 		}
 		try {
@@ -190,7 +190,7 @@ public class DoctorAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("保存失败，请联系系统管理员");
+		d.setMsg("Save failed，Please contact system administrator");
 		return d;
 	}
 
@@ -209,11 +209,11 @@ public class DoctorAction extends BaseAction {
 				return d;
 			} else {
 				d.setCode(0);
-				d.setMsg("操作失败");
+				d.setMsg("operation failed");
 			}
 		} else {
 			d.setCode(0);
-			d.setMsg("送入后台值为空");
+			d.setMsg("Into the background value is empty");
 		}
 		return d;
 	}

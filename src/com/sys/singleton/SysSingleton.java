@@ -16,7 +16,7 @@ import com.sys.util.SpringUtil;
 
 
 /**
- * 系统参数
+ * system parameter
  * 
  * @author yc 2011-3-28
  * @Version CECTManegeServer
@@ -41,7 +41,7 @@ public class SysSingleton {
 	}
 
 	/**
-	 * 加载数据
+	 * Load data
 	 */
 	private void loadData(int flag) {
 		if(redisService.exists(RedisTypeEnum.SYS.toId()) && flag ==0){
@@ -56,7 +56,7 @@ public class SysSingleton {
 	}
 	
 	/**
-	 * 赋值
+	 * assignment
 	 */
 	public void setData(){
 		String sql = "SELECT * FROM   t_sys_parameter ";
@@ -72,7 +72,7 @@ public class SysSingleton {
 	
 
 	/**
-	 * 重新加载
+	 * Reload
 	 */
 	public void reload() {
 
@@ -81,12 +81,12 @@ public class SysSingleton {
 
 	
 	/**
-	 * 根据Code 获取 value
+	 * according toCode Obtain value
 	 * 
 	 * @param SYSType
-	 *            类型
+	 *            type
 	 * @param keyValue
-	 *            键值
+	 *            Key
 	 * @return huilet 2013-4-17
 	 * @author yuanc
 	 */

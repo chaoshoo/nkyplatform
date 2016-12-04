@@ -84,7 +84,7 @@ Array.prototype.remove = function(dx) {
 }
 
 
-function trim(str) { //删除左右两端的空格
+function trim(str) { //Delete spaces on the left and right.
 	return str.replace(/(^\s*)|(\s*$)/g, "");
 }
 

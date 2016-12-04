@@ -6,9 +6,9 @@ import com.sys.jfinal.JFinalEntity;
 import com.sys.jfinal.TableBind;
 @TableBind(name="doctor_vip_group")
 public class DoctorVipGroupEntity extends JFinalEntity {
-	private	String	name	;//	群组名字
-	private	String	doctor_code	;//	医生编号
-	private	Date	create_time	;//	创建时间
+	private	String	name	;//	Group name
+	private	String	doctor_code	;//	Doctor number
+	private	Date	create_time	;//	Created time
 	public String getName() {
 		return name;
 	}

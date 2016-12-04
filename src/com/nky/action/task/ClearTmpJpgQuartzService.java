@@ -9,9 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 清理文件job.
+ * Clean up filesjob.
  * @author Ken
- * @version 2016年10月28日
+ * @version 2016year10month28day
  */
 //@Component
 public class ClearTmpJpgQuartzService {
@@ -21,14 +21,14 @@ public class ClearTmpJpgQuartzService {
 //	@Scheduled(fixedRate=3000)  // 每隔5分钟执行一次
 	//@Scheduled(cron = "10 * * * * ?") //
 	public void start() throws ServletException {
-		LOG.debug("清理过期的ecg临时文件job == begin");
+		LOG.debug("Clean out expiredecgTemporary filejob == begin");
 //		SpringContextUtil.getApplicationContext().getResource(arg0)
 		String classPath =Thread.currentThread().getContextClassLoader().getResource("").toString();
-		LOG.debug("classPath目录："+classPath);
+		LOG.debug("classPathCatalog："+classPath);
 		String temp = classPath.substring(0, classPath.indexOf("WEB-INF"));
 		temp = temp.replace("file:/", "");
 		temp += "temp/ecg";
-		LOG.debug("ecg临时目录："+temp);
+		LOG.debug("ecgTemporary directory："+temp);
 		File folder = new File(temp);
 		if(folder.exists()){
 			File[] ff = folder.listFiles();
@@ -47,21 +47,21 @@ public class ClearTmpJpgQuartzService {
 							if(fs != null){
 								for(File ft : fs){
 									boolean flag2 = ft.delete();
-									LOG.info("文件 {} 已生存了5分钟以上，删除: {}",new Object[]{name,flag2});
+									LOG.info("file {} Already exist5More minutes，delete: {}",new Object[]{name,flag2});
 								}
 							}
 							
 							boolean flag = f.delete();
-							LOG.info("文件夹 {} 已生存了5分钟以上，删除: {}",new Object[]{name,flag});
+							LOG.info("Folder {} Already exist5More minutes，delete: {}",new Object[]{name,flag});
 						}else{
 							boolean flag = f.delete();
-							LOG.info("file {} 已生存了5分钟以上，删除: {}",new Object[]{name,flag});
+							LOG.info("file {} Already exist5More minutes，delete: {}",new Object[]{name,flag});
 						}
 					}
 				}
 			}
 		}
-		LOG.debug("清理过期的ecg临时文件job == end");
+		LOG.debug("Clean out expiredecgTemporary filejob == end");
 	}
 
 }

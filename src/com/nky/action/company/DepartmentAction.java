@@ -43,7 +43,7 @@ public class DepartmentAction {
 	}
 
 	/**
-	 * 获取所有的组织架构树
+	 * Get all the organizational structure tree
 	 * 
 	 * @return
 	 */

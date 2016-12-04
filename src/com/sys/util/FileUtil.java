@@ -25,7 +25,7 @@ public class FileUtil {
 		try {
 			messagedigest = MessageDigest.getInstance("MD5");
 		} catch (NoSuchAlgorithmException e) {
-			LOG.info("文件初始化失败...");
+			LOG.info("File initialization failed...");
 		}
 	}
 
@@ -45,7 +45,7 @@ public class FileUtil {
 			return bufferToHex(messagedigest.digest());
 		} catch (Exception e) {
 			e.printStackTrace();
-			LOG.info("获得文件MD5失败......");
+			LOG.info("Get fileMD5fail......");
 			return null;
 		}
 	}
@@ -96,7 +96,7 @@ public class FileUtil {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-			LOG.info("程序没有找到这个文件... ... ");
+			LOG.info("The program did not find this file... ... ");
 		} finally {
 			if (fis != null) {
 				try {

@@ -5,9 +5,9 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * office 科室表.
+ * office Department table.
  * @author Ken
- * @version 2016年8月24日
+ * @version 2016year8month24day
  */
 //@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Office {

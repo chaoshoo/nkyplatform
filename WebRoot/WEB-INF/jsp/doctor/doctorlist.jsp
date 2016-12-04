@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -31,25 +31,25 @@
 
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'医生查询'" class="regionCenter">
+	<div data-options="region:'center',title:'Doctor inquiry'" class="regionCenter">
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="goods/tail/detail.json" id="query_form" name="query_form">		
 		  <c:if test="${role != '2'}">
-			&nbsp;&nbsp;&nbsp;&nbsp; 医院名称&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-h.name"/>
+			&nbsp;&nbsp;&nbsp;&nbsp; Hospital name&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-h.name"/>
 			</c:if>
-			&nbsp;&nbsp;&nbsp;&nbsp; 医生名称&nbsp;&nbsp;<input
+			&nbsp;&nbsp;&nbsp;&nbsp; Doctor name&nbsp;&nbsp;<input
 				type="text" id="FIT-LIKE-dname" name="FIT-LIKE-d.name"/> &nbsp;&nbsp;&nbsp;&nbsp;
-				医生账号状态&nbsp;&nbsp;
+				Doctor account status&nbsp;&nbsp;
 				<select id="FIT-d.isvalid" name="FIT-d.isvalid">
-			      <option value="">-请选择-</option>
+			      <option value="">-Please select-</option>
 				  <m:getItems name="doctor_status"></m:getItems>
 				</select>
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
 		 </form>
 		</div>
 		<table id="base_table"></table>
@@ -63,7 +63,7 @@ $(function() {
 	initDataGrid();
 });
 /**
- * 初始化数据表格
+ * Initialize data form
  */
 function initDataGrid(){
 	$('#base_table').datagrid({
@@ -81,21 +81,21 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'CODE',title:'医生编码',width:100},
-		    {field:'NAME',title:'医生名字',width:100},
-		    {field:'SEXSTR',title:'性别',width:100},
-		    {field:'OFFICENAME',title:'科室',width:100},
-		    {field:'TITLESTR',title:'职称',width:100},
-			{field:'HOSPITALNAME',title:'所属医院',width:150},
-			{field:'ISVALIDSTR',title:'账号状态',width:100},
-			{field:'ID',title:'操作',width:120,
+		    {field:'CODE',title:'Doctor code',width:100},
+		    {field:'NAME',title:'Doctor name',width:100},
+		    {field:'SEXSTR',title:'Gender',width:100},
+		    {field:'OFFICENAME',title:'Department',width:100},
+		    {field:'TITLESTR',title:'Title',width:100},
+			{field:'HOSPITALNAME',title:'Affiliated Hospital',width:150},
+			{field:'ISVALIDSTR',title:'Account status',width:100},
+			{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){
-					var str = '<a href="javascript:openedit(\'true\',\''+value+'\')">审核</a> &nbsp;'
-					+'<a href="javascript:openedit(\'false\','+value+')">修改</a> &nbsp;';
+					var str = '<a href="javascript:openedit(\'true\',\''+value+'\')">Audit</a> &nbsp;'
+					+'<a href="javascript:openedit(\'false\','+value+')">modify</a> &nbsp;';
 					if(row.ISVALID == '-1'){
-						str +='<a   onclick="opertor('+value+',1)" >启用</a>';
+						str +='<a   onclick="opertor('+value+',1)" >Enable</a>';
 					}else{
-						str +='<a   onclick="opertor('+value+',-1)" ><font color="red">禁用</font></a>';
+						str +='<a   onclick="opertor('+value+',-1)" ><font color="red">Disable</font></a>';
 					}
 					return str;
 

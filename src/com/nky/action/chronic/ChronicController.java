@@ -24,7 +24,7 @@ import com.sys.entity.bo.KVvo;
 import com.sys.entity.bo.ScriptPage;
 
 /**
- * 慢病筛查
+ * Screening for chronic diseases
  * @author zw
  *
  */
@@ -86,10 +86,10 @@ public class ChronicController extends BaseAction{
 	public ScriptPage getDiagnoseList(HttpServletRequest request,AjaxPage ajaxPage) {
 		Map<String,Object> param = getParam(request);
 		String role = getSession().getRoles();
-		if("2".equals(role)){//医院
+		if("2".equals(role)){//Hospital
 			String hospitalCode  = getSession().getHospital().getHospital_code();
 			param.put("hospital", hospitalCode);
-		}else if ("3".equals(role)){//医生
+		}else if ("3".equals(role)){//Doctor
 			String docCode  = getSession().getDoctor().getCode();
 			Record docRecord = Db.findFirst("select hospital_code from doctor where code=?",docCode);
 			param.put("hospital", docRecord.getStr("hospital_code"));
@@ -110,10 +110,10 @@ public class ChronicController extends BaseAction{
 			int i = chronicService.updateDealResult(id,dealResult,dataid,loginEntity.getName());
 			if(i>0){
 				d.setCode(0);
-				d.setMsg("处理成功");	
+				d.setMsg("Done");	
 			}else {
 				d.setCode(1);
-				d.setMsg("处理失败，请联系系统管理员");
+				d.setMsg("Process failed，Please contact system administrator");
 			}
 			
 		} catch (Exception e) {

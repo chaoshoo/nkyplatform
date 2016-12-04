@@ -5,11 +5,11 @@ import com.sys.entity.Pagin;
 public class AjaxPage extends Pagin {
 
 	/**
-	 * jQuery Ajax页码 
+	 * jQuery AjaxPage number 
 	 */
 	private int page = 1;
 	/**
-	 * jQuery Ajax页面大小
+	 * jQuery AjaxPage size
 	 */
 	private int rows = 10;
 

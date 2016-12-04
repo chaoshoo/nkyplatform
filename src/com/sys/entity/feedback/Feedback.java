@@ -5,7 +5,7 @@ import java.util.Date;
 import com.sys.entity.Entity;
 
 /**
- * 意见反馈
+ * Feedback
  * @author wjx
  *
  */
@@ -13,19 +13,19 @@ public class Feedback extends Entity{
 	
 	private Long id;
 	
-	private String feedback_type;//意见反馈类型
+	private String feedback_type;//Opinion feedback type
 	
-	private String feedback_content;//建议内容
+	private String feedback_content;//Recommended content
 	
-	private String contact_way;//联系方式
+	private String contact_way;//Contact ]
 	
-	private String is_handle;//是否处理
+	private String is_handle;//Whether to deal with
 	
-	private String remark;//备注
+	private String remark;//Remarks
 	
-	private Date create_time;//创建时间
+	private Date create_time;//Created time
 	
-	private Date handle_time;//处理时间
+	private Date handle_time;//processing time
 	
 	public Long getId() {
 		return id;

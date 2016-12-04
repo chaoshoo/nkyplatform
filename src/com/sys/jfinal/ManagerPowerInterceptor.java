@@ -8,7 +8,7 @@ import com.jfinal.core.ActionInvocation;
 import com.jfinal.core.Controller;
 import com.jfinal.plugin.activerecord.Record;
 /**
- * 管理用户后台登录状态及权限验证拦截器
+ * User management background login status and authorization interceptor
  * 
  * huilet 2013-3-20
  * @author yuanc
@@ -45,9 +45,9 @@ public class ManagerPowerInterceptor implements Interceptor {
 				//菜单权限判断
 				List<Record> menus=(List<Record>)MemcacheTool.mcc.get("menu"+sid);
 				if(menus!=null&&menus.isEmpty()==false){
-					if(checkPower(menus,ai.getActionKey(),code)){//链接或安全码匹配
+					if(checkPower(menus,ai.getActionKey(),code)){//Link or security code matching
 						ctrl.setAttr("powersafecodelist",MemcacheTool.mcc.get("powersafecodelist"+sid));
-						ai.invoke();//注意 一定要执行此方法
+						ai.invoke();//Be careful Be sure to perform this method
 					}else{
 						f=true;
 					}
@@ -56,9 +56,9 @@ public class ManagerPowerInterceptor implements Interceptor {
 				}
 			}
 			if(f)
-			ctrl.renderText("{\"statusCode\":300,\"message\":\"<font color='red'><B>您未有此操作权限！请勿越权操作！<br>请重新登录获得最新权限设置！</B></font>\"}");
+			ctrl.renderText("{\"statusCode\":300,\"message\":\"<font color='red'><B>You do not have this operating authority！Do not unauthorized operation！<br>Please re login to get the most new permissions settings！</B></font>\"}");
 			*/
-			ai.invoke();//注意 一定要执行此方法
+			ai.invoke();//Be careful Be sure to perform this method
 	}
 	private boolean checkPower(List<Record> menus,String url,String safecode){
 		for(Record m:menus){

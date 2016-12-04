@@ -37,7 +37,7 @@ $(function() {
 	if(type=='D'){
 		$('#diagnose_detail_dialog').dialog({
 			buttons:[{
-				text:'提  交',
+				text:'carry  hand over',
 				handler:function(){
 					var saFlag = saveAnser();
 					if(saFlag == '1') 
@@ -48,7 +48,7 @@ $(function() {
 					}					
 				}
 			},{
-				text:'关  闭',
+				text:'shut down  close',
 				handler:function(){
 					$('#diagnose_detail_dialog').dialog('close');
 				}
@@ -58,7 +58,7 @@ $(function() {
 		$("#answer_div").hide();
 		$('#diagnose_detail_dialog').dialog({
 			buttons:[{
-				text:'关  闭',
+				text:'shut down  close',
 				handler:function(){
 					$('#diagnose_detail_dialog').dialog('close');
 				}
@@ -108,16 +108,16 @@ function diagnoseFunc(obj,qId){
 		IM._login($("#doctorCode").val(),"");
 		$("#callerId").val(rowInfo.vip_code);
 		curId = rowInfo.id;
-		ajaxLoading("正在连接,请稍等...");
+		ajaxLoading("Connecting,One moment please...");
 		IM.DO_inviteCall(1);
 	}
 }
 
 function denyDiagnoseFunc(obj,qId){
-	$.messager.confirm('确认','是否确认拒绝此次预约？',function(del){  
+	$.messager.confirm('confirm','Confirm to refuse appointment？',function(del){  
 		$.post("diagnose/videoDiagnoseOper.json",{id:qId,flag:"D"},function(data){
 			if(!data.result == "success"){
-				$.messager.alert("提示", data.info);
+				$.messager.alert("Prompt", data.info);
 			}else{
 				$("#diagnose_search").click();
 			}
@@ -142,30 +142,30 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'vip_name',title:'会员名称',width:100},
-				{field:'hospital_name',title:'医院名称',width:100},	
-				{field:'office_name',title:'科室名称',width:100},	
-				{field:'doctor_name',title:'医生名称',width:100},
-				{field:'order_time',title:'预约时间',width:100},	
-				{field:'remark',title:'内容',width:100},		
-				{field:'isdeal',title:'处理状态',width:100,
+				{field:'vip_name',title:'Member name',width:100},
+				{field:'hospital_name',title:'Hospital name',width:100},	
+				{field:'office_name',title:'Department name',width:100},	
+				{field:'doctor_name',title:'Doctor name',width:100},
+				{field:'order_time',title:'Appointment time',width:100},	
+				{field:'remark',title:'content',width:100},		
+				{field:'isdeal',title:'Processing status',width:100,
 					formatter : function (value) {
 						if(value=="1")
 						{
-							return "已处理";
+							return "Processed";
 						}else if(value=="2")
 						{
-							return "已拒绝";
+							return "Refused";
 						}
-						return "未处理";
+						return "Untreated";
 					}
 				},	
-				{field:'id',title:'操作',width:85,
+				{field:'id',title:'Operation',width:85,
 						formatter:function(value,row){
 							if(row.isdeal == "1" || row.isdeal == "2") {
-								return '<a href="javascript:void(0)" style="color:#cccccc;text-decoration:none">发起视频</a>&nbsp;&nbsp;<a href="javascript:showDiagnoseDetail('+value+')">查看</a>';
+								return '<a href="javascript:void(0)" style="color:#cccccc;text-decoration:none">Video Call</a>&nbsp;&nbsp;<a href="javascript:showDiagnoseDetail('+value+')">See</a>';
 							} else {
-								return '<a href="javascript:diagnoseFunc(this,'+value+')">发起视频</a>&nbsp;&nbsp;<a href="javascript:denyDiagnoseFunc(this,'+value+')">拒绝视频</a>&nbsp;&nbsp;<a href="javascript:showDiagnoseDetail('+value+')">查看</a>';	
+								return '<a href="javascript:diagnoseFunc(this,'+value+')">Video Call</a>&nbsp;&nbsp;<a href="javascript:denyDiagnoseFunc(this,'+value+')">Refuse video chat</a>&nbsp;&nbsp;<a href="javascript:showDiagnoseDetail('+value+')">See</a>';	
 							}
 						}
 				}
@@ -222,7 +222,7 @@ function showDiagnoseDetail(qId){
 function startVideoDiagnose(){
 	$.post("diagnose/videoDiagnoseOper.json",{id:curId,flag:"S"},function(data){
 		if(!data.result == "success"){
-			$.messager.alert("提示", data.info);
+			$.messager.alert("Prompt", data.info);
 		}
 	},"json");
 }
@@ -230,14 +230,13 @@ function startVideoDiagnose(){
 function finishVideoDiagnose(){
 	$.post("diagnose/videoDiagnoseOper.json",{id:curId,flag:"E"},function(data){
 		if(!data.result == "success"){
-			$.messager.alert("提示", data.info);
+			$.messager.alert("Prompt", data.info);
 		}else{
 			IM.EV_logout();
 			$("#diagnose_search").click();
 		}
 	},"json");
 }
-
 
 
 

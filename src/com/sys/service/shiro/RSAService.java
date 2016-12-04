@@ -17,14 +17,14 @@ import org.springframework.util.Assert;
 import com.sys.util.RSAUtils;
 
 /**
- * Service - RSA安全
+ * Service - RSAsecurity
  * 
  * @version 3.0
  */
 @Service
 public class RSAService{
 
-	/** "私钥"参数名称 */
+	/** "private key"Parameter name */
 	private static final String PRIVATE_KEY_ATTRIBUTE_NAME = "privateKey";
 
 	@Transactional(readOnly = true)

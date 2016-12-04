@@ -5,7 +5,7 @@ $(function() {
 	
 	$('#hospital_add').click(function(){
 		add = true;
-		openDialog2('添加医院','hospital/add.html','900','500');
+		openDialog2('Add hospital','hospital/add.html','900','500');
 	});
 	//条件查询
 	$("#auth_search").click(function(){
@@ -25,24 +25,24 @@ $(function() {
 //修改
 function openedit(id){
 	add = false;
-	openDialog2('编辑医院','hospital/edit.html?id='+id,'900','500');
+	openDialog2('Edit hospital','hospital/edit.html?id='+id,'900','500');
 }
 
-function del(id){  //删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){  
+function del(id){  //Delete operation  
+    $.messager.confirm('confirm','confirm deletion?',function(row){  
         if(row){  
             $.ajax({  
                 url:'hospital/del.json?hospital_code='+id,    
                 success:function(data){
                 	if(data.code==1) {
-                		 $.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+                		 $.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
          				dataGridload(parameter);
                 	}else{
                 		 $.messager.alert(titleInfo,data.msg);
                 	}
                 } ,
                 fail:function(){
-                	$.messager.alert(titleInfo,'删除失败！');
+                	$.messager.alert(titleInfo,'Delete failed！');
                 }
             });  
         }  
@@ -50,7 +50,7 @@ function del(id){  //删除操作
   }  
 
 /**
- * 数据表格刷新
+ * Data table refresh
  * @param param
  */
 function dataGridload(param){
@@ -60,7 +60,6 @@ function dataGridload(param){
 //管理用户
 function adduser(code){
 	add = false;
-	openDialog2('设置管理员','hospital/adduser.html?hospital_code='+code,'900','500');
+	openDialog2('Set administrator','hospital/adduser.html?hospital_code='+code,'900','500');
 }
-
 

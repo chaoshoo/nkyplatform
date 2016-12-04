@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -31,18 +31,18 @@
 
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'查询'" class="regionCenter">
+	<div data-options="region:'center',title:'query'" class="regionCenter">
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="goods/tail/detail.json" id="query_form" name="query_form">		
-			开始时间：
+			start time：
             <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="beginTime" /> 
-            &nbsp;&nbsp;&nbsp;&nbsp;结束时间：
+            &nbsp;&nbsp;&nbsp;&nbsp;End time：
             <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width: 200px;" name="endTime" id="endTime" />
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
 		 </form>
 		</div>
 		<table id="base_table"></table>
@@ -56,7 +56,7 @@ $(function() {
 	initDataGrid();
 });
 /**
- * 初始化数据表格
+ * Initialize data form
  */
 function initDataGrid(){
 	$('#base_table').datagrid({
@@ -74,9 +74,9 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'CODE',title:'代码',width:100},
-		    {field:'NAME',title:'名称',width:100},
-		    {field:'VALUE',title:'性别',width:100}
+		    {field:'CODE',title:'Code',width:100},
+		    {field:'NAME',title:'Name',width:100},
+		    {field:'VALUE',title:'Gender',width:100}
 		]],
 		pagination:true,
 		rownumbers:true,

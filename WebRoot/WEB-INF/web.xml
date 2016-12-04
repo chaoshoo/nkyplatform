@@ -3,7 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="mod_baby_admin" version="2.5">
-	<display-name>nky平台</display-name>
+	<display-name>nkyplatform</display-name>
 	
 	<filter>
 		<filter-name>jfinal</filter-name>
@@ -89,7 +89,7 @@
 	</welcome-file-list>
 
 	<session-config>
-		<!-- 配置session的超时管理,以分钟为单位 -->
+		<!-- To configuresessionTimeout management,Take minutes as a unit -->
 		<session-timeout>480</session-timeout>
 	</session-config>
 	

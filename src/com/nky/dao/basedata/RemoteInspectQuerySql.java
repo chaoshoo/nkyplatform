@@ -3,9 +3,9 @@ package com.nky.dao.basedata;
 import com.sys.jfinal.JdbcSql;
 
 /**
- * 远程咨询查询.
+ * Remote consultation.
  * @author Ken
- * @version 2016年9月7日
+ * @version 2016year9month7day
  */
 public class RemoteInspectQuerySql extends JdbcSql {
 

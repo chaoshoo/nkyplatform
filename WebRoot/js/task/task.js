@@ -36,7 +36,7 @@ $(function() {
 	//初始化弹出框
 	$('#question_detail_dialog').dialog({
 		buttons:[{
-			text:'提  交',
+			text:'carry  hand over',
 			handler:function(){
 				var saFlag = saveAnser();
 				if(saFlag == '1') 
@@ -47,7 +47,7 @@ $(function() {
 				}					
 			}
 		},{
-			text:'关  闭',
+			text:'shut down  close',
 			handler:function(){
 				$('#question_detail_dialog').dialog('close');
 			}
@@ -152,16 +152,16 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'vip_name',title:'会员名称',width:100},
-				{field:'hospital_name',title:'医院名称',width:100},	
-				{field:'office_name',title:'科室名称',width:100},	
-				{field:'doctor_name',title:'医生名称',width:100},
-				{field:'title',title:'标题',width:100},
-				{field:'content',title:'内容',hidden:true},
-				{field:'create_time',title:'创建时间',width:100},				
-				{field:'id',title:'操作',width:85,
+				{field:'vip_name',title:'Member name',width:100},
+				{field:'hospital_name',title:'Hospital name',width:100},	
+				{field:'office_name',title:'Department name',width:100},	
+				{field:'doctor_name',title:'Doctor name',width:100},
+				{field:'title',title:'Title',width:100},
+				{field:'content',title:'content',hidden:true},
+				{field:'create_time',title:'Created time',width:100},				
+				{field:'id',title:'Operation',width:85,
 						formatter:function(value){
-							return '<a href="javascript:showQuesDetail('+value+')">查看</a>';
+							return '<a href="javascript:showQuesDetail('+value+')">See</a>';
 						}
 				}
 		]],
@@ -186,7 +186,6 @@ function initDataGrid(){
 	//$("#visit_table").datagrid('hideColumn', 'createTime');
 	//$("#visit_table").datagrid('showColumn', 'vipId');
 }
-
 
 
 

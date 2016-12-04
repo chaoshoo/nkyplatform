@@ -103,10 +103,10 @@ public class DeviceController extends BaseAction {
 			Object doctor = param.get("LIKE-doctor");
 			if (param.get("EQ-status").equals("1")) {
 				//已关联
-				sql = "select d.id,d.name,h.name as hospitalname,'已关联' as status from device_doctor dd,doctor d ,hospital h where dd.doctorid = d.id  and d.hospital_code=h.code and dd.deviceid = "
+				sql = "select d.id,d.name,h.name as hospitalname,'Connected' as status from device_doctor dd,doctor d ,hospital h where dd.doctorid = d.id  and d.hospital_code=h.code and dd.deviceid = "
 				      + id;
 			} else {
-				sql = "select d.id,d.name,h.name as hospitalname,'未关联' as status  from doctor d ,hospital h where d.hospital_code=h.code and d.id not in (select doctorid from device_doctor where deviceid = "
+				sql = "select d.id,d.name,h.name as hospitalname,'Not related' as status  from doctor d ,hospital h where d.hospital_code=h.code and d.id not in (select doctorid from device_doctor where deviceid = "
 				      + id + ")";
 			}
 			if (doctor != null && StringUtils.isNotEmpty(doctor.toString())) {
@@ -115,7 +115,7 @@ public class DeviceController extends BaseAction {
 			scriptPage = JFinalDb.findPage(ajaxPage.getPageNo(), ajaxPage.getPageSize(), sql, new HashMap<String, Object>(), null);
 		} catch (Exception e) {
 			scriptPage = null;
-			LOG.error("查询Docter和设备的关联关系失败.", e);
+			LOG.error("queryDocterFailure in relation to device.", e);
 		}
 		if (scriptPage == null) {
 			scriptPage = new ScriptPage();
@@ -169,11 +169,11 @@ public class DeviceController extends BaseAction {
 		Record record = Db.findFirst("select * from device where sn=?", entity.getSn());
 		if (record != null && StringUtils.isEmpty(entity.getDevice_id())) {
 			d.setCode(0);
-			d.setMsg("此SN号已经存在，保存失败");
+			d.setMsg("thisSNNumber already exists，Save failed");
 			return d;
 		} else if (record != null && !record.getStr("device_id").equals(entity.getDevice_id())) {
 			d.setCode(0);
-			d.setMsg("此SN号已经存在，修改失败");
+			d.setMsg("thisSNNumber already exists，Change failed");
 			return d;
 		}
 		try {
@@ -194,14 +194,14 @@ public class DeviceController extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("保存失败，请联系系统管理员");
+		d.setMsg("Save failed，Please contact system administrator");
 		return d;
 	}
 
 	@RequestMapping(value = "/del")
 	@ResponseBody
 	public Data del(HttpServletRequest request, final Long id) {
-		Data d = new Data();//删除设备的同时，删除设备和医生的关联关系.
+		Data d = new Data();//Delete the device at the same time，The relationship between the device and the doctor.
 		boolean flag = Db.tx(new IAtom() {
 			
 			public boolean run()

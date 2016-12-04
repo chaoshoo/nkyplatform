@@ -5,9 +5,9 @@ import java.util.Date;
 import com.sys.jfinal.JFinalEntity;
 
 /**
- * 客户咨询主题 vip_questions.
+ * Customer consultation theme vip_questions.
  * @author Ken
- * @version 2016年9月8日 下午1:35:30
+ * @version 2016year9month8day Afternoon1:35:30
  */
 public class VipQuestionsQueryEntity extends JFinalEntity {
 

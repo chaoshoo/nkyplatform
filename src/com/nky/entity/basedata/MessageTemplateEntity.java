@@ -9,9 +9,9 @@ import com.sys.jfinal.TableBind;
 import com.sys.util.Reflections;
 
 /**
- * message 模板.
+ * message Template.
  * @author Ken
- * @version 2016年9月8日 下午9:39:58
+ * @version 2016year9month8day Afternoon9:39:58
  */
 @TableBind(name = "message_template")
 public class MessageTemplateEntity extends JFinalEntity {

@@ -6,13 +6,13 @@ import com.sys.entity.auth.Dic;
 
 public interface DicDao {
 	/**
-	 * 根据类型获取dic
+	 * According to the type of accessdic
 	 * @param dicType
 	 * @return
 	 */
 	public List<Dic> getDic(String dicType);
 	/**
-	 * 获取所有的dic
+	 * Get alldic
 	 * @return
 	 */
 	public List<Dic> getDicList(Integer id);

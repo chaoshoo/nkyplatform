@@ -13,7 +13,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=path%>/css/all.css" />
 <link rel="stylesheet" href="<%=path%>/css/jquery/easyui.css" />
@@ -25,31 +25,31 @@
 <script type="text/javascript" src="<%=path%>/js/device/device.js?v=20160824"></script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'设备查询'" class="regionCenter">
+	<div data-options="region:'center',title:'Device query'" class="regionCenter">
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="goods/tail/detail.json" id="query_form">		
-			设备SN&nbsp;&nbsp;<input
+			equipmentSN&nbsp;&nbsp;<input
 				type="text" id="FIT-LIKE-sn" name="FIT-LIKE-sn"/> &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
 		 </form>
 		</div>
 		<table id="base_table"></table>
         <div id="editfrom_dialog"></div>
 	</div>
 	
-	<div id="device_doctor_id" data-options="closed:true,modal:true,title:'设备关联医生'" style="padding: 5px; width: 880px; height: 500px;">
-				&nbsp;设备：<span id="deviceSnDiv"></span>
-				&nbsp;是否已关联设备：<select id="deviceSnStatus" name="deviceSnStatus">
-			      <option value="1">已关联</option> 
-			      <option value="0">未关联</option> 
+	<div id="device_doctor_id" data-options="closed:true,modal:true,title:'Device associated doctor'" style="padding: 5px; width: 880px; height: 500px;">
+				&nbsp;equipment：<span id="deviceSnDiv"></span>
+				&nbsp;Whether it has been associated with the device：<select id="deviceSnStatus" name="deviceSnStatus">
+			      <option value="1">Connected</option> 
+			      <option value="0">Not related</option> 
 				</select> 
-				医生：<input type="text" id="FIT-LIKE-doctor" name="FIT-LIKE-doctor"/>  
-				<button type="button" id="auth_search" onclick="dataGridReload()"  class="btn btn-success  "><i class="icon-search"></i>&nbsp;查询</button>
+				Doctor：<input type="text" id="FIT-LIKE-doctor" name="FIT-LIKE-doctor"/>  
+				<button type="button" id="auth_search" onclick="dataGridReload()"  class="btn btn-success  "><i class="icon-search"></i>&nbsp;query</button>
 				
 			<div style="padding: 5px; width: 830px; height: 350px;">
 				<table id="device_doctor_table" style="width: 90%"></table>
@@ -66,7 +66,7 @@ $(function() {
 //初始化弹出框
 $('#device_doctor_id').dialog({
 	buttons:[ {
-		text:'关闭',
+		text:'Close',
 		handler:function(){
 			$('#device_doctor_id').dialog('close');
 		}
@@ -81,22 +81,22 @@ function getparam(){
 
 function bind(doctorId,deviceId){
 	//console.log("bind:"+doctorId+","+deviceId);
-	var str = "确定绑定？";
-    $.messager.confirm('确认',str,function(row){  
+	var str = "Confirm Bind？";
+    $.messager.confirm('confirm',str,function(row){  
         if(row){  
             $.ajax({  
             	 type:"POST",
                 url:'device/docbind.json?doctorId='+doctorId+"&deviceId="+deviceId,    
                 success:function(data){
                 	if(data.code==1) {
-                		 $.messager.show({title:titleInfo,msg:'绑定成功！',timeout:timeoutValue,showType:'slide'});
+                		 $.messager.show({title:titleInfo,msg:'Bind successfully！',timeout:timeoutValue,showType:'slide'});
          				 dataGridReload();
                 	}else{
                 		 $.messager.alert(titleInfo,data.msg);
                 	}
                 } ,
                 fail:function(){
-                	$.messager.alert(titleInfo,'绑定失败！');
+                	$.messager.alert(titleInfo,'Bind failed！');
                 }
             });  
         }  
@@ -105,22 +105,22 @@ function bind(doctorId,deviceId){
 
 function unbind(doctorId,deviceId){
 	//console.log("unbind:"+doctorId+","+deviceId);
-	var str = "确定解绑？";
-    $.messager.confirm('确认',str,function(row){  
+	var str = "Confirm Unbind？";
+    $.messager.confirm('confirm',str,function(row){  
         if(row){  
             $.ajax({  
             	 type:"POST",
                 url:'device/docunbind.json?doctorId='+doctorId+"&deviceId="+deviceId,    
                 success:function(data){
                 	if(data.code==1) {
-                		 $.messager.show({title:titleInfo,msg:'解绑成功！',timeout:timeoutValue,showType:'slide'});
+                		 $.messager.show({title:titleInfo,msg:'Tie success！',timeout:timeoutValue,showType:'slide'});
          				 dataGridReload();
                 	}else{
                 		 $.messager.alert(titleInfo,data.msg);
                 	}
                 } ,
                 fail:function(){
-                	$.messager.alert(titleInfo,'解绑失败！');
+                	$.messager.alert(titleInfo,'Bind failure！');
                 }
             });  
         }  
@@ -128,7 +128,7 @@ function unbind(doctorId,deviceId){
 }
 
 /**
- * 数据表格刷新
+ * Data table refresh
  * @param param
  */
 function dataGridReload(){
@@ -147,18 +147,18 @@ function initGridDoctor(){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...', 
+        loadMsg: 'One moment please...', 
 		idField:'ID',
 		columns:[[
-			{field:'NAME',title:'医生',width:100}
-			,{field:'HOSPITALNAME',title:'医院',width:100}
-			,{field:'STATUS',title:'状态',width:100},
-			{field:'ID',title:'操作',width:120,
+			{field:'NAME',title:'Doctor',width:100}
+			,{field:'HOSPITALNAME',title:'Hospital',width:100}
+			,{field:'STATUS',title:'state',width:100},
+			{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){
-					if(row.STATUS == "已关联"){
-						return  '<a href="javascript:unbind('+value+','+deviceidt+')">解除关联</a> &nbsp;';
-					}else if(row.STATUS == "未关联"){
-						return  '<a href="javascript:bind('+value+','+deviceidt+')">关联设备</a> &nbsp;';
+					if(row.STATUS == "Connected"){
+						return  '<a href="javascript:unbind('+value+','+deviceidt+')">Release Association</a> &nbsp;';
+					}else if(row.STATUS == "Not related"){
+						return  '<a href="javascript:bind('+value+','+deviceidt+')">Related equipment</a> &nbsp;';
 					}
 					return "";
 
@@ -187,10 +187,10 @@ function doctor(idt,sn){
 
 function formatterDateTime2(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : "0"
                     + (date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date
                     .getDate())
             + " "
@@ -206,7 +206,7 @@ function formatterDateTime2(date) {
 }
 
 /**
- * 初始化数据表格
+ * Initialize data form
  */
 function initDataGrid(){
 	var parameter = $.serializeObject($("#query_form"));
@@ -225,10 +225,10 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'DEVICE_ID',title:'设备ID',width:100},
-		    {field:'SN',title:'设备SN',width:100},
-		    {field:'DEVICE_TYPESTR',title:'设备类型',width:100},
-		    {field:'PRODUCT_TIME',title:'生产时间',width:100,
+		    {field:'DEVICE_ID',title:'equipmentID',width:100},
+		    {field:'SN',title:'equipmentSN',width:100},
+		    {field:'DEVICE_TYPESTR',title:'Equipment type',width:100},
+		    {field:'PRODUCT_TIME',title:'Production time',width:100,
 		    	formatter : function(value) {
 					if(value == null || value == ""){
 						return "";
@@ -237,7 +237,7 @@ function initDataGrid(){
 					return myformatter(date);
 				}
 		    },
-		    {field:'DELIVER_TIME',title:'发货时间',width:100,
+		    {field:'DELIVER_TIME',title:'Delivery time',width:100,
 		    	formatter : function(value) {
 					if(value == null || value == ""){
 						return "";
@@ -246,11 +246,11 @@ function initDataGrid(){
 					return formatterDateTime2(date);
 				}
 		    },
-			{field:'ID',title:'操作',width:120,
+			{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){
-					var str = '<a href="javascript:openedit(\'false\','+value+')">修改</a> &nbsp;';
-					str +=' &nbsp;<a  href="javascript:del('+value+')" ><font color="red">删除</font></a> &nbsp;';
-					str +=' &nbsp;<a  href="javascript:doctor('+value+',\''+row.SN+'\')" ><font color="red">关联医生</font></a>';
+					var str = '<a href="javascript:openedit(\'false\','+value+')">modify</a> &nbsp;';
+					str +=' &nbsp;<a  href="javascript:del('+value+')" ><font color="red">delete</font></a> &nbsp;';
+					str +=' &nbsp;<a  href="javascript:doctor('+value+',\''+row.SN+'\')" ><font color="red">Associate doctor</font></a>';
 					return str;
 
 				}

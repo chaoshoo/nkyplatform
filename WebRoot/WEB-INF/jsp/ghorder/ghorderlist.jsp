@@ -6,7 +6,7 @@
 <%@include file="/head.jsp"%>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>挂号管理</title>
+<title>Registered management</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -21,30 +21,30 @@
 </style>
 </head>
 <body class="easyui-layout" onkeydown="IM.EV_keyCode(event)">
-  <div data-options="region:'center',title:'挂号管理'" class="regionCenter">
+  <div data-options="region:'center',title:'Registered management'" class="regionCenter">
     <div id="common_search" class="common_search common_search_nopadding">       
      <form action="" id="ques_qry_form">
 		<table id="dataTable">
 		    <tr>
-	            <td>医&nbsp;&nbsp;院</td>
+	            <td>medicine&nbsp;&nbsp;courtyard</td>
 	            <td> <input style="width: 200px;"  type ="text" id="hospitalname" name="hospitalname"/>					    
 	  			</td>
-	            <td>科&nbsp;&nbsp;室</td>
+	            <td>section&nbsp;&nbsp;room</td>
 	            <td><input style="width: 200px;"  id="office_code" name="departmentname"/> </td>
-	            <td>医生名称</td>
+	            <td>Doctor name</td>
 	            <td> <input type="text" id="doctor_name"  style="width: 200px;" /></td>
 			</tr>
 			  <tr>
-	            <td>会员名称</td>
+	            <td>Member name</td>
 	            <td><input type="text" id="vip_name"  style="width: 200px;"/></td>
-	            <td>创建时间</td>
+	            <td>Created time</td>
 	            <td colspan='3'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
-                至 <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" /></td>
+                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" /></td>
 			</tr>
 		</table> 
 	 </form> 
       <button type="button" id="diagnose_search" class="btn btn-success btn-success-small">
-        	查&nbsp;询
+        	check&nbsp;Inquiry
       </button>   
     </div>
     <table id="diagnose_table"></table>

@@ -3,9 +3,9 @@ package com.nky.dao.basedata;
 import com.sys.jfinal.JdbcSql;
 
 /**
- * 科室查询
+ * Department inquiry
  * @author Ken
- * @version 2016年8月25日
+ * @version 2016year8month25day
  */
 public class OfficeSql extends JdbcSql {
 	

@@ -22,7 +22,7 @@ import net.sf.json.util.CycleDetectionStrategy;
 public class JsonUtil {
 	
 	/**
-     * 从一个JSON 对象字符格式中得到一个java对象
+     * From oneJSON Object character format to get ajavaobject
      * @param jsonString
      * @param pojoCalss
      * @return
@@ -34,7 +34,7 @@ public class JsonUtil {
         return pojo;
     }
     /**
-     * 从json HASH表达式中获取一个map，改map支持嵌套功能
+     * fromjson HASHObtain an expression in themap，changemapSupport nested functions
      * @param jsonString
      * @return
      */
@@ -57,7 +57,7 @@ public class JsonUtil {
     
     
     /**
-     * 从json数组中得到相应java数组
+     * fromjsonArray to get the correspondingjavaarray
      * @param jsonString
      * @return
      */
@@ -69,7 +69,7 @@ public class JsonUtil {
     
     
     /**
-     * 从json对象集合表达式中得到一个java对象列表
+     * fromjsonObject set expression to get ajavaObject list
      * @param jsonString
      * @param pojoClass
      * @return
@@ -93,7 +93,7 @@ public class JsonUtil {
     }
     
     /**
-     * 从json数组中解析出java字符串数组
+     * fromjsonArray analysisjavaString array
      * @param jsonString
      * @return
      */
@@ -110,7 +110,7 @@ public class JsonUtil {
     }
     
     /**
-     * 从json数组中解析出javaLong型对象数组
+     * fromjsonArray analysisjavaLongType object array
      * @param jsonString
      * @return
      */
@@ -126,7 +126,7 @@ public class JsonUtil {
     }
     
     /**
-     * 从json数组中解析出java Integer型对象数组
+     * fromjsonArray analysisjava IntegerType object array
      * @param jsonString
      * @return
      */
@@ -142,7 +142,7 @@ public class JsonUtil {
     }
     
     /**
-     * 从json数组中解析出java Date 型对象数组，使用本方法必须保证
+     * fromjsonArray analysisjava Date Type object array，The use of this method must be guaranteed
      * @param jsonString
      * @return
      */
@@ -163,7 +163,7 @@ public class JsonUtil {
     }
     
     /**
-     * 从json数组中解析出java Integer型对象数组
+     * fromjsonArray analysisjava IntegerType object array
      * @param jsonString
      * @return
      */
@@ -180,7 +180,7 @@ public class JsonUtil {
     
     
     /**
-     * 将java对象转换成json字符串
+     * takejavaConvert objectjsonCharacter string
      * @param javaObj
      * @return
      */
@@ -196,7 +196,7 @@ public class JsonUtil {
     
     
     /**
-     * 将java对象转换成json字符串,并设定日期格式
+     * takejavaConvert objectjsonCharacter string,And set date format
      * @param javaObj
      * @param dataFormat
      * @return
@@ -221,7 +221,7 @@ public class JsonUtil {
     }
     
     /**
-     * JSON 时间解析器具
+     * JSON Time resolution tool
      * @param datePattern
      * @return
      */
@@ -255,7 +255,7 @@ public class JsonUtil {
         }
     
    /**
-    * 将JSONObject 转换为   Map
+    * takeJSONObject Convert to   Map
     * @param json
     * @return
     * @author yuanhuaihao
@@ -279,7 +279,7 @@ public class JsonUtil {
 	
 	
 	/**
-	 * 将JSONArray 转换为 List
+	 * takeJSONArray Convert to List
 	 * @param json
 	 * @return
 	 * @author yuanhuaihao
@@ -300,7 +300,7 @@ public class JsonUtil {
 	}
 	
 	/**
-	 * List 转化为JSONArray
+	 * List translate intoJSONArray
 	 * @param list
 	 * @return
 	 * @author yuanhuaihao
@@ -312,7 +312,7 @@ public class JsonUtil {
 	}
 	
 	/**
-	 * Map 转化为JSONObject
+	 * Map translate intoJSONObject
 	 * @param map
 	 * @return
 	 * @author yuanhuaihao
@@ -324,8 +324,8 @@ public class JsonUtil {
 	}
 	
 	/**
-	 * 根据json字符串将type键的值转换为list
-	 * 前提是：type键的值可以转换为jsonarray
+	 * according tojsonString willtypeThe value of the key is converted tolist
+	 * Premise is：typeThe value of the key can be converted tojsonarray
 	 * @param json
 	 * @param type
 	 * @return
@@ -398,7 +398,7 @@ public class JsonUtil {
 	}
 	
 	/**
-	 * 如果有一个参数取值为空 则判断判断缺失
+	 * If there is a parameter value is null Lack of judgment
 	 */
 	public static boolean checkKey(JSONObject obj, String... keys) {
 		for (int i = 0; i < keys.length; i++) {
@@ -410,7 +410,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * 取字符串参数的值，不存在则返回为空
+	 * The value of the string parameter，Does not exist then return to empty
 	 */
 	public static String getString(JSONObject jObj, String key) {
 		if (jObj == null || !checkKey(jObj, key))
@@ -422,7 +422,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * 如果有一个参数取值为空 则判断判断缺失
+	 * If there is a parameter value is null Lack of judgment
 	 */
 	public static boolean checkKey(Record record, String... keys) {
 		for (int i = 0; i < keys.length; i++) {
@@ -434,7 +434,7 @@ public class JsonUtil {
 	}
 
 	/**
-	 * 取字符串参数的值，不存在则返回为空
+	 * The value of the string parameter，Does not exist then return to empty
 	 */
 	public static String getString(Record record, String key) {
 		if (record == null || !checkKey(record, key))

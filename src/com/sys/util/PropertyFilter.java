@@ -34,7 +34,7 @@ public class PropertyFilter {
 	  public PropertyFilter(String filterName, String value)
 	  {
 	    if (!StringUtil.regMatch(filterName, "^\\w+_\\w+$")) {
-	      throw new IllegalArgumentException("filter名称" + filterName + "没有按规则编写");
+	      throw new IllegalArgumentException("filterName" + filterName + "Not prepared in accordance with the rules");
 	    }
 
 	    String firstPart = StringUtils.substringBefore(filterName, "_");
@@ -44,17 +44,17 @@ public class PropertyFilter {
 	    {
 	      this.matchType = ((MatchType)Enum.valueOf(MatchType.class, matchTypeCode));
 	    } catch (RuntimeException e) {
-	      throw new IllegalArgumentException("filter名称" + filterName + "没有按规则编写,无法得到属性比较类型.", e);
+	      throw new IllegalArgumentException("filterName" + filterName + "Not prepared in accordance with the rules,Can`t get attribute comparison type.", e);
 	    }
 	    try
 	    {
 	      this.propertyClass = ((PropertyType)Enum.valueOf(PropertyType.class, propertyTypeCode)).getValue();
 	    } catch (RuntimeException e) {
-	      throw new IllegalArgumentException("filter名称" + filterName + "没有按规则编写,无法得到属性值类型.", e);
+	      throw new IllegalArgumentException("filterName" + filterName + "Not prepared in accordance with the rules,Property value type cannot be obtained.", e);
 	    }
 
 	    String propertyNameStr = StringUtils.substringAfter(filterName, "_");
-	    Assert.isTrue(StringUtils.isNotBlank(propertyNameStr), "filter名称" + filterName + "没有按规则编写,无法得到属性名称.");
+	    Assert.isTrue(StringUtils.isNotBlank(propertyNameStr), "filterName" + filterName + "Not prepared in accordance with the rules,Property name cannot be obtained.");
 	    this.propertyNames = StringUtils.splitByWholeSeparator(propertyNameStr, "_OR_");
 	    try {
 		    this.matchValue = StringUtil.convertStringToObject(value, this.propertyClass);

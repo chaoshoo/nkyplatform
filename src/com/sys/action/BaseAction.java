@@ -21,9 +21,9 @@ import com.sys.jfinal.JFinalEntity;
 import com.sys.util.Reflections;
 
 /**
- * 基础action 写一些公用方法
+ * Basicsaction Write some common methods
  * @author shiwc
- * @date 2016年2月5日
+ * @date 2016year2month5day
  */
 public class BaseAction {
 	

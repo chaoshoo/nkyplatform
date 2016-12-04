@@ -18,18 +18,18 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.sys.util.ServiceConstants;
 
 /**   
- * @Description 文件上传控制器
+ * @Description File upload controller
  * @author shiwc   
- * @date 2016年3月9日 下午22:24:32
+ * @date 2016year3month9day Afternoon22:24:32
  */
 
 @Controller
 public class FileUploadAction {
 	static Logger LOG = LoggerFactory.getLogger(FileUploadAction.class);
 	/**
-	 * 图片上传
+	 * Picture upload
 	 * 
-	 * @param picture  图片base64数据
+	 * @param picture  picturebase64data
 	 * @return
 	 */
 	@RequestMapping(value = {"/sys/file/webuploader","/pub/file/webuploader"}, method = {RequestMethod.POST, RequestMethod.GET}, headers = {"content-type=application/json"})
@@ -60,7 +60,7 @@ public class FileUploadAction {
 			}
 			if(filename.length() < 1){
 				upload.setSuccess(false);
-				upload.setMsg("上传失败，文件为空");
+				upload.setMsg("Upload failed，File is empty");
 			}else{
 				upload.setSuccess(true);
 				upload.setFileUrl(filename.substring(1));

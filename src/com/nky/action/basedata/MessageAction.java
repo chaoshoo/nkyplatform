@@ -14,9 +14,9 @@ import com.sys.entity.bo.ScriptPage;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * 消息管理.
+ * Message management.
  * @author Ken
- * @version 2016年8月30日
+ * @version 2016year8month30day
  */
 @Controller
 @RequestMapping(value = "/message")
@@ -28,7 +28,7 @@ public class MessageAction extends BaseAction {
 	}
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
@@ -40,7 +40,7 @@ public class MessageAction extends BaseAction {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "message_list", param,
 					" create_time desc ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;

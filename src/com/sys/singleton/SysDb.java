@@ -66,7 +66,7 @@ public class SysDb {
 	}
 
 	
-	/**取得List(SysSequence)列表，从ioid_sequence_t表取数据*/
+	/**ObtainList(SysSequence)list，fromioid_sequence_tTable data*/
 	private SysSequence getSequence(Object[] params) {
 		SequenceSqlQuery sql = new SequenceSqlQuery();
 		List list = sql.execute(params);
@@ -76,7 +76,7 @@ public class SysDb {
 		return null;
 	}
 
-	/**根据SQL更新一个数据列表，并返回更新的行数*/
+	/**according toSQLUpdate a list of data，And returns the number of rows updated*/
 	private int updateSequence(Object[] params) {
 		SequenceSqlUpdate sql = new SequenceSqlUpdate();
 		return sql.update(params);
@@ -124,11 +124,11 @@ public class SysDb {
 		}
 	}
 
-	/**在事务中存取序列号
+	/**Access sequence number in transaction
 	 * @throws Exception */
 	public SysSequence getSequence(String seqName) throws Exception {
 		if (seqName == null || seqName.length() <= 0) {
-			throw new Exception("seqName不能为空");
+			throw new Exception("seqNameCan not be empty");
 		}
 		//在事务中存取序列号
 		SysSequence po = doInTransaction(seqName.toUpperCase(),new Object[] {seqName});
@@ -221,4 +221,3 @@ public class SysDb {
 //		}
 //	}
 }
-

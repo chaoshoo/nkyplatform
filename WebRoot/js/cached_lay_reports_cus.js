@@ -1088,25 +1088,25 @@ function _track_userEvent(categories,actions,value){
 };
 function _track_components_usage(){
     try{
-        var filter_label = (global.filter.version === '' ? '' : '版本 ') + (global.filter.channel === '' ? '' : '渠道 ') + (global.filter.segment === '' ? '' : '用户群');
+        var filter_label = (global.filter.version === '' ? '' : 'Version ') + (global.filter.channel === '' ? '' : 'channel ') + (global.filter.segment === '' ? '' : 'User group');
         var date_length = $.GetDate(global.pickedStartDay, global.pickedEndDay);
         if( window._gat != undefined){
             if( filter_label != '' ){
-                _gaq.push(['_trackEvent','组件', '过滤器', filter_label] );
+                _gaq.push(['_trackEvent','add-on', 'Filter', filter_label] );
             }
-            _gaq.push(['_trackEvent','组件', '时间选择', '天数', date_length] );
+            _gaq.push(['_trackEvent','add-on', 'Time selection', 'Number of days', date_length] );
         }
 
     }catch(e){}
 };
 function _track_nav_bar(category, label){
     try{
-        _gaq.push(['_trackEvent','导航', category, label]);
+        _gaq.push(['_trackEvent','Navigation', category, label]);
     }catch(e){}
 };
 function _track_tab(category, label){
     try{
-        _gaq.push(['_trackEvent','导航', category, label]);
+        _gaq.push(['_trackEvent','Navigation', category, label]);
     }catch(e){}
 };
 
@@ -1153,13 +1153,13 @@ function getHoliday(date,options){
     var tooltip = '';
     var map = {
         zh: {
-            0: '星期日',
-            1: '星期一',
-            2: '星期二',
-            3: '星期三',
-            4: '星期四',
-            5: '星期五',
-            6: '星期六'
+            0: 'Sunday',
+            1: 'Monday',
+            2: 'Tuesday',
+            3: 'Wednesday',
+            4: 'Thursday',
+            5: 'Friday',
+            6: 'Saturday'
         },
         en: {
             0: 'Sunday',
@@ -1542,8 +1542,8 @@ $.fn.Filter = function(options){
         inputval: ['-60','-30','-7'],
         custom: true,
         callback: '',
-        minDate: null, // add by chenjincai 我的产品-->应用趋势选择控件有用，禁止选择8.1, 之前的日期，传递的是Date Object, 然后传给datepicker使用
-        maxDate: +0 // add by chenjincai 仅支持数字，用于设置最大可以选择的日期
+        minDate: null, // add by chenjincai My product-->Application trend selection control useful，Forbidden option8.1, Prior to the date，Pass isDate Object, Then pass it ondatepickerUse
+        maxDate: +0 // add by chenjincai Only support numbers，Used to set the date you can choose
       };
 
       if (options) {
@@ -1603,10 +1603,10 @@ $.fn.Filter = function(options){
                 window.global.pickedEndDay = days[1];
                 window.global.pickedDays = Math.abs(n);
 
-                var label = window.global.pickedDays + '天';
+                var label = window.global.pickedDays + 'day';
                 $t.set.callback(days,window.global.pickedDays);
 
-                _track_userEvent('新功能监测_时间选择控件', '点击', label);
+                _track_userEvent('New function monitoring_Time select control', 'click', label);
                 var pd = $("#pd").val();
                 if(pd==1){
                 	djl();
@@ -1709,14 +1709,14 @@ $.fn.Filter = function(options){
         window.global.pickedEndDay = datePickerArray.endDay;
         window.global.pickedDays = $.GetDate(window.global.pickedStartDay,window.global.pickedEndDay);
 
-        var label = window.global.pickedDays + '天';
+        var label = window.global.pickedDays + 'day';
 
         $this.find('.start').html( $.replaceDate(datePickerArray.startDay) );
         $this.find('.end').html( $.replaceDate(datePickerArray.endDay) );
 
         op.callback([datePickerArray.startDay, datePickerArray.endDay], window.global.pickedDays);
 
-        _track_userEvent('新功能监测_时间选择控件','点击',label);
+        _track_userEvent('New function monitoring_Time select control','click',label);
         var pd = $("#pd").val();
         //周恩至根据需要添加代码起
         if(pd==1){
@@ -1959,7 +1959,7 @@ var Contrast = function(){
             //add GA track
             if(global.pickedEndDay != ''){
                 var num = ($.GetDate(global.contrast[1],global.pickedEndDay)-1).toString();
-                _track_userEvent('新功能监测_时段对比', num + '天', num);
+                _track_userEvent('New function monitoring_Period contrast', num + 'day', num);
             }
 
             // Hacks for chartcontainer id switch
@@ -3423,7 +3423,7 @@ $(document).ready(function(){
       url: '/users/logon_testin.json',
       data: { consumer: 'testin' },
       error: function(data) {
-        alert('请重新登录');
+        alert('Please login again');
         window.location.href = '/users/sign_in';
       },
       success: function(data){
@@ -3431,7 +3431,7 @@ $(document).ready(function(){
         if(status == 200){
           window.location.href = data['callback_url'];
         } else {
-          alert('无法连接');
+          alert('cannot connect');
         }
       }
     });
@@ -3445,7 +3445,7 @@ $(document).ready(function(){
       url: '/users/logon_testin.json',
       data: { consumer: 'aliyun' },
       error: function(data) {
-        alert('请重新登录');
+        alert('Please login again');
         window.location.href = '/users/sign_in';
       },
       success: function(data){
@@ -3453,7 +3453,7 @@ $(document).ready(function(){
         if(status == 200){
           window.location.href = data['callback_url'];
         } else {
-          alert('无法连接');
+          alert('cannot connect');
         }
       }
     });
@@ -3467,7 +3467,7 @@ $(document).ready(function(){
       url: '/users/logon_testin.json',
       data: { consumer: 'pgyer' },
       error: function(data) {
-        alert('请重新登录');
+        alert('Please login again');
         window.location.href = '/users/sign_in';
       },
       success: function(data){
@@ -3475,7 +3475,7 @@ $(document).ready(function(){
         if(status == 200){
           window.location.href = data['callback_url'];
         } else {
-          alert('无法连接');
+          alert('cannot connect');
         }
       }
     });
@@ -3557,7 +3557,7 @@ $.fn._export = function(e,options){
     //add google analtics
     var pageName = $('#siderNav a.current-item').attr('page_id') || $('#siderNav li.current-item a').attr('page_id');
     var tableName = $(this).parents('.mod-header').find('h2').text();
-    _gaq.push(['_trackEvent', '导出报表', pageName, tableName]);
+    _gaq.push(['_trackEvent', 'export report', pageName, tableName]);
 })*/
 
 
@@ -3672,7 +3672,7 @@ $.fn._export = function(e,options){
                     self.options.onClickItem = callback;
                 if($item.attr('data-enable') === 'true') {
                     $item.off().on('click.timeunit', function(e) {
-                        _track_userEvent('新功能监测_时间颗粒度', $item.data('unit'), UMENG.Agent.getDate().counts);
+                        _track_userEvent('New function monitoring_Time granularity', $item.data('unit'), UMENG.Agent.getDate().counts);
                         $item.addClass('on').siblings().removeClass('on');
                         self.options.onClickItem($item.attr('data-unit'));
                     });
@@ -3831,7 +3831,7 @@ var umengAdsBar = function(){
     $('#hellobar span').html('');
     if(params.link){
       $('#hellobar span').text(params.content);
-      $('#hellobar span').append('<a href="' + params.link + '" target="_blank">了解更多</a>');
+      $('#hellobar span').append('<a href="' + params.link + '" target="_blank">Know more</a>');
     }else{
       $('#hellobar span').text(params.content);
     }

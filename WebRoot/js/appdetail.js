@@ -1,5 +1,5 @@
 $(function() {
-	djl();//点击量
+	djl();//Click volume
 	$("#help_sy").hover(function(){
 		$(this).next(".help_tip").toggle();
 	});
@@ -10,7 +10,7 @@ function changeName() {
 	/*var appId = $("#app_name").val();
 	location.reload() ;
 	$("#app_name").val(appId);*/
-	djl();//点击量
+	djl();//Click volume
 
 }
 function getAppTableDataInit() {

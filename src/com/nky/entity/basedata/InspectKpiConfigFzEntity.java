@@ -10,9 +10,9 @@ import com.sys.jfinal.TableBind;
 import com.sys.util.Reflections;
 
 /**
- * inspect_kpi_config_fz 检测指标辅助.
+ * inspect_kpi_config_fz Detection index.
  * @author Ken
- * @version 2016年9月2日
+ * @version 2016year9month2day
  */
 @TableBind(name = "inspect_kpi_config_fz")
 public class InspectKpiConfigFzEntity extends JFinalEntity {

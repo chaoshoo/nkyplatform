@@ -9,35 +9,35 @@ import com.sys.entity.parameter.SysParameter;
 public interface SysParameterDao extends BaseDao<SysParameter> {
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param SysParameter 
 	 * @return
 	 */
 	public List<SysParameter> getSysParameterList(SysParameter sysParameter);
 
 	/**
-	 * 保存
+	 * Save
 	 * @param sysParameter
 	 * @return
 	 */
 	public int addSysParameter(SysParameter sysParameter);
 
 	/**
-	 * 更新
+	 * Update
 	 * @param sysParameter
 	 * @return
 	 */
 	public int updateSysParameter(SysParameter sysParameter);
 
 	/**
-	 * 查询数量
+	 * Query number
 	 * @param sysParameter
 	 * @return
 	 */
 	public int getCount(SysParameter sysParameter);
 	
 	/**
-	 * 删除
+	 * delete
 	 * @param id
 	 * @return
 	 */

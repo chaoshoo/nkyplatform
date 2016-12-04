@@ -17,29 +17,29 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.util.Assert;
 
 /**
- * Utils - RSA加密解密
+ * Utils - RSACrypto
  * 
  * @author lezu Team
  * @version 3.0
  */
 public final class RSAUtils {
 
-	/** 安全服务提供者 */
+	/** Security Service Provider */
 	private static final Provider PROVIDER = new BouncyCastleProvider();
 
-	/** 密钥大小 */
+	/** Key size */
 	private static final int KEY_SIZE = 1024;
 
 	/**
-	 * 不可实例化
+	 * Non instance
 	 */
 	private RSAUtils() {
 	}
 
 	/**
-	 * 生成密钥对
+	 * Generating key pair
 	 * 
-	 * @return 密钥对
+	 * @return Key pair
 	 */
 	public static KeyPair generateKeyPair() {
 		try {
@@ -53,13 +53,13 @@ public final class RSAUtils {
 	}
 
 	/**
-	 * 加密
+	 * encryption
 	 * 
 	 * @param publicKey
-	 *            公钥
+	 *            public key
 	 * @param data
-	 *            数据
-	 * @return 加密后的数据
+	 *            data
+	 * @return Encrypted data
 	 */
 	public static byte[] encrypt(PublicKey publicKey, byte[] data) {
 		Assert.notNull(publicKey);
@@ -75,14 +75,14 @@ public final class RSAUtils {
 	}
 
 	/**
-	 * 加密
+	 * encryption
 	 * 
 	 * @param publicKey
-	 *            公钥
+	 *            public key
 	 * @param text
-	 *            字符串
+	 *            Character string
 	 * 
-	 * @return Base64编码字符串
+	 * @return Base64Code string
 	 */
 	public static String encrypt(PublicKey publicKey, String text) {
 		byte[] data = encrypt(publicKey, text.getBytes());
@@ -90,13 +90,13 @@ public final class RSAUtils {
 	}
 
 	/**
-	 * 解密
+	 * Decrypt
 	 * 
 	 * @param privateKey
-	 *            私钥
+	 *            private key
 	 * @param data
-	 *            数据
-	 * @return 解密后的数据
+	 *            data
+	 * @return Data after decryption
 	 */
 	public static byte[] decrypt(PrivateKey privateKey, byte[] data) {
 		Assert.notNull(privateKey);
@@ -111,13 +111,13 @@ public final class RSAUtils {
 	}
 
 	/**
-	 * 解密
+	 * Decrypt
 	 * 
 	 * @param privateKey
-	 *            私钥
+	 *            private key
 	 * @param text
-	 *            Base64编码字符串
-	 * @return 解密后的数据
+	 *            Base64Code string
+	 * @return Data after decryption
 	 */
 	public static String decrypt(PrivateKey privateKey, String text) {
 		byte[] data = decrypt(privateKey, Base64.decodeBase64(text.getBytes()));

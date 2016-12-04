@@ -19,7 +19,7 @@ public class QryPubDataController {
 	private QryPubDataServiceImpl qryPubDataServiceImpl;
 	
 	/**
-	 * 获取字段表列表
+	 * Gets a list of fields
 	 */
 	@RequestMapping(value = "/getDicList")
 	@ResponseBody
@@ -35,7 +35,7 @@ public class QryPubDataController {
 	}
 	
 	/**
-	 * 获取地区列表
+	 * Get area list
 	 */
 //	@RequestMapping(value = "/getAddressList")
 //	@ResponseBody

@@ -8,7 +8,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see MessageTemplateEntity
  * @author Ken
- * @version 2016年9月8日 下午9:41:57
+ * @version 2016year9month8day Afternoon9:41:57
  */
 @Service
 public class MessageTemplateService {

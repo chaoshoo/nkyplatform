@@ -3,9 +3,9 @@ package com.nky.vo;
 import java.util.List;
 
 /**
- * 检查大类。如C01.
+ * Check large classes。asC01.
  * @author Ken
- * @version 2016年9月27日
+ * @version 2016year9month27day
  */
 public class InspectCodeMeta implements Comparable<InspectCodeMeta> {
 

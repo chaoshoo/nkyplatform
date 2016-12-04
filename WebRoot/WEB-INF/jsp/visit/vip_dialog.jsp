@@ -12,15 +12,15 @@
 <script type="text/javascript" src="<%=basePath%>js/common/jquery/jquery-1.9.1.js"></script>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>会员选择</title>
+<title>Member selection</title>
 <body class="easyui-layout">
     <div id="dg_vip_tb" style="padding:2px 5px;">
      <form action="" id="query_form">		
-      会员名称: <input type="text" id="FIT-username" style="width: 120px;"/>
-     会员卡号: <input type="text" id="FIT-cardcode" style="width: 120px;"/> <br>
-      移动电话: <input type="text" id="FIT-mobile" style="width: 120px;"/>
-          <a href="javascript:void(0);" onclick="dialogSearch();" class="easyui-linkbutton" iconCls="icon-search">查找</a>
-         <!--  <input type="button" id="select_reset" class="btn btn-success btn-success-small" value="重置" />  -->
+      Member name: <input type="text" id="FIT-username" style="width: 120px;"/>
+     Membership card number: <input type="text" id="FIT-cardcode" style="width: 120px;"/> <br>
+      Mobile phone: <input type="text" id="FIT-mobile" style="width: 120px;"/>
+          <a href="javascript:void(0);" onclick="dialogSearch();" class="easyui-linkbutton" iconCls="icon-search">lookup</a>
+         <!--  <input type="button" id="select_reset" class="btn btn-success btn-success-small" value="Reset" />  -->
            </form>
       </div>
 	<table id="dg_vip" class="easyui-datagrid" style="height:400px;width:560px;"
@@ -29,10 +29,10 @@
 			<tr>
 				<th data-options="field:'CK',checkbox:true"></th>
 				<th data-options="field:'id',hidden:true"></th>
-				<th data-options="field:'vip_code',width:100">会员编码</th>
-				<th data-options="field:'real_name',width:100">会员名称</th>
-				<th data-options="field:'card_code',width:100">会员卡号</th>
-				<th data-options="field:'mobile',width:100">移动电话</th>
+				<th data-options="field:'vip_code',width:100">Member code</th>
+				<th data-options="field:'real_name',width:100">Member name</th>
+				<th data-options="field:'card_code',width:100">Membership card number</th>
+				<th data-options="field:'mobile',width:100">Mobile phone</th>
 			</tr>
 		</thead>
 	</table>

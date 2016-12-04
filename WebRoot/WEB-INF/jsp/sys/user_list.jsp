@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -21,69 +21,69 @@
 <script type="text/javascript" src="js/common/jquery/jquery.ztree.excheck-3.5.min.js"></script>
 </head>
 <body class="easyui-layout">
-  <div data-options="region:'center',title:'用户管理'" class="regionCenter">
+  <div data-options="region:'center',title:'user management'" class="regionCenter">
     <div id="common_search" class="common_search common_search_nopadding">
-      &nbsp;&nbsp;&nbsp;&nbsp;姓名：
+      &nbsp;&nbsp;&nbsp;&nbsp;Name：
       <input type="text" id="userName1" />
-      &nbsp;&nbsp;&nbsp;&nbsp; 所属部门：
+      &nbsp;&nbsp;&nbsp;&nbsp; Affiliated department：
       <input type="text" id="group_name1" />
       <button type="button" id="user_search" class="btn btn-success" style="margin-left: 15px;">
-        <i class="icon-search"></i>&nbsp;查询
+        <i class="icon-search"></i>&nbsp;query
       </button>
      <!--  <button type="button" id="user_reset" class="btn btn-success btn-refresh" style="margin-left: 15px;">
-        <i class="icon-plus"></i>&nbsp;重置
+        <i class="icon-plus"></i>&nbsp;Reset
       </button> -->
          <div class="second-btn-con">
       <button id="user_add" class="btn btn-success" iconcls="icon-add">
-        <i class="icon-plus"></i>&nbsp;增加
+        <i class="icon-plus"></i>&nbsp;increase
       </button>
     </div>
     </div>
  
     <table id="user_table"></table>
     
-    <div id="user_detail_dialog" data-options="closed:true,modal:true,title:'用户信息',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;">
+    <div id="user_detail_dialog" data-options="closed:true,modal:true,title:'User information',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;">
       <form action="sysUser/getList.json" id="user_detail_form">
         <input type="hidden" id="userId">
         <table style="margin-left: 10px">
           <tr>
-            <td style="width:15%"><font color="red">*</font>姓名</td>
+            <td style="width:15%"><font color="red">*</font>Name</td>
             <td><input type="text" id="userName"></td>
           </tr>
           <tr>
-            <td>职务</td>
+            <td>post</td>
             <td><input type="text" id="sys_job"></td>
           </tr>
           <tr>
-            <td>员工状态</td>
+            <td>Employee status</td>
             <td><select id="sys_state">
                 <m:getItems name="sys_state" />
             </select></td>
           </tr>
           <tr>
-            <td><font color="red">*</font>账户名</td>
+            <td><font color="red">*</font>Account name</td>
             <td><input type="text" id="userMail"> <input type="hidden" id="oldUserMail"><br>
-            	初始密码为123456，忘记密码请点击初始化按钮
+            	Initial password123456，Forget password, please click the initialization button
             </td>
           </tr>
           <tr>
-            <td>账户状态</td>
+            <td>Account status</td>
             <td><select id="isEffective">
                 <m:getItems name="isEffective" />
             </select></td>
           </tr>
           <tr>
-            <td><font color="red">*</font>角色</td>
+            <td><font color="red">*</font>role</td>
             <td><c:forEach items="${roles }" var="list">
                 <span><input type="checkbox" value="${list.roleId }" name="roles" />&nbsp;${list.roleName }&nbsp;&nbsp;</span>
               </c:forEach></td>
           </tr>
           <tr>
-            <td>备注</td>
+            <td>Remarks</td>
             <td><textarea rows="8" cols="20" id="remark"></textarea></td>
           </tr>
           <tr>
-            <td>部门</td>
+            <td>department</td>
             <td>
               <div id="auth_tree">
                 <ul id="treeDemo" class="ztree"></ul>

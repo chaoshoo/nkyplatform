@@ -3,9 +3,9 @@ package com.nky.dao.basedata;
 import com.sys.jfinal.JdbcSql;
 
 /**
- * 消息管理.
+ * Message management.
  * @author Ken
- * @version 2016年8月30日
+ * @version 2016year8month30day
  */
 public class MessageSql extends JdbcSql {
 

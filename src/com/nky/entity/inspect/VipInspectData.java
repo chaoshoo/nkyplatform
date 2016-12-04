@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sys.util.DateUtil;
 
 /**
- * vip_inspect_data，检查数据列表.
+ * vip_inspect_data，Check list.
  * @author Ken
- * @version 2016年8月24日
+ * @version 2016year8month24day
  */
 public class VipInspectData {
 	@JsonIgnore

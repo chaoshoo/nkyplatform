@@ -5,7 +5,7 @@ import java.util.Date;
 import com.sys.entity.Entity;
 
 /**
- * 系统图片URL配置管理
+ * System pictureURLconfiguration management
  * @author
  *
  */

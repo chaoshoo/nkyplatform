@@ -14,16 +14,16 @@ import com.sys.entity.bo.ScriptPage;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * 检测指标辅助列表.
+ * Auxiliary list of detection indexes.
  * @author Ken
- * @version 2016年9月2日
+ * @version 2016year9month2day
  */
 @Controller
 @RequestMapping(value = "/vipInspectLatest")
 public class VipInspectLatestController extends BaseAction {
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -36,7 +36,7 @@ public class VipInspectLatestController extends BaseAction {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(),
 					"vipinspectlatest_list", param, " inspect_code asc , kpi_code asc ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;

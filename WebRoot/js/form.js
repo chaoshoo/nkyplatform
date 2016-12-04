@@ -4,7 +4,7 @@ $(function() {
 	 * 
 	 * @requires jQuery
 	 * 
-	 * 将form表单元素的值序列化成对象
+	 * takeformValue sequence of form elements to object
 	 * 
 	 * @returns object
 	 */
@@ -24,11 +24,11 @@ $(function() {
 
 function formatterDateTime(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + /*((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
                     + (date.getMonth() + 1))*/
             ((date.getMonth() + 1) < 10 ?('0'+(date.getMonth() + 1)):(date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date
                     .getDate())
             + " "
@@ -51,10 +51,10 @@ function DateTimeRender(value){
 
 
 /**
- ** 乘法函数，用来得到精确的乘法结果
- ** 说明：javascript的乘法结果会有误差，在两个浮点数相乘的时候会比较明显。这个函数返回较为精确的乘法结果。
- ** 调用：accMul(arg1,arg2)
- ** 返回值：arg1乘以 arg2的精确结果
+ ** Multiplication function，Used to obtain accurate multiplication results
+ ** Explain：javascriptThe multiplication result will have error，It is more obvious when the two floating point numbers are multiplied.。This function returns a more accurate result of the multiplication.。
+ ** call：accMul(arg1,arg2)
+ ** Return value：arg1Multiply arg2Exact result
  **/
 function accMul(arg1, arg2) {
     var m = 0, s1 = arg1.toString(), s2 = arg2.toString();

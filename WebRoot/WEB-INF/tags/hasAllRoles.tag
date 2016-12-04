@@ -2,11 +2,11 @@
 <%@ tag import="org.apache.shiro.SecurityUtils" %>
 <%@ tag import="java.util.Arrays" %>
 <%@ tag pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@ attribute name="name" type="java.lang.String" required="true" description="角色列表" %>
-<%@ attribute name="delimiter" type="java.lang.String" required="false" description="角色列表分隔符" %><%
+<%@ attribute name="name" type="java.lang.String" required="true" description="Role list" %>
+<%@ attribute name="delimiter" type="java.lang.String" required="false" description="Character list separator" %><%
 
     if(!StringUtils.hasText(delimiter)) {
-        delimiter = ",";//默认逗号分隔
+        delimiter = ",";//Default comma separated
     }
 
     if(!StringUtils.hasText(name)) {

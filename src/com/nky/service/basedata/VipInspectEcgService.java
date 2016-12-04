@@ -8,7 +8,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see VipInspectEcgEntity
  * @author Ken
- * @version 2016年10月27日 下午9:15:09
+ * @version 2016year10month27day Afternoon9:15:09
  */
 @Service
 public class VipInspectEcgService {

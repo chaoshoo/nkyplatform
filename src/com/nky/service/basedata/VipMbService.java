@@ -6,9 +6,9 @@ import com.nky.entity.basedata.VipMbEntity;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * 客户慢病.
+ * Customer slow disease.
  * @author Ken
- * @version 2016年10月11日 下午11:11:14
+ * @version 2016year10month11day Afternoon11:11:14
  */
 @Service
 public class VipMbService {

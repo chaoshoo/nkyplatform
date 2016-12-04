@@ -7,9 +7,9 @@ import com.sys.jfinal.TableBind;
 import com.sys.util.Reflections;
 
 /**
- * office 科室表.
+ * office Department table.
  * @author Ken
- * @version 2016年8月24日
+ * @version 2016year8month24day
  */
 @TableBind(name = "office")
 //@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
@@ -22,7 +22,7 @@ public class OfficeEntity extends JFinalEntity {
 	private String pic;
 	private String des;
 	private String description;
-	private Date create_time;//	创建时间 
+	private Date create_time;//	Created time 
 
 //	public Integer getId() {
 //		return id;

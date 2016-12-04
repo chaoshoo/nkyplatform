@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -32,67 +32,67 @@ textarea{ resize:none; width:600px; height:150px;}
 </head>
 <body class="easyui-layout">
 
-<div data-options="region:'center',title:'电子病历'" class="regionCenter">	
+<div data-options="region:'center',title:'Electronic medical record'" class="regionCenter">	
 <input type="hidden" id="examVipCode" name="examVipCode" value="${vipCode}" />	
 <input type="hidden" id="examId" name="examId" value="" />	
 <input type="hidden" id="type" name="type" value="${type}" />	
-<button id="mr_add" class="btn btn-success">创建病历</button> 	
-<button id="mr_back" class="btn btn-success">返&nbsp;&nbsp;回</button> 
+<button id="mr_add" class="btn btn-success">Create medical records</button> 	
+<button id="mr_back" class="btn btn-success">return&nbsp;&nbsp;return</button> 
 <div id="medi_table" style="width: 100%; height: 80%;" >   
 <table id="medirec_list_table"></table>	
 </div>	
 <div id="medirec_list_dialog">
     <div class="easyui-tabs">
-      <div title="基础资料">
+      <div title="basic data">
         <table style="border-collapse: separate; border-spacing: 10px;">
           <tr>
-            <td>体检医院</td>
+            <td>physical examination Hospital</td>
             <td><input type="text" id="exam_hos" style="width:200px;"/></td>
           </tr>
           <tr>
-            <td>体检时间</td>
+            <td>Physical examination time</td>
             <td> <input class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width: 200px;" name="exam_date" id="exam_date" />
             </td>
           </tr>
           <tr>
-            <td>体检描述</td>
+            <td>Physical examination description</td>
             <td><input type="text" id="exam_desc" style="width:200px;"/></td>
           </tr>
           <tr>
-            <td><button id="submit_exam" class="btn btn-success">提交</button> </td>
+            <td><button id="submit_exam" class="btn btn-success">Submit</button> </td>
           </tr>
         </table>
       </div>
-      <div title="体检数据" style="padding: 10px">
+      <div title="Physical examination results" style="padding: 10px">
       
        <table style="border-collapse: separate; border-spacing: 10px;">
           <tr>
-            <td>体检指标</td>
+            <td>Physical examination index</td>
             <td> 
             <select id="exam_norm" onchange="showNorm()" style="width: 200px;" >
-            	<option value=''>--请选择--</option>
+            	<option value=''>--Please select--</option>
            		<c:forEach items="${norms}" var="list">
          			<option value ="${list.dicName}" lowVal ="${list.dicRemark}" highVal ="${list.dicRemark1}" normUint="${list.belongName}" >${list.dicValue}</option> 
           		</c:forEach>
        		</select>
 			 </td>
-          	 <td >检测结果</td>
+          	 <td >detection result</td>
 	         <td><input type="text" id="exam_value" style="width:200px;" onchange="updateNormStatus()" /> 
 			 </td>
 			 <td>
 			 </td>
           </tr>
           <tr>
-			<td>指标分析</td>
+			<td>Index analysis</td>
             <td><select id="exam_status" name="exam_status" style="width:200px;">
-            		<option value=''>--请选择--</option>
+            		<option value=''>--Please select--</option>
 					<m:getItems name="inspect_is_normal" />
 				</select>
 			</td>
-			<td>指标区间</td>
+			<td>Index interval</td>
 			<td><span id="normscope"></span></td>
 			<td>
-				<button id="add_exam_data" class="btn btn-success">添加指标</button> 
+				<button id="add_exam_data" class="btn btn-success">Add index</button> 
 			</td>
           </tr>
         </table>
@@ -100,25 +100,25 @@ textarea{ resize:none; width:600px; height:150px;}
         <br> <br>
         <table class="easyui-datagrid" id="exam_norm_table"></table>
       </div>
-      <div title="诊断意见" style="padding: 10px">
+      <div title="Diagnostic opinions" style="padding: 10px">
       	<table>
           <tr>
-            <td>诊断意见汇总</td>
+            <td>Summary of diagnostic opinions</td>
             <td><textarea rows="8" id="sum_up" style="max-width: 600px;esize:none;overflow:auto;" onchange="saveExamInfo();"></textarea></td>
           </tr>
           <tr>
-            <td><button id="submit_sumup" class="btn btn-success">提交</button> </td>
+            <td><button id="submit_sumup" class="btn btn-success">Submit</button> </td>
           </tr>
         </table>
       </div>
-      <div title="体检图片" style="padding: 10px">
+      <div title="Physical examination picture" style="padding: 10px">
         <table>
          <tr>
-            <td>图片名称</td>
+            <td>Picture name</td>
             <td><input type="text" id="exam_pic_name" style="width:200px;"/></td>
           </tr>
           <tr>
-            <td colspan='2'><input type="file" name="exam_img" id="exam_img" style="display: none;" onchange="imgUpload(this,imgCallback);" /> <a id="add_exam_image" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加图片</a></td>
+            <td colspan='2'><input type="file" name="exam_img" id="exam_img" style="display: none;" onchange="imgUpload(this,imgCallback);" /> <a id="add_exam_image" class="easyui-linkbutton" data-options="iconCls:'icon-add'">Add pictures</a></td>
           </tr>
         </table>
         <table class="easyui-datagrid" id="exam_image_table">

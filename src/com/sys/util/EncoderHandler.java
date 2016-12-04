@@ -18,49 +18,49 @@ import com.swetake.util.Qrcode;
 
 public class EncoderHandler {
 	/**
-	 * 生成二维码(QRCode)图片
-	 * @param content 存储内容
-	 * @param imgPath 图片路径
+	 * Generate two-dimensional code(QRCode)picture
+	 * @param content Storage content
+	 * @param imgPath Image path
 	 */
 	public void encoderQRCode(String content, String imgPath) {
 		this.encoderQRCode(content, imgPath, "png", 14);
 	}
 
 	/**
-	 * 生成二维码(QRCode)图片
-	 * @param content 存储内容
-	 * @param output 输出流
+	 * Generate two-dimensional code(QRCode)picture
+	 * @param content Storage content
+	 * @param output output stream
 	 */
 	public void encoderQRCode(String content, OutputStream output) {
 		this.encoderQRCode(content, output, "png", 14);
 	}
 
 	/**
-	 * 生成二维码(QRCode)图片
-	 * @param content 存储内容
-	 * @param imgPath 图片路径
-	 * @param imgType 图片类型
+	 * Generate two-dimensional code(QRCode)picture
+	 * @param content Storage content
+	 * @param imgPath Image path
+	 * @param imgType Picture type
 	 */
 	public void encoderQRCode(String content, String imgPath, String imgType) {
 		this.encoderQRCode(content, imgPath, imgType, 14);
 	}
 
 	/**
-	 * 生成二维码(QRCode)图片
-	 * @param content 存储内容
-	 * @param output 输出流
-	 * @param imgType 图片类型
+	 * Generate two-dimensional code(QRCode)picture
+	 * @param content Storage content
+	 * @param output output stream
+	 * @param imgType Picture type
 	 */
 	public void encoderQRCode(String content, OutputStream output, String imgType) {
 		this.encoderQRCode(content, output, imgType, 14);
 	}
 
 	/**
-	 * 生成二维码(QRCode)图片
-	 * @param content 存储内容
-	 * @param imgPath 图片路径
-	 * @param imgType 图片类型
-	 * @param size 二维码尺寸
+	 * Generate two-dimensional code(QRCode)picture
+	 * @param content Storage content
+	 * @param imgPath Image path
+	 * @param imgType Picture type
+	 * @param size Two-dimensional code size
 	 */
 	public void encoderQRCode(String content, String imgPath, String imgType, int size) {
 		try {
@@ -74,11 +74,11 @@ public class EncoderHandler {
 	}
 
 	/**
-	 * 生成二维码(QRCode)图片
-	 * @param content 存储内容
-	 * @param output 输出流
-	 * @param imgType 图片类型
-	 * @param size 二维码尺寸
+	 * Generate two-dimensional code(QRCode)picture
+	 * @param content Storage content
+	 * @param output output stream
+	 * @param imgType Picture type
+	 * @param size Two-dimensional code size
 	 */
 	public void encoderQRCode(String content, OutputStream output, String imgType, int size) {
 		try {
@@ -91,10 +91,10 @@ public class EncoderHandler {
 	}
 
 	/**
-	 * 生成二维码(QRCode)图片的公共方法
-	 * @param content 存储内容
-	 * @param imgType 图片类型
-	 * @param size 二维码尺寸
+	 * Generate two-dimensional code(QRCode)Public method of image
+	 * @param content Storage content
+	 * @param imgType Picture type
+	 * @param size Two-dimensional code size
 	 * @return
 	 */
 	private BufferedImage qRCodeCommon(String content, String imgType, int size) {
@@ -143,8 +143,8 @@ public class EncoderHandler {
 	}
 
 	/**
-	 * 解析二维码（QRCode）
-	 * @param imgPath 图片路径
+	 * Analytic two-dimensional code（QRCode）
+	 * @param imgPath Image path
 	 * @return
 	 */
 	public String decoderQRCode(String imgPath) {
@@ -168,8 +168,8 @@ public class EncoderHandler {
 	}
 
 	/**
-	 * 解析二维码（QRCode）
-	 * @param input 输入流
+	 * Analytic two-dimensional code（QRCode）
+	 * @param input Input stream
 	 * @return
 	 */
 
@@ -191,8 +191,8 @@ public class EncoderHandler {
 	}
 
 	public static void main(String[] args) {
-		String imgPath = "d:/test.bmp"; // 生成二维码图片存放的地址和名称
-		String encoderContent = "http://127.0.0.1:8080/lezui/mobile/interface.do?content={namespace:'orderPay',type:'qryQRCoderOrderPayInfo',orderActionId:'DA2351050120'}"; // 二维码显示的内容
+		String imgPath = "d:/test.bmp"; // Generate two-dimensional code image storage address and name
+		String encoderContent = "http://127.0.0.1:8080/lezui/mobile/interface.do?content={namespace:'orderPay',type:'qryQRCoderOrderPayInfo',orderActionId:'DA2351050120'}"; // Contents of two-dimensional code display
 		EncoderHandler handler = new EncoderHandler();
 		handler.encoderQRCode(encoderContent, imgPath, "png");
 		try {

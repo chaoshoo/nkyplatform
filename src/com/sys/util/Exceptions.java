@@ -4,14 +4,14 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * 关于异常的工具类.
+ * On the exception of the tool class.
  * 
  * @author calvin
  */
 public class Exceptions {
 
 	/**
-	 * 将CheckedException转换为UncheckedException.
+	 * takeCheckedExceptionConvert toUncheckedException.
 	 */
 	public static RuntimeException unchecked(Exception e) {
 		if (e instanceof RuntimeException) {
@@ -22,7 +22,7 @@ public class Exceptions {
 	}
 
 	/**
-	 * 将ErrorStack转化为String.
+	 * takeErrorStacktranslate intoString.
 	 */
 	public static String getStackTraceAsString(Exception e) {
 		StringWriter stringWriter = new StringWriter();
@@ -31,7 +31,7 @@ public class Exceptions {
 	}
 
 	/**
-	 * 判断异常是否由某些底层的异常引起.
+	 * Whether or not an anomaly is caused by some underlying anomalies.
 	 */
 	@SuppressWarnings("unchecked")
 	public static boolean isCausedBy(Exception ex, Class<? extends Exception>... causeExceptionClasses) {

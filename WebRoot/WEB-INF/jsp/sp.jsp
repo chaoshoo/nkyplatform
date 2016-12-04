@@ -33,8 +33,8 @@
 	<body>
 		<form id="login-form">
 			<div class="mui-content-padded">
-				<a id="account" class="mui-login-input" href="zhibo.html"    target="_blank">PC WEB 视频</a>
-				<a id="password" class="mui-login-input" href="http://pullhls7a2ea1d5.live.126.net/live/a2ba8d0eb3374e7e90b4843d3f5f8616/playlist.m3u8"  target="_blank">手机 APP 视频</a>
+				<a id="account" class="mui-login-input" href="zhibo.html"    target="_blank">PC WEB video</a>
+				<a id="password" class="mui-login-input" href="http://pullhls7a2ea1d5.live.126.net/live/a2ba8d0eb3374e7e90b4843d3f5f8616/playlist.m3u8"  target="_blank">Mobile phone APP video</a>
 			</div>
 		</form>
 	</body>

@@ -4,7 +4,7 @@ import com.sys.dao.BaseDao;
 import com.sys.entity.url.UrlPic;
 
 /**
- * 系统图片URL配置管理DAO
+ * System pictureURLconfiguration managementDAO
  * @author 
  *
  */

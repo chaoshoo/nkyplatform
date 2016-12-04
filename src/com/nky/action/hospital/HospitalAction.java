@@ -45,7 +45,7 @@ public class HospitalAction extends BaseAction {
 	}
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -124,11 +124,11 @@ public class HospitalAction extends BaseAction {
 			Record record = Db.findFirst("select * from hospital where name=?", entity.getName());
 			if (record != null && StringUtils.isEmpty(entity.getCode())) {
 				d.setCode(0);
-				d.setMsg("医院名称已经存在，不能再添加相同名称的医院");
+				d.setMsg("Hospital name already exists，Hospital name already exist");
 				return d;
 			} else if (record != null && !record.getStr("code").equals(entity.getCode())) {
 				d.setCode(0);
-				d.setMsg("医院名称已经存在，请重新填写医院名称");
+				d.setMsg("Hospital name already exists，Please input hospital name again");
 				return d;
 			} else {
 				boolean flag = false;
@@ -148,7 +148,7 @@ public class HospitalAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("保存失败，请联系系统管理员");
+		d.setMsg("Save failed，Please contact system administrator");
 		return d;
 	}
 
@@ -160,19 +160,19 @@ public class HospitalAction extends BaseAction {
 			Number num = Db.queryNumber("select count(1) as num from doctor where hospital_code=?", hospital_code);
 			if (num.longValue() > 0) {
 				d.setCode(0);
-				d.setMsg("医院绑定了医生不能做删除");
+				d.setMsg("The hospital is bound to the doctor can not be removed");
 			} else {
 				int x = Db.update("delete from hospital where code=?", hospital_code);
 				if (x > 0) {
 					d.setCode(1);
 				} else {
 					d.setCode(0);
-					d.setMsg("删除失败");
+					d.setMsg("Delete failed");
 				}
 			}
 		} else {
 			d.setCode(0);
-			d.setMsg("医院编码为空");
+			d.setMsg("Hospital code is empty");
 		}
 		return d;
 	}
@@ -198,7 +198,7 @@ public class HospitalAction extends BaseAction {
 	}
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -226,11 +226,11 @@ public class HospitalAction extends BaseAction {
 			Record record = Db.findFirst("select * from hospital_admin where tel=?", entity.getTel());
 			if (record != null && entity.getId() == null) {
 				d.setCode(0);
-				d.setMsg("电话号码已经存在，不能再添加相同电话号码!");
+				d.setMsg("Phone number already exists，Can no longer add the same phone number!");
 				return d;
 			} else if (record != null && !record.getLong("id").equals(entity.getId())) {
 				d.setCode(0);
-				d.setMsg("电话号码已经存在，不能再添加相同电话号码!");
+				d.setMsg("Phone number already exists，Can no longer add the same phone number!");
 				return d;
 			} else {
 				boolean flag = false;
@@ -251,7 +251,7 @@ public class HospitalAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("保存失败，请联系系统管理员");
+		d.setMsg("Save failed，Please contact system administrator");
 		return d;
 	}
 
@@ -267,11 +267,11 @@ public class HospitalAction extends BaseAction {
 				return d;
 			} else {
 				d.setCode(0);
-				d.setMsg("操作失败");
+				d.setMsg("operation failed");
 			}
 		} else {
 			d.setCode(0);
-			d.setMsg("送入后台值为空");
+			d.setMsg("Into the background value is empty");
 		}
 		return d;
 	}
@@ -291,11 +291,11 @@ public class HospitalAction extends BaseAction {
 				return d;
 			} else {
 				d.setCode(0);
-				d.setMsg("操作失败");
+				d.setMsg("operation failed");
 			}
 		} else {
 			d.setCode(0);
-			d.setMsg("送入后台值为空");
+			d.setMsg("Into the background value is empty");
 		}
 		return d;
 	}

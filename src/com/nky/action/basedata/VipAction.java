@@ -54,9 +54,9 @@ import com.sys.util.DateUtil;
 import com.sys.util.MD5Util;
 
 /**
- * 客户管理.
+ * customer management.
  * @author Ken
- * @version 2016年8月26日 下午9:37:35
+ * @version 2016year8month26day Afternoon9:37:35
  */
 @Controller
 @RequestMapping(value = "/vip")
@@ -117,7 +117,7 @@ public class VipAction extends BaseAction {
 	}
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -144,7 +144,7 @@ public class VipAction extends BaseAction {
 		}
 		
 		String role = getSession().getRoles();
-		String hospital = ""; //医院code,这个可以精确匹配 {IN-groupId=6,7}
+		String hospital = ""; //Hospitalcode,This can be exactly matched {IN-groupId=6,7}
 		if(null != param.get("EQ-hospital")){
 			hospital = param.get("EQ-hospital").toString();
 			param.remove("EQ-hospital");
@@ -153,7 +153,7 @@ public class VipAction extends BaseAction {
 			hospital = getSession().getHospital().getHospital_code();
 		}
 		
-		Integer group = null; //医院code,这个可以精确匹配 
+		Integer group = null; //Hospitalcode,This can be exactly matched 
 		if(null != param.get("EQ-group")){
 			try{
 				group = Integer.valueOf(param.get("EQ-group").toString());
@@ -163,12 +163,12 @@ public class VipAction extends BaseAction {
 			param.remove("EQ-group");
 		}
 		
-		String doctor = "";//医生名字,这个可以模糊匹配 
+		String doctor = "";//Doctor name,This can be fuzzy matching 
 		if(null != param.get("LIKE-doctor")){
 			doctor = param.get("LIKE-doctor").toString();
 			param.remove("LIKE-doctor");
 		}
-		String doctorc = "";//医生名字,这个可以模糊匹配 
+		String doctorc = "";//Doctor name,This can be fuzzy matching 
 		if(null != param.get("LIKE-doctorc")){
 			doctorc = param.get("LIKE-doctorc").toString();
 			param.remove("LIKE-doctorc");
@@ -225,7 +225,7 @@ public class VipAction extends BaseAction {
 				scriptPage = JFinalDb.findPageBySqlIdAddedSql(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "vip_list_full",addSql, param," vip_code asc ",varParams.get(0),varParams.get(1),varParams.get(2));
 			}
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		
@@ -236,7 +236,7 @@ public class VipAction extends BaseAction {
 				scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "vip_list_byhospitalcode", param,
 						" vip_code asc ",hospital);
 			} catch (Exception e) {
-				LOG.error("查询列表失败.", e);
+				LOG.error("Query list failed.", e);
 				scriptPage = new ScriptPage();
 			}
 		}else if(role.equals("3")){
@@ -245,7 +245,7 @@ public class VipAction extends BaseAction {
 				scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "vip_list_bydoctorcode", param,
 						" vip_code asc ",doctorc);
 			} catch (Exception e) {
-				LOG.error("查询列表失败.", e);
+				LOG.error("Query list failed.", e);
 				scriptPage = new ScriptPage();
 			}
 		}else{
@@ -254,7 +254,7 @@ public class VipAction extends BaseAction {
 				scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "vip_list", param,
 						" vip_code asc ");
 			} catch (Exception e) {
-				LOG.error("查询列表失败.", e);
+				LOG.error("Query list failed.", e);
 				scriptPage = new ScriptPage();
 			}
 		}*/
@@ -262,7 +262,7 @@ public class VipAction extends BaseAction {
 	}
 	
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -279,7 +279,7 @@ public class VipAction extends BaseAction {
 		try {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "vipc06_list", param," inspect_time desc ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		
@@ -301,7 +301,7 @@ public class VipAction extends BaseAction {
 				for(Object ve : sp.getRows()){
 					Map tmp = (Map)ve;
 					reciverIds.add(Long.valueOf(""+tmp.get(("ID"))));
-					LOG.debug("消息要推送给结果集中的:{},{}",tmp.get("VIP_CODE"),tmp.get("REAL_NAME"));
+					LOG.debug("The message should be sent to the result set.:{},{}",tmp.get("VIP_CODE"),tmp.get("REAL_NAME"));
 				}
 			}
 		}
@@ -336,10 +336,10 @@ public class VipAction extends BaseAction {
 								reciverIds.add(r.getLong("ID"));  
 							}
 						}
-					}//还要考虑，查询列表
+					}//Also consider，Query list
 */					
 					if(reciverIds.size()<1){
-						LOG.error("没有接收者，写入消息表失败");
+						LOG.error("No receiver，Failed to write message table");
 						return false;
 					}
 					
@@ -348,10 +348,10 @@ public class VipAction extends BaseAction {
 							.set("title", message.getTitle()).set("content", message.getContent())
 							.set("isvalid", 1).set("create_time", createTime);
 					boolean flag = Db.save("message", "id", messageDb);
-					LOG.debug("推送消息写入数据表message结果 ：{}",flag);
+					LOG.debug("Push message write data sheetmessageResult ：{}",flag);
 					Long messageId = messageDb.getLong("id");
 					if(!flag || messageId == null){
-						LOG.error("写入消息表失败");
+						LOG.error("Failed to write message table");
 						return false;
 					}
 					
@@ -359,9 +359,9 @@ public class VipAction extends BaseAction {
 					for(Long rid : reciverIds){
 						Record rr = new Record().set("msg_type",message.getMsgType()).set("message_id", messageId).set("reciver", rid).set("create_time", createTime);
 						boolean cFlag = Db.save("message_center", "id", rr);
-						LOG.debug("推送消息写入数据表message_center结果 ：{}",cFlag);
+						LOG.debug("Push message write data sheetmessage_centerResult ：{}",cFlag);
 						if(cFlag){
-							reciveredIds.add(rid);//有推送成功有写入到数据库就成功
+							reciveredIds.add(rid);//Push success has to write to the database on the success of
 						}
 					}
 
@@ -373,7 +373,7 @@ public class VipAction extends BaseAction {
 				d.setCode(1); 
 			}else{
 				d.setCode(0);
-				d.setMsg("推送消息失败。");
+				d.setMsg("Push message failed。");
 			}
 			
 //			//creator,creatorrole,msgtype,title,content,recivercardcode,recivergroupid
@@ -396,7 +396,7 @@ public class VipAction extends BaseAction {
 //			}
 		} else {
 			d.setCode(0);
-			d.setMsg("推送消息失败，数据不全。");
+			d.setMsg("Push message failed，Incomplete data。");
 		}
 		return d;
 	}
@@ -426,13 +426,13 @@ public class VipAction extends BaseAction {
     		d.setCode(1);
     	}catch(Exception e){
     		d.setCode(0);
-    		d.setMsg("数据不全");
+    		d.setMsg("Incomplete data");
     	}
     	return d;
     }
     
     /**
-     * 查询拥有的群组列表，及这个医生有的群组列表
+     * Query owned group list，And the doctor's group list.
      * @param request
      * @return
      */
@@ -474,12 +474,12 @@ public class VipAction extends BaseAction {
     			}
     		}
     		 
-    		d.setCategories(dgList); //group true 时表示这个客户已经被这个医生标识为这个群组的人了
+    		d.setCategories(dgList); //group true This customer has been identified by the doctor as a group of people.
     		d.setCode(1);
     	}catch(Exception e){
-    		LOG.error("查询标签数据失败",e);
+    		LOG.error("Query tag data failed",e);
     		d.setCode(0);
-    		d.setMsg("数据不全");
+    		d.setMsg("Incomplete data");
     	}
     	return d;
     }
@@ -490,19 +490,19 @@ public class VipAction extends BaseAction {
     public Data inspectlatest(HttpServletRequest request,@PathVariable("cardCode")String cardCode) {
     	Data d = new Data();
     	try{
-    		List<Map<String,String>> dics = DicSingleton.getInstance().getDic("inspect_code");//查询所有的指标
+    		List<Map<String,String>> dics = DicSingleton.getInstance().getDic("inspect_code");//Query all indicators
         	if(dics == null || dics.size()<1){
         		d.setCode(0);
-        		d.setMsg("查询异常");
+        		d.setMsg("Query exception");
         	}else  if (StringUtils.isEmpty(cardCode)) {
         		d.setCode(0);
-        		d.setMsg("数据不全");
+        		d.setMsg("Incomplete data");
             }else{ 	
             	List<InspectCodeMeta> metas = new ArrayList<InspectCodeMeta>();
             	
-        		Map<String,String> dicCodeName = new HashMap<String,String>();//指标及指标的名字
-        		Map<String,String> detailCodeUnit = new HashMap<String,String>();//具体指标及指标的单位
-        		Map<String,List<InspectDetailMeta>> detailMap = new HashMap<String,List<InspectDetailMeta>>();//具体指标及指标的单位
+        		Map<String,String> dicCodeName = new HashMap<String,String>();//Indicators and indicators of the name
+        		Map<String,String> detailCodeUnit = new HashMap<String,String>();//Specific indicators and indicators of the unit
+        		Map<String,List<InspectDetailMeta>> detailMap = new HashMap<String,List<InspectDetailMeta>>();//Specific indicators and indicators of the unit
             	for(Map<String,String> map : dics){
             		dicCodeName.put(map.get("dic_name"), map.get("dic_value"));
             	}
@@ -546,9 +546,9 @@ public class VipAction extends BaseAction {
         		d.setCategories(metas);
         	}
     	}catch(Exception e){
-    		LOG.error("查询最新的检查结果失败",e);
+    		LOG.error("Failed to check the latest inspection results",e);
     		d.setCode(0);
-    		d.setMsg("查询异常");
+    		d.setMsg("Query exception");
     	}
     	 
     	return d;
@@ -568,11 +568,11 @@ public class VipAction extends BaseAction {
 				}
 			}
 			d.setCode(0);
-			d.setMsg("更新失败");
+			d.setMsg("Update failed");
 		}catch(Exception e){
-			LOG.error("更新客户状态失败",e);
+			LOG.error("Failure to update customer status",e);
 			d.setCode(0);
-			d.setMsg("更新异常");
+			d.setMsg("Update exception");
 		}
 		return d;
 	}
@@ -592,11 +592,11 @@ public class VipAction extends BaseAction {
     			}
     		}
     		d.setCode(0);
-    		d.setMsg("删除失败");
+    		d.setMsg("Delete failed");
     	}catch(Exception e){
-    		LOG.error("删除异常",e);
+    		LOG.error("Delete exception",e);
     		d.setCode(0);
-    		d.setMsg("删除异常");
+    		d.setMsg("Delete exception");
     	}
     	return d;
     }
@@ -610,7 +610,7 @@ public class VipAction extends BaseAction {
 			String docCode  = getSession().getDoctor().getCode();
     		if(StringUtils.isEmpty(gid) || !gid.startsWith("tags")){
         		d.setCode(0);
-        		d.setMsg("设置群组失败,数据不全");
+        		d.setMsg("Set up group failed,Incomplete data");
         		return d;
     		}
     		gid = gid.replace("tags", "");
@@ -630,7 +630,7 @@ public class VipAction extends BaseAction {
 	    					Long idL = Long.valueOf(tid);
 	    					 Db.update("insert into doctor_vip(group_id,vip_code,doctor_code) values(?,?,?)", idL,vipCode,docCode);
 	    				}catch(NumberFormatException e){
-	    					LOG.error("解析数据群组id异常",e);
+	    					LOG.error("Analytical data groupidabnormal",e);
 	    				}
 	    			}
 	    			d.setCode(1);
@@ -638,11 +638,11 @@ public class VipAction extends BaseAction {
 	    		}
 			}  
     		d.setCode(0);
-    		d.setMsg("设置群组失败");
+    		d.setMsg("Set up group failed");
     	}catch(Exception e){
-    		LOG.error("设置群组异常",e);
+    		LOG.error("Set up group exception",e);
     		d.setCode(0);
-    		d.setMsg("设置群组异常");
+    		d.setMsg("Set up group exception");
     	}
     	return d;
     }
@@ -654,13 +654,13 @@ public class VipAction extends BaseAction {
 		try {
 			if(null == vipId){
 				d.setCode(0);
-				d.setMsg("处理失败，请求非法！");
+				d.setMsg("Process failed，Invalid request！");
 				return d;
 			} 
 			Record r = Db.findFirst("select * from t_vip_chronic where vip_id = ?", vipId);
 			if(r == null){
 				d.setCode(0);
-				d.setMsg("处理失败，请求非法！");
+				d.setMsg("Process failed，Invalid request！");
 				return d;
 			}
 			VipMbEntity obj = new VipMbEntity();
@@ -676,13 +676,13 @@ public class VipAction extends BaseAction {
 			d.setObj(obj); 
 			
 			d.setCode(1);
-			d.setMsg("处理失败，请联系系统管理员");
+			d.setMsg("Process failed，Please contact system administrator");
 			return d;
 		}catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("处理失败，请联系系统管理员");
+		d.setMsg("Process failed，Please contact system administrator");
 		return d;
 	}
     
@@ -693,7 +693,7 @@ public class VipAction extends BaseAction {
 		try {
 			if(null == entity || null == entity.getVip_id() || StringUtils.isEmpty(entity.getYb_type()) || null == entity.getIschronic()){
 				d.setCode(0);
-				d.setMsg("处理失败，请求非法！");
+				d.setMsg("Process failed，Invalid request！");
 				return d;
 			} 
 			int x = 0;
@@ -714,7 +714,7 @@ public class VipAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(1);
-		d.setMsg("处理失败，请联系系统管理员");
+		d.setMsg("Process failed，Please contact system administrator");
 		return d;
 	}
 	
@@ -725,44 +725,44 @@ public class VipAction extends BaseAction {
 		try {
 			if(null == entity || null == entity.getId()){
 				d.setCode(0);
-				d.setMsg("修改失败，请求非法！");
+				d.setMsg("Change failed，Invalid request！");
 				return d;
 			} 
 			
 			if(StringUtils.isEmpty(entity.getVip_code())){
 				d.setCode(0);
-				d.setMsg("修改失败，客户编码不能为空！");
+				d.setMsg("Change failed，Customer code cannot be empty！");
 				return d; 
 			} 
 			
 			if(StringUtils.isEmpty(entity.getCard_code())){
 				d.setCode(0);
-				d.setMsg("修改失败，卡号不能为空！");
+				d.setMsg("Change failed，Card number can not be empty！");
 				return d; 
 			}
 			
 			if(StringUtils.isEmpty(entity.getPapers_num())){
 				d.setCode(0);
-				d.setMsg("修改失败，证件号码不能为空！");
+				d.setMsg("Change failed，Id number can not be empty！");
 				return d; 
 			}
 			
 			if(StringUtils.isEmpty(entity.getMobile())){
 				d.setCode(0);
-				d.setMsg("修改失败，手机号码不能为空！");
+				d.setMsg("Change failed，Cell phone number can not be empty！");
 				return d; 
 			}
 			
 			if(StringUtils.isEmpty(entity.getLogin_account())){
 				d.setCode(0);
-				d.setMsg("修改失败，登录账户不能为空！");
+				d.setMsg("Change failed，Account cannot be empty！");
 				return d; 
 			}
 			
 			Record record = Db.findFirst("select id from t_vip where id = ?", entity.getId());
 			if(record == null){
 				d.setCode(0);
-				d.setMsg("修改失败，请求非法！");
+				d.setMsg("Change failed，Invalid request！");
 				return d;
 			}
 
@@ -770,35 +770,35 @@ public class VipAction extends BaseAction {
 			List<Record> recordCheck = Db.find("select id from t_vip where id != ? and  vip_code=? ",new Object[]{entity.getId(),entity.getVip_code()});
 			if(recordCheck != null && recordCheck.size()>=1){
 				d.setCode(0);
-				d.setMsg("修改失败，客户编码"+entity.getVip_code()+"已经存在！");
+				d.setMsg("Change failed，Customer code"+entity.getVip_code()+"Existing！");
 				return d;
 			}
 
 			recordCheck = Db.find("select id from t_vip where id != ? and  card_code=? ",new Object[]{entity.getId(),entity.getCard_code()});
 			if(recordCheck != null && recordCheck.size()>=1){
 				d.setCode(0);
-				d.setMsg("修改失败，卡号"+entity.getCard_code()+"已经存在！");
+				d.setMsg("Change failed，Credit Card Number"+entity.getCard_code()+"Existing！");
 				return d;
 			}
 
 			recordCheck = Db.find("select id from t_vip where id != ? and  papers_num=? ",new Object[]{entity.getId(),entity.getPapers_num()});
 			if(recordCheck != null && recordCheck.size()>=1){
 				d.setCode(0);
-				d.setMsg("修改失败，证件号码"+entity.getPapers_num()+"已经存在！");
+				d.setMsg("Change failed，Id Number"+entity.getPapers_num()+"Existing！");
 				return d;
 			}
 
 			recordCheck = Db.find("select id from t_vip where id !=  ? and  mobile=? ",new Object[]{entity.getId(),entity.getMobile()});
 			if(recordCheck != null && recordCheck.size()>=1){
 				d.setCode(0);
-				d.setMsg("修改失败，手机号码"+entity.getMobile()+"已经存在！");
+				d.setMsg("Change failed，Phone number"+entity.getMobile()+"Existing！");
 				return d;
 			}
 
 			recordCheck = Db.find("select id from t_vip where id != ? and  login_account=? ",new Object[]{entity.getId(),entity.getLogin_account()});
 			if(recordCheck != null && recordCheck.size()>=1){
 				d.setCode(0);
-				d.setMsg("修改失败，登录帐户"+entity.getLogin_account()+"已经存在！");
+				d.setMsg("Change failed，Login account"+entity.getLogin_account()+"Existing！");
 				return d;
 			} 
 			
@@ -818,7 +818,7 @@ public class VipAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(1);
-		d.setMsg("更新失败，请联系系统管理员");
+		d.setMsg("Update failed，Please contact system administrator");
 		return d;
 	}
 	
@@ -828,60 +828,60 @@ public class VipAction extends BaseAction {
 		Data d = new Data();
 		try {
 			if(null == entity || StringUtils.isEmpty(entity.getPapers_num())){
-				return new Data(0,"新增失败，数据不全！");
+				return new Data(0,"New failed，Incomplete data！");
 			} 
 			if(StringUtils.isEmpty(entity.getLogin_account()) || !isName(entity.getLogin_account())){
-				return new Data(0,"新增失败，客户登录账户数据不合法！");
+				return new Data(0,"New failed，Customer login account is invalid！");
 			}
 			if(StringUtils.isEmpty(entity.getNick_name()) || !isName(entity.getNick_name())){
-				return new Data(0,"新增失败，客户会员昵称数据不合法！");
+				return new Data(0,"New failed，Customer membership nickname data is not valid！");
 			}
 			if(StringUtils.isEmpty(entity.getReal_name()) || !isName(entity.getReal_name())){
-				return new Data(0,"新增失败，客户真实名字数据不合法！");
+				return new Data(0,"New failed，Customer real name is invalid！");
 			}
 			if(StringUtils.isEmpty(entity.getMobile()) || !isPhone(entity.getMobile())){
-				return new Data(0,"新增失败，客户手机号码数据不合法！");
+				return new Data(0,"New failed，Customer phone number is invalid！");
 			}
 			
 			if(DateUtil.getDateFromStr2(entity.getBirthday()) == null){
-				return new Data(0,"新增失败，客户出生日期数据不合法！");
+				return new Data(0,"New failed，Customer`s birthday is invalid！");
 			}
 			
 			if(StringUtils.isNotEmpty(entity.getWeight())){
 				try{
 					if(Double.valueOf(entity.getWeight()) <10){
-						return new Data(0,"新增失败，客户体重数据不合法！");
+						return new Data(0,"New failed，Client weight data is not legal！");
 					}
 				}catch(NumberFormatException e){
-					return new Data(0,"新增失败，客户体重数据不合法！");
+					return new Data(0,"New failed，Client weight data is not legal！");
 				}
 			}
 			
 			if(StringUtils.isNotEmpty(entity.getHeight())){
 				try{
 					if(Double.valueOf(entity.getHeight()) <=10){
-						return new Data(0,"新增失败，客户身高数据不合法！");
+						return new Data(0,"New failed，Customer height data is invalid！");
 					}
 				}catch(NumberFormatException e){
-					return new Data(0,"新增失败，客户身高数据不合法！");
+					return new Data(0,"New failed，Customer height data is invalid！");
 				}
 			}
 			
 			try{
 				Integer.valueOf(entity.getAge());
 			}catch(NumberFormatException e){
-				return new Data(0,"新增失败，客户年龄数据不合法！");
+				return new Data(0,"New failed，Customer age is invalid！");
 			}
 			
 			//只有医生有权限为他添加
 			String role = getSession().getRoles();
 			if(!role.equals("3") ){
-				return new Data(0,"新增失败，只有医生可以添加客户！");
+				return new Data(0,"New failed，Only doctors can add customers！");
 			}
 			Record rec  = Db.findFirst("select * from t_vip where (card_code=? or papers_num=? or mobile=? ) and isvalid = '1' ",
 								new Object[]{entity.getPapers_num(),entity.getPapers_num(),entity.getMobile()});
 			if(rec != null) {
-				return new Data(0,"该用户已经注册过了！");
+				return new Data(0,"The user has already been registered.！");
 			}
 
 			String vip_id =  idCoderService.getSupplyClientCodeApi();
@@ -902,35 +902,35 @@ public class VipAction extends BaseAction {
 				Db.update("insert into doctor_vip (vip_code,doctor_code,create_time) values(?,?,NOW())", new Object[]{vip_id,docCode});
 			}
 			
-			return new Data(1,"新增成功");
+			return new Data(1,"New success");
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(1);
-		d.setMsg("新增失败");
+		d.setMsg("New failed");
 		return d;
 	}
 
-	/**编码规则*/
+	/**Coding rule*/
 	private static Pattern PATTERN_CODE = Pattern.compile("^[0-9A-Za-z]{2,30}$");
-	/**名字规则*/
+	/**Name rule*/
 	private static Pattern PATTERN_NAME = Pattern.compile("^[0-9A-Za-z\\u4E00-\\u9FA5]{2,30}$");
 
 	/**
-	 * 检查输入的编码code是否合法.
-	 * @return 合法true.
+	 * Check input codingcodeWhether legal.
+	 * @return legitimatetrue.
 	 */
 	public static boolean isCode(String ksCode) {
 		Matcher matcher = PATTERN_CODE.matcher(ksCode);
 		return matcher.matches();
 	}
 	  
-	/**phone规则*/
+	/**phonerule*/
 	private static Pattern PHONE_NAME = Pattern.compile("^[1]([0-9]{10})$");
 	
 	/**
-	 * 检查输入的编码Phone是否合法.
-	 * @return 合法true.
+	 * Check input codingPhoneWhether legal.
+	 * @return legitimatetrue.
 	 */
 	public static boolean isPhone(String phone) {
 		Matcher matcher = PHONE_NAME.matcher(phone);
@@ -938,8 +938,8 @@ public class VipAction extends BaseAction {
 	}
 	
 	/**
-	 * 检查输入的名字是否合法.
-	 * @return 合法true.
+	 * Check the name of the input is valid.
+	 * @return legitimatetrue.
 	 */
 	public static boolean isName(String ksName) {
 		Matcher matcher = PATTERN_NAME.matcher(ksName);
@@ -966,7 +966,7 @@ public class VipAction extends BaseAction {
     		d.setCode(1);
     	}catch(Exception e){
     		d.setCode(0);
-    		d.setMsg("数据不全");
+    		d.setMsg("Incomplete data");
     	}
     	return d;
     }
@@ -982,13 +982,13 @@ public class VipAction extends BaseAction {
 			final String cardCode = rec.getStr("CARD_CODE");//android_tv_token_id
 			if(StringUtils.isEmpty(vipCode) || StringUtils.isEmpty(cardCode)){
 				d.setCode(0);
-				d.setMsg("数据不全");
+				d.setMsg("Incomplete data");
 			}
 			boolean flag = Db.tx(new IAtom() {
 				public boolean run() throws SQLException {
-					int deleteVip = Db.update("delete from t_vip where id = ?", id);//客户表删除
-					int deleteDoctorVip = Db.update("delete from doctor_vip where vip_code = ?", vipCode);//医生客户关系表删除
-					int deleteDoctorVipMsg = Db.update("delete from doctor_vip_msg where vip_code = ?", vipCode);//医生客户关系表删除
+					int deleteVip = Db.update("delete from t_vip where id = ?", id);//Client table deletion
+					int deleteDoctorVip = Db.update("delete from doctor_vip where vip_code = ?", vipCode);//Doctor client relationship table deletion
+					int deleteDoctorVipMsg = Db.update("delete from doctor_vip_msg where vip_code = ?", vipCode);//Doctor client relationship table deletion
 					int deleteVipUser = Db.update("delete from doctor_visit where visit_user = ?", id); 
 					int deleteMsg = Db.update("delete from message_center where reciver = ?", id); 
 					int deleteRemoteInspect = Db.update("delete from remote_inspect where vip_code = ?", vipCode); 
@@ -1014,11 +1014,11 @@ public class VipAction extends BaseAction {
 				d.setCode(1);
 			} else {
 				d.setCode(0);
-				d.setMsg("删除失败");
+				d.setMsg("Delete failed");
 			}
 		} else {
 			d.setCode(0);
-			d.setMsg("数据不全");
+			d.setMsg("Incomplete data");
 		}
 		return d;
 	}
@@ -1062,16 +1062,16 @@ public class VipAction extends BaseAction {
         		}
     			if(!destFolder.exists()){
         			d.setCode(0);
-        			d.setMsg("生成心电图失败");
+        			d.setMsg("Failed to generate ECG");
         		}
     			List<String> allPic = new ArrayList<String>();
-    			/* data为经过Base64编码后的数据  如果取到了原始数据，即非Base64编码后的数据，请换用函数
-    			 * 请参考接口文档以确认获取到的心电数据是否为Base64编码后的数据 */
+    			/* dataTo passBase64Encoded data  If the original data is taken，NonBase64Encoded data，Please replace the function
+    			 * Please refer to the interface documentation to confirm whether the acquired ECG data isBase64Encoded data */
     			Map<String, byte[]> imgs = new ImageExporter().export(data);
     			int i = 1;
     			for (Map.Entry<String, byte[]> entry : imgs.entrySet()) {
     				//			printLead(entry.getKey());
-    				/*  将数据保存到文件，以方便检查 */
+    				/*  Save data to file，To facilitate inspection */
     				try {
     					String fileName = rootPath + i + "-" + entry.getKey() + ".jpg";
     					String xdPath = pathPrefix+ i + "-" + entry.getKey() + ".jpg";
@@ -1082,9 +1082,9 @@ public class VipAction extends BaseAction {
     					fos.close();
     					allPic.add(xdPath);
     				} catch (FileNotFoundException e) {
-    					LOG.error("导出心电图图片失败.",e);
+    					LOG.error("Failure to export ECG images.",e);
     				} catch (IOException e) {
-    					LOG.error("导出心电图图片失败.",e);
+    					LOG.error("Failure to export ECG images.",e);
     				}
 
     			}
@@ -1092,10 +1092,10 @@ public class VipAction extends BaseAction {
     			d.setCategories(allPic);
         	} else {
         		d.setCode(0);
-        		d.setMsg("数据不全");
+        		d.setMsg("Incomplete data");
         	}
     	}catch(Exception e){
-			LOG.error("导出心电图图片失败.",e);
+			LOG.error("Failure to export ECG images.",e);
     	}
 		request.setAttribute("msg", d.getMsg());//illTypes  mbTypes
 		request.setAttribute("d", d);//illTypes  mbTypes

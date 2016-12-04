@@ -3,9 +3,9 @@ package com.nky.entity.inspect;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 
 /**
- * 键值对象.
+ * key object.
  * @author Ken
- * @version 2016年9月7日
+ * @version 2016year9month7day
  */
 public class InspectSubTitleVo {
 

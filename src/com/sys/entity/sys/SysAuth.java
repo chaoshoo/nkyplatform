@@ -9,53 +9,53 @@ import com.sys.entity.Entity;
 public class SysAuth extends Entity implements Serializable{
 
 	/**
-	 * 权限id
+	 * Jurisdictionid
 	 */
 	private Integer authId;
 	
 	/**
-	 * 权限名字
+	 * Permissions name
 	 */
 	private String authName;
 	
 	/**
-	 * 访问路径
+	 * Access path
 	 */
 	private String authAction;
 	
 	/**
-	 * 展示顺序
+	 * Display order
 	 */
 	private Integer authSeq;
 	
 	/**
-	 * 父级编号
+	 * Parent number
 	 */
 	private Integer pid;
 	
 	/**
-	 * 创建时间
+	 * Created time
 	 */
 	private Timestamp createdTime;
 	
 	/**
-	 * 修改时间
+	 * Modification time
 	 */
 	private Timestamp updatedTime;
 	
 	/**
-	 * 有效状态
+	 * Effective state
 	 */
 	private Integer isEffective;
 
-	/** 权限编码 */
+	/** Authority code */
 	private String authority;
 	
-	/** 权限类型 */
+	/** Permission type */
 	private String authType;
 
 	/**
-	 * 子集
+	 * subset
 	 */
 	private List<SysAuth> children;
 

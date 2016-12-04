@@ -37,34 +37,34 @@ public class SysUser extends Entity {
 	// `is_effective` bigint(1) DEFAULT '1' COMMENT '0:无效 1：有效',
 	private Integer isEffective;
 
-	private String partnerId; // 商户编号
+	private String partnerId; // Merchant number
 
-	private String partnerName; // 商户名称
+	private String partnerName; // Merchant name
 
-	private String departmentId; // 部门id
+	private String departmentId; // departmentid
 	
 	/**
-	 * 部门名称
+	 * Department name
 	 */
 	private String group_name;
 	
 	/**
-	 * 职务
+	 * post
 	 */
 	private String sys_job;
 	
 	/**
-	 * 在职状态
+	 * In service state
 	 */
 	private String sys_state;
 	
 	/**
-	 * 系统用户编码
+	 * System user code
 	 */
 	private String sys_id;
 	
 	/**
-	 * 备注
+	 * Remarks
 	 */
 	private String remark;
 

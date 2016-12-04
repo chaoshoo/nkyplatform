@@ -6,12 +6,12 @@ $(function() {
 	//初始化弹出框
 	$('#vip_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#vip_dialog').dialog('close');
 			}
@@ -20,12 +20,12 @@ $(function() {
 	//初始化弹出框
 	$('#advance_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_advance_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#advance_dialog').dialog('close');
 			}
@@ -82,22 +82,22 @@ function submit_model_window(){
 	var login_account = $("#login_account").val();
 	var mobile = $("#mobile").val();
 	if (login_account == null || login_account == "") {
-		$.messager.alert(titleInfo,'请输入用户名！');
+		$.messager.alert(titleInfo,'Please enter user name！');
 		return;
 	}
 	var account_mail = $("#account_mail").val();
 	if(account_mail == null || account_mail == ""){
-		$.messager.alert(titleInfo,'请输入邮箱！');
+		$.messager.alert(titleInfo,'Please enter your email address！');
 		return;
 	}else if (!checkEmail(account_mail)) {
-		$.messager.alert(titleInfo,'邮箱格式有误！');
+		$.messager.alert(titleInfo,'Mailbox format error！');
 		return;
 	}
 	if (mobile == null || mobile == "") {
-		$.messager.alert(titleInfo,'请输入手机！');
+		$.messager.alert(titleInfo,'Please enter your mobile phone！');
 		return;
 	}else if(!checkMobile(mobile)){
-		$.messager.alert(titleInfo,'手机号码有误！');
+		$.messager.alert(titleInfo,'Cell phone number is wrong！');
 		return;
 	}
 	var vip = {
@@ -118,20 +118,20 @@ function submit_model_window(){
 		$.post("vip/updateVip.json",vip,function(data){
 			if(data.code==1){
 				$('#vip_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				$('#vip_table').datagrid('load',parameter);
 			}else{
-				$.messager.alert(titleInfo,'修改失败！');
+				$.messager.alert(titleInfo,'Change failed！');
 			}
 		},"json");
 	}else{
 		$.post("vip/addVip.json",vip,function(data){
 			if(data.code==1){
 				$('#vip_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				$('#vip_table').datagrid('load',parameter);
 			}else {
-				$.messager.alert(titleInfo,'添加失败！');
+				$.messager.alert(titleInfo,'Add failed！');
 			}
 		},"json");
 	}
@@ -143,18 +143,18 @@ function submit_advance_window(){
 	var balance = $("#balance").val();
 	var advance_pay = $("#advance_pay").val();
 	if(isNaN(balance)) {
-		$.messager.alert(titleInfo,'请输入正确金额！');
+		$.messager.alert(titleInfo,'Please enter the correct amount！');
 		return;
 	}
 	$.ajax({
         url:'vip/advanceBalance.html?id='+id+'&money='+balance+'&advance_pay='+advance_pay,    
         success:function(msg){
         	if(msg=='success') {
-        		alert("预付款成功");
+        		alert("Pre-payment success");
         		window.location.href=window.location.href;
         	}
         	else 
-        		alert("余额不足");
+        		alert("Sorry, your balance is running low");
         } ,
         fail:function(){
         	alert(1);
@@ -179,40 +179,40 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-			{field:'login_account',title:'用户名',width:70},
-			{field:'type_name',title:'会员组',width:70},
-			{field:'real_name',title:'姓名',width:40},
-			{field:'sex',title:'性别',width:40,
+			{field:'login_account',title:'User name',width:70},
+			{field:'type_name',title:'Member group',width:70},
+			{field:'real_name',title:'Name',width:40},
+			{field:'sex',title:'Gender',width:40,
 				formatter:function(value){
 					if(value==1) {
-						return '女';
+						return 'female';
 					}else {
-						return '男';
+						return 'male';
 					}
 				}
 			},
-			{field:'balance',title:'余额',width:40},
-			{field:'return_money',title:'返现',width:40},
-			{field:'integral',title:'积分',width:40},
-			{field:'num',title:'下单/邀请',width:70,
+			{field:'balance',title:'balance',width:40},
+			{field:'return_money',title:'Cash back',width:40},
+			{field:'integral',title:'credits',width:40},
+			{field:'num',title:'Place an order/Invitation',width:70,
 				formatter: function(value, row) {
 					return row.order_num + '/' + row.invite_num;
 				}
 			},
-			{field:'is_valid',title:'状态',width:70,
+			{field:'is_valid',title:'state',width:70,
 				formatter:function(value){
 					if(value==0) {
-						return '正常';
+						return 'normal';
 					}else {
-						return '锁定';
+						return 'locked';
 					}
 				}
 			},
-			{field:'create_time',title:'注册日期',width:100},
-			{field:'mobile',title:'手机',width:70},
-			{field:'id',title:'操作',width:150,
+			{field:'create_time',title:'Registration date',width:100},
+			{field:'mobile',title:'Mobile phone',width:70},
+			{field:'id',title:'Operation',width:150,
 				formatter:function(value){
-					return '<a href="javascript:initPassWord('+value+')">初始化密码</a> <a   onclick="advance('+value+')" ><font color="red">预付款管理</font></a> <a href="javascript:vipEdit('+value+')">修改</a>';
+					return '<a href="javascript:initPassWord('+value+')">Initialization code</a> <a   onclick="advance('+value+')" ><font color="red">Pre-payment management</font></a> <a href="javascript:vipEdit('+value+')">modify</a>';
 				}
 			}
 		]],
@@ -222,16 +222,16 @@ function initDataGrid(){
         }
 	});
 }
-function del(id){  //删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){  
+function del(id){  //Delete operation  
+    $.messager.confirm('confirm','confirm deletion?',function(row){  
         if(row){  
             $.ajax({
                 url:'vip/delVip.html?id='+id,    
                 success:function(msg){
                 	if(msg=='success') 
-                		alert("删除成功");
+                		alert("Deleted");
                 	else 
-                		alert("删除失败");
+                		alert("Delete failed");
                 	window.location.href=window.location.href;
                 } ,
                 fail:function(){
@@ -244,15 +244,15 @@ function del(id){  //删除操作
 
 //初始化密码
 function initPassWord(id) {
-	$.messager.confirm('确认','确认初始化密码?',function(row){  
+	$.messager.confirm('confirm','Confirm initialization password?',function(row){  
         if(row){  
             $.ajax({  
                 url:'vip/initPwd.html?id='+id,    
                 success:function(msg){
                 	if(msg=='success') 
-                		alert("密码初始化成功");
+                		alert("Password initialization done");
                 	else 
-                		alert("密码初始化失败");
+                		alert("Password initialization failed");
                 	window.location.href=window.location.href;
                 } ,
                 fail:function(){

@@ -9,13 +9,13 @@ public class Page extends PageMiniUi {
 	public static final int DEFAULT_PAGE_SIZE = 20;
 
 	private int pageSize = DEFAULT_PAGE_SIZE;
-	private int pageNow=1;//从1开始
+	private int pageNow=1;//from1start
 	
 	private int begin=0;
 	private int end=0;
 	
-	private int pages;//页数
-	private int count;//总条数
+	private int pages;//The number of pages
+	private int count;//Total number
 	
 	private Map<String,Object> atrrs=new HashMap<String,Object>();
 	
@@ -36,14 +36,14 @@ public class Page extends PageMiniUi {
 	}
 	
 	/**  
-	 * 获取sort
+	 * Obtainsort
 	 * @return sort sort  
 	 */
 	public String getSort() {
 		return sort;
 	}
 	/** 
-	 * 设置sort 
+	 * Configsort 
 	 * @param sort sort 
 	 */
 	public void setSort(String sort) {
@@ -120,14 +120,14 @@ public class Page extends PageMiniUi {
 	}
 
 	/**  
-	 * 获取pageNow
+	 * ObtainpageNow
 	 * @return pageNow pageNow  
 	 */
 	public int getPageNow() {
 		return pageNow;
 	}
 	/** 
-	 * 设置pageNow 
+	 * ConfigpageNow 
 	 * @param pageNow pageNow 
 	 */
 	public void setPageNow(int pageNow) {

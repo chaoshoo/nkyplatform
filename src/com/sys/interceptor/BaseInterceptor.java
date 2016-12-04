@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
- * Title：拦截器基类
+ * Title：Interceptor base
  * Description：
  * Mar 17, 2014
  */
 public class BaseInterceptor extends HandlerInterceptorAdapter {
 
 	/**
-	 * 输出信息
+	 * Output information
 	 * @param response
-	 * @param output 信息
+	 * @param output information
 	 * @throws IOException
 	 */
 	protected void print(HttpServletResponse response, String output) throws IOException {

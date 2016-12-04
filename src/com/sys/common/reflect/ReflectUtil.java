@@ -9,7 +9,7 @@ import com.sys.common.annotation.TableAnnot;
 import com.sys.common.vo.TableVo;
 
 /**
- * 通过对象反射类,并将参数set到类中
+ * By object reflection class,And the parameterssetIn class
  */
 public class ReflectUtil {
 
@@ -120,7 +120,7 @@ public class ReflectUtil {
 	}
 
 	/**
-	 * 反射结果到HashMap
+	 * Reflect the results toHashMap
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HashMap<String, Object> reflectForMap(Object object) {

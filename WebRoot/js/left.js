@@ -1,6 +1,6 @@
 //无实质作用变量
 var rightTargetID = "rightDiv";
-var task_interval = -1;//定时器
+var task_interval = -1;//timer
 //全局作用的变量
 var menuID = null;
 var auth_id;
@@ -10,7 +10,7 @@ $(function(){
 });
 
 /**
- * 加载左边区域数据
+ * Load left area data
  */
 function loadLeftData(){
     $.ajax({
@@ -24,25 +24,25 @@ function loadLeftData(){
     		menuID = $.getUrlVar("ID");
     		if(null!=data){
     			var list = data.rows;
-    			for(var listIndex=0;listIndex<list.length;listIndex++){//外循环获取各个一级菜单
+    			for(var listIndex=0;listIndex<list.length;listIndex++){//External loop to get all the first level menu
     				auth_id = list[listIndex].authId;
-    				if(list[listIndex].pid==0){//一级菜单
+    				if(list[listIndex].pid==0){//First level menu
     					$("#leftContainer").append('<li class="leftDivLi">'+list[listIndex].authName+'</li><li id=li_'+listIndex+' class="leftDivLi_"></li>');
     					var $li = $("#leftContainer li").last();
         				$li.append("<ul></ul>");
-        				var $lili = $li.children("ul");//前一个li展示一级菜单名称，后一个li的ul列表展示其下所有二级菜单
+        				var $lili = $li.children("ul");//PreviousliShow a menu name，After oneliTheulList shows all of its two menu
         				
-        				for(var i=0;i<list.length;i++){//内循环获取相应二级菜单
-        					if(auth_id==list[i].pid&&list[i].pid!=0){//二级菜单
-        						if(null==menuID){//初始化加载后
+        				for(var i=0;i<list.length;i++){//Internal loop to obtain the corresponding two menu
+        					if(auth_id==list[i].pid&&list[i].pid!=0){//Two level menu
+        						if(null==menuID){//After initialization
         							menuID=list[i].authId;
-        						}else{//点击一菜单后
+        						}else{//After clicking on a menu
         							menuID=parseInt(menuID);
         						}
         						if(menuID==list[i].authId){
         							$lili.append('<li class="leftDivLiLi active_click" page_id="'+list[i].authId+'" onclick=gotoJSP("'+list[i].authAction+'!ID='+list[i].authId+'")>'+list[i].authName+'</li>');
-        							$("#li_"+listIndex).show();//展开此一级菜单下的二级菜单
-        							$("#li_"+listIndex).prev("li").addClass("active_click");//高亮此一级菜单的名称
+        							$("#li_"+listIndex).show();//Expand the two level menu under this level
+        							$("#li_"+listIndex).prev("li").addClass("active_click");//Highlight the name of this level menu
         						}else{
         							$lili.append('<li class="leftDivLiLi" page_id="'+list[i].authId+'" onclick=gotoJSP("'+list[i].authAction+'!ID='+list[i].authId+'")>'+list[i].authName+'</li>');
         						}
@@ -112,7 +112,7 @@ function leftClickNavLiLi(){
 }
 
 /**
- * 中间区域的iframe跳转至指定页面（ID会添加至请求参数中）
+ * Intermediate zoneiframeJump to the specified page（IDWill be added to the request parameter.）
  * @param jspHref
  */
 function gotoJSP(jspHref){

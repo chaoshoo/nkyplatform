@@ -7,12 +7,12 @@ $(function() {
 	//初始化弹出框
 	$('#trea_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				dialogClose();
 			}
@@ -42,7 +42,7 @@ $(function() {
 	});
 });
 /**
- * 数据表格刷新
+ * Data table refresh
  * @param param
  */
 function dataGridload(param){
@@ -57,7 +57,7 @@ function dialogOpen(){
 	$('#trea_detail_dialog').dialog('open');
 }
 /**
- * 将数据提交到表格
+ * Submit data to form
  * @param authId
  */
 function authEdit(treaId){
@@ -72,7 +72,7 @@ function authEdit(treaId){
 }
 
 /**
- * 初始化数据表格
+ * Initialize data form
  */
 function initDataGrid(){
 	$('#trea_table').datagrid({
@@ -90,27 +90,27 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'treasurerId',
 		columns:[[
-		    {field:'treasurerName',title:'会计名字',width:100},
-			{field:'treasurerType',title:'会计类型',width:100,
+		    {field:'treasurerName',title:'Accounting name',width:100},
+			{field:'treasurerType',title:'Accounting type',width:100,
 		    	formatter:function(value){
 					if('0'==value){
-						return '未定义1';
+						return 'Not defined1';
 					}else{
-						return '未定义2';
+						return 'Not defined2';
 					}
 				}
 		    },
-			{field:'treasurerPhoto',title:'会计头像',hidden:true,width:100},
-			{field:'treasurerDesc',title:'会计描述',hidden:true,width:100},
-			{field:'createDate',title:'创建时间',width:100,
+			{field:'treasurerPhoto',title:'Accounting icon',hidden:true,width:100},
+			{field:'treasurerDesc',title:'Accounting description',hidden:true,width:100},
+			{field:'createDate',title:'Created time',width:100,
 				formatter:function(value){
 					var date = new Date(value);
 					return formatterDateTime(date);
 				}
 			},
-			{field:'treasurerId',title:'操作',width:70,
+			{field:'treasurerId',title:'Operation',width:70,
 				formatter:function(value){
-					return '<a href="javascript:authEdit('+value+')">修改</a> &nbsp;<a  onclick="del('+value+')" ><font color="red">删除</font></a>';
+					return '<a href="javascript:authEdit('+value+')">modify</a> &nbsp;<a  onclick="del('+value+')" ><font color="red">delete</font></a>';
 				}
 		}
 		]],
@@ -120,8 +120,8 @@ function initDataGrid(){
         }
 	});
 }	
-function del(treaId){  //删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){  
+function del(treaId){  //Delete operation  
+    $.messager.confirm('confirm','confirm deletion?',function(row){  
         if(row){  
             $.ajax({  
                 url:'trea/delTrea.html?id='+treaId,    
@@ -137,15 +137,15 @@ function del(treaId){  //删除操作
     })  
   }  
 /**
- * 将数据提交到json
+ * Submit data tojson
  */
 function submit_model_window(){
 	if($("#treasurerName").val()==null||$("#treasurerName").val()==""){
-		$.messager.alert(titleInfo,'请输入会计名字!');
+		$.messager.alert(titleInfo,'Please enter a name for the accounting!');
 		return;
 	}
 	if($("#treasurerPhoto").val()==null||$("#treasurerPhoto").val()==""){
-		$.messager.alert(titleInfo,'请上传会计头像!');
+		$.messager.alert(titleInfo,'Please upload the head of accounting!');
 		return;
 	}
 	var treaId = $("#treasurerId").val();
@@ -160,10 +160,10 @@ function submit_model_window(){
 		$.post("trea/updateTrea.json",arr_add,function(data){
 			if(data=='1'){
 				dialogClose();
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
-				$.messager.alert(titleInfo,'修改失败!!!');
+				$.messager.alert(titleInfo,'Change failed!!!');
 			}
 			closeModelDiv();
 		},"json");
@@ -171,10 +171,10 @@ function submit_model_window(){
 		$.post("trea/addTrea.json",arr_add,function(data){
 			if(data.code==1){
 				dialogClose();
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
-				$.messager.alert(titleInfo,'添加失败!');
+				$.messager.alert(titleInfo,'Add failed!');
 			}
 			closeModelDiv();
 		},"json");
@@ -183,10 +183,10 @@ function submit_model_window(){
 
 function formatterDateTime(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
                     + (date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date
                     .getDate())
             + " "

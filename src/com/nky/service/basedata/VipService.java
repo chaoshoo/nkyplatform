@@ -6,9 +6,9 @@ import com.nky.entity.basedata.VipEntity;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * 客户管理.
+ * customer management.
  * @author Ken
- * @version 2016年8月26日 下午9:42:39
+ * @version 2016year8month26day Afternoon9:42:39
  */
 @Service
 public class VipService {

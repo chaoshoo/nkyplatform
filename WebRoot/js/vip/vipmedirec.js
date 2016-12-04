@@ -74,11 +74,11 @@ function saveExamInfo(){
 	var exam_date = $("#exam_date").datebox('getValue');
 	var exam_desc = $("#exam_desc").val();
 	if(exam_hos==null||exam_hos==''){
-		$.messager.alert(titleInfo,'请填写体检医院!');
+		$.messager.alert(titleInfo,'Please input the medical hospital!');
 		return;
 	}
 	if(exam_date==null||exam_date==''){
-		$.messager.alert(titleInfo,'请填写体检时间!');
+		$.messager.alert(titleInfo,'Please input physical examination time!');
 		return;
 	}
 	var sum_up = $("#sum_up").val();
@@ -95,20 +95,20 @@ function saveExamInfo(){
 		examInfo['id']=examId;
 		$.post("medirec/updateVipExam.json",examInfo,function(data){
 			if(data.code==1){
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				$('#medirec_list_table').datagrid('load',parameter);
 			}else{
-				$.messager.alert(titleInfo,'修改失败:'+data.msg);
+				$.messager.alert(titleInfo,'Change failed:'+data.msg);
 			}
 		},"json");
 	}else{
 		$.post("medirec/addVipExam.json",examInfo,function(data){
 			if(data.code==1){
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				$("#examId").val(data.msg);
 				$('#medirec_list_table').datagrid('load',parameter);
 			}else{
-				$.messager.alert(titleInfo,'添加失败:'+data.msg);
+				$.messager.alert(titleInfo,'Add failed:'+data.msg);
 			}
 		},"json");
 	}
@@ -133,17 +133,17 @@ function initMedirecDataGrid()
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'exam_hos',title:'体检医院',width:100},
-				{field:'exam_desc',title:'体检描述',width:100},
-				{field:'exam_sumup',title:'体检总结',hidden:true},
-				{field:'exam_date',title:'体检时间',width:100},				
-				{field:'id',title:'操作',width:85,
+				{field:'exam_hos',title:'physical examination Hospital',width:100},
+				{field:'exam_desc',title:'Physical examination description',width:100},
+				{field:'exam_sumup',title:'Physical examination summary',hidden:true},
+				{field:'exam_date',title:'Physical examination time',width:100},				
+				{field:'id',title:'Operation',width:85,
 						formatter:function(value){
-							var operInfo = '<a href="javascript:viewexam('+value+')">查看</a> ';
+							var operInfo = '<a href="javascript:viewexam('+value+')">See</a> ';
 							
 							if(type == "D"){
-								operInfo += '&nbsp;&nbsp; <a href="javascript:editexam('+value+')">编辑</a>'
-									+'&nbsp;&nbsp; <a href="javascript:delexam('+value+')">删除</a>';
+								operInfo += '&nbsp;&nbsp; <a href="javascript:editexam('+value+')">edit</a>'
+									+'&nbsp;&nbsp; <a href="javascript:delexam('+value+')">delete</a>';
 							}
 							return operInfo ;
 						}
@@ -160,13 +160,13 @@ function initMedirecDataGrid()
 function initMediRecDialog() {
 	
 	$('#medirec_list_dialog').dialog({
-		title : '体检信息',
+		title : 'Physical examination information',
 		iconCls : 'icon-save',
 		closed : true,
 		width : 800,
 		height : 500,
 		buttons : [{
-			text : '确 定',
+			text : 'Indeed set',
 			handler : function() {
 				$('#medirec_list_dialog').dialog('close');
 			}
@@ -212,7 +212,7 @@ function addExamNormData() {
 	
 	var examId = $("#examId").val();
 	if(examId==null||examId==''){
-		$.messager.alert(titleInfo,'请先保存基本资料!');
+		$.messager.alert(titleInfo,'Please save the basic information!');
 		return;
 	}
 	var exam_norm = $("#exam_norm").val();
@@ -224,7 +224,7 @@ function addExamNormData() {
             var row = $('#exam_norm_table').datagrid('getData').rows[i];
             if(exam_norm==row.exam_norm)
         	{
-            	$.messager.alert(titleInfo,'指标已经录入!');
+            	$.messager.alert(titleInfo,'Index has been entered!');
         		return;
         	}
         }
@@ -233,7 +233,7 @@ function addExamNormData() {
     var exam_status = $("#exam_status").val();
     var exam_value = $("#exam_value").val();
     if(exam_value==null||exam_value==''){
-		$.messager.alert(titleInfo,'请录入指标值!');
+		$.messager.alert(titleInfo,'Please input index value!');
 		return;
 	}
     
@@ -260,11 +260,11 @@ function addExamNormData() {
 	
 	$.post("medirec/addExamNormData.json",row,function(data){
 		if(data.code==1){
-			$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});	
+			$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});	
 			row['id']=data.msg;
 			$('#exam_norm_table').datagrid('insertRow',{"index":0,"row":row});
 		}else{
-			$.messager.alert(titleInfo,'添加失败:'+data.msg);
+			$.messager.alert(titleInfo,'Add failed:'+data.msg);
 		}
 	},"json");
 	
@@ -273,10 +273,10 @@ function addExamNormData() {
 function deleteParam(index,normid) {
 	$.post("medirec/delVipExamNorm.json",{"id": normid},function(data){
 		if(data.code==1){
-			$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
 			$('#exam_norm_table').datagrid('deleteRow',index);
 		}else{
-			$.messager.alert(titleInfo,'删除失败:'+data.msg);
+			$.messager.alert(titleInfo,'Delete failed:'+data.msg);
 		}
 	},"json");
 	
@@ -285,10 +285,10 @@ function deleteImage(index,picId) {
 	
 	$.post("medirec/delVipExamPic.json",{"id": picId},function(data){
 		if(data.code==1){
-			$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
 			$('#exam_image_table').datagrid('deleteRow',index);
 		}else{
-			$.messager.alert(titleInfo,'删除失败:'+data.msg);
+			$.messager.alert(titleInfo,'Delete failed:'+data.msg);
 		}
 	},"json");
 }
@@ -339,14 +339,14 @@ function editexam(exId)
 
 function delexam(exId)
 {
-	 $.messager.confirm('确认','是否删除此病历？',function(del){  
+	 $.messager.confirm('confirm','Delete this record?？',function(del){  
 		 if(!del) reutrn;
 		 $.post("medirec/delexam.json",{"id": exId},function(data){
 			if(data.code==1){
-				$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
 				$('#medirec_list_table').datagrid('load',parameter);
 			}else{
-				$.messager.alert(titleInfo,'删除失败:'+data.msg);
+				$.messager.alert(titleInfo,'Delete failed:'+data.msg);
 			}
 		},"json");
 	 })  
@@ -387,43 +387,43 @@ function initExamNormDataGrid() {
 		rownumbers:true,
 		columns : [[{
 			field : 'exam_norm',
-			title : '体检指标',
+			title : 'Physical examination index',
 			width : 160,
 			formatter : function (value) {
 				return getNormName(value);
 			}
 		},{
 			field : 'exam_value',
-			title : '指标结果',
+			title : 'Index result',
 			width : 155
 		},
 		{
 			field : 'exam_status',
-			title : '指标分析',
+			title : 'Index analysis',
 			width : 80,
 			formatter : function (value) {
 				return getNormStatus(value);
 			}
 		},{
 			field : 'exam_unit',
-			title : '指标单位',
+			title : 'Index unit',
 			width : 60,
 			formatter : function (value,row) {
 				return getNormUnit(row.exam_norm);
 			}
 		},{
 			field : 'exam_scope',
-			title : '指标区间',
+			title : 'Index interval',
 			width : 100,
 			formatter : function (value,row) {
 				return getNormScope(row.exam_norm);
 			}
 		},{
 			field : 'id',
-			title : '操作',
+			title : 'Operation',
 			width : 50,
 			formatter : function (value,row,index) {
-				return '<button class="l-btn" onclick = "deleteParam(' + index + ','+value+')">删除</button>';
+				return '<button class="l-btn" onclick = "deleteParam(' + index + ','+value+')">delete</button>';
 			}
 		}]]
 	});
@@ -437,21 +437,21 @@ function initExamImageDataGrid() {
 		rownumbers:true,
 		columns : [[{
 			field : 'exam_pic_name',
-			title : '图片名称',
+			title : 'Picture name',
 			width : 300
 		},{
 			field : 'exam_pic_url',
-			title : '图片查看',
+			title : 'View picture',
 			width : 150,
 			formatter : function (value,row,index) {
-				return ' <img src="'+value+'" width=40 height=40 onclick = "lookexampic(\'' + value + '\')">&nbsp;&nbsp;&nbsp;&nbsp;<button onclick = "lookexampic(\'' + value + '\')" ><i class="icon-search"></i>&nbsp;查看</button>';
+				return ' <img src="'+value+'" width=40 height=40 onclick = "lookexampic(\'' + value + '\')">&nbsp;&nbsp;&nbsp;&nbsp;<button onclick = "lookexampic(\'' + value + '\')" ><i class="icon-search"></i>&nbsp;See</button>';
 			}
 		},{
 			field : 'id',
-			title : '操作',
+			title : 'Operation',
 			width : 50,
 			formatter : function (value,row,index) {
-				return '<button class="l-btn" onclick = "deleteImage(' + index + ','+value+')"><i class="icon-remove"></i>&nbsp;删除</button>';
+				return '<button class="l-btn" onclick = "deleteImage(' + index + ','+value+')"><i class="icon-remove"></i>&nbsp;delete</button>';
 			}
 		}
 		]]
@@ -477,7 +477,7 @@ function getNormName(norms)
 {
 	var typename = norms;
 	$("#exam_norm option").each(function(){ 
-	        var txt = $(this).text(); //获取option的内容
+	        var txt = $(this).text(); //ObtainoptionContent
 	        var val = $(this).val();
 	        if(val == norms){
 	        	typename = txt;
@@ -524,7 +524,7 @@ function imgCallback(name){
 		name=name.replace(/"/g, "");
 		var examId = $("#examId").val();
 		if(examId==null||examId==''){
-			$.messager.alert(titleInfo,'请先保存基本资料!');
+			$.messager.alert(titleInfo,'Please save the basic information!');
 			return;
 		}
 		var picName = $("#exam_pic_name").val();
@@ -533,15 +533,15 @@ function imgCallback(name){
 		$("#exam_pic_name").val("");
 		$.post("medirec/addVipExamPic.json",row,function(data){
 			if(data.code==1){
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				row['id']=data.msg;
 				$('#exam_image_table').datagrid('insertRow',{"index":0,"row":row});
 			}else{
-				$.messager.alert(titleInfo,'添加失败:'+data.msg);
+				$.messager.alert(titleInfo,'Add failed:'+data.msg);
 			}
 		},"json");
 	}else{
-		$.messager.alert(titleInfo,'上传图片失败！');
+		$.messager.alert(titleInfo,'Upload picture failed！');
 	}
 }
 
@@ -559,7 +559,7 @@ function lookexampic(picpath){
 		$(".img-con img").attr("src",url);
 		$(".img-con").show();
 	}else{
-		$.messager.alert(titleInfo,'无图片地址！');
+		$.messager.alert(titleInfo,'No pictures address！');
 	}
 }
 

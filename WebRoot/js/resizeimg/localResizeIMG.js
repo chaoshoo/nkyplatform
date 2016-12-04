@@ -38,7 +38,7 @@ if(name != null){
 	$("#"+imageuploadid+"_url").val(name);
 	$("#"+imageuploadid+"_div").html('<img onclick="imgclick(this)" src="'+name+'" height="50" width="50" />');
 }else{
-	$.messager.alert(titleInfo,'上传图片失败！');
+	$.messager.alert(titleInfo,'Upload picture failed！');
 }
 }
 
@@ -53,14 +53,14 @@ function imgUpload(file,callback) {
 //		$("<div class=\"datagrid-mask\"></div>").css({display:"block",width:"100%",height:$(window).height()}).appendTo(".window");
 //		$("<div class=\"datagrid-mask-msg\" style=\"z-index:10000;line-height:15px;\"></div>").html("正在努力上传，请稍等。。。").appendTo(".window").css({display:"block",left:"190px",top:""});		
 		var win = $.messager.progress({
-			title:'图片上传。',
-			msg:'正在努力上传，请稍等。。。',
+			title:'Picture upload。',
+			msg:'Uploading，One moment please。。。',
 			interval: 0
 		});
 		intevalid = setInterval('changeprocessvalue()',500);
 		jQuery().picUploadLR(file.id,callback,false);
 	} else {
-		$.messager.alert("提示", "只能上传图片！", "warning");
+		$.messager.alert("Prompt", "Can only upload pictures！", "warning");
 		$(file).val("");
 	}
 }
@@ -88,7 +88,7 @@ function imgUpload4pub(file,callback) {
 	if (file_type == '.gif' || file_type == '.jpg' || file_type == '.jpeg'|| file_type == '.bmp' || file_type == '.png') {
 		jQuery().picUploadLR(file.id,callback,true);
 	} else {
-		$.messager.alert("提示", "只能上传图片！", "warning");
+		$.messager.alert("Prompt", "Can only upload pictures！", "warning");
 		$(file).val("");
 	}
 }
@@ -100,7 +100,7 @@ function  imgclick(obj){
 (function($) {
 		$(".pimg").click(function(){
 //			alert('222222222');
-	       var _this = $(this);//将当前的pimg元素作为_this传入函数
+	       var _this = $(this);//Will presentpimgElement as_thisAfferent function
 	       imgShow("#outerlookdiv", "#innerlookdiv", "#biglookimg", _this);
 		});
 	
@@ -131,7 +131,7 @@ function  imgclick(obj){
 	                var xhr = new XMLHttpRequest();
 	                var data = {
 	                    base64: results.base64,
-	                    size: results.base64.length // 校验用，防止未完整接收
+	                    size: results.base64.length // Check use，Prevent incomplete reception
 	                };
 	                if(isPub){//pub
 	                	xhr.open('POST', pic_upload_http,true);
@@ -144,14 +144,14 @@ function  imgclick(obj){
 	                xhr.onreadystatechange = function () {
 	                	if (xhr.readyState==4 && xhr.status ==200) {
 //	                		alert(xhr.responseText);
-	                		if(xhr.responseText && xhr.responseText.length<=128){//响应文本太长可能是网页数据
+	                		if(xhr.responseText && xhr.responseText.length<=128){//Response text is too long may be web data
 	                			callback(xhr.responseText,id);
 	                		}else{
-	                			$.messager.alert("提示", "上传图片出错!", "warning");
+	                			$.messager.alert("Prompt", "Error uploading image!", "warning");
 	                		}
 	             		}
 	                };
-	                xhr.send(JSON.stringify(data)); // 发送base64
+	                xhr.send(JSON.stringify(data)); // Sendbase64
 	            }, 100);
 	            }
 	        });
@@ -160,7 +160,7 @@ function  imgclick(obj){
 	})(jQuery);
 	
 
-/***浏览图片**/
+/***Browse pictures**/
 
 function imglookinit(lookdivid){
 	var html = '<div id="outerlookdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);'
@@ -171,36 +171,36 @@ function imglookinit(lookdivid){
 
 
 function imgShow(outerdiv, innerdiv, bigimg, _this){
-    var src = _this.attr("src");//获取当前点击的pimg元素中的src属性
-    $(bigimg).attr("src", src);//设置#bigimg元素的src属性
-     /*获取当前点击图片的真实大小，并显示弹出层及大图*/
+    var src = _this.attr("src");//Gets the current ClickpimgElement insrcattribute
+    $(bigimg).attr("src", src);//Config#bigimgElementsrcattribute
+     /*Gets the actual size of the current picture.，And display the pop-up layer and large*/
     $("<img/>").attr("src", src).load(function(){
-        var windowW = $(window).width();//获取当前窗口宽度
-        var windowH = $(window).height();//获取当前窗口高度
-        var realWidth = this.width;//获取图片真实宽度
-        var realHeight = this.height;//获取图片真实高度
+        var windowW = $(window).width();//Gets the current window width
+        var windowH = $(window).height();//Gets the current window height
+        var realWidth = this.width;//Get the true width of the picture
+        var realHeight = this.height;//Obtain the true height of the picture
         var imgWidth, imgHeight;
-        var scale = 0.8;//缩放尺寸，当图片真实宽度和高度大于窗口宽度和高度时进行缩放
-        if(realHeight>windowH*scale) {//判断图片高度
-            imgHeight = windowH*scale;//如大于窗口高度，图片高度进行缩放
-            imgWidth = imgHeight/realHeight*realWidth;//等比例缩放宽度
-            if(imgWidth>windowW*scale) {//如宽度扔大于窗口宽度
-                imgWidth = windowW*scale;//再对宽度进行缩放
+        var scale = 0.8;//Zoom size，Zoom when the true width and height of the picture are larger than the width of the window.
+        if(realHeight>windowH*scale) {//Picture height
+            imgHeight = windowH*scale;//Such as greater than the height of the window，Image height zoom
+            imgWidth = imgHeight/realHeight*realWidth;//Equal scaling width
+            if(imgWidth>windowW*scale) {//If the width is larger than the width of the window
+                imgWidth = windowW*scale;//Zoom in width
             }
-        } else if(realWidth>windowW*scale) {//如图片高度合适，判断图片宽度
-            imgWidth = windowW*scale;//如大于窗口宽度，图片宽度进行缩放
-                        imgHeight = imgWidth/realWidth*realHeight;//等比例缩放高度
-        } else {//如果图片真实高度和宽度都符合要求，高宽不变
+        } else if(realWidth>windowW*scale) {//If the picture is highly appropriate，Judge picture width
+            imgWidth = windowW*scale;//Such as greater than the width of the window，Image width zoom
+                        imgHeight = imgWidth/realWidth*realHeight;//Equal scaled height
+        } else {//If the true height and width of the picture are in line with the requirements，High width invariant
             imgWidth = realWidth;
             imgHeight = realHeight;
         }
-         $(bigimg).css("width",imgWidth);//以最终的宽度对图片缩放
-        var w = (windowW-imgWidth)/2;//计算图片与窗口左边距
-        var h = (windowH-imgHeight)/2;//计算图片与窗口上边距
-        $(innerdiv).css({"top":h, "left":w});//设置#innerdiv的top和left属性
-        $(outerdiv).fadeIn("fast");//淡入显示#outerdiv及.pimg
+         $(bigimg).css("width",imgWidth);//Zoom in the picture with the final width
+        var w = (windowW-imgWidth)/2;//Calculate the picture and the left side of the window
+        var h = (windowH-imgHeight)/2;//The picture and window margin calculation
+        $(innerdiv).css({"top":h, "left":w});//Config#innerdivThetopandleftattribute
+        $(outerdiv).fadeIn("fast");//Fade display#outerdivand.pimg
     });
-    $(outerdiv).click(function(){//再次点击淡出消失弹出层
+    $(outerdiv).click(function(){//Click fade out again.
         $(this).fadeOut("fast");
     });
 }

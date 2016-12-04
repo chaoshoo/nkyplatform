@@ -9,12 +9,12 @@ $(function() {
 	//初始化弹出框
 	$('#role_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				dialogClose();
 			}
@@ -76,22 +76,22 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'roleId',
 		columns:[[
-			{field:'roleName',title:'角色名称',width:100},
-			{field:'isEffective',title:'状态',width:70,
+			{field:'roleName',title:'Role name',width:100},
+			{field:'isEffective',title:'state',width:70,
 					formatter:function(value){
 						if(1==value){
-							return '有效';
+							return 'effective';
 						}else{
-							return '无效';
+							return 'invalid';
 						}
 					}
 			},
-			{field:'roleId',title:'操作',width:70,
+			{field:'roleId',title:'Operation',width:70,
 					formatter:function(value){
 //						if(value == 1 || value == 2 || value == 3 || value == 4){
 //							return '';
 //						}
-						return '<a href="javascript:roleEdit('+value+')">修改</a> &nbsp;<a   onclick="del('+value+')" ><font color="red">删除</font></a>';
+						return '<a href="javascript:roleEdit('+value+')">modify</a> &nbsp;<a   onclick="del('+value+')" ><font color="red">delete</font></a>';
 					}
 			}
 		]],
@@ -101,18 +101,18 @@ function initDataGrid(){
         }
 	});
 }
-function del(roleId){  //删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){  
+function del(roleId){  //Delete operation  
+    $.messager.confirm('confirm','confirm deletion?',function(row){  
         if(row){  
             $.ajax({  
                 url:'sysRole/deleteRole.html?roleId='+roleId,    
                 success:function(msg){
                 	if(msg=='success') 
 //                		alert("删除成功");
-                		$.messager.alert(titleInfo,'删除成功!');
+                		$.messager.alert(titleInfo,'Deleted!');
                 	else 
 //                		alert("删除失败");
-                		$.messager.alert(titleInfo,'删除失败!');
+                		$.messager.alert(titleInfo,'Delete failed!');
                 	window.location.href=window.location.href;
                 } ,
                 fail:function(){
@@ -123,8 +123,8 @@ function del(roleId){  //删除操作
     })  
   }  
 function showModel(){
-	var content = '我是动态加入的数据';
-	var divEntity = {"targetID":"modelDiv","width":650,"height":480,"content":content,"title":"添加系统角色"};
+	var content = 'I`m a dynamic data entry.';
+	var divEntity = {"targetID":"modelDiv","width":650,"height":480,"content":content,"title":"Add system role"};
 	var modelDiv = new ModelDiv(divEntity);
 	showModelDiv(modelDiv);
 	$("#roleId").val("");
@@ -133,13 +133,13 @@ function showModel(){
 
 function submit_model_window(){
 	if($("#roleName").val()==null||$("#roleName").val()==""){
-		$.messager.alert(titleInfo,'您还没有输入角色名称!');
+		$.messager.alert(titleInfo,'You have not entered a role name!');
 		return;
 	}
     var zTree=$.fn.zTree.getZTreeObj("treeDemo");
 	var tree_nodes=zTree.getCheckedNodes(true);
 	if(tree_nodes.length==0){
-		$.messager.alert(titleInfo,'请为角色选择权限!');
+		$.messager.alert(titleInfo,'Please select the permissions for the role!');
 		return;
 	}
 	var authority = "";
@@ -157,32 +157,32 @@ function submit_model_window(){
 		$.post("sysRole/updateSysRole.json",arr_add,function(data){
 			if(data.code==1){
 				dialogClose();
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
-				$.messager.alert(titleInfo,'修改失败!!!');
+				$.messager.alert(titleInfo,'Change failed!!!');
 			}
 		},"json");
 	}else{
 		$.post("sysRole/addSysRole.json",arr_add,function(data){
 			if(data.code==1){
 				dialogClose();
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
-				$.messager.alert(titleInfo,'添加失败!');
+				$.messager.alert(titleInfo,'Add failed!');
 			}
 		},"json");
 	}
 }
 
 /**
- * 删除角色
+ * Delete role
  * @param dataId
  * @param dataIndex
  */
 function deleteOperate(dataId,dataIndex){
-	var dialog = new DialogDiv({"content":"您确定删除这个角色吗？","isHavaCancel":true});
+	var dialog = new DialogDiv({"content":"Are you sure you want to delete this role？","isHavaCancel":true});
 	dialog.showDialog();
 	d_dataId = dataId;
 	d_dataIndex = dataIndex;
@@ -202,13 +202,13 @@ function _deleteOperate(dataId,dataIndex){
 }
 
 /**
- * 更新角色
+ * Update role
  * @param dataId
  * @param dataIndex
  */
 function updateOperate(dataId,dataIndex){
-	var content = '我是动态加入的数据';
-	var divEntity = {"targetID":"modelDiv","width":650,"height":480,"content":content,"title":"修改系统角色"};
+	var content = 'I`m a dynamic data entry.';
+	var divEntity = {"targetID":"modelDiv","width":650,"height":480,"content":content,"title":"Modify system role"};
 	var modelDiv = new ModelDiv(divEntity);
 	showModelDiv(modelDiv);
 	getAuthMyTreeData(dataId);
@@ -221,7 +221,7 @@ var treeData;
 var my_treeData;
 
 /**
- * 获取权限树
+ * Access tree
  */
 function getAuthTreeData(){
 	$.post('sysAuth/getAllAuthToTree.json',{"isEffective":1},function(data){
@@ -230,7 +230,7 @@ function getAuthTreeData(){
 }
 
 /**
- * 获取当前角色的权限树
+ * Gets the permission tree for the current role
  * @param roleId
  */
 function getAuthMyTreeData(roleId){

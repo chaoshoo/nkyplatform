@@ -32,16 +32,16 @@ public class App {
 
 	public static void testRawImage(String data) {
 		/*
-		 * data为经过Base64编码后的数据
-		 * 如果取到了原始数据，即非Base64编码后的数据，请换用函数
+		 * dataTo passBase64Encoded data
+		 * If the original data is taken，NonBase64Encoded data，Please replace the function
 		 * 
-		 * 请参考接口文档以确认获取到的心电数据是否为Base64编码后的数据
+		 * Please refer to the interface documentation to confirm whether the acquired ECG data isBase64Encoded data
 		 */
 		Map<String, byte[]> imgs = new ImageExporter().export(data);
 		int i = 1;
 		for (Map.Entry<String, byte[]> entry : imgs.entrySet()) {
 			//			printLead(entry.getKey());
-			/*  将数据保存到文件，以方便检查 */
+			/*  Save data to file，To facilitate inspection */
 			try {
 				FileOutputStream fos = new FileOutputStream("test/" + (i++) + "-" + entry.getKey() + ".jpg");
 				fos.write(entry.getValue());

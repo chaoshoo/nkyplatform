@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -38,25 +38,25 @@ function loadSubGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-			{field:'KIP_CODE',title:'指标编码',width:100},
-		    {field:'SEX',title:'性别',width:100,
+			{field:'KIP_CODE',title:'Index coding',width:100},
+		    {field:'SEX',title:'Gender',width:100,
 				formatter : function(value) {
 					if(value == 1 ){
-						return "男";
+						return "male";
 					}else if(value == 0){
-						return "女";
+						return "female";
 					}else{
 						return "";
 					}
 				}
 			},
-		    {field:'AGE_MIN',title:'最小年龄',width:100},
-		    {field:'AGE_MAX',title:'最大年龄',width:100},
-		    {field:'FZ_MIN',title:'指标最小阀值',width:100},
-		    {field:'FZ_MAX',title:'指标最大阀值',width:100},
-		    {field:'ID',title:'操作',width:120,
+		    {field:'AGE_MIN',title:'Minimum age',width:100},
+		    {field:'AGE_MAX',title:'Maximum age',width:100},
+		    {field:'FZ_MIN',title:'Minimum threshold index',width:100},
+		    {field:'FZ_MAX',title:'Maximum threshold index',width:100},
+		    {field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){ 
-						return  '<a href="javascript:edit('+value+')">修改</a> &nbsp;<a onclick="javascript:del(\''+value+'\')" ><font color="red">删除</font></a>'
+						return  '<a href="javascript:edit('+value+')">modify</a> &nbsp;<a onclick="javascript:del(\''+value+'\')" ><font color="red">delete</font></a>'
 				}
 			}
 		    
@@ -65,7 +65,7 @@ function loadSubGrid(){
 		rownumbers:false 
 	});  
 }
-/* {field:'CREATE_TIME',title : '创建时间',width : 100,
+/* {field:'CREATE_TIME',title : 'Created time',width : 100,
 formatter : function(value) {
 	if(value == null || value == ""){
 		return "";
@@ -77,9 +77,9 @@ formatter : function(value) {
 
  function formatterDateTime(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + ((date.getMonth() + 1) < 10 ?('0'+(date.getMonth() + 1)):(date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date
                     .getDate())
             + " "
@@ -117,17 +117,17 @@ function edit(id){
 	 }
 }
 //删除
-function del(id){  //删除操作  
+function del(id){  //Delete operation  
 	//base_detail_table
 	$('#base_detail_table').datagrid('selectRecord',id);
 	var rowInfo =  $('#base_detail_table').datagrid('getSelected');
 	if(rowInfo){
-		$.messager.confirm('确认','确认删除?',function(row){  
+		$.messager.confirm('confirm','confirm deletion?',function(row){  
 	        if(row){  
 	        	$.post('vipInspectConfigFz/del.json?id='+rowInfo.ID,function(data){
 	    			if(data.code==1){
 	    				$('#user_detail_dialog').dialog('close');
-	    				$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+	    				$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
 	    			}else{
 	            		//alert("删除失败");
 	    				$.messager.alert(titleInfo,data.msg);
@@ -154,7 +154,7 @@ function openedit(id){
 }
 
 /**
- * 数据表格刷新
+ * Data table refresh
  * @param param
  */
 function dataGridloaddel(parameter){
@@ -182,7 +182,7 @@ $(function() {
 	//初始化弹出框
 	$('#user_detail_dialog').dialog({
 		buttons:[{
-			text:'关闭',
+			text:'Close',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -205,12 +205,12 @@ $(function() {
 	
 	$('#user_detail_dialog1').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog1').dialog('close');
 			}
@@ -227,36 +227,36 @@ function submit_model_window(){
 		if(reg.test(str1)&&reg.test(str2)){
 			
 		}else{
-			$.messager.alert(titleInfo,'年龄不合规则');
+			$.messager.alert(titleInfo,'Age is invalid');
 			return;
 		}
 	}else{
-		$.messager.alert(titleInfo,'请填写年龄!');
+		$.messager.alert(titleInfo,'Please input age!');
 		return;
 		}
 	
 	if($("#fzcode").val()==null || $("#fzcode").val()==""){
-		$.messager.alert(titleInfo,'请输入指标编码!');
+		$.messager.alert(titleInfo,'Please enter the index code!');
 		return;
 	}
 
 	if($("#min_age").val()==null || $("#min_age").val()==""){
-		$.messager.alert(titleInfo,'请输入最小年龄!');
+		$.messager.alert(titleInfo,'Please enter the minimum age!');
 		return;
 	}
 	
 	if($("#max_age").val()==null || $("#max_age").val()==""){
-		$.messager.alert(titleInfo,'请输入最大年龄!');
+		$.messager.alert(titleInfo,'Please enter the maximum age!');
 		return;
 	}
 	
 	if($("#min_fz").val()==null || $("#min_fz").val()==""){
-		$.messager.alert(titleInfo,'输入指标最小阈值!');
+		$.messager.alert(titleInfo,'Input index minimum threshold!');
 		return;
 	}
 	
 	if($("#max_fz").val()==null || $("#max_fz").val()==""){
-		$.messager.alert(titleInfo,'输入指标最大阈值!');
+		$.messager.alert(titleInfo,'Input index maximum threshold!');
 		return;
 	}
 	
@@ -264,13 +264,13 @@ function submit_model_window(){
 	var fzid=$("#fzid").val();
     if(fzid != null && fzid != ""){
     	 /* if($("#min_age").val()>$("#max_age").val()){
-    		$.messager.alert(titleInfo,'最大年龄不能比最小年龄小!');
+    		$.messager.alert(titleInfo,'The maximum age can not be smaller than the minimum age!');
     		return;
     	}else{ */ 
     	$.post("vipInspectConfigFz/update.json",formdata,function(data){
 			if(data.code==1){
 				$('#user_detail_dialog1').dialog('close');
-				$.messager.show({title:titleInfo,msg:'更新成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Updated！',timeout:timeoutValue,showType:'slide'});
 				$('#base_detail_table').datagrid('reload',parameter2); 
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -280,13 +280,13 @@ function submit_model_window(){
     	/* } */
      }else{
     	/*  if($("#min_age").val()>$("#max_age").val()){
-    			$.messager.alert(titleInfo,'最大年龄不能比最小年龄小!');
+    			$.messager.alert(titleInfo,'The maximum age can not be smaller than the minimum age!');
     			return;
     		}else{ */
 		$.post("vipInspectConfigFz/save.json",formdata,function(data){
 			if(data.code==1){
 				$('#user_detail_dialog1').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				$('#base_detail_table').datagrid('reload',parameter2);
 			}else{
 				$.messager.alert(titleInfo,data.msg);
@@ -314,14 +314,14 @@ function submit_model_window(){
 		if(reg.test(str)&&reg.test(str)){
 			
 		}else{
-			$.messager.alert(titleInfo,'年龄不合规则');
+			$.messager.alert(titleInfo,'Age is invalid');
 		}
 	}else{
-		$.messager.alert(titleInfo,'请填写年龄!');
+		$.messager.alert(titleInfo,'Please input age!');
 		} 
 } */
 
-/** 初始化数据表格 */
+/** Initialize data form */
 function initDataGrid(){
 	$('#base_table').datagrid({
 		iconCls:'icon-save',
@@ -338,16 +338,16 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-			{field:'INSPECT_CODE',title:'检测编码',width:100},
-		    {field:'CODE',title:'编码',width:100},
-		    {field:'NAME',title:'名字',width:100},
-		    {field:'KPI_MIN',title:'指标最大阀值',width:100},
-		    {field:'KPI_MAX',title:'指标最小阀值',width:100} ,
-		    {field:'UNIT',title:'单位',width:100},
-			{field:'ID',title:'操作',width:120,
+			{field:'INSPECT_CODE',title:'Detection coding',width:100},
+		    {field:'CODE',title:'Code',width:100},
+		    {field:'NAME',title:'Name',width:100},
+		    {field:'KPI_MIN',title:'Maximum threshold index',width:100},
+		    {field:'KPI_MAX',title:'Minimum threshold index',width:100} ,
+		    {field:'UNIT',title:'Company',width:100},
+			{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){ 
 					/* if(row.CHILD){ */
-						return  '<a href="javascript:openedit('+value+')">阀值列表</a>';
+						return  '<a href="javascript:openedit('+value+')">Threshold list</a>';
 					/* } */
 					/* return ""; */
 				}
@@ -364,69 +364,69 @@ function initDataGrid(){
 </script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'检测指标查询'" class="regionCenter">
+	<div data-options="region:'center',title:'Detection index query'" class="regionCenter">
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="" id="query_form">		
-		&nbsp;&nbsp;&nbsp;&nbsp;检测编码&nbsp;&nbsp;<input type="text" id="FIT-LIKE-inspect_code" name="FIT-LIKE-inspect_code"/>
-        &nbsp;&nbsp;&nbsp;&nbsp;指标编码&nbsp;&nbsp;<input type="text" id="FIT-LIKE-code" name="FIT-LIKE-code"/>
-		&nbsp;&nbsp;&nbsp;&nbsp;指标名字&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-name"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;Detection coding&nbsp;&nbsp;<input type="text" id="FIT-LIKE-inspect_code" name="FIT-LIKE-inspect_code"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;Index coding&nbsp;&nbsp;<input type="text" id="FIT-LIKE-code" name="FIT-LIKE-code"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;Index name&nbsp;&nbsp;<input type="text" id="FIT-LIKE-name" name="FIT-LIKE-name"/>
 		 <button type="button" id="auth_search" 
-				class="btn btn-success btn-success-min"><i class="icon-search"></i>&nbsp;查询</button>
+				class="btn btn-success btn-success-min"><i class="icon-search"></i>&nbsp;query</button>
 		<!-- <button type="button"
-				id="auth_reset" class="btn btn-success btn-success-min"><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<!-- <button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button> -->
+				id="auth_reset" class="btn btn-success btn-success-min"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<!-- <button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button> -->
 		 </form>
 		</div>
 		<table id="base_table"></table>
         <div id="editfrom_dialog"></div>
 	</div>
 	
-	<div id="user_detail_dialog" data-options="closed:true,modal:true,title:'阀值列表'" style="padding: 5px; width: 700px; height: 400px;">
-		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button>
+	<div id="user_detail_dialog" data-options="closed:true,modal:true,title:'Threshold list'" style="padding: 5px; width: 700px; height: 400px;">
+		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
 		 
 		<table id="base_detail_table"></table>
     </div>
-    <div id="user_detail_dialog1" data-options="closed:true,modal:true,title:'阈值详细信息',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;">
+    <div id="user_detail_dialog1" data-options="closed:true,modal:true,title:'Threshold detail',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;">
          <form action="vipInspectConfigFz/list.json" id="user_detail_form">
           <input type="hidden" id="fzid" name="id" />
            <table style="margin-left: 10px">
              <tr id="code_tr" >
-				<td>指标编码</td>
+				<td>Index coding</td>
 				<td>
 				<input style="width: 200px;" type="text" value="" id="fzcode" name="kip_code" readonly="readonly"/>
 				</td>
 			</tr>
 			<tr id="sex_tr" >
-				<td>性别</td>
+				<td>Gender</td>
 				<td >
-				<!-- <input type="hidden" name="sex" value="1" id="sex1"/>男
-				<input type="hidden" name="sex" value="0" id="sex2"/>女 -->
+				<!-- <input type="hidden" name="sex" value="1" id="sex1"/>male
+				<input type="hidden" name="sex" value="0" id="sex2"/>female -->
 				<select id="sex" name="sex">
-                <option value="1">男</option>
-				<option value="0">女</option>
+                <option value="1">male</option>
+				<option value="0">female</option>
                 </select>
 				</td>
 			</tr>
 			<tr id="age_tr" >
-				<td>最小年龄</td>
+				<td>Minimum age</td>
 				<td>
 				<input style="width: 200px;" type="text" id="min_age" name="age_min" />
 				</td>
 			</tr>
 			<tr id="age_tr1" >
-				<td>最大年龄</td>
+				<td>Maximum age</td>
 				<td>
 				<input style="width: 200px;" type="text" id="max_age" name="age_max" />
 				</td>
 			</tr>
 			<tr id="min_fz_tr" >
-				<td>指标最小阈值</td>
+				<td>Index minimum threshold</td>
 				<td>
 				<input style="width: 200px;" type="text" id="min_fz" name="fz_min" />
 				</td>
 			</tr>
 			<tr id="max_fz_tr" >
-				<td>指标最大阈值</td>
+				<td>Index maximum threshold</td>
 				<td>
 				<input style="width: 200px;" type="text" id="max_fz" name="fz_max" />
 				</td>

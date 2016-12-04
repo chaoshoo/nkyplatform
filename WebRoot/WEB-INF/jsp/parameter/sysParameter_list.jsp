@@ -9,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
@@ -17,49 +17,49 @@
 <script type="text/javascript" src="js/parameter/sysParameter_list.js"></script>
 </head>
 <body class="easyui-layout">
-  <div data-options="region:'center',title:'系统参数配置'" class="regionCenter">
+  <div data-options="region:'center',title:'System parameter configuration'" class="regionCenter">
     <div id="common_search" class="common_search common_search_nopadding">
-      &nbsp;&nbsp;&nbsp;&nbsp;名称：
+      &nbsp;&nbsp;&nbsp;&nbsp;Name：
       <input type="text" id="name1" />
       <button type="button" id="sysParameter_add" class="btn btn-success" style="margin-left: 20px;">
-        <i class="icon-plus"></i>&nbsp;添加
+        <i class="icon-plus"></i>&nbsp;Add
       </button>
       <button type="button" id="sysParameter_search" class="btn btn-success">
-        <i class="icon-search"></i>&nbsp;查询
+        <i class="icon-search"></i>&nbsp;query
       </button>
       <!-- <button type="button" id="sysParameter_reset" class="btn btn-success">
-        <i class="icon-refresh"></i>&nbsp;重置
+        <i class="icon-refresh"></i>&nbsp;Reset
       </button> -->
     </div>
     <table id="sysParameter_table"></table>
-    <div id="sysParameter_detail_dialog" data-options="closed:true,modal:true,title:'参数配置',iconCls:'icon-save'" style="padding: 5px; width: 600px; height: 400px;">
+    <div id="sysParameter_detail_dialog" data-options="closed:true,modal:true,title:'Parameter configuration',iconCls:'icon-save'" style="padding: 5px; width: 600px; height: 400px;">
       <form action="sysParameter/getList.json" id="sysParameter_detail_form">
         <input type="hidden" id="id">
         <table>
           <tr>
-            <td>名称</td>
+            <td>Name</td>
             <td><input type="text" id="name"></td>
           </tr>
           <tr>
-            <td>编码</td>
+            <td>Code</td>
             <td><input type="text" id="code"></td>
           </tr>
           <tr>
-            <td>默认值</td>
+            <td>Default value</td>
             <td><input type="text" id="defaultValue"></td>
           </tr>
           <tr>
-            <td>排序号</td>
+            <td>Sort number</td>
             <td><input type="text" id="soft"></td>
           </tr>
           <tr>
-            <td>是否开启</td>
+            <td>Whether to open</td>
             <td><select id="isEffective">
                 <m:getItems name="isEffective" />
             </select></td>
           </tr>
           <tr>
-            <td>说明</td>
+            <td>Explain</td>
             <td><textarea style="width: 85%" rows="5" cols="5" id="description"></textarea></td>
           </tr>
         </table>

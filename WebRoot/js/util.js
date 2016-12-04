@@ -28,15 +28,15 @@ function checkEmail(val) {
 	return regex.test(val);
 }
 
-function checkUrl(url) {// 验证url
+function checkUrl(url) {// Verificationurl
 	var regex = "^((https|http|ftp|rtsp|mms)?://)"
-	+ "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftp的user@
-	+ "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
-	+ "|" // 允许IP和DOMAIN（域名）
-	+ "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
-	+ "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名
+	+ "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" // ftpTheuser@
+	+ "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IPFormURL- 199.194.52.184
+	+ "|" // allowIPandDOMAIN（domain name）
+	+ "([0-9a-z_!~*'()-]+\.)*" // domain name- www.
+	+ "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // Two level domain name
 	+ "[a-z]{2,6})" // first level domain- .com or .museum
-	+ "(:[0-9]{1,4})?" // 端口- :80
+	+ "(:[0-9]{1,4})?" // port- :80
 	+ "((/?)|" // a slash isn't required if there is no file name
 	+ "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
 	var regExp = new RegExp(regex);
@@ -50,28 +50,28 @@ function checkPos(val) {
 
 //身份证校验,成功返回true
 function validateIdCard(obj) {
-	var aCity = {11 : "北京", 12 : "天津", 13 : "河北", 14 : "山西", 15 : "内蒙古", 21 : "辽宁", 22 : "吉林", 23 : "黑龙江", 31 : "上海", 32 : "江苏", 33 : "浙江", 34 : "安徽", 35 : "福建", 36 : "江西", 37 : "山东", 41 : "河南", 42 : "湖北", 43 : "湖南", 44 : "广东", 45 : "广西", 46 : "海南", 50 : "重庆", 51 : "四川", 52 : "贵州", 53 : "云南", 54 : "西藏", 61 : "陕西", 62 : "甘肃", 63 : "青海", 64 : "宁夏", 65 : "新疆", 71 : "台湾", 81 : "香港", 82 : "澳门", 91 : "国外" };
+	var aCity = {11 : "Beijing", 12 : "Tianjin", 13 : "Hebei", 14 : "Shanxi", 15 : "Inner Mongolia", 21 : "Liaoning", 22 : "Jilin", 23 : "Heilongjiang", 31 : "Shanghai", 32 : "Jiangsu", 33 : "Zhejiang", 34 : "Anhui", 35 : "Fujian", 36 : "Jiangxi", 37 : "Shandong", 41 : "Henan", 42 : "Hubei", 43 : "Hunan", 44 : "Guangdong", 45 : "Guangxi", 46 : "Hainan", 50 : "Chongqing", 51 : "Sichuan", 52 : "Guizhou", 53 : "Yunnan", 54 : "Tibet", 61 : "Shaanxi", 62 : "Gansu", 63 : "Qinghai", 64 : "Ningxia", 65 : "Xinjiang", 71 : "Taiwan", 81 : "Hong Kong", 82 : "Macao", 91 : "abroad" };
 	var iSum = 0;
 	var strIDno = obj;
 	var idCardLength = strIDno.length;
 	if (!/^\d{17}(\d|x)$/i.test(strIDno) && !/^\d{15}$/i.test(strIDno))
-		return false; // 非法身份证号
+		return false; // Illegal ID card number
 	if (aCity[parseInt(strIDno.substr(0, 2))] == null)
-		return false;// 非法地区
+		return false;// Illegal area
 	// 15位身份证转换为18位
 	if (idCardLength == 15) {
 		sBirthday = "19" + strIDno.substr(6, 2) + "-" + Number(strIDno.substr(8, 2)) + "-" + Number(strIDno.substr(10, 2));
 		var d = new Date(sBirthday.replace(/-/g, "/"))
 		var dd = d.getFullYear().toString() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 		if (sBirthday != dd)
-			return false; // 非法生日
+			return false; // Illegal birthday
 		strIDno = strIDno.substring(0, 6) + "19" + strIDno.substring(6, 15);
 		strIDno = strIDno + GetVerifyBit(strIDno);
 	}
 	// 判断是否大于2078年，小于1900年
 	var year = strIDno.substring(6, 10);
 	if (year < 1900 || year > 2078)
-		return false;// 非法生日
+		return false;// Illegal birthday
 	// 18位身份证处理
 	// 在后面的运算中x相当于数字10,所以转换成a
 	strIDno = strIDno.replace(/x$/i, "a");
@@ -80,12 +80,12 @@ function validateIdCard(obj) {
 	var d = new Date(sBirthday.replace(/-/g, "/"))
 	if (sBirthday != (d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d
 			.getDate()))
-		return false; // 非法生日
+		return false; // Illegal birthday
 	// 身份证编码规范验证
 	for ( var i = 17; i >= 0; i--)
 		iSum += (Math.pow(2, i) % 11) * parseInt(strIDno.charAt(17 - i), 11);
 	if (iSum % 11 != 1)
-		return false;// 非法身份证号
+		return false;// Illegal ID card number
 	// 判断是否屏蔽身份证
 	var words = new Array();
 	words = new Array("11111119111111111", "12121219121212121");
@@ -108,7 +108,7 @@ function luhmCheck(bankno){
 		// $("#banknoInfo").html("银行卡号长度必须在16到19之间");
 		return false;
 	}
-	var num = /^\d*$/;  // 全数字
+	var num = /^\d*$/;  // all-digital
 	if (!num.exec(bankno)) {
 		// $("#banknoInfo").html("银行卡号必须全为数字");
 		return false;
@@ -119,35 +119,35 @@ function luhmCheck(bankno){
 		// $("#banknoInfo").html("银行卡号开头6位不符合规范");
 		return false;
 	}
-    var lastNum = bankno.substr(bankno.length - 1, 1);// 取出最后一位（与luhm进行比较）
-    var first15Num = bankno.substr(0,bankno.length - 1);// 前15或18位
+    var lastNum = bankno.substr(bankno.length - 1, 1);// Take out the last one（andluhmCompare）
+    var first15Num = bankno.substr(0,bankno.length - 1);// ago15or18position
     var newArr = new Array();
-    for(var i = first15Num.length - 1; i > -1; i--) {    // 前15或18位倒序存进数组
+    for(var i = first15Num.length - 1; i > -1; i--) {    // ago15or18Bit reverse into array
         newArr.push(first15Num.substr(i, 1));
     }
-    var arrJiShu = new Array();  // 奇数位*2的积 <9
-    var arrJiShu2 = new Array(); // 奇数位*2的积 >9
-    var arrOuShu = new Array();  // 偶数位数组
+    var arrJiShu = new Array();  // Odd digit*2The product <9
+    var arrJiShu2 = new Array(); // Odd digit*2The product >9
+    var arrOuShu = new Array();  // Even number group
     for(var j = 0; j < newArr.length; j++) {
-        if((j + 1) % 2 == 1) {// 奇数位
+        if((j + 1) % 2 == 1) {// Odd digit
             if(parseInt(newArr[j]) * 2 < 9)
             arrJiShu.push(parseInt(newArr[j]) * 2);
             else
             arrJiShu2.push(parseInt(newArr[j]) * 2);
         }
-        else // 偶数位
+        else // Even bit
         arrOuShu.push(newArr[j]);
     }
-    var jishu_child1 = new Array();// 奇数位*2 >9 的分割之后的数组个位数
-    var jishu_child2 = new Array();// 奇数位*2 >9 的分割之后的数组十位数
+    var jishu_child1 = new Array();// Odd digit*2 >9 After the split of the number of arrays
+    var jishu_child2 = new Array();// Odd digit*2 >9 Ten digits of the array after the split
     for(var h = 0; h < arrJiShu2.length; h++) {
         jishu_child1.push(parseInt(arrJiShu2[h]) % 10);
         jishu_child2.push(parseInt(arrJiShu2[h]) / 10);
     }        
-    var sumJiShu = 0; // 奇数位*2 < 9 的数组之和
-    var sumOuShu = 0; // 偶数位数组之和
-    var sumJiShuChild1 = 0; // 奇数位*2 >9 的分割之后的数组个位数之和
-    var sumJiShuChild2 = 0; // 奇数位*2 >9 的分割之后的数组十位数之和
+    var sumJiShu = 0; // Odd digit*2 < 9 Sum of arrays
+    var sumOuShu = 0; // Sum of even number groups
+    var sumJiShuChild1 = 0; // Odd digit*2 >9 After the segmentation of the sum of the number of arrays
+    var sumJiShuChild2 = 0; // Odd digit*2 >9 The sum of the ten digits of the array after the segmentation.
     var sumTotal = 0;
     for(var m = 0; m < arrJiShu.length; m++) {
         sumJiShu = sumJiShu + parseInt(arrJiShu[m]);
@@ -165,10 +165,10 @@ function luhmCheck(bankno){
     var k = parseInt(sumTotal) % 10 == 0 ? 10 : parseInt(sumTotal) % 10;        
     var luhm = 10-k;
     if(lastNum == luhm) {
-    	$("#banknoInfo").html("Luhm验证通过");
+    	$("#banknoInfo").html("LuhmVerified");
     	return true;
     } else {
-    	$("#banknoInfo").html("银行卡号必须符合Luhm校验");
+    	$("#banknoInfo").html("Bank card number must be in line withLuhmcheck");
     	return false;
     }   
 }
@@ -209,12 +209,12 @@ String.prototype.rtrim = function() {
 
 Date.prototype.Format = function(fmt) { //author: meizz 
 	var o = {
-		"M+" : this.getMonth() + 1, //月份 
-		"d+" : this.getDate(), //日 
-		"h+" : this.getHours(), //小时 
-		"m+" : this.getMinutes(), //分 
-		"s+" : this.getSeconds(), //秒 
-		"q+" : Math.floor((this.getMonth() + 3) / 3), //季度 
+		"M+" : this.getMonth() + 1, //Month 
+		"d+" : this.getDate(), //day 
+		"h+" : this.getHours(), //hour 
+		"m+" : this.getMinutes(), //branch 
+		"s+" : this.getSeconds(), //second 
+		"q+" : Math.floor((this.getMonth() + 3) / 3), //quarter 
 		"S" : this.getMilliseconds()
 	//毫秒 
 	};
@@ -229,10 +229,10 @@ Date.prototype.Format = function(fmt) { //author: meizz
 }
 
 /**
- ** 加法函数，用来得到精确的加法结果
- ** 说明：javascript的加法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的加法结果。
- ** 调用：accAdd(arg1,arg2)
- ** 返回值：arg1加上arg2的精确结果
+ ** Additive function，Used to get accurate results.
+ ** Explain：javascriptThe result of the addition will be error，It will be more obvious when the two floating point numbers are added together.。This function returns a more accurate addition result.。
+ ** call：accAdd(arg1,arg2)
+ ** Return value：arg1Addarg2Exact result
  **/
 function accAdd(arg1, arg2) {
     var r1, r2, m, c;
@@ -272,10 +272,10 @@ Number.prototype.add = function (arg) {
 };
 
 /**
- ** 减法函数，用来得到精确的减法结果
- ** 说明：javascript的减法结果会有误差，在两个浮点数相减的时候会比较明显。这个函数返回较为精确的减法结果。
- ** 调用：accSub(arg1,arg2)
- ** 返回值：arg1加上arg2的精确结果
+ ** Subtraction function，Used to obtain accurate results.
+ ** Explain：javascriptThe subtraction results will be error，When two floating-point subtraction will be more pronounced.。This function returns the exact subtraction result。
+ ** call：accSub(arg1,arg2)
+ ** Return value：arg1Addarg2Exact result
  **/
 function accSub(arg1, arg2) {
     var r1, r2, m, n;
@@ -291,7 +291,7 @@ function accSub(arg1, arg2) {
     catch (e) {
         r2 = 0;
     }
-    m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //动态控制精度长度
+    m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //Dynamic control precision length
     n = (r1 >= r2) ? r1 : r2;
     return ((arg1 * m - arg2 * m) / m).toFixed(n);
 }
@@ -302,10 +302,10 @@ Number.prototype.sub = function (arg) {
 };
 
 /**
- ** 乘法函数，用来得到精确的乘法结果
- ** 说明：javascript的乘法结果会有误差，在两个浮点数相乘的时候会比较明显。这个函数返回较为精确的乘法结果。
- ** 调用：accMul(arg1,arg2)
- ** 返回值：arg1乘以 arg2的精确结果
+ ** Multiplication function，Used to obtain accurate multiplication results
+ ** Explain：javascriptThe multiplication result will have error，It is more obvious when the two floating point numbers are multiplied.。This function returns a more accurate result of the multiplication.。
+ ** call：accMul(arg1,arg2)
+ ** Return value：arg1Multiply arg2Exact result
  **/
 function accMul(arg1, arg2) {
     var m = 0, s1 = arg1.toString(), s2 = arg2.toString();
@@ -328,10 +328,10 @@ Number.prototype.mul = function (arg) {
 };
 
 /** 
- ** 除法函数，用来得到精确的除法结果
- ** 说明：javascript的除法结果会有误差，在两个浮点数相除的时候会比较明显。这个函数返回较为精确的除法结果。
- ** 调用：accDiv(arg1,arg2)
- ** 返回值：arg1除以arg2的精确结果
+ ** Division function，Used to obtain accurate division results.
+ ** Explain：javascriptThe division result will be error.，When the two floating point division will be more obvious。This function returns the result of a more accurate division.。
+ ** call：accDiv(arg1,arg2)
+ ** Return value：arg1Dividearg2Exact result
  **/
 function accDiv(arg1, arg2) {
     var t1 = 0, t2 = 0, r1, r2;

@@ -15,9 +15,9 @@ import com.nky.entity.inspect.InspectKpiConfig;
 import com.nky.entity.inspect.InspectKpiConfigFz;
 
 /**
- * 检查指标接口.
+ * Inspection index interface.
  * @author Ken
- * @version 2016年8月22日
+ * @version 2016year8month22day
  */
 public class InspectConfigData {
 
@@ -34,7 +34,7 @@ public class InspectConfigData {
 	//然后传入指标 可以知道指标熟悉及阈值范围
 	
 	/**
-	 * 获取单例.
+	 * Obtain a single case.
 	 */
 	public static InspectConfigData getInstance() {
 		if (instance == null) {
@@ -44,21 +44,21 @@ public class InspectConfigData {
 	}
 
 	/**
-	 * 获取所有的检测指标 C01: C02 . 包括他们下面的指标
+	 * Get all the test indexes C01: C02 . Include the following indicators
 	 */
 	public Map<String, InspectDic> getAllInspect(){
 		return INSPECT_CODE_NAME_MAP;
 	}
 
 	/**
-	 * 获取所有某一个检测指标代码的数据 C01下面的指标
+	 * Get all the data of a test indicator code C01The following indicators
 	 */
 	public InspectDic getInspect(String code){
 		return INSPECT_CODE_NAME_MAP.get(code);
 	}
 
 	/**
-	 * 获取所有某一个检测指标 C01 下面的指标阀值列表
+	 * Get all of the test indexes C01 The list below the threshold index
 	 */
 	public InspectKpiConfig getInspectValues(String inspectCode,String kpiCode){
 		return INSPECT_CODE_NAME_MAP.get(inspectCode).getInspectMap().get(kpiCode);
@@ -69,7 +69,7 @@ public class InspectConfigData {
 	}
 
 	/**
-	 * 加载数据
+	 * Load data
 	 */
 	private void loadData() {
 		synchronized (LOCK) {
@@ -80,14 +80,14 @@ public class InspectConfigData {
 				dic.setDicValue(r.getStr("DIC_VALUE"));
 				INSPECT_CODE_NAME_MAP.put(dic.getDicName(), dic);
 			}
-			Map<String, String> KPI_INSPEC_CODE = new HashMap<String, String>();//记录配置中的代码和指标的反向关系
+			Map<String, String> KPI_INSPEC_CODE = new HashMap<String, String>();//Reverse relationships between code and metrics in a record configuration
 			List<Record> configList = Db
 					.find("SELECT CODE,NAME,UNIT,INSPECT_CODE,KPI_MAX,KPI_MIN,KPI_PIC FROM inspect_kpi_config ");
 			for (Record r : configList) {
 				String inspectCode = r.getStr("INSPECT_CODE");
 				InspectDic dic = INSPECT_CODE_NAME_MAP.get(inspectCode);
 				if (dic == null) {
-					LOG.warn(inspectCode + "未有配置到字典表DIC，忽略掉...");
+					LOG.warn(inspectCode + "No configuration to dictionary tableDIC，Ignore...");
 					continue;
 				}
 				InspectKpiConfig kpi = new InspectKpiConfig();
@@ -100,7 +100,7 @@ public class InspectConfigData {
 				kpi.setInspectCode(r.getStr("INSPECT_CODE"));
 				KPI_INSPEC_CODE.put(kpi.getCode(), inspectCode);// 
 				dic.getInspectMap().put(kpi.getCode(), kpi);
-				LOG.debug("添加配置:" + kpi);
+				LOG.debug("Add configuration:" + kpi);
 			}
 			//select KIP_CODE,SEX,AGE_MIN,AGE_MAX,FZ_MAX,FZ_MIN from inspect_kpi_config_fz 
 			List<Record> configChildList = Db.find("select * from inspect_kpi_config_fz ");
@@ -109,7 +109,7 @@ public class InspectConfigData {
 				String inspectCode = KPI_INSPEC_CODE.get(configCode);
 				InspectDic dic = INSPECT_CODE_NAME_MAP.get(inspectCode);
 				if (dic == null) {
-					LOG.warn(inspectCode + "未有配置到字典表DIC，忽略掉..." + configCode);
+					LOG.warn(inspectCode + "No configuration to dictionary tableDIC，Ignore..." + configCode);
 					continue;
 				}
 
@@ -122,13 +122,13 @@ public class InspectConfigData {
 				fz.setKipCode(r.getStr("KIP_CODE"));
 				InspectKpiConfig config = dic.getInspectMap().get(configCode); 
 				config.getFzSet().add(fz);
-				LOG.debug("添加配置辅助:" + fz);
+				LOG.debug("Add configuration assistance:" + fz);
 			}
 		}
 	}
 
 	/**
-	 * 重新加载
+	 * Reload
 	 */
 	public void reload() {
 		loadData();

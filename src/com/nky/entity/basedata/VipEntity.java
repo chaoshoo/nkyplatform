@@ -7,9 +7,9 @@ import com.sys.jfinal.TableBind;
 import com.sys.util.Reflections;
 
 /**
- * 客户实体.
+ * Client entity.
  * @author Ken
- * @version 2016年8月26日 下午9:47:58
+ * @version 2016year8month26day Afternoon9:47:58
  */
 @TableBind(name = "t_vip")
 public class VipEntity extends JFinalEntity {

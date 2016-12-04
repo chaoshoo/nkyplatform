@@ -8,42 +8,42 @@ import com.sys.entity.sys.SysAuth;
 public interface SysAuthDao extends BaseDao<SysAuth> {
 
 	/**
-	 * 获得页面左侧菜单
+	 * Get the left menu on the page
 	 * @param pid
 	 * @return
 	 */
 	public List<SysAuth> getSysAuthByPid(int roleId);
 
 	/**
-	 * 获取权限列表
-	 * @param condition 当skipNo=-1时，获取符合条件的全部结果集；否则返回请求页结果集
+	 * Access list
+	 * @param condition WhenskipNo=-1time，Obtain all results set for the condition.；Otherwise, the result set of the requested page is returned
 	 * @return
 	 */
 	public List<SysAuth> getSysAuthList(SysAuth condition);
 	   
 	/**
-	 * 获取权限列表
-	 * @param condition 当skipNo=-1时，获取符合条件的全部结果集；否则返回请求页结果集
+	 * Access list
+	 * @param condition WhenskipNo=-1time，Obtain all results set for the condition.；Otherwise, the result set of the requested page is returned
 	 * @return
 	 */
 	public List<SysAuth> getSysAuthListTree(SysAuth condition);
 
 	/**
-	 * 修改权限
+	 * Modify permissions
 	 * @param sysAuth
 	 * @return
 	 */
 	public int updateSysAuth(SysAuth sysAuth);
 
 	/**
-	 * 添加权限
+	 * add permission
 	 * @param sysAuth
 	 * @return
 	 */
 	public int addSysAuth(SysAuth sysAuth);
 
 	/**
-	 * 获得数量 
+	 * Get quantity 
 	 * @param sysAuth
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public interface SysAuthDao extends BaseDao<SysAuth> {
 	public List<SysAuth> getParentAuthByRole(Integer roleId);
 	
 	/**
-	 * 删除权限
+	 * Delete authority
 	 * @param id
 	 * @return
 	 */

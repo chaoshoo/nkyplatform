@@ -42,7 +42,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 	private boolean isLogin(HttpServletRequest request) {
 		Object currentUser = request.getSession().getAttribute(LoginAttribute.ATTRIBUTE_USER);
-		if (currentUser != null) {//用户信息已存储至session中
+		if (currentUser != null) {//User information is stored tosessionin
 			return true;
 			//			ServletContext application = request.getSession().getServletContext();
 			//			Object sessionIds = application.getAttribute(PayConstants.ATTRIBUTE_SESSIONID_MAP);

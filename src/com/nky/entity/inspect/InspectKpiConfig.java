@@ -8,9 +8,9 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * inspect_kpi_config 检测数据指标.
+ * inspect_kpi_config Test data index.
  * @author Ken
- * @version 2016年8月22日
+ * @version 2016year8month22day
  */
 public class InspectKpiConfig {
 	@JsonIgnore

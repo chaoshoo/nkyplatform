@@ -1,4 +1,4 @@
-﻿//网站换肤
+﻿//The site skin
 $(function(){
 		var $li =$("#skin li");
 		$li.click(function(){
@@ -12,10 +12,9 @@ $(function(){
 });
 
 function switchSkin(skinName){
-		$("#"+skinName).addClass("selected")                //当前<li>元素选中
-					   .siblings().removeClass("selected");  //去掉其他同辈<li>元素的选中
-	    $("#cssfile").attr("href","css/"+ skinName +".css"); //设置不同皮肤
+		$("#"+skinName).addClass("selected")                //current<li>Element selected
+					   .siblings().removeClass("selected");  //Get rid of other peers<li>Elements of the selected
+	    $("#cssfile").attr("href","css/"+ skinName +".css"); //Set different skin
 		$.cookie( "MyCssSkin" ,  skinName , { path: '/', expires: 10 });
 }
-
 

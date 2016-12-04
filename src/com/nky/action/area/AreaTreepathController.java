@@ -31,7 +31,7 @@ public class AreaTreepathController {
 	}
 	
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -44,7 +44,7 @@ public class AreaTreepathController {
 	}
 	
 	/**
-	 * 新增
+	 * Newly added
 	 * @param area
 	 * @return
 	 */
@@ -73,7 +73,7 @@ public class AreaTreepathController {
 	}
 	
 	/**
-	 * 修改
+	 * modify
 	 * @param area
 	 * @return
 	 */
@@ -98,7 +98,7 @@ public class AreaTreepathController {
 	}
 	
 	/**
-	 * 删除
+	 * delete
 	 * @param tId
 	 * @return
 	 */
@@ -117,18 +117,18 @@ public class AreaTreepathController {
 			}
 		}
 		if(num == ids.length) {
-			data.setMsg("删除成功");
+			data.setMsg("Deleted");
 		}else if(num == 0){
-			data.setMsg("不能删除拥有子节点的区域");
+			data.setMsg("Can not remove region with sub node");
 		}else {
-			data.setMsg("拥有子节点的区域未删除");
+			data.setMsg("The area with the child node is not deleted");
 		}
 		return data;
 	}
 	
 	/**
-	 * 三级区域查询
-	 * 地区
+	 * Three level area query
+	 * region
 	 */
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
 	public @ResponseBody
@@ -156,8 +156,8 @@ public class AreaTreepathController {
 	}
 	
 	/**
-	 * 三级区域查询
-	 * 地区
+	 * Three level area query
+	 * region
 	 */
 	@RequestMapping(value = "/getTreepath", method = RequestMethod.GET)
 	public @ResponseBody

@@ -2,9 +2,9 @@ package com.nky.action.picupload;
 
 public class FileUpload {
 
-	private boolean success; //上传是否成功    true  表示成功
-	private String msg;//上传失败原因
-	private String fileUrl;//上传文件存储路径,多个文件用逗号分隔
+	private boolean success; //Upload success    true  Express success
+	private String msg;//Upload failed reason
+	private String fileUrl;//Upload file storage path,Multiple files are separated by a comma
 	public boolean isSuccess() {
 		return success;
 	}

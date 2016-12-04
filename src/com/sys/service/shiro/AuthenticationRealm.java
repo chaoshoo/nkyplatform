@@ -31,7 +31,7 @@ import com.sys.service.sys.SysUserService;
 import com.sys.singleton.AuthoritySingleton;
 
 /**
- * 权限认证
+ * Authorization authentication
  *   
  */
 public class AuthenticationRealm extends AuthorizingRealm {
@@ -49,11 +49,11 @@ public class AuthenticationRealm extends AuthorizingRealm {
 	SysRoleAuthorityService sysRoleAuthorityService;
 
 	/**
-	 * 获取认证信息
+	 * Get authentication information
 	 * 
 	 * @param token
-	 *            令牌
-	 * @return 认证信息
+	 *            token
+	 * @return Authentication information
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(org.apache.shiro.authc.AuthenticationToken token) {
@@ -98,7 +98,7 @@ public class AuthenticationRealm extends AuthorizingRealm {
 			loginEntity.setName(currentUser.getName());
 			loginEntity.setType("D");
 			loginEntity.setDoctor(currentUser);
-			loginEntity.setRoles("3"); //对应角色表 暂死值
+			loginEntity.setRoles("3"); //Corresponding role table Temporary dead value
 		} else if ("hospital".equals(type)) {
 			HospitalAdminEntity currentUser = hospitalService.getAdmin(username, password);
 			if (currentUser == null || StringUtils.isEmpty(currentUser.getHospital_code())) {
@@ -111,7 +111,7 @@ public class AuthenticationRealm extends AuthorizingRealm {
 			loginEntity.setName(currentUser.getTel());
 			loginEntity.setType("H");
 			loginEntity.setHospital(currentUser);
-			loginEntity.setRoles("2"); //对应角色表 暂死值
+			loginEntity.setRoles("2"); //Corresponding role table Temporary dead value
 		}
 
 		session.setAttribute(LoginAttribute.ATTRIBUTE_USER, loginEntity);
@@ -126,11 +126,11 @@ public class AuthenticationRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 获取授权信息
+	 * Access authorization information
 	 * 
 	 * @param principals
 	 *            principals
-	 * @return 授权信息
+	 * @return Authorization information
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -153,7 +153,7 @@ public class AuthenticationRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 更新用户授权信息缓存.
+	 * Update user authorization information cache.
 	 */
 	public void clearCachedAuthorizationInfo(String principal) {
 		SimplePrincipalCollection principals = new SimplePrincipalCollection(principal, getName());
@@ -161,7 +161,7 @@ public class AuthenticationRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 清除所有用户授权信息缓存.
+	 * Clear all user authorization information cache.
 	 */
 	public void clearAllCachedAuthorizationInfo() {
 		Cache<Object, AuthorizationInfo> cache = getAuthorizationCache();

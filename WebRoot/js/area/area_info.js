@@ -7,12 +7,12 @@ $(function() {
 	getAreaList();
 	$('#saveUpdateArea_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#saveUpdateArea_detail_dialog').dialog('close');
 			}
@@ -24,7 +24,7 @@ function submit_model_window(){
 	var id = $("#id").val();
 	var name = $("#name").val();
 	if(name == null || name == "") {
-		$.messager.alert(titleInfo,'请输入区域名称！');
+		$.messager.alert(titleInfo,'Enter a domain name！');
 		return;
 	}
 	var area = {
@@ -37,11 +37,11 @@ function submit_model_window(){
 			if(data.code==1){
 				$('#saveUpdateArea_detail_dialog').dialog('close');
 //				alert("修改成功！");
-				$.messager.alert(titleInfo,'修改成功!');
+				$.messager.alert(titleInfo,'Changed!');
 				window.location.href=window.location.href;
 			}else{
 //				alert("修改失败！");
-				$.messager.alert(titleInfo,'修改失败!');
+				$.messager.alert(titleInfo,'Change failed!');
 			}
 		},"json");
 	}else{
@@ -49,11 +49,11 @@ function submit_model_window(){
 			if(data.code==1){
 				$('#saveUpdateArea_detail_dialog').dialog('close');
 //				alert("添加成功！");
-				$.messager.alert(titleInfo,'添加成功!');
+				$.messager.alert(titleInfo,'Added!');
 				window.location.href=window.location.href;
 			}else{
 //				alert("添加失败！");
-				$.messager.alert(titleInfo,'添加失败!');
+				$.messager.alert(titleInfo,'Add failed!');
 			}
 		},"json");
 	}
@@ -91,7 +91,7 @@ function privilege(data){
 	var zTree=$.fn.zTree.getZTreeObj("treeDemo");
 	var tree_nodes=zTree.getCheckedNodes(true);
 	if(((data=='del'||data=='edit')&&tree_nodes.length==0)||(data!='del'&&tree_nodes.length>1)) {
-		$.messager.alert(titleInfo,'请选择一个区域!');
+		$.messager.alert(titleInfo,'Please select an area!');
 		return;
 	}
 	
@@ -122,11 +122,11 @@ function privilege(data){
 			ids += tree_nodes[int].id + ",";
 		}
 		ids = ids.substring(0, ids.length-1);
-		$.messager.confirm("确定", "您确定要删除吗？", function (data) {  
+		$.messager.confirm("Confirmed", "Are you sure you want to delete it？", function (data) {  
 	         if (data) { 
 	        	 $.post('areatree/delArea.json',{"tId":ids},function(data){
 		    			if(data.code==1){
-		    				$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+		    				$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
 		    				window.location.href=window.location.href;
 		    			}else{
 		            		//alert("删除失败");
@@ -151,4 +151,3 @@ function privilege(data){
 	}
 	//$('#saveUpdateArea_detail_dialog').dialog('open');
 }
-

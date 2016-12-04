@@ -9,10 +9,10 @@ import com.sys.jfinal.TableBind;
 import com.sys.util.Reflections;
 
 /**
- * 客户最新检查数据.
+ * Customer latest inspection data.
  * select id,inspect_code,kpi_code,inspect_name,inspect_time,inspect_value,inspect_is_normal from vip_inspect_latest where card_code = '420222198101010001' 
  * @author Ken
- * @version 2016年9月2日
+ * @version 2016year9month2day
  */
 @TableBind(name = "vip_inspect_latest")
 public class VipInspectLatestEntity extends JFinalEntity {

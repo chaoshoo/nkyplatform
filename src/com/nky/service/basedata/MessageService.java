@@ -12,7 +12,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see MessageEntity
  * @author Ken
- * @version 2016年8月30日
+ * @version 2016year8month30day
  */
 @Service
 public class MessageService {
@@ -28,13 +28,13 @@ public class MessageService {
 	}
 	
 	/**
-	 * 做消息推送使用  
-	 * type 为1 表示留言回复  为2 表示视频拒绝 3为预约时间快到了
+	 * Do message push to use  
+	 * type by1 Reply to a message  by2 Express video reject 3It is time to make an appointment.
 	 * @return
 	 */
 	public boolean saveMessage(String type,String sender,String reciver,String content){
 		Record r1 = new Record();
-		r1.set("msg_type", "1").set("creator", sender).set("title", "提示").set("content", content)
+		r1.set("msg_type", "1").set("creator", sender).set("title", "Prompt").set("content", content)
 		.set("create_time", new Date());
 		boolean flag = Db.save("message", r1);
 		if(flag){

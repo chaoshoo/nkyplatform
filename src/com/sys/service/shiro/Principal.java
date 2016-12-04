@@ -5,7 +5,7 @@ package com.sys.service.shiro;
 import java.io.Serializable;
 
 /**
- * 身份信息
+ * Identity information
  * 
  * @author lezu Team
  * @version 3.0
@@ -15,10 +15,10 @@ public class Principal implements Serializable {
 	/** ID */
 	private int id;
 	
-	/** 统一编码*/
+	/** Uniform coding*/
 	private String logn_id;
 
-	/** 用户名 */
+	/** User name */
 	private String username;
 	
 	private String roleId;
@@ -27,7 +27,7 @@ public class Principal implements Serializable {
 	 * @param id
 	 *            ID
 	 * @param username
-	 *            用户名
+	 *            User name
 	 */
 	public Principal(int id, String login_id, String username,String roleId) {
 		this.id = id;
@@ -42,7 +42,7 @@ public class Principal implements Serializable {
 	}
 
 	/**
-	 * 获取ID
+	 * ObtainID
 	 * 
 	 * @return ID
 	 */
@@ -51,7 +51,7 @@ public class Principal implements Serializable {
 	}
 
 	/**
-	 * 设置ID
+	 * ConfigID
 	 * 
 	 * @param id
 	 *            ID
@@ -61,7 +61,7 @@ public class Principal implements Serializable {
 	}
 
 	/**
-	 * 获取统一编码
+	 * Get uniform coding
 	 * @return
 	 */
 	public String getLogn_id() {
@@ -69,7 +69,7 @@ public class Principal implements Serializable {
 	}
 
 	/**
-	 * 设置统一编码
+	 * Set uniform coding
 	 * @param logn_id
 	 */
 	public void setLogn_id(String logn_id) {
@@ -77,19 +77,19 @@ public class Principal implements Serializable {
 	}
 
 	/**
-	 * 获取用户名
+	 * Get user name
 	 * 
-	 * @return 用户名
+	 * @return User name
 	 */
 	public String getUsername() {
 		return username;
 	}
 
 	/**
-	 * 设置用户名
+	 * Username
 	 * 
 	 * @param username
-	 *            用户名
+	 *            User name
 	 */
 	public void setUsername(String username) {
 		this.username = username;

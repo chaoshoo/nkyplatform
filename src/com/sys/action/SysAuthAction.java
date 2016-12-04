@@ -32,7 +32,7 @@ public class SysAuthAction {
 	
 	
 	/**
-	 * 修改权限
+	 * Modify permissions
 	 * @param roleId
 	 * @return
 	 */

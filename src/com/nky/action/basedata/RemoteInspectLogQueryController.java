@@ -17,14 +17,14 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see RemoteInspectQueryEntity
  * @author Ken
- * @version 2016年9月7日
+ * @version 2016year9month7day
  */
 @Controller
 @RequestMapping(value = "/remoteinspectlogquery")
 public class RemoteInspectLogQueryController extends BaseAction {
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class RemoteInspectLogQueryController extends BaseAction {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "remoteinspectlog_list",
 					param, "  create_time asc  ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;

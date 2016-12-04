@@ -1,12 +1,12 @@
 (function(){
 	function createWeekDate(date){
 			var myWeekDate = new Date();
-			this.myYear = myWeekDate.getFullYear();//年
-			this.myMonth = myWeekDate.getMonth()+1;//月
-			this.myDate = myWeekDate.getDate();//日
+			this.myYear = myWeekDate.getFullYear();//year
+			this.myMonth = myWeekDate.getMonth()+1;//month
+			this.myDate = myWeekDate.getDate();//day
 			this.content;
 			
-			this.myDay = myWeekDate.getDay();//星期
+			this.myDay = myWeekDate.getDay();//week
 			
 			var mydate = getYearMonthDate(this.myYear,this.myMonth,this.myDate,this.myDay).split(",");
 			var weekDate = new StringBuffer();
@@ -19,7 +19,7 @@
 	window['_G']['createWeekDate'] = createWeekDate;
 })();
 
-var _week = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+var _week = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
 //获得这个月共有多少天
 function getDatesByMonth(year_,month_){
 	if(month_==1||month_==3||month_==5||month_==7||month_==8||month_==10||month_==12){
@@ -38,43 +38,43 @@ function getDatesByMonth(year_,month_){
 function getYearMonthDate(year_,month_,date_,day_){
 	var weekDate = new StringBuffer();
 	
-		if(day_==0){//星期天
+		if(day_==0){//Sundays and holidays excepted
 			for(var j=0;j<=6;j++){
 				weekDate.append(changeDate(year_,month_,date_-j,day_-j)).append(",");
 			}
-		}else if(day_==1){//星期一
+		}else if(day_==1){//Monday
 			for(var j=0;j<=6;j++){
 				weekDate.append(changeDate(year_,month_,date_+j,day_+j)).append(",");
 			}
-		}else if(day_==2){//星期二
+		}else if(day_==2){//Tuesday
 			for(var j=day_-1;j>=0;j--){
 				weekDate.append(changeDate(year_,month_,date_-j,day_-j)).append(",");
 			}
 			for(var j=1;j<=7-day_;j++){
 				weekDate.append(changeDate(year_,month_,date_+j,day_+j)).append(",");
 			}
-		}else if(day_==3){//星期三
+		}else if(day_==3){//Wednesday
 			for(var j=day_-1;j>=0;j--){
 				weekDate.append(changeDate(year_,month_,date_-j,day_-j)).append(",");
 			}
 			for(var j=1;j<=7-day_;j++){
 				weekDate.append(changeDate(year_,month_,date_+j,day_+j)).append(",");
 			}
-		}else if(day_==4){//星期四
+		}else if(day_==4){//Thursday
 			for(var j=day_-1;j>=0;j--){
 				weekDate.append(changeDate(year_,month_,date_-j,day_-j)).append(",");
 			}
 			for(var j=1;j<=7-day_;j++){
 				weekDate.append(changeDate(year_,month_,date_+j,day_+j)).append(",");
 			}
-		}else if(day_==5){//星期五
+		}else if(day_==5){//Friday
 			for(var j=day_-1;j>=0;j--){
 				weekDate.append(changeDate(year_,month_,date_-j,day_-j)).append(",");
 			}
 			for(var j=1;j<=7-day_;j++){
 				weekDate.append(changeDate(year_,month_,date_+j,day_+j)).append(",");
 			}
-		}else if(day_==6){//星期六
+		}else if(day_==6){//Saturday
 			for(var j=day_-1;j>=0;j--){
 				weekDate.append(changeDate(year_,month_,date_-j,day_-j)).append(",");
 			}

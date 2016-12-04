@@ -26,9 +26,9 @@ import org.slf4j.LoggerFactory;
 public class FileUploadUtil {
 
 	protected static final Logger logger = LoggerFactory.getLogger(FileUploadUtil.class);
-	/** ~~~ 上传文件的最大文件大小 */
+	/** ~~~ Maximum file size for uploaded files */
 	private static final long MAX_FILE_SIZE = 1024 * 1024 * 200;
-	/** ~~~ 系统默认建立和使用的以时间字符串作为文件名称的时间格式*/
+	/** ~~~ The time format of the file name of the system is established and used by the default system.*/
 	private static final String DEFAULT_SUB_FOLDER_FORMAT_AUTO = "yyyyMMdd";
 
 	/**
@@ -75,7 +75,7 @@ public class FileUploadUtil {
 			for (FileItem file : fileitem) {
 
 				if (file.isFormField()) {
-					logger.error("上传文件非法！isFormField=true");
+					logger.error("Upload files illegally！isFormField=true");
 					continue;
 				}
 				String name = request.getParameter("name");
@@ -84,19 +84,19 @@ public class FileUploadUtil {
 				String fileClientName = getFileName(file.getName());
 				String fileFix = StringUtils.substring(fileClientName, fileClientName.lastIndexOf(".") + 1);
 				if (ServiceConstants.upload_type.indexOf(fileFix) < 0) {
-					logger.error("上传文件的格式错误=" + fileFix);
+					logger.error("Upload file format error=" + fileFix);
 					continue;
 				}
 
 				if (logger.isInfoEnabled()) {
-					logger.info("开始上传文件:" + file.getName());
+					logger.info("Start uploading files:" + file.getName());
 				}
 
 				File newfile = new File(floder, name + "." + fileFix);
 				file.write(newfile);
 
 				if (logger.isInfoEnabled()) {
-					logger.info("上传文件结束，新名称:" + fileClientName + ".floder:" + newfile.getPath());
+					logger.info("End of file upload，New name:" + fileClientName + ".floder:" + newfile.getPath());
 				}
 
 				fileUrl = floder.getName() + "/" + newfile.getName();
@@ -110,18 +110,18 @@ public class FileUploadUtil {
 			out.close();
 
 		} catch (IOException e) {
-			logger.error("上传文件发生异常！", e);
+			logger.error("Upload file exception！", e);
 		} catch (FileUploadException e) {
-			logger.error("上传文件发生异常！", e);
+			logger.error("Upload file exception！", e);
 		} catch (Exception e) {
-			logger.error("上传文件发生异常！", e);
+			logger.error("Upload file exception！", e);
 		}
 
 		return;
 	}
 
 	/** 
-	 * 获取文件名称 
+	 * Get file name 
 	 * @param str 
 	 * @return 
 	 */
@@ -135,7 +135,7 @@ public class FileUploadUtil {
 	}
 
 	/** 
-	 * 创建目录 
+	 * Create directory 
 	 *  
 	 * @return 
 	 */
@@ -146,7 +146,7 @@ public class FileUploadUtil {
 		File floder = new File(realPath);
 		if (!floder.exists()) {
 			if (!floder.mkdirs()) {
-				logger.error("创建文件夹出错！path=" + realPath);
+				logger.error("Error creating folder！path=" + realPath);
 				return null;
 			}
 
@@ -156,7 +156,7 @@ public class FileUploadUtil {
 	}
 
 	/** 
-	 * 根据当前的时间建立文件夹，时间格式yyyyMMdd 
+	 * Create a folder based on the current time，Time formatyyyyMMdd 
 	 *  
 	 * @param path 
 	 * @return 

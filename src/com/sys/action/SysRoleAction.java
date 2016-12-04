@@ -54,7 +54,7 @@ public class SysRoleAction {
 	@ResponseBody
 	public Data updateSysRole(SysRole sysRole, String sysRoleAuth) {
 		Data data = new Data();
-		/*** 获得要添加的权限 start ***/
+		/*** Get the permission to add start ***/
 		String authorityArray[] = sysRoleAuth.split(",");
 		//list1 添加  ，list2删除
 		List<String> list1 = new ArrayList<String>();
@@ -72,7 +72,7 @@ public class SysRoleAction {
 		list1.removeAll(temp);
 		list2.removeAll(temp);
 		
-		/*** 获得要添加的权限 end ***/
+		/*** Get the permission to add end ***/
 		if (sysRoleAuthorityService.updateSysRole(sysRole, list1,list2) > 0) {
 			data.setCode(1);
 		} else {
@@ -104,7 +104,7 @@ public class SysRoleAction {
 	}
 	
 	/**
-	 * 修改权限
+	 * Modify permissions
 	 * @param roleId
 	 * @return
 	 */

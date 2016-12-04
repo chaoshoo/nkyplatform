@@ -27,7 +27,7 @@ public class SysRoleService {
 	private SysRoleAuthorityDao sysRoleAuthorityMapper;
 
 	/**
-	 * 查询
+	 * query
 	 * @param sysRole
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class SysRoleService {
 	}
 
 	/**
-	 * 修改用户
+	 * Modify user
 	 * @param sysRole
 	 * @return
 	 */
@@ -49,7 +49,7 @@ public class SysRoleService {
 		try {
 			sysRole.setUpdatedTime(new Date());
 			if (sysRoleAuthDao.deleteRoleAuth(sysRole.getRoleId()) >= 0) {
-				/** 新开一个线程 添加关联一股信息-->>角色与权限**/
+				/** Open a new thread Add a link to a message-->>Roles and permissions**/
 				Thread thread = new Thread(new Runnable() {
 					public void run() {
 						for (SysRoleAuth roleAuth : list) {
@@ -67,7 +67,7 @@ public class SysRoleService {
 	}
 
 	/**
-	 * 添加系统角色
+	 * Add system role
 	 * @param sysRole
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class SysRoleService {
 			sysRole.setCreatedTime(new Date());
 			sysRole.setUpdatedTime(new Date());
 			if (sysRoleDao.addSysRole(sysRole) > 0) {
-				/*** 获得要添加的权限 start ***/
+				/*** Get the permission to add start ***/
 				String authorityArray[] = sysRoleAuth.split(",");
 				final List<SysRoleAuthority> roleAuthlist = new ArrayList<SysRoleAuthority>();
 				for (int authIdIndex = 0; authIdIndex < authorityArray.length; authIdIndex++) {
@@ -88,7 +88,7 @@ public class SysRoleService {
 				for (SysRoleAuthority roleAuth : roleAuthlist) {
 					sysRoleAuthorityMapper.addRoleAuthority(roleAuth);
 				}
-				/*** 获得要添加的权限 end ***/
+				/*** Get the permission to add end ***/
 			} else {
 				System.out.println("权限设置失败!!!");
 			}
@@ -100,7 +100,7 @@ public class SysRoleService {
 	}
 
 	/**
-	 * 查询数量
+	 * Query number
 	 * @param sysRole
 	 * @return
 	 */
@@ -114,7 +114,7 @@ public class SysRoleService {
 	}
 
 	/**
-	 * 删除 
+	 * delete 
 	 * @param roleId
 	 * @return
 	 */

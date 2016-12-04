@@ -4,10 +4,10 @@ import com.jfinal.log.ILoggerFactory;
 import com.jfinal.log.Logger;
 
 /**
- * 为jfinal的日志适配的logger.
+ * byjfinalLog adaptation.logger.
  * 
  * @author Ken
- * @version 2016年4月14日
+ * @version 2016year4month14day
  */
 public class LogbackJfinalFactory implements ILoggerFactory {
 

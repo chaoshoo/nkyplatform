@@ -24,8 +24,8 @@ import com.sun.xml.internal.bind.marshaller.CharacterEscapeHandler;
 import com.sys.common.wrapper.CollectionWrapper;
 
 /**
- * 使用Jaxb2.0实现XML<->Java Object的Mapper.
- * 在创建时需要设定所有需要序列化的Root对象的Class. 特别支持Root对象是Collection的情形.
+ * UseJaxb2.0RealizationXML<->Java ObjectTheMapper.
+ * You need to set all of the required serialization when you create it.RootObjectClass. Special supportRootObject isCollectionSituation.
  * 
  */
 @SuppressWarnings({ "rawtypes" })
@@ -91,14 +91,14 @@ public class JaxbMapper {
 	}
 
 	/**
-	 * Java Collection->Xml without encoding, 特别支持Root Element是Collection的情形.
+	 * Java Collection->Xml without encoding, Special supportRoot ElementyesCollectionSituation.
 	 */
 	public static String toXml(Collection<?> root, String rootName, Class clazz) {
 		return toXml(root, rootName, clazz, null);
 	}
 
 	/**
-	 * Java Collection->Xml with encoding, 特别支持Root Element是Collection的情形.
+	 * Java Collection->Xml with encoding, Special supportRoot ElementyesCollectionSituation.
 	 */
 	public static String toXml(Collection<?> root, String rootName, Class clazz, String encoding) {
 		try {
@@ -135,7 +135,7 @@ public class JaxbMapper {
 	}
 
 	/**
-	 * 创建Marshaller对象
+	 * EstablishMarshallerobject
 	 * 
 	 * @param targetClass
 	 * 
@@ -146,7 +146,7 @@ public class JaxbMapper {
 	}
 
 	/**
-	 * 创建Marshaller并设定encoding(可为null). 线程不安全，需要每次创建或pooling。
+	 * EstablishMarshallerAnd setencoding(Fornull). Thread is not safe，Every time you need to create orpooling。
 	 */
 	public static Marshaller createMarshaller(Class clazz, String encoding) {
 		try {
@@ -168,7 +168,7 @@ public class JaxbMapper {
 	}
 
 	/**
-	 * 创建UnMarshaller. 线程不安全，需要每次创建或pooling。
+	 * EstablishUnMarshaller. Thread is not safe，Every time you need to create orpooling。
 	 */
 	public static Unmarshaller createUnmarshaller(Class clazz) {
 		try {

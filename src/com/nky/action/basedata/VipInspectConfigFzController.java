@@ -25,16 +25,16 @@ import com.sys.entity.bo.ScriptPage;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * 检测指标辅助列表.
+ * Auxiliary list of detection indexes.
  * @author Ken
- * @version 2016年9月2日
+ * @version 2016year9month2day
  */
 @Controller
 @RequestMapping(value = "/vipInspectConfigFz")
 public class VipInspectConfigFzController extends BaseAction {
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class VipInspectConfigFzController extends BaseAction {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(),
 					"inspectkpiconfigfz_list", param, " sex asc,age_min asc ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;
@@ -60,19 +60,19 @@ public class VipInspectConfigFzController extends BaseAction {
 		try {
 			/*if(null == entity || StringUtils.isEmpty(entity.getKip_code()) || !isKsCode(entity.getKip_code())){
 				d.setCode(0);
-				d.setMsg("添加失败，编码不合法！");
+				d.setMsg("Add failed，Code is not valid！");
 				return d;
 			}
 			if(StringUtils.isEmpty(entity.getName()) || !isKsName(entity.getName())){
 				d.setCode(0);
-				d.setMsg("添加失败，名字不合法！");
+				d.setMsg("Add failed，The name is not valid！");
 				return d;
 			}*/
 		
 			Record record = Db.findFirst("select id from inspect_kpi_config_fz where kip_code = ? and sex=? and age_min=? and age_max=? and fz_min=? and fz_max=?", entity.getKip_code(),entity.getSex(),entity.getAge_min(),entity.getAge_max(),entity.getFz_min(),entity.getFz_max());
 			if (record != null) {
 				d.setCode(0);
-				d.setMsg("添加失败，此阈值已经使用过！");
+				d.setMsg("Add failed，This threshold has been used.！");
 				return d;
 			} else {
 //				entity.setCode(SysId.getNextHospitalCode());
@@ -86,19 +86,19 @@ public class VipInspectConfigFzController extends BaseAction {
 				String agemax=String.valueOf(age_max);
 				if(!isKsNum(agemin) || !isKsNum(agemax)){
 					d.setCode(0);
-					d.setMsg("最大年龄或者最小年龄不合法");
+					d.setMsg("Maximum age or minimum age is not legal");
 				}*/
 				
 				/*if(age_max<age_min){
 				    d.setCode(0);
-				    d.setMsg("最大年龄不能比最小年龄小");
+				    d.setMsg("The maximum age can not be smaller than the minimum age");
 				    return d;
 				}   */ 		
 				entity.setCreate_time(new Date());
 				boolean flag = JFinalDb.save(entity);
 				if (flag) {
 					d.setCode(1);
-					d.setMsg("添加成功!");
+					d.setMsg("Added!");
 					return d;
 				}
 			}
@@ -106,7 +106,7 @@ public class VipInspectConfigFzController extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("保存失败，请联系系统管理员");
+		d.setMsg("Save failed，Please contact system administrator");
 		return d;
 	}
 	  
@@ -117,24 +117,24 @@ public class VipInspectConfigFzController extends BaseAction {
 		try {
 			if(null == entity || null == entity.getId()){
 				d.setCode(0);
-				d.setMsg("修改失败，请求非法！");
+				d.setMsg("Change failed，Invalid request！");
 				return d;
 			}
 			/*if( StringUtils.isEmpty(entity.getKip_code()) || !isKsCode(entity.getKip_code())){
 				d.setCode(0);
-				d.setMsg("修改失败，编码不合法！");
+				d.setMsg("Change failed，Code is not valid！");
 				return d;
 			}*/
 			/*if(StringUtils.isEmpty(entity.getName()) || !isKsName(entity.getName())){
 				d.setCode(0);
-				d.setMsg("修改失败，名字不合法！");
+				d.setMsg("Change failed，The name is not valid！");
 				return d;
 			}*/
 
 			Record record = Db.findFirst("select * from inspect_kpi_config_fz where id = ?", entity.getId());
 			if(record == null){
 				d.setCode(0);
-				d.setMsg("修改失败，请求非法！");
+				d.setMsg("Change failed，Invalid request！");
 				return d;
 			}
 //			Integer age_min=entity.getAge_min();
@@ -143,12 +143,12 @@ public class VipInspectConfigFzController extends BaseAction {
 //			String agemax=String.valueOf(age_max);
 			/*if(age_max<age_min){
 			    d.setCode(0);
-			    d.setMsg("最大年龄不能比最小年龄小");
+			    d.setMsg("The maximum age can not be smaller than the minimum age");
 			    return d;
 			}*/
 			/*if(!isKsNum(agemin) || !isKsNum(agemax)){
 				d.setCode(0);
-				d.setMsg("最大年龄或者最小年龄不合法");
+				d.setMsg("Maximum age or minimum age is not legal");
 			}*/
 			
 //			String code = record.getStr("CODE");
@@ -173,7 +173,7 @@ public class VipInspectConfigFzController extends BaseAction {
 				Record checkRecord = Db.findFirst("select id from inspect_kpi_config_fz where  kip_code = ? and sex=? and age_min=? and age_max=? and fz_min=? and fz_max=?",  entity.getKip_code(),entity.getSex(),entity.getAge_min(),entity.getAge_max(),entity.getFz_min(),entity.getFz_max());
 				if (checkRecord != null) {
 					d.setCode(0);
-					d.setMsg("修改失败，该阈值已经使用过！");
+					d.setMsg("Change failed，This threshold has been used.！");
 					return d;
 				} 
 			}
@@ -181,7 +181,7 @@ public class VipInspectConfigFzController extends BaseAction {
 				//check code unique
 				Record checkRecord = Db.findFirst("select id from office where  name = ?",  entity.getName());				if (checkRecord != null) {
 					d.setCode(0);
-					d.setMsg("修改失败，名字已经使用过！");
+					d.setMsg("Change failed，The name has been used.！");
 					return d;
 				} 
 			}*/
@@ -189,14 +189,14 @@ public class VipInspectConfigFzController extends BaseAction {
 			boolean flag = JFinalDb.update(entity);
 			if (flag) {
 				d.setCode(1);
-				d.setMsg("更新成功!");
+				d.setMsg("Updated!");
 				return d;
 			}
 		} catch (Exception e) {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(1);
-		d.setMsg("更新失败，请联系系统管理员");
+		d.setMsg("Update failed，Please contact system administrator");
 		return d;
 	}
 	/*public static boolean isKsCode(String ksCode) {
@@ -222,14 +222,13 @@ public class VipInspectConfigFzController extends BaseAction {
 						d.setCode(1);
 					} else {
 						d.setCode(0);
-						d.setMsg("删除失败");
+						d.setMsg("Delete failed");
 					}
 //				}
 			} else {
 				d.setCode(0);
-				d.setMsg("阈值主键为空");
+				d.setMsg("Threshold primary key is empty");
 			}
 			return d;
 		}
 }
-

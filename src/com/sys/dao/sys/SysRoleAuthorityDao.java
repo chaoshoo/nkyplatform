@@ -7,28 +7,28 @@ import com.sys.entity.sys.SysRoleAuthority;
 
 public interface SysRoleAuthorityDao extends BaseDao<SysRoleAuthority>{
 	/**
-	 *	根据角色id获取角色对应权限
+	 *	Based roleidAccess to role correspondence
 	 * @param roleId
 	 * @return
 	 */
 	public List<String> getAuthorityByRoleId(int roleId);
 	
 	/**
-	 *	根据角色id获取角色对应权限
+	 *	Based roleidAccess to role correspondence
 	 * @param roleId
 	 * @return
 	 */
 	public List<String> getAuthorityByRoleIds(String[] roleId);
 	
 	/**
-	 * 添加
+	 * Add
 	 * @param sysRoleAuth
 	 * @return
 	 */
 	public int addRoleAuthority(SysRoleAuthority sysRoleAuth);
 
 	/**
-	 * 删除
+	 * delete
 	 * @param authorityId
 	 * @return
 	 */

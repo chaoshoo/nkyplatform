@@ -12,15 +12,15 @@ import com.jfinal.plugin.activerecord.DbKit;
 import com.sys.common.vo.TableVo;
 
 /**
- * 数据库敏捷操作
- * 		动态添加,更新
+ * Database agility
+ * 		Dynamic adding,Update
  */
 public class DBAgileSupport {
 	private String sql;
 	private boolean result;
 
 	/**
-	 * 新增
+	 * Newly added
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean agileAdd(HashMap<String, Object> data) {
@@ -71,7 +71,7 @@ public class DBAgileSupport {
 
 
 	/**
-	 * 修改
+	 * modify
 	 */
 	@SuppressWarnings("rawtypes")
 	public boolean agileUpdate(HashMap data) {
@@ -83,8 +83,8 @@ public class DBAgileSupport {
 			return false;
 		}
 		Iterator it = data.keySet().iterator();
-		String setValue = "";// 更新的字段和值
-		String conditions = "";// 更新的条件
+		String setValue = "";// Updated fields and values
+		String conditions = "";// Updated condition
 		try {
 			while (it.hasNext()) {
 				Object obj = data.get(it.next());
@@ -93,7 +93,7 @@ public class DBAgileSupport {
 				}
 				TableVo table = (TableVo) obj;
 				
-				String value = table.getValue();// 字段值
+				String value = table.getValue();// field value
 				String cName = table.getColumn();
 
 				// 如果为主键,则为更新的条件
@@ -125,7 +125,7 @@ public class DBAgileSupport {
 	}
 
 	/**
-	 * 取自增长主键值
+	 * Taken from the growth of the primary key value
 	 * @param tableName
 	 * @param primaryKey
 	 * @return
@@ -165,7 +165,7 @@ public class DBAgileSupport {
 	}
 	
 	/**
-	 * 关闭查询,连接
+	 * Close query,Connect
 	 */
 	private void close(Statement stmt, ResultSet rs, Connection conn) {
 		try {

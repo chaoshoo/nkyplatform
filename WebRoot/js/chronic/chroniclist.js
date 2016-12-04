@@ -5,12 +5,12 @@ $(function() {
 	//初始化弹出框
 	$('#user_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				dealResult();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -20,12 +20,12 @@ $(function() {
 	//初始化弹出框
 	$('#deal_resut').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				dealResult();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#deal_resut').dialog('close');
 			}
@@ -40,20 +40,20 @@ $(function() {
 		var geqAge =$("#FIT-GEQ-age").val();
 		if(geqAge != null && geqAge != "" ){
 			if((!isPInt(geqAge))){
-				$.messager.alert(titleInfo,"请输入合法的年龄");
+				$.messager.alert(titleInfo,"Please enter a valid age");
 				return ;
 			}else if(geqAge < 1 || geqAge>100){
-				$.messager.alert(titleInfo,"请输入合法的年龄段");
+				$.messager.alert(titleInfo,"Enter a valid age");
 				return ;
 			}
 		}
 		var leqAge =$("#FIT-LEQ-age").val();
 		if(leqAge != null && leqAge != ""){
 			if((!isPInt(leqAge))){
-				$.messager.alert(titleInfo,"请输入合法的年龄");
+				$.messager.alert(titleInfo,"Please enter a valid age");
 				return ;
 			}else if(leqAge < 1 || leqAge>100){
-				$.messager.alert(titleInfo,"请输入合法的年龄段");
+				$.messager.alert(titleInfo,"Enter a valid age");
 				return ;
 			}
 		}
@@ -118,16 +118,16 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'real_name',title:'客户名称',width:100},
-				{field:'card_code',title:'卡号',width:100},
-				{field:'mobile',title:'电话',width:100},
-				{field:'ischronic',title:'是否慢性病',width:100,
+				{field:'real_name',title:'Customer name',width:100},
+				{field:'card_code',title:'Credit Card Number',width:100},
+				{field:'mobile',title:'Telephone',width:100},
+				{field:'ischronic',title:'Chronic disease',width:100,
 					formatter:function(value){
-						if(value==null||""==value){return "否";}
+						if(value==null||""==value){return "no";}
 						return util.getValueBykeyDic('ischronic',value);
 					 }
 				},
-				{field:'ill_type',title:'疾病类型',width:100,
+				{field:'ill_type',title:'Disease types',width:100,
 					formatter:function(value){
 						if(value==null||""==value){return "";}
 						var valuest=value.split(",");
@@ -142,7 +142,7 @@ function initDataGrid(){
 						return values;
 					 }
 				},
-				{field:'chronic_type',title:'慢性病类型',width:150,
+				{field:'chronic_type',title:'Chronic disease types',width:150,
 					formatter:function(value){
 						if(value==null||""==value){return "";}
 						var valuest=value.split(",");
@@ -157,11 +157,11 @@ function initDataGrid(){
 						return values;
 					}
 				},
-				{field:'exam_date',title:'最近体检时间',width:250},
-				{field:'id',title:'操作',width:85,
+				{field:'exam_date',title:'Recent physical examination time',width:250},
+				{field:'id',title:'Operation',width:85,
 					formatter:function(value){  
 //						var hm = '<a href="javascript:openedit('+value+')">详情</a>&nbsp;<a href="javascript:openmedirec('+value+')">电子病历</a>&nbsp;';
-						var hm = '<a href="javascript:openmedirec('+value+')">电子病历</a>&nbsp;';
+						var hm = '<a href="javascript:openmedirec('+value+')">Electronic medical record</a>&nbsp;';
 						return hm;
 					}
 				}
@@ -422,7 +422,6 @@ function mbselect(type,ins){
 	}
 	
 }
-
 
 
 

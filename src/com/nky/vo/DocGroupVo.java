@@ -1,9 +1,9 @@
 package com.nky.vo;
 
 /**
- * 医生的群组的Vo.
+ * The doctor's group.Vo.
  * @author Ken
- * @version 2016年9月9日
+ * @version 2016year9month9day
  */
 public class DocGroupVo {
 

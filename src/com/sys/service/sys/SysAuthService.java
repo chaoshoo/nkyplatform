@@ -18,7 +18,7 @@ public class SysAuthService {
 	private SysAuthDao sysAuthMapper;
 
 	/**
-	 * 获取用户权限
+	 * Get user rights
 	 * @param pid
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class SysAuthService {
 	}
 
 	/**
-	 * 获取所有权限
+	 * Get all rights
 	 * @return
 	 */
 	public ScriptPage getSysAuthList(SysAuth sysAuth) {
@@ -56,7 +56,7 @@ public class SysAuthService {
 	}
 	
 	/**
-	 * 获取所有权限
+	 * Get all rights
 	 * @return
 	 */
 	public ScriptPage getSysAuthListTree(SysAuth sysAuth) {
@@ -75,7 +75,7 @@ public class SysAuthService {
 	}
 	
 	/**
-	 * 获取所有权限
+	 * Get all rights
 	 * @return
 	 */
 	public List<SysAuth> getSysAuthList() {
@@ -101,7 +101,7 @@ public class SysAuthService {
 	}
 
 	/**
-	 * 修改系统权限
+	 * Modify system permissions
 	 * @param sysAuth
 	 * @return
 	 */
@@ -116,7 +116,7 @@ public class SysAuthService {
 	}
 
 	/**
-	 * 添加系统权限
+	 * Add system permissions
 	 * @param sysAuth
 	 * @return
 	 */
@@ -132,7 +132,7 @@ public class SysAuthService {
 	}
 
 	/**
-	 * 逻辑删除系统权限
+	 * Logical delete system
 	 * @param authId
 	 * @return
 	 */
@@ -147,7 +147,7 @@ public class SysAuthService {
 	}
 		
 	/**
-	 * 查询数量
+	 * Query number
 	 * @param sysAuth
 	 * @return
 	 */

@@ -7,11 +7,11 @@ import com.sys.jfinal.TableBind;
 
 @TableBind(name="hospital_admin")
 public class HospitalAdminEntity extends JFinalEntity{
-	private	String	hospital_code	;//	医院编号
-	private	String	tel	;//	管理员手机号
-	private	String	pwd	;//	管理员密码
-	private	Integer	isvalid	;//	是否有效,1有效，0无效
-	private	Date	create_time	;//	创建时间
+	private	String	hospital_code	;//	Hospital number
+	private	String	tel	;//	Administrator phone number
+	private	String	pwd	;//	Administrator password
+	private	Integer	isvalid	;//	Whether effective,1effective，0invalid
+	private	Date	create_time	;//	Created time
 	private String username;
 	public String getHospital_code() {
 		return hospital_code;

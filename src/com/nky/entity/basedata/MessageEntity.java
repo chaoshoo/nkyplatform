@@ -6,9 +6,9 @@ import com.sys.jfinal.JFinalEntity;
 import com.sys.util.Reflections;
 
 /**
- * message消息管理.
+ * messageMessage management.
  * @author Ken
- * @version 2016年8月30日
+ * @version 2016year8month30day
  */
 public class MessageEntity extends JFinalEntity {
 

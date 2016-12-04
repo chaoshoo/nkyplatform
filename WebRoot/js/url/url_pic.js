@@ -5,10 +5,10 @@ $(function() {
 
 	$('#urlPic_add').bind('click', function() {
 		urlPic_id = null;
-		$('#urlPic_add_dialog').dialog('setTitle', '新增图片路径');
+		$('#urlPic_add_dialog').dialog('setTitle', 'Add image path');
 		$('#urlPic_form')[0].reset();
 		$('#id').val('');
-		$('#url_pic_type').combobox('setValue', "请选择");
+		$('#url_pic_type').combobox('setValue', "Please select");
 		$('#urlPic_add_dialog').dialog('open');
 
 	});
@@ -35,21 +35,21 @@ $(function() {
 function initDialog() {
 
 	$('#urlPic_add_dialog').dialog({
-		title : '新增图片路径',
+		title : 'Add image path',
 		width : 450,
 		height : 330,
 		closed : true,
 		title : '',
 		closed : true,
 		buttons : [ {
-			text : '确定',
+			text : 'Confirmed',
 			iconCls : 'icon-ok',
 			handler : function() {
 				// 插入
 				save();
 			}
 		}, {
-			text : '取消',
+			text : 'cancel',
 			iconCls : 'icon-cancel',
 			handler : function() {
 				$('#urlPic_add_dialog').dialog('close');
@@ -67,7 +67,7 @@ function initCombobox() {
 		editable : false,
 		url : 'pubData/getDicList.json?dicType=url_pic_ype',
 		onLoadSuccess : function(data) {
-			$('#url_pic_type').combobox('setValue', "请选择");
+			$('#url_pic_type').combobox('setValue', "Please select");
 		}
 	});
 }
@@ -78,51 +78,51 @@ function initDataGrid() {
 			.datagrid(
 					{
 						iconCls : 'icon-save',
-						nowrap : true, // 禁止文字自动换行
-						autoRowHeight : true, // 禁止自动调整row高度
-						striped : true, // 有条纹
-						toolbar : "#common_search", // 工具栏
-						fit : true, // 自适应
-						fitColumns : true, // 列自适应
-						collapsible : true, // 窗口是否可以折叠
-						url : 'urlPic/getList.json', // 请求远程数据
-						queryParams : parameter, // 请求远程数据发送的额外数据
-						remoteSort : false, // 禁止服务器对数据排序
-						singleSelect : true, // 只能单选
+						nowrap : true, // Prohibit text wrap
+						autoRowHeight : true, // Automatic adjustmentrowheight
+						striped : true, // Striped
+						toolbar : "#common_search", // toolbar
+						fit : true, // self-adaption
+						fitColumns : true, // Column adaptive
+						collapsible : true, // Whether the window can be folded
+						url : 'urlPic/getList.json', // Request remote data
+						queryParams : parameter, // Additional data requested for remote data transmission
+						remoteSort : false, // Prohibit the server to sort the data
+						singleSelect : true, // Only the radio
 						idField : 'id',
 						columns : [ [
 								{
 									field : 'title',
-									title : '标题',
+									title : 'Title',
 									width : 100
 								},
 								{
 									field : 'url_pic_type',
-									title : '类型',
+									title : 'type',
 									width : 70,
 									formatter : function(value) {
 										if ("roll" == value) {
-											return '轮播图';
+											return 'Carousel figure';
 										} else if ("help" == value) {
-											return '帮助';
+											return 'Help';
 										} else if ("app_roll" == value) {
-											return '手机轮播图';
+											return 'Mobile phone map carousel';
 										} else if ("store_roll" == value) {
-											return '门店轮播图';
+											return 'Store carousel figure';
 										} else if ("partner" == value) {
-											return '战略合作伙伴';
+											return 'Strategic partner';
 										} else if ("speek_link" == value) {
-											return '快截入口';
+											return 'Short-cut entrance';
 										} else if ("store_add" == value) {
-											return '申请入驻';
+											return 'Apply to join';
 										} else if ("approll" == value) {
-											return '手机首页';
+											return 'Mobile home';
 										}
 									}
 								},
 								{
 									field : 'create_time',
-									title : '创建时间',
+									title : 'Created time',
 									width : 100,
 									formatter : function(value) {
 										var date = new Date(value);
@@ -131,7 +131,7 @@ function initDataGrid() {
 								},
 								{
 									field : 'url',
-									title : '图片',
+									title : 'picture',
 									width : 50,
 									formatter : function(value, row) {
 										var str = "";
@@ -144,14 +144,14 @@ function initDataGrid() {
 								},
 								{
 									field : 'id',
-									title : '操作',
+									title : 'Operation',
 									width : 70,
 									formatter : function(value, row, index) {
 										return '<a href = javascript:compile('
 												+ value
-												+ ')>编辑</a>&nbsp;&nbsp;&nbsp;<a href=javascript:del('
+												+ ')>edit</a>&nbsp;&nbsp;&nbsp;<a href=javascript:del('
 												+ value
-												+ ')><font color="red">删除</font></a>';
+												+ ')><font color="red">delete</font></a>';
 									}
 								} ] ],
 						pagination : true,
@@ -165,41 +165,41 @@ function save() {
 	var id = $('#id').val();
 	var title = $('#title').val();
 	if (title == "") {
-		$.messager.alert('提示', '请输入标题');
+		$.messager.alert('Prompt', 'Please enter a title');
 		return;
 	}
 	var url_pic_type = $('#url_pic_type').combobox('getValue');
-	if (url_pic_type == "请选择") {
-		$.messager.alert('提示', '请选择类型');
+	if (url_pic_type == "Please select") {
+		$.messager.alert('Prompt', 'Please select type');
 		return;
 	}
 	var regUrl = /(http\:\/\/)?([\w.]+)(\/[\w- \.\/\?%&=]*)?/gi;
 	var url = $('#url').val();
 	var result2 = url.match(regUrl);
 	if (url == "") {
-		$.messager.alert('提示', '请输入图片路径');
+		$.messager.alert('Prompt', 'Please enter the image path');
 		return;
 	}
 	if(result2==null){
-		$.messager.alert('提示', '图片路径格式错误');
+		$.messager.alert('Prompt', 'Image path format error');
 		return;
 	}
 	
 	var url_link = $('#url_link').val();
 	var result1 = url_link.match(regUrl);
 	if (url_link == "") {
-		$.messager.alert('提示', '请输入项目路径');
+		$.messager.alert('Prompt', 'Please enter the project path');
 		return;
 	}
 	
 	if(result1==null){
-		$.messager.alert('提示', '项目路径格式错误');
+		$.messager.alert('Prompt', 'Project path format error');
 		return;
 	}
 	
 	var sort = $('#sort').val();
 	if (isNaN(sort)) {
-		$.messager.alert('提示', '排序号只能是数字！');
+		$.messager.alert('Prompt', 'Sort number can only be a number！');
 		return;
 	}
 	var urlPic = {
@@ -214,20 +214,20 @@ function save() {
 		$.post('urlPic/update.json', urlPic, function(result) {
 			if (result.code == 1) {
 				$('#urlPic_add_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				$('#urlPic_table').datagrid('load',parameter);
 			} else {
-				$.messager.alert('提示', '修改失败');
+				$.messager.alert('Prompt', 'Change failed');
 			}
 		}, 'json');
 	} else {
 		$.post('urlPic/save.json', urlPic, function(result) {
 			if (result.code == 1) {
 				$('#urlPic_add_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'新增成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'New success！',timeout:timeoutValue,showType:'slide'});
 				$('#urlPic_table').datagrid('load',parameter);
 			} else {
-				$.messager.alert('提示', '新增失败');
+				$.messager.alert('Prompt', 'New failed');
 			}
 		}, 'json');
 	}
@@ -245,21 +245,21 @@ function compile(value) {
 	$('#url').val(row.url);
 	$('#sort').val(row.sort);
 
-	$('#urlPic_add_dialog').dialog('setTitle', '修改图片路径');
+	$('#urlPic_add_dialog').dialog('setTitle', 'Change image path');
 	$('#urlPic_add_dialog').dialog('open');
 }
 
 function del(value) {
-	$.messager.confirm('提示', '确认要删除吗?', function(y) {
+	$.messager.confirm('Prompt', 'Delete it??', function(y) {
 		if (y) {
 			$.post('urlPic/delete.json', {
 				"id" : value
 			}, function(result) {
 				if (result.code == 1) {
-					$.messager.alert('提示', '删除成功');
+					$.messager.alert('Prompt', 'Deleted');
 					$('#urlPic_table').datagrid('reload', {});
 				} else {
-					$.messager.alert('提示', '删除失败');
+					$.messager.alert('Prompt', 'Delete failed');
 				}
 			}, 'json');
 		}
@@ -268,14 +268,14 @@ function del(value) {
 }
 
 /**
- * date类型转换成字符串显示
+ * dateType convert to string display
  */
 function formatterDateTime(date) {
 	var datetime = date.getFullYear()
-			+ "-"// "年"
+			+ "-"// "year"
 			+ ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
 					+ (date.getMonth() + 1))
-			+ "-"// "月"
+			+ "-"// "month"
 			+ (date.getDate() < 10 ? "0" + date.getDate() : date.getDate())
 			+ " "
 			+ (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())

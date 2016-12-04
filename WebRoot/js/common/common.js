@@ -60,12 +60,12 @@ function timeparser(s){
      }  
 } 
 
-/** date类型转换成字符串显示 */
+/** dateType convert to string display */
 function formatterDateTime(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date.getDate())
             + " "
             + (date.getHours() < 10 ? "0" + date.getHours() : date.getHours())

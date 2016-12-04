@@ -6,12 +6,12 @@ $(function() {
 	//初始化弹出框
 	$('#user_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -64,16 +64,16 @@ function submit_model_window(){
 	var userId = $("#userId").val();
 	var userName = $("#userName").val();
 	if(userName==null||userName==''){
-		$.messager.alert(titleInfo,'请填写用户名!');
+		$.messager.alert(titleInfo,'Please input user name!');
 		return;
 	}
 	var userMail = $("#userMail").val();
 	if(userMail==null||userMail==''){
-		$.messager.alert(titleInfo,'请填写账号名!');
+		$.messager.alert(titleInfo,'Please input account name!');
 		return;
 	}
 	if($("input[name=roles]:checked").length ==0){
-		$.messager.alert(titleInfo,"请选择员工角色！");
+		$.messager.alert(titleInfo,"Please select staff role！");
 		return;
 	}
 	var roleId="";
@@ -85,7 +85,7 @@ function submit_model_window(){
 	var zTree=$.fn.zTree.getZTreeObj("treeDemo");
 	var tree_nodes=zTree.getCheckedNodes(true);
 	if(tree_nodes.length !=1){
-		$.messager.alert(titleInfo,'只能选择一个部门!');
+		$.messager.alert(titleInfo,'Choose one department!');
 		return;
 	}
 	var dpid = tree_nodes[0].id;
@@ -109,13 +109,13 @@ function submit_model_window(){
 		$.post("sysUser/updateSysUserById.json",user,function(data){
 			if(data.code==1){
 				$('#user_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				$('#user_table').datagrid('load',parameter);
 			}else{
 				if(data.msg=="mail_same"){
-					$.messager.alert(titleInfo,'您输入的账号名已经存在！');
+					$.messager.alert(titleInfo,'The account name you entered already exists！');
 				}else{
-					$.messager.alert(titleInfo,'修改失败！');
+					$.messager.alert(titleInfo,'Change failed！');
 				}
 			}
 		},"json");
@@ -123,12 +123,12 @@ function submit_model_window(){
 		$.post("sysUser/addSysUser.json",user,function(data){
 			if(data.code==1){
 				$('#user_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				$('#user_table').datagrid('load',parameter);
 			}else if(data.msg=="mail_same"){
-				$.messager.alert(titleInfo,'您输入的账号名已经存在！');
+				$.messager.alert(titleInfo,'The account name you entered already exists！');
 			}else{
-				$.messager.alert(titleInfo,'添加失败！');
+				$.messager.alert(titleInfo,'Add failed！');
 			}
 		},"json");
 	}
@@ -151,33 +151,33 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'userId',
 		columns:[[
-				{field:'userName',title:'姓名',width:100},
-				{field:'group_name',title:'所属部门',width:100},
-				{field:'sys_job',title:'职务',width:100},
-				{field:'userMail',title:'账户',width:100},
-				{field:'userPwd',title:'密码',hidden:true},
-				{field:'departmentId',title:'部门id',hidden:true},
-				{field:'sys_state',title:'在职状态',width:70,
+				{field:'userName',title:'Name',width:100},
+				{field:'group_name',title:'Affiliated department',width:100},
+				{field:'sys_job',title:'post',width:100},
+				{field:'userMail',title:'account',width:100},
+				{field:'userPwd',title:'Password',hidden:true},
+				{field:'departmentId',title:'departmentid',hidden:true},
+				{field:'sys_state',title:'In service state',width:70,
 					formatter:function(value){
 						if(1==value){
-							return '在职';
+							return 'Working';
 						}else{
-							return '离职';
+							return 'Quit';
 						}
 					}
 				},
-				{field:'isEffective',title:'账户状态',width:70,
+				{field:'isEffective',title:'Account status',width:70,
 						formatter:function(value){
 							if(1==value){
-								return '启用';
+								return 'Enable';
 							}else{
-								return '停用';
+								return 'Disable';
 							}
 						}
 				},
-				{field:'userId',title:'操作',width:85,
+				{field:'userId',title:'Operation',width:85,
 						formatter:function(value){
-							return '<a href="javascript:initPassWord('+value+')">初始化密码</a> <a href="javascript:userEdit('+value+')">编辑</a> <a   onclick="del('+value+')" ><font color="red">删除</font></a>';
+							return '<a href="javascript:initPassWord('+value+')">Initialization code</a> <a href="javascript:userEdit('+value+')">edit</a> <a   onclick="del('+value+')" ><font color="red">delete</font></a>';
 						}
 				}
 		]],
@@ -190,17 +190,17 @@ function initDataGrid(){
 
 //初始化密码
 function initPassWord(id) {
-	$.messager.confirm('确认','确认初始化密码?',function(row){  
+	$.messager.confirm('confirm','Confirm initialization password?',function(row){  
         if(row){  
             $.ajax({  
                 url:'sysUser/initPwd.html?id='+id,    
                 success:function(msg){
                 	if(msg=='success') 
 //                		alert("密码初始化成功");
-                		$.messager.alert(titleInfo,"密码初始化成功！");
+                		$.messager.alert(titleInfo,"Password initialization done！");
                 	else 
 //                		alert("密码初始化失败");
-                		$.messager.alert(titleInfo,"密码初始化失败！");
+                		$.messager.alert(titleInfo,"Password initialization failed！");
                 	window.location.href=window.location.href;
                 } ,
                 fail:function(){
@@ -211,18 +211,18 @@ function initPassWord(id) {
     });
 }
 
-function del(userId){  //删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){  
+function del(userId){  //Delete operation  
+    $.messager.confirm('confirm','confirm deletion?',function(row){  
         if(row){  
             $.ajax({  
                 url:'sysUser/delUser.html?id='+userId,    
                 success:function(msg){
                 	if(msg=='success') 
 //                		alert("删除成功");
-                		$.messager.alert(titleInfo,"删除成功！");
+                		$.messager.alert(titleInfo,"Deleted！");
                 	else 
 //                		alert("删除失败");
-                		$.messager.alert(titleInfo,"删除失败！");
+                		$.messager.alert(titleInfo,"Delete failed！");
                 	window.location.href=window.location.href;
                 } ,
                 fail:function(){
@@ -262,7 +262,7 @@ var treeData;
 var my_treeData;
 
 /**
- * 获取部门树
+ * Get department tree
  */
 function getAuthTreeData(){
 	$.post('departmentInfo/getAllDepartmentToTree.json',function(data){
@@ -271,7 +271,7 @@ function getAuthTreeData(){
 }
 
 /**
- * 获取当前用户的部门
+ * Get the current user's Department
  * @param roleId
  */
 function getAuthMyTreeData(departmentId){

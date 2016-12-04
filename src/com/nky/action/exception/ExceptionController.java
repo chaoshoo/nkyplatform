@@ -57,10 +57,10 @@ public class ExceptionController extends BaseAction{
 			int i = exceptionService.updateDealResult(id,dealResult,dataid,loginEntity.getName());
 			if(i>0){
 				d.setCode(0);
-				d.setMsg("处理成功");	
+				d.setMsg("Done");	
 			}else {
 				d.setCode(1);
-				d.setMsg("处理失败，请联系系统管理员");
+				d.setMsg("Process failed，Please contact system administrator");
 			}
 			
 		} catch (Exception e) {

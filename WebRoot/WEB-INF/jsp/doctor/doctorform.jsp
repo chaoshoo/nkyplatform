@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -37,91 +37,91 @@
 		        <input type="hidden" id="hospital_code" name="hospital_code" value="${doctor.hospital_code}" />	       
 		        <table id="dataTable">
 				    <tr id="code_tr" style="display: none">
-		            <td>医生编码</td>
+		            <td>Doctor code</td>
 		            <td><input style="width: 200px;"  type ="text" id="code" name="code" value="${doctor.code}" readonly="readonly" /></td>
-		            <td>创建时间</td>
+		            <td>Created time</td>
 		            <td>
 		             <fmt:formatDate value="${doctor.create_time}" type="both" timeStyle="medium" dateStyle="medium" />
 		            <%--  <input style="width: 200px;"  type ="text" id="create_time" name="create_timestr" value="${doctor.create_time}" readonly="readonly" /> --%>
 		            </td>
 					</tr>
 		          <tr>	
-						<td>医生名字<font color="red">*</font></td>
+						<td>Doctor name<font color="red">*</font></td>
 						<td>
 					    	<input style="width: 200px;"  type ="text" id="name" name="name" value="${doctor.name}" />
 						</td>
-						<td>医生电话<font color="red">*</font></td>
+						<td>Doctor phone NO.<font color="red">*</font></td>
 						<td>
 					    	<input style="width: 200px;"  type ="text" id="tel" name="tel" value="${doctor.tel}" />
 						</td>
 					</tr>
 		          <tr>	
-						<td>身份证:<font color="red">*</font></td>
+						<td>ID:<font color="red">*</font></td>
 						<td >
 					    	<input style="width: 200px;"  type ="text" id="idCard" name="idCard" value="${doctor.idCard}" />
 						</td> 
 					</tr>
 					<tr>	
-						<td>性别</td>
+						<td>Gender</td>
 						<td>
-					    	<input type="radio" name="sex" value="0" />男
-					    	<input type="radio" name="sex" value="1" />女
+					    	<input type="radio" name="sex" value="0" />male
+					    	<input type="radio" name="sex" value="1" />female
 						</td>
-						<td>生日</td>
+						<td>Birthday</td>
 						<td>
 					    	<input style="height: 20px; width: 120px;" class="easyui-datebox" id="birthday" name="birthdaystr" value="${doctor.birthday}" data-options="formatter:myformatter,parser:myparser"/>
 						</td>
 					</tr>
 					<tr>
-		            <td style="width: 70px;">头像</td>		            
+		            <td style="width: 70px;">Icon</td>		            
 		            <td  colspan="3">
 		             <div id="pic"></div>
 		            </td>
 		          </tr>  
 					<tr>	
-						<td>学历</td>
+						<td>Education</td>
 						<td>
 					    	<input style="width: 200px;"  class="easyui-combobox" id="edu" name="edu"  value="${doctor.edu}"/>
 						</td>
-						<td>所属医院<font color="red">*</font></td>
+						<td>Affiliated Hospital<font color="red">*</font></td>
 						<td>
 					    	<input style="width: 200px;"  type ="text" id="hospitalname" name="hospitalname" value="${hospitalname}" readonly="readonly"/>					    
-					    	<button type="button" id="hospital_select_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">选择医院</button>
+					    	<button type="button" id="hospital_select_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">Select hospital</button>
 						</td>
 					</tr>
 					<tr>	
-						<td>科室<font color="red">*</font></td>
+						<td>Department<font color="red">*</font></td>
 						<td>
 					    	<input style="width: 200px;"  class="easyui-combobox" id="office_code" name="office_code"  value="${doctor.office_code}"/>
 						</td>
-						<td>职称</td>
+						<td>Title</td>
 						<td>
 							<input style="width: 200px;"  class="easyui-combobox" id="doctor_title" name="title"  value="${doctor.title}"/>
 						</td>
 					</tr>
 					<tr>	
-						<td>地址</td>
+						<td>address</td>
 						<td colspan="3">
 						    <input type="hidden" id="areaid_" name="area" value="${doctor.area}" />
 						    <input type="hidden" id="arealever_" name="lever" value="${lever}" />
 						</td>
 					</tr>
 					<tr>	
-						<td>详细地址</td>
+						<td>Detailed address</td>
 						<td colspan="3">
 					    	<input style="width: 500px;"  type ="text" id="address" name="address" value="${doctor.address}" />
 						</td>
 					</tr>
 					<tr>
-		            <td style="width: 70px;">特长</td>
+		            <td style="width: 70px;">Specialty</td>
 		            <td  colspan="3"><textarea style="width: 500px;" rows="3" cols="20" id="special" name="special">${doctor.special}</textarea></td>
 		          </tr>
 		          <tr>
-		            <td style="width: 70px;">简介</td>
+		            <td style="width: 70px;">Introduction</td>
 		            <td  colspan="3"><textarea style="width: 500px;" rows="3" cols="20" id="info" name="info">${doctor.info}</textarea></td>
 		          </tr>
                     <tr id="checktr" style="display: none">
-		            <td style="width: 70px;" >审核说明</td>
+		            <td style="width: 70px;" >Description</td>
 		            <td  colspan="3"><textarea style="width: 500px;"  rows="3" cols="20" id="check_desc" name="check_desc">${doctor.check_desc}</textarea></td>
 		            </tr>
 					</table>
@@ -129,18 +129,18 @@
 					<tr><td>					
 			       <div id="savediv" >
 				      <button type="button" id="d_save_button" onclick="dcommit(0)" class="btn btn-success btn-success-small" style="margin-left: 20px;">
-				        	保存
+				        	Save
 				      </button>
 				      <button type="button" id="d_cancle_button" onclick="dialogClose2()" class="btn btn-success btn-success-small" style="margin-left: 20px;">
-				        	取消
+				        	cancel
 				      </button>
 			      </div>
 			       <div id="checkdiv" style="display: none">
 				      <button type="button" id="d_save_button" onclick="dcheck(${doctor.id},1)" class="btn btn-success btn-success-small" style="margin-left: 20px;">
-				        	审核通过
+				        	Pass
 				      </button>
 				      <button type="button" id="d_save_button" onclick="dcheck(${doctor.id},2)" class="btn btn-success btn-success-small" style="margin-left: 20px;">
-				        	审核不通过
+				        	Denied
 				      </button>
 			      </div>
 					</td></tr>
@@ -193,7 +193,7 @@ $(function() {
 	});
 	loadArea();
 	radiocheck('${doctor.sex}');
-	imginit('pic', '上传头像','${doctor.pic}');
+	imginit('pic', 'Upload Avatar','${doctor.pic}');
 	imglookinit('lookpicdiv');
 });
 

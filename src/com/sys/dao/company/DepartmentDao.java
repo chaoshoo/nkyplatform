@@ -10,14 +10,14 @@ import com.sys.util.BaseMapper;
 public interface DepartmentDao   extends BaseMapper<Department, Integer>{
 	
 	/**
-	 * 查询医院科室信息列表
-	 * @param condition 当skipNo=-1时，获取符合条件的全部结果集；否则返回请求页结果集
+	 * Query the hospital information list
+	 * @param condition WhenskipNo=-1time，Obtain all results set for the condition.；Otherwise, the result set of the requested page is returned
 	 * @return
 	 */
 	public List<Department> getDepartmentList(Department condition);
 	
 	/**
-	 * 查询数量
+	 * Query number
 	 * @param hospital
 	 * @return
 	 */

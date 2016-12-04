@@ -13,14 +13,14 @@
 <header>
 	<base href="<%=basePath%>"> 
     <meta charset="utf-8">
-    <!-- 引入 ECharts 文件 -->
+    <!-- Introduce ECharts file -->
     <script src="//cdn.bootcss.com/echarts/3.2.2/echarts.simple.min.js"></script>
     <!-- <script src="//cdn.bootcss.com/echarts/3.2.2/echarts.common.min.js"></script> -->
     <!-- <script src="//cdn.bootcss.com/echarts/3.2.2/echarts.min.js"></script> -->
     <!-- <script src="echarts.min.js"></script> -->
 </header>
 <body>
-    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <!-- by ECharts Prepare a size（Width and height）The DOM -->
     <div id="main" style="width: 600px;height:400px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
@@ -29,18 +29,18 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'ECharts 入门示例'
+                text: 'ECharts Introduction'
             },
             tooltip: {},
             legend: {
-                data:['销量']
+                data:['Sales volume']
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                data: ["shirt","Cardigan","Chiffon shirt","trousers","High-heeled shoes","Socks"]
             },
             yAxis: {},
             series: [{
-                name: '销量',
+                name: 'Sales volume',
                 type: 'bar',
                 data: [5, 20, 36, 10, 10, 20]
             }]

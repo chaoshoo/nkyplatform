@@ -10,12 +10,12 @@ $(function() {
 	//初始化弹出框
 	$('#auth_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				dialogClose();
 			}
@@ -93,32 +93,32 @@ function initDataGrid(){
 		},
 		idField:'authId',
 		columns:[[
-			{field:'authName',title:'权限名称',width:100},
-			{field:'authAction',title:'访问路径',hidden:true,width:100},
-			{field:'pid',title:'父级编号',hidden:true,width:100},
-			{field:'authority',title:'权限编码',hidden:true,width:100},
-			{field:'authType',title:'权限类型',width:100,
+			{field:'authName',title:'Permission name',width:100},
+			{field:'authAction',title:'Access path',hidden:true,width:100},
+			{field:'pid',title:'Parent number',hidden:true,width:100},
+			{field:'authority',title:'Authority code',hidden:true,width:100},
+			{field:'authType',title:'Permission type',width:100,
 				formatter:function(value){
 					if('menu'==value){
-						return '菜单';
+						return 'menu';
 					}else{
-						return '按钮';
+						return 'Button';
 					}
 				}
 			},
-			{field:'isEffective',title:'状态',width:70,
+			{field:'isEffective',title:'state',width:70,
 					formatter:function(value){
 						if(1==value){
-							return '有效';
+							return 'effective';
 						}else{
-							return '<span style="color:red;">无效</span>';
+							return '<span style="color:red;">invalid</span>';
 						}
 					}
 			},
-			{field:'authId',title:'操作',width:70,
+			{field:'authId',title:'Operation',width:70,
 					formatter:function(value){
-						return '<a href="javascript:authEdit('+value+')">修改</a>&nbsp;'+
-						'<a   onclick="delTrea('+value+')" ><font color="red" style="cursor:pointer">删除</font></a>';
+						return '<a href="javascript:authEdit('+value+')">modify</a>&nbsp;'+
+						'<a   onclick="delTrea('+value+')" ><font color="red" style="cursor:pointer">delete</font></a>';
 					}
 			}
 		]],
@@ -129,16 +129,16 @@ function initDataGrid(){
 	});
 }	
  
-function delTrea(id){	//删除操作  
-    $.messager.confirm('确认','确认删除?',function(row){
+function delTrea(id){	//Delete operation  
+    $.messager.confirm('confirm','confirm deletion?',function(row){
         if(row){
             $.ajax({
                 url:'sysAuth/delSysAuth.html?id='+id,
                 success:function(msg){
                 	if(msg=='success') 
-                		alert("删除成功");
+                		alert("Deleted");
                 	else 
-                		alert("删除失败");
+                		alert("Delete failed");
                 	dataGridload(parameter);
                 },
                 fail:function(){
@@ -158,11 +158,11 @@ function getList(parameter){
 	_G.createTable({
 		"field":{"authId":{"operate":"span"},"authName":{},"isEffective":{"operate":"span"}},
 		"url":"sysAuth/getSysAuthList.html",
-		"table_head":{"编号":"","权限名称":"","状态":"","操作":""},
+		"table_head":{"number":"","Permission name":"","state":"","Operation":""},
 		"parameter":parameter,
-		"operate":{"updateOperate":["修改",btnUpdateClassName],"deleteOperate":["删除",btnDeleteClassName]},
+		"operate":{"updateOperate":["modify",btnUpdateClassName],"deleteOperate":["delete",btnDeleteClassName]},
 		//"operateTdCss":[{"authId":{"width":"50px"}},{"authName":{"width":"100px"}}],
-		"operateText":[{"isEffective":{"0":"无效","1":"有效"}}],
+		"operateText":[{"isEffective":{"0":"invalid","1":"effective"}}],
 		"ID":{"listID":"auth_list","pageID":"auth_page"}
 	});
 	
@@ -174,7 +174,7 @@ function getList(parameter){
 
 function initParentAuth(){
 	$.post("sysAuth/getParentAuth.json",{"rows":50},function(data){
-		$("#pid").html('<option value="0">父级菜单</option>');
+		$("#pid").html('<option value="0">Parent menu</option>');
 		$.each(data.rows,function(dataIndex,auth){
 			$("#pid").append('<option value='+auth.authId+'>'+auth.authName+'</option>');
 		});
@@ -185,8 +185,8 @@ function initParentAuth(){
  * show model window
  */
 function showModel(){
-	var content = '我是动态加入的数据';
-	var divEntity = {"targetID":"modelDiv","width":650,"height":176,"content":content,"title":"添加系统权限"};
+	var content = 'I`m a dynamic data entry.';
+	var divEntity = {"targetID":"modelDiv","width":650,"height":176,"content":content,"title":"Add system permissions"};
 	var modelDiv = new ModelDiv(divEntity);
 	showModelDiv(modelDiv);
 	$("#authId").val("");
@@ -200,7 +200,7 @@ function showModel(){
  */
 function submit_model_window(){
 	if($("#authName").val()==null||$("#authName").val()==""){
-		$.messager.alert(titleInfo,'请输入权限名称!');
+		$.messager.alert(titleInfo,'Please enter the name of the authority!');
 		return;
 	}
 	var authId = $("#authId").val();
@@ -218,10 +218,10 @@ function submit_model_window(){
 		$.post("sysAuth/updateSysAuth.json",arr_add,function(data){
 			if(data.code==1){
 				dialogClose();
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
-				$.messager.alert(titleInfo,'修改失败!!!');
+				$.messager.alert(titleInfo,'Change failed!!!');
 			}
 			closeModelDiv();
 		},"json");
@@ -229,10 +229,10 @@ function submit_model_window(){
 		$.post("sysAuth/addSysAuth.json",arr_add,function(data){
 			if(data.code==1){
 				dialogClose();
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				dataGridload(parameter);
 			}else{
-				$.messager.alert(titleInfo,'添加失败!');
+				$.messager.alert(titleInfo,'Add failed!');
 			}
 			closeModelDiv();
 		},"json");
@@ -245,8 +245,8 @@ function submit_model_window(){
  * @param dataIndex
  */
 function updateOperate(dataId,dataIndex){
-	var content = '我是动态加入的数据';
-	var divEntity = {"targetID":"modelDiv","width":650,"height":176,"content":content,"title":"修改系统权限"};
+	var content = 'I`m a dynamic data entry.';
+	var divEntity = {"targetID":"modelDiv","width":650,"height":176,"content":content,"title":"Modify system permissions"};
 	var modelDiv = new ModelDiv(divEntity);
 	showModelDiv(modelDiv);//!!!
 	$("#authId").val(dataId);
@@ -262,7 +262,7 @@ function updateOperate(dataId,dataIndex){
  * @param dataIndex
  */
 function deleteOperate(dataId,dataIndex){
-	var dialog = new DialogDiv({"content":"您确定删除这个权限吗？","isHavaCancel":true});
+	var dialog = new DialogDiv({"content":"Are you sure you want to delete this permission？","isHavaCancel":true});
 	dialog.showDialog();
 	d_dataId = dataId;
 	d_dataIndex = dataIndex;

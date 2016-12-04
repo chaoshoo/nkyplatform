@@ -7,17 +7,17 @@ import com.sys.entity.Entity;
 
 public class Treasurer extends Entity implements Serializable {
 
-	/**会计id*/
+	/**accountingid*/
 	private Integer treasurerId;
-	/**会计名字*/
+	/**Accounting name*/
 	private String treasurerName;
-	/**会计类型*/
+	/**Accounting type*/
 	private String treasurerType;
-	/**会计头像*/
+	/**Accounting icon*/
 	private String treasurerPhoto;
-	/**会计描述*/
+	/**Accounting description*/
 	private String treasurerDesc;
-	/**创建时间*/
+	/**Created time*/
 	private Date createDate;
 	public Integer getTreasurerId() {
 		return treasurerId;

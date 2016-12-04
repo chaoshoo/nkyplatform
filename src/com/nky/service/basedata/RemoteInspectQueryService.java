@@ -8,7 +8,7 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see RemoteInspectQueryEntity
  * @author Ken
- * @version 2016年9月7日
+ * @version 2016year9month7day
  */
 @Service
 public class RemoteInspectQueryService {

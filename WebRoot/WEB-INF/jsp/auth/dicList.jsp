@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>宁康园管理平台</title>
+        <title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="css/all.css" />
 <link rel="stylesheet" href="css/jquery/easyui.css" />
@@ -21,31 +21,31 @@
                         <tr>
                             <td width="15%">
 								<a class="hd_line"></a>
-								<span class="hd_name">字典定义码</span>
+								<span class="hd_name">Dictionary definition code</span>
 							</td>
 							<td width="15%">
 								<a class="hd_line"></a>
-								<span class="hd_name">字典属性码</span>
+								<span class="hd_name">Dictionary attribute code</span>
 							</td>
 							<td width="15%">
 								<a class="hd_line"></a>
-								<span class="hd_name">字典属性值</span>
+								<span class="hd_name">Dictionary attribute value</span>
 							</td>
 							<td width="15%">
 								<a class="hd_line"></a>
-								<span class="hd_name">字典描述</span>
+								<span class="hd_name">Dictionary description</span>
 							</td>
 							<td width="15%">
 								<a class="hd_line"></a>
-								<span class="hd_name">字典描述1</span>
+								<span class="hd_name">Dictionary description1</span>
 							</td>
 							<td width="15%">
 								<a class="hd_line"></a>
-								<span class="hd_name">所属名称</span>
+								<span class="hd_name">Affiliated name</span>
 							</td>
 							<td width="15%">
 								<a class="hd_line"></a>
-								<span class="hd_name">操作</span>
+								<span class="hd_name">Operation</span>
 							</td>
                         </tr>  
                         </thead>
@@ -59,7 +59,7 @@
                             <td >${a.dicRemark1}</td>
                              <td >${a.belongName}</td>
                             <td>
-                            <input type="button"  value="删除" onclick="del(${a.id})" />
+                            <input type="button"  value="delete" onclick="del(${a.id})" />
 							</td>
                             </tr>
                         </c:forEach>

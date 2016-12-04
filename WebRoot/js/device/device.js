@@ -4,7 +4,7 @@ var add = true;
 $(function() {
 	$('#data_add').click(function(){
 		add = true;
-		openDialog2('添加设备','device/add.html','500','300');
+		openDialog2('Add equipment','device/add.html','500','300');
 	});
 	//条件查询
 	$("#auth_search").click(function(){
@@ -23,26 +23,26 @@ $(function() {
 //修改
 function openedit(check,id){
 	add = false;
-	openDialog2('编辑设备信息','device/edit.html?id='+id,'500','400');
+	openDialog2('Edit device information','device/edit.html?id='+id,'500','400');
 }
 
-function del(id){  //删除操作  
-	var str = "确定删除？";
-    $.messager.confirm('确认',str,function(row){  
+function del(id){  //Delete operation  
+	var str = "delete?？";
+    $.messager.confirm('confirm',str,function(row){  
         if(row){  
             $.ajax({  
             	 type:"POST",
                 url:'device/del.json?id='+id,    
                 success:function(data){
                 	if(data.code==1) {
-                		 $.messager.show({title:titleInfo,msg:'操作成功！',timeout:timeoutValue,showType:'slide'});
+                		 $.messager.show({title:titleInfo,msg:'Successful operation！',timeout:timeoutValue,showType:'slide'});
          				dataGridload(parameter);
                 	}else{
                 		 $.messager.alert(titleInfo,data.msg);
                 	}
                 } ,
                 fail:function(){
-                	$.messager.alert(titleInfo,'操作失败！');
+                	$.messager.alert(titleInfo,'operation failed！');
                 }
             });  
         }  
@@ -50,7 +50,7 @@ function del(id){  //删除操作
   }  
 
 /**
- * 数据表格刷新
+ * Data table refresh
  * @param param
  */
 function dataGridload(param){
@@ -59,26 +59,26 @@ function dataGridload(param){
 
 function dcommit(){
 	if($("#sn").val()==null || $("#sn").val()==""){
-		$.messager.alert(titleInfo,'请设备SN!');
+		$.messager.alert(titleInfo,'Please deviceSN!');
 		return;
 	}
 	if($("#device_type").combobox('getValue')==null || $("#device_type").combobox('getValue')==""){
-		$.messager.alert(titleInfo,'请选择设备类型!');
+		$.messager.alert(titleInfo,'Please select the device type!');
 		return;
 	}
 	if($("#product_time").datebox('getValue')==null || $("#product_time").datebox('getValue')==""){
-		$.messager.alert(titleInfo,'请输入生产时间!');
+		$.messager.alert(titleInfo,'Please enter the production time!');
 		return;
 	} 
 	if($("#deliver_time").datetimebox('getValue')==null || $("#deliver_time").datetimebox('getValue')==""){
-		$.messager.alert(titleInfo,'请输入发货时间!');
+		$.messager.alert(titleInfo,'Please enter the delivery time!');
 		return;
 	} 
 	var formdata = $.serializeObject($("#device_form"));
 //	alert(JSON.stringify(formdata));
 		$.post("device/save.json",formdata,function(data){
 			if(data.code==1){
-				$.messager.alert(titleInfo,"保存成功");
+				$.messager.alert(titleInfo,"Save success");
 				$('#editfrom_dialogtemp').dialog('close');
 				dataGridload(parameter);
 			}else{
@@ -87,5 +87,4 @@ function dcommit(){
 		},"json");
 		
 }
-
 

@@ -5,7 +5,7 @@ import com.sys.jfinal.JdbcSql;
 /**
  * @see InspectKpiConfigFz
  * @author Ken
- * @version 2016年9月2日
+ * @version 2016year9month2day
  */
 public class InspectKpiConfigFzSql extends JdbcSql {
 

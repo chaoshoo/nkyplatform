@@ -8,7 +8,7 @@
 %>
 <HTML>
 <HEAD>
-<TITLE>图片查看</TITLE>
+<TITLE>View picture</TITLE>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="<%=basePath%>js/common/jquery/jquery-1.9.1.js"></script>
 <script type="text/javascript"
@@ -21,8 +21,8 @@
 	//放大缩小图片
 	function imgToSize(size) {
 		var img = $("#Imgbox");
-		var oWidth = img.width(); //取得图片的实际宽度
-		var oHeight = img.height(); //取得图片的实际高度
+		var oWidth = img.width(); //Get the actual width of the picture
+		var oHeight = img.height(); //Get the picture of the actual height
 		img.width(oWidth + size);
 		img.height(oHeight + size / oWidth * oHeight);
 	}
@@ -65,11 +65,11 @@
 	<br/>
 	<div
 		style="width: 400px; height: 50px;  top: 520px; margin: 0 auto">
-		<input type="button" value="放大" onclick="imgToSize(50)"> <input
-			type="button" value="缩小" onclick="imgToSize(-50);"> <input
-			type="button" value="向右旋转" onclick="imgReverse(90)"> <input
-			type="button" value="向左旋转" onclick="imgReverse(-90)"> <input
-			type="button" value="取消旋转" onclick="imgReverse(0)">
+		<input type="button" value="enlarge" onclick="imgToSize(50)"> <input
+			type="button" value="narrow" onclick="imgToSize(-50);"> <input
+			type="button" value="Rotate right" onclick="imgReverse(90)"> <input
+			type="button" value="Rotate left" onclick="imgReverse(-90)"> <input
+			type="button" value="Cancel rotation" onclick="imgReverse(0)">
 	</div>
 </BODY>
 </HTML>

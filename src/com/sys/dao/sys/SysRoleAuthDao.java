@@ -8,14 +8,14 @@ import com.sys.entity.sys.SysRoleAuth;
 public interface SysRoleAuthDao extends BaseDao<SysRoleAuth> {
 
 	/**
-	 * 添加
+	 * Add
 	 * @param sysRoleAuth
 	 * @return
 	 */
 	public int addRoleAuth(SysRoleAuth sysRoleAuth);
 
 	/**
-	 * 删除
+	 * delete
 	 * @param roleId
 	 * @return
 	 */

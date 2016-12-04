@@ -7,7 +7,7 @@ import com.sys.dao.sys.SysUserDao;
 import com.sys.singleton.SysId;
 
 /**
- * 统一编码ID
+ * Uniform codingID
  * @author lenovo
  *
  */
@@ -19,7 +19,7 @@ public class IdCoderService {
 
 	
 	/**
-	 * 获取用户统一编码
+	 * Get user unified coding
 	 * @return
 	 * @throws Exception 
 	 */
@@ -31,7 +31,7 @@ public class IdCoderService {
 	
 	
 	/**
-	 * 获取系统用户编码
+	 * Acquisition system user code
 	 * @return
 	 * @throws Exception 
 	 */
@@ -45,7 +45,7 @@ public class IdCoderService {
 
 
 	/**
-	 * 获取供销商编码
+	 * Get the supply and marketing business code
 	 * @return
 	 * @throws Exception 
 	 */
@@ -56,7 +56,7 @@ public class IdCoderService {
 	}
 	
 	/**
-	 * 获取供销商编码
+	 * Get the supply and marketing business code
 	 * @return
 	 * @throws Exception 
 	 */
@@ -67,7 +67,7 @@ public class IdCoderService {
 	}
 	
 	/**
-	 * 获取供销商成员编码
+	 * Acquisition of the supply and marketing business members coding
 	 * @return
 	 * @throws Exception 
 	 */
@@ -78,7 +78,7 @@ public class IdCoderService {
 	}
 	
 	/**
-	 * 通过ID  获取信息
+	 * adoptID  pick up information
 	 * @param id
 	 * @throws Exception 
 	 */
@@ -90,7 +90,7 @@ public class IdCoderService {
 	}
 	
 	/**
-	 * 获取商品编码
+	 * Obtain commodity codes
 	 * @return
 	 * @throws Exception 
 	 */

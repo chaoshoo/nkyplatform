@@ -21,7 +21,7 @@ public class DicDefineService {
 	DicDao dicMapper;
 
 	/**
-	 * 获取所有的definelist
+	 * Get alldefinelist
 	 */
 	public ScriptPage getDicDefineList(DicDefine dicDefine) {
 		try {
@@ -39,7 +39,7 @@ public class DicDefineService {
 	}
 
 	/**
-	 * 添加字典定义
+	 * Add dictionary definition
 	 * @param sysAuth
 	 * @return
 	 */
@@ -54,7 +54,7 @@ public class DicDefineService {
 	}
 
 	/**
-	 * 获取所有的dic
+	 * Get alldic
 	 */
 	public List findDicById(Integer id) {
 		try {

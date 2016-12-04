@@ -3,7 +3,7 @@ package com.sys.util;
 import java.util.ResourceBundle;
 
 /**
- * 服务常量
+ * Service constant
  * 
  * 
  */

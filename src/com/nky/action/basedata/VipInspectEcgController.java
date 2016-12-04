@@ -14,16 +14,16 @@ import com.sys.entity.bo.ScriptPage;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * Ecg数据.
+ * Ecgdata.
  * @author Ken
- * @version 2016年10月27日 下午9:16:32
+ * @version 2016year10month27day Afternoon9:16:32
  */
 @Controller
 @RequestMapping(value = "/vipInspectEcg")
 public class VipInspectEcgController extends BaseAction {
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -36,7 +36,7 @@ public class VipInspectEcgController extends BaseAction {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(),
 					"vipinspectecg_list", param, " inspect_time desc ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;

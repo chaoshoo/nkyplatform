@@ -18,7 +18,7 @@ public class SysParameterService {
 	private SysParameterDao sysParameterDao;
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param sysParameter
 	 * @return
 	 */
@@ -32,7 +32,7 @@ public class SysParameterService {
 	}
 
 	/**
-	 * 修改
+	 * modify
 	 * @param sysParameter
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class SysParameterService {
 	}
 
 	/**
-	 * 添加
+	 * Add
 	 * @param sysParameter
 	 * @return
 	 */
@@ -51,7 +51,7 @@ public class SysParameterService {
 	}
     
 	/**
-	 * 获取数量
+	 * Get quantity
 	 * @param sysParameter
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class SysParameterService {
 	}
     
 	/**
-	 * 删除
+	 * delete
 	 * @param id
 	 * @return
 	 */

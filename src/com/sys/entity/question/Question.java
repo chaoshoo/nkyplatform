@@ -5,7 +5,7 @@ import java.util.Date;
 import com.sys.entity.Entity;
 
 /**
- * 常见问题
+ * Common problem
  * @author wjx
  *
  */
@@ -13,17 +13,17 @@ public class Question extends Entity{
 	
 	private Long id;
 	
-	private String quest_group;//问题分组
+	private String quest_group;//Problem grouping
 	
-	private String quest_gname;//问题分组名称
+	private String quest_gname;//Problem group name
 	
-	private String title;//问题标题
+	private String title;//Problem title
 	
-	private String content;//问题内容
+	private String content;//Content problem
 	
-	private String orders;//显示顺序
+	private String orders;//Display order
 	
-	private String quest_type;//类型  标记是否是热门问题
+	private String quest_type;//type  Whether the tag is a hot issue
 	
 	private Date create_time;
 	

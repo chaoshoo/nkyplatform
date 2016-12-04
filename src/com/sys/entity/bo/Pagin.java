@@ -3,25 +3,25 @@ package com.sys.entity.bo;
 public class Pagin {
 
 	/**
-	 * 页码
+	 * Page number
 	 */
 	protected int pageNo = 1;
 	/**
-	 * 每页记录条数
+	 * PageSize
 	 */
 	protected int pageSize = 10;
 	/**
-	 * 记录总条数
+	 * Record the total number of
 	 */
 	protected int recCount = -1;
 	/**
-	 * 记录总页数
+	 * Record the total number of pages
 	 */
 	protected int pageCount;
 	/**
-	 * 跳过查询的行数；
-	 * 当skipNo=-1时，查询全部记录;
-	 * 默认值为-1
+	 * Number of rows to skip；
+	 * WhenskipNo=-1time，Query all records;
+	 * Default value is-1
 	 */
 	protected int skipNo = -1;
 

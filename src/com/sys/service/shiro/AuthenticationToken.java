@@ -8,7 +8,7 @@ package com.sys.service.shiro;
 import org.apache.shiro.authc.UsernamePasswordToken;
 
 /**
- * 登录令牌
+ * Login token
  * 
  * @author lezu Team
  * @version 3.0
@@ -17,7 +17,7 @@ public class AuthenticationToken extends UsernamePasswordToken {
 
 	private static final long serialVersionUID = 5898441540965086534L;
 
-	/** 验证码 */
+	/** Verification Code */
 	private String kaptcha;
 	
 	
@@ -25,15 +25,15 @@ public class AuthenticationToken extends UsernamePasswordToken {
 
 	/**
 	 * @param username
-	 *            用户名
+	 *            User name
 	 * @param password
-	 *            密码
+	 *            Password
 	 * @param captchaId
-	 *            验证码ID
+	 *            Verification CodeID
 	 * @param kaptcha
-	 *            验证码
+	 *            Verification Code
 	 * @param rememberMe
-	 *            记住我
+	 *            Remember me
 	 * @param host
 	 *            IP
 	 */

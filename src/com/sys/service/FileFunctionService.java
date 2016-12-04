@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @ClassName: FileFunctionService
- * @version 创建时间：2015年3月18日 上午10:43:21
+ * @version Created time：2015year3month18day morning10:43:21
  *
  */
 @Service
@@ -27,7 +27,7 @@ public class FileFunctionService {
 	
 
 	/**
-	 * 文件流的写入
+	 * Write file stream
 	 * @param inputStream
 	 * @param fileDir 
 	 * @param fileName

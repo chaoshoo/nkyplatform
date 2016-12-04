@@ -29,18 +29,18 @@
 <div  class="w3-container"> 
 <table style="width: 100%">
 	<tr style="width: 100%;height: 50px">
-		<td colspan="4" style="color:#FFF;font-size: 36px;line-height: 50px;text-align: left;">这一行是显示提示信息的</td>
+		<td colspan="4" style="color:#FFF;font-size: 36px;line-height: 50px;text-align: left;">This line is the display of the prompt information</td>
 	</tr>
 	<tr style="width: 100%;height: 50px">
-		<td width="25%" style="color:#FFF;font-size: 36px;line-height: 50px;">血压计历史记录</td>
-		<td width="50%"><button class="w3-btn w3-round-xxlarge">上一页</button> <button class="w3-btn w3-round-xxlarge">下一页</button></td>
+		<td width="25%" style="color:#FFF;font-size: 36px;line-height: 50px;">Blood pressure gauge history</td>
+		<td width="50%"><button class="w3-btn w3-round-xxlarge">Previous page</button> <button class="w3-btn w3-round-xxlarge">next page</button></td>
 		<td width="25%"></td>
 	</tr>
 </table>
 <!-- 	<p>
-		<span style="width:30%;color:#FFF;font-size: 36px;line-height: 50px;">血压计历史记录</span>
-		<span style="width:30%"><button class="w3-btn w3-round-xxlarge">上一页</button>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
-		<span style="width:30%"><button class="w3-btn w3-round-xxlarge">下一页</button></span>
+		<span style="width:30%;color:#FFF;font-size: 36px;line-height: 50px;">Blood pressure gauge history</span>
+		<span style="width:30%"><button class="w3-btn w3-round-xxlarge">Previous page</button>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
+		<span style="width:30%"><button class="w3-btn w3-round-xxlarge">next page</button></span>
 	</p> -->
 </div>
    	<script type="text/javascript">
@@ -65,12 +65,12 @@ function date2str(x, y) {
 $(function () {
 Highcharts.setOptions({
 	lang: {
-		months: ['一月', '二月', '三月', '四月', '五月', '六月',  '七月', '八月', '九月', '十月', '十一月', '十二月'],
-		shortMonths: ['一月', '二月', '三月', '四月', '五月', '六月',  '七月', '八月', '九月', '十月', '十一月', '十二月'],
-		weekdays: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] 
+		months: ['January', 'February', 'March', 'April', 'May', 'June',  'July', 'August', 'September', 'October', 'November', 'December'],
+		shortMonths: ['January', 'February', 'March', 'April', 'May', 'June',  'July', 'August', 'September', 'October', 'November', 'December'],
+		weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] 
 	}
 });
-	/**A7FFFF 搏/分 xAxis: {
+	/**A7FFFF Stroke/branch xAxis: {
             minPadding: 0.05,
             maxPadding: 0.05
         },
@@ -86,7 +86,7 @@ Highcharts.setOptions({
         },
 		exporting:{ enabled:false }, 
 		legend:{ enabled:false },
-        lang: {  noData: "暂时没有数据" },
+        lang: {  noData: "No data" },
         noData: {   style: { fontWeight: 'bold', fontSize: '15px',  color: '#FFF' } },
         title: {  text: '', style: {  color: '#FFF', fontWeight: 'bold', fontSize: '12px' } }, 
         loading: {
@@ -130,7 +130,7 @@ Highcharts.setOptions({
         },
         yAxis: {
             title: {
-                text: '搏/分', 
+                text: 'Stroke/branch', 
 				style: {
 					color: '#FFF',
 					fontSize: '30px',
@@ -177,19 +177,19 @@ Highcharts.setOptions({
                     style: {
                         fontWeight: 'bold'
                     },formatter:function() {
-							return this.y+" 搏/分";
+							return this.y+" Stroke/branch";
 					}
                 },
 				labels:{
 					formatter:function() {
-							return this.y+" 搏/分";
+							return this.y+" Stroke/branch";
 					}
 				}
 				
             }
         },
         series: [{
-            name: '脉搏',
+            name: 'pulse',
             data: [ 69, 95, 15, 18, 21, 25, 26]
         }]
     });

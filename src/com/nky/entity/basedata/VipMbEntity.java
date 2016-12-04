@@ -11,9 +11,9 @@ import com.sys.util.DateUtil;
 import com.sys.util.Reflections;
 
 /**
- * 客户慢病管理
+ * Chronic disease management
  * @author Ken
- * @version 2016年10月11日 下午11:09:02
+ * @version 2016year10month11day Afternoon11:09:02
  */
 @TableBind(name = "t_vip_chronic")
 public class VipMbEntity extends JFinalEntity {

@@ -37,19 +37,19 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'patientname',title:'患者名称',width:100},
-				{field:'patientsex',title:'患者性别',width:50,
+				{field:'patientname',title:'Patient name',width:100},
+				{field:'patientsex',title:'Patient sex',width:50,
 					formatter:function(value){
 						return util.getValueBykeyDic('gender',value);
 					 }
 				},
-				{field:'patientbirthday',title:'出生日期',width:100},
-				{field:'create_time',title:'挂号时间',width:100},
-				{field:'orderfee',title:'挂号费',width:50},
-				{field:'hosname',title:'医院名称',width:100},	
-				{field:'deptname',title:'科室名称',width:100},	
-				{field:'docname',title:'医生名称',width:100},
-				{field:'status',title:'订单状态',width:100,
+				{field:'patientbirthday',title:'Birthday',width:100},
+				{field:'create_time',title:'Registration Time',width:100},
+				{field:'orderfee',title:'Registration fee',width:50},
+				{field:'hosname',title:'Hospital name',width:100},	
+				{field:'deptname',title:'Department name',width:100},	
+				{field:'docname',title:'Doctor name',width:100},
+				{field:'status',title:'Order status',width:100,
 					formatter:function(value){
 						return util.getValueBykeyDic('gh_status',value);
 					 }
@@ -67,7 +67,6 @@ function initDataGrid(){
 	});
 	
 }
-
 
 
 

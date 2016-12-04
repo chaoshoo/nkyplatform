@@ -5,18 +5,18 @@ import java.util.Map;
 import java.util.Collection;
 
 /**
- * 此类为object检查类，检查object是否为空，此类所用模式为无上限多例模式
+ * Such asobjectCheck class，inspectobjectWhether to empty，The mode of this kind of mode is no upper limit model
  */
 public class ObjectCensor {
 	private ObjectCensor() {
 	}
 
 	/**
-	 * 检查object是否为null
+	 * inspectobjectWhether asnull
 	 * 
 	 * @param Object
-	 *            obj - 需要检查的0bject
-	 * @return boolean -true(0bject为空) -false(object不为空)
+	 *            obj - Need to check0bject
+	 * @return boolean -true(0bjectIs empty) -false(objectNot empty)
 	 */
 	public static boolean checkObjectIsNull(Object obj) {
 		if (obj == null) {
@@ -37,11 +37,11 @@ public class ObjectCensor {
 	}
 
 	/**
-	 * 检查字符串是否为""
+	 * Check whether the string is""
 	 * 
 	 * @param String
-	 *            str - 需要检查的字符串
-	 * @return boolean -true(字符串为"") -false(字符串不为"")
+	 *            str - String to check
+	 * @return boolean -true(String as"") -false(String not"")
 	 */
 	private static boolean checkStringIsNull(String str) {
 		if ("".equals(str)) {
@@ -52,11 +52,11 @@ public class ObjectCensor {
 	}
 
 	/**
-	 * 检查Map的size是否为0
+	 * inspectMapThesizeWhether as0
 	 * 
 	 * @param Map
 	 *            map - Map
-	 * @return boolean -true(Map的size为0) -false(Map的size不为0)
+	 * @return boolean -true(MapThesizeby0) -false(MapThesizeNot for0)
 	 */
 	private static boolean checkMapIsNull(Map map) {
 		if (map.size() > 0) {
@@ -67,11 +67,11 @@ public class ObjectCensor {
 	}
 
 	/**
-	 * 检查Collection的size是否为0
+	 * inspectCollectionThesizeWhether as0
 	 * 
 	 * @param Collection
-	 *            collection - 需要检查的Collection
-	 * @return boolean -true(Collection的size为0) -false(Collection的size不为0)
+	 *            collection - Need to checkCollection
+	 * @return boolean -true(CollectionThesizeby0) -false(CollectionThesizeNot for0)
 	 */
 	private static boolean checkCollectionIsNull(Collection collection) {
 		if (collection.size() > 0) {
@@ -82,11 +82,11 @@ public class ObjectCensor {
 	}
 
 	/**
-	 * 检查数组的length是否为0，检查数组里的数据是否都为null
+	 * Check arraylengthWhether as0，Check whether the data in the array is allnull
 	 * 
 	 * @param Object
-	 *            [] obj - 需要检查的0bject
-	 * @return boolean -true(0bject[]为空) -false(object[]不为空)
+	 *            [] obj - Need to check0bject
+	 * @return boolean -true(0bject[]Is empty) -false(object[]Not empty)
 	 */
 	private static boolean checkArrayIsNull(Object[] obj) {
 		if (obj.length == 0) {
@@ -114,8 +114,8 @@ public class ObjectCensor {
 	/**
 	 * @author : tiankang
 	 * @param list
-	 *            : 要检查的List集合
-	 * @return 检查List集合是否为空是否长度为零
+	 *            : To checkListaggregate
+	 * @return inspectListWhether the collection is empty or not
 	 */
 	public static boolean checkListIsNull(List list) {
 		if (list != null && list.size() != 0) {
@@ -125,4 +125,3 @@ public class ObjectCensor {
 		}
 	}
 }
-

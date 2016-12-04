@@ -32,13 +32,13 @@ $(function() {
 	//初始化弹出框
 	$('#group_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 				
 			}
 		},{
-			text:'取 消',
+			text:'take eliminate',
 			handler:function(){
 				$('#group_detail_dialog').dialog('close');
 			}
@@ -97,13 +97,13 @@ function submit_model_window(){
 	
 	var name = $("#name").val();
 	if(name==null||name==''){
-		$.messager.alert(titleInfo,'请填写群名称!');
+		$.messager.alert(titleInfo,'Please input group name!');
 		return;
 	}	
 	
 	var remark = $("#remark").val();
 	if(remark==null||remark==''){
-		$.messager.alert(titleInfo,'请填写群描述!');
+		$.messager.alert(titleInfo,'Please input group description!');
 		return;
 	}	
 	
@@ -117,20 +117,20 @@ function submit_model_window(){
 		$.post("vipgroup/updategroup.json",groupInfo,function(data){
 			if(data.code==1){
 				$('#group_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 				$('#group_table').datagrid('load',parameter);
 			}else{				
-				$.messager.alert(titleInfo,'修改失败！');
+				$.messager.alert(titleInfo,'Change failed！');
 			}
 		},"json");
 	}else{
 		$.post("vipgroup/addgroup.json",groupInfo,function(data){
 			if(data.code==1){
 				$('#group_detail_dialog').dialog('close');
-				$.messager.show({title:titleInfo,msg:'添加成功！',timeout:timeoutValue,showType:'slide'});
+				$.messager.show({title:titleInfo,msg:'Added！',timeout:timeoutValue,showType:'slide'});
 				$('#group_table').datagrid('load',parameter);
 			}else {
-				$.messager.alert(titleInfo,'添加失败！');
+				$.messager.alert(titleInfo,'Add failed！');
 			}
 		},"json");
 	}
@@ -153,15 +153,15 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'id',
 		columns:[[
-				{field:'name',title:'群名称',width:100},
-				{field:'remark',title:'群描述',width:100},
-				{field:'hospital_name',title:'医院名称',width:100},	
-				{field:'office_name',title:'科室名称',width:100},	
-				{field:'doctor_name',title:'医生名称',width:100},
-				{field:'create_time',title:'创建时间',width:100},				
-				{field:'id',title:'操作',width:85,
+				{field:'name',title:'Group name',width:100},
+				{field:'remark',title:'Group description',width:100},
+				{field:'hospital_name',title:'Hospital name',width:100},	
+				{field:'office_name',title:'Department name',width:100},	
+				{field:'doctor_name',title:'Doctor name',width:100},
+				{field:'create_time',title:'Created time',width:100},				
+				{field:'id',title:'Operation',width:85,
 						formatter:function(value){
-							return '<a href="javascript:groupEdit('+value+')">编辑</a>';
+							return '<a href="javascript:groupEdit('+value+')">edit</a>';
 						}
 				}
 		]],
@@ -196,4 +196,3 @@ function generateDialog(rowInfo){
 	$('#name').val(rowInfo.name);
 	$('#remark').val(rowInfo.remark);
 }
-

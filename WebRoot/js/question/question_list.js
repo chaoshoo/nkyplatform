@@ -5,11 +5,11 @@ $(function() {
 	
 	$('#question_add').bind('click',function() {
 		question_id = null;
-		$('#question_add_dialog').dialog('setTitle','新增常见问题');
+		$('#question_add_dialog').dialog('setTitle','New common problems');
 		$('#question_form')[0].reset();
 		$('#id').val('');
-		$('#quest_group').combobox('setValue',"请选择");
-		$('#quest_type').combobox('setValue',"请选择");
+		$('#quest_group').combobox('setValue',"Please select");
+		$('#quest_type').combobox('setValue',"Please select");
 		$('#question_add_dialog').dialog('open');
 		
 	});
@@ -35,21 +35,21 @@ $(function() {
 function initDialog() {
 	
 	$('#question_add_dialog').dialog({
-		title : '新增常见问题',
+		title : 'New common problems',
 		width : 600,
 		height : 400,
 		closed : true,
 		title : '',
 		closed : true,
 		buttons : [{
-			text : '确定',
+			text : 'Confirmed',
 			iconCls : 'icon-ok',
 			handler : function() {
 				//插入
 				save();
 			}
 		},{
-			text : '取消',
+			text : 'cancel',
 			iconCls : 'icon-cancel',
 			handler : function() {
 				$('#question_add_dialog').dialog('close');
@@ -67,7 +67,7 @@ function initCombobox() {
 		editable : false,
 		url : 'pubData/getDicList.json?dicType=quest_group',
 		onLoadSuccess : function() {
-			$('#quest_group').combobox('setValue',"请选择");
+			$('#quest_group').combobox('setValue',"Please select");
 		}
 	});
 	
@@ -77,7 +77,7 @@ function initCombobox() {
 		editable : false,
 		url : 'pubData/getDicList.json?dicType=isPopular',
 		onLoadSuccess : function() {
-			$('#quest_type').combobox('setValue',"请选择");
+			$('#quest_type').combobox('setValue',"Please select");
 		}
 	});
 }
@@ -86,40 +86,40 @@ function initCombobox() {
 function initDataGrid(){
 	$('#question_table').datagrid({
 		iconCls:'icon-save',
-		nowrap: true,	//禁止文字自动换行
-		autoRowHeight: true,	//禁止自动调整row高度
-		striped: true,	//有条纹
-		toolbar: "#common_search",	//工具栏
-		fit:true,	//自适应
-		fitColumns:true,	//列自适应
-		collapsible:true,	//窗口是否可以折叠
-		url:'question/getList.json' ,	//请求远程数据
-		queryParams:parameter,	//请求远程数据发送的额外数据
-		remoteSort: false,	//禁止服务器对数据排序
-		singleSelect:true,	//只能单选
+		nowrap: true,	//Prohibit text wrap
+		autoRowHeight: true,	//Automatic adjustmentrowheight
+		striped: true,	//Striped
+		toolbar: "#common_search",	//toolbar
+		fit:true,	//self-adaption
+		fitColumns:true,	//Column adaptive
+		collapsible:true,	//Whether the window can be folded
+		url:'question/getList.json' ,	//Request remote data
+		queryParams:parameter,	//Additional data requested for remote data transmission
+		remoteSort: false,	//Prohibit the server to sort the data
+		singleSelect:true,	//Only the radio
 		idField:'id',
 		columns:[[
-			{field:'quest_gname',title:'分组名称',width:100},
-			{field:'title',title:'标题',width:100},
-			{field:'content',title:'问题内容',width:100},
-			{field:'quest_type',title:'是否热门',width:70,
+			{field:'quest_gname',title:'Group name',width:100},
+			{field:'title',title:'Title',width:100},
+			{field:'content',title:'Content problem',width:100},
+			{field:'quest_type',title:'Whether popular',width:70,
 				formatter:function(value){
 					if(1==value){
-						return '是';
+						return 'yes';
 					}else if(0==value){
-						return '否';
+						return 'no';
 					}
 				}
 		},
-			{field : 'create_time',title : '创建时间',width : 100,
+			{field : 'create_time',title : 'Created time',width : 100,
 				formatter : function(value) {
 					var date = new Date(value);
 					return formatterDateTime(date);
 				}
 			},
-			{field:'id',title:'操作',width:70,
+			{field:'id',title:'Operation',width:70,
 					formatter:function(value,row,index){
-						return '<a href = javascript:compile('+value+')>编辑</a>&nbsp;&nbsp;&nbsp;<a href=javascript:del('+value+')><font color="red">删除</font></a>';
+						return '<a href = javascript:compile('+value+')>edit</a>&nbsp;&nbsp;&nbsp;<a href=javascript:del('+value+')><font color="red">delete</font></a>';
 					}
 			}
 		]],
@@ -134,29 +134,29 @@ function save() {
 	var id = $('#id').val();
 	var quest_gname = $('#quest_group').combobox('getText');
 	var quest_group = $('#quest_group').combobox('getValue');
-	if (quest_group == "请选择") {
-		$.messager.alert('提示','请选择问题分组');
+	if (quest_group == "Please select") {
+		$.messager.alert('Prompt','Please select group of questions');
 		return;
 	}
 	var title = $('#title').val();
 	if (title == "") {
-		$.messager.alert('提示','请输入标题');
+		$.messager.alert('Prompt','Please enter a title');
 		return;
 	}
 	
 	var content = $('#content').val();
 	if (content == "") {
-		$.messager.alert('提示','请输入内容');
+		$.messager.alert('Prompt','Please enter the content');
 		return;
 	}
 	var quest_type = $('#quest_type').combobox('getValue');
-	if (quest_type == "请选择") {
-		$.messager.alert('提示','请选择是否热门');
+	if (quest_type == "Please select") {
+		$.messager.alert('Prompt','Please choose whether or not popular');
 		return;
 	}
 	var orders = $('#orders').val();
 	if (isNaN(orders)) {
-		$.messager.alert('提示','排序号只能是数字！');
+		$.messager.alert('Prompt','Sort number can only be a number！');
 		return;
 	}
 	var question = {
@@ -172,20 +172,20 @@ function save() {
 				$.post('question/update.json',question,function(result) {
 					if (result.code == 1) {
 						$('#question_add_dialog').dialog('close');
-						$.messager.show({title:titleInfo,msg:'修改成功！',timeout:timeoutValue,showType:'slide'});
+						$.messager.show({title:titleInfo,msg:'Changed！',timeout:timeoutValue,showType:'slide'});
 						$('#question_table').datagrid('load',parameter);
 					} else {
-						$.messager.alert('提示','修改失败');
+						$.messager.alert('Prompt','Change failed');
 					}
 				},'json');
 			} else {
 				$.post('question/save.json',question,function(result) {
 					if (result.code == 1) {
 						$('#question_add_dialog').dialog('close');
-						$.messager.show({title:titleInfo,msg:'新增成功！',timeout:timeoutValue,showType:'slide'});
+						$.messager.show({title:titleInfo,msg:'New success！',timeout:timeoutValue,showType:'slide'});
 						$('#question_table').datagrid('load',parameter);
 					} else {
-						$.messager.alert('提示','新增失败');
+						$.messager.alert('Prompt','New failed');
 					}
 				},'json');
 			}
@@ -202,19 +202,19 @@ function compile(value) {
 	$('#quest_type').combobox('setValue',row.quest_type);
 	$('#orders').val(row.orders);
 	
-	$('#question_add_dialog').dialog('setTitle','修改常见问题');
+	$('#question_add_dialog').dialog('setTitle','Modify common problems');
 	$('#question_add_dialog').dialog('open');
 }
 
 function del(value){
-	$.messager.confirm('提示','确认要删除吗?',function(y) {
+	$.messager.confirm('Prompt','Delete it??',function(y) {
 		if (y) {
 			$.post('question/delete.json',{"id":value},function(result) {
 				if (result.code == 1) {
-					$.messager.alert('提示','删除成功');
+					$.messager.alert('Prompt','Deleted');
 					$('#question_table').datagrid('reload',{});
 				} else {
-					$.messager.alert('提示','删除失败');
+					$.messager.alert('Prompt','Delete failed');
 				}
 			},'json');
 		}
@@ -223,14 +223,14 @@ function del(value){
 }
 
 /**
- * date类型转换成字符串显示
+ * dateType convert to string display
  */
 function formatterDateTime(date) {
     var datetime = date.getFullYear()
-            + "-"// "年"
+            + "-"// "year"
             + ((date.getMonth() + 1) > 10 ? (date.getMonth() + 1) : "0"
                     + (date.getMonth() + 1))
-            + "-"// "月"
+            + "-"// "month"
             + (date.getDate() < 10 ? "0" + date.getDate() : date
                     .getDate())
             + " "

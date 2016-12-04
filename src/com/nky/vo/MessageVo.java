@@ -1,9 +1,9 @@
 package com.nky.vo;
 
 /**
- * 消息对象,用于前台ajax传送数据.
+ * Message object,Used in front deskajaxTransmit data.
  * @author Ken
- * @version 2016年9月2日
+ * @version 2016year9month2day
  */
 public class MessageVo {
 

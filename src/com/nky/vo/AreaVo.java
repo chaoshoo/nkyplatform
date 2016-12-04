@@ -1,9 +1,9 @@
 package com.nky.vo;
 
 /**
- * area的id,area的对象.
+ * areaTheid,areaObject.
  * @author Ken
- * @version 2016年9月12日
+ * @version 2016year9month12day
  */
 public class AreaVo {
 

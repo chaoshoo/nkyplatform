@@ -1,40 +1,40 @@
 if ($.fn.pagination){
-	$.fn.pagination.defaults.beforePageText = '第';
-	$.fn.pagination.defaults.afterPageText = '共{pages}页';
-	$.fn.pagination.defaults.displayMsg = '显示{from}到{to},共{total}记录';
+	$.fn.pagination.defaults.beforePageText = 'No.';
+	$.fn.pagination.defaults.afterPageText = 'common{pages}page';
+	$.fn.pagination.defaults.displayMsg = 'display{from}reach{to},common{total}Record';
 }
 if ($.fn.datagrid){
-	$.fn.datagrid.defaults.loadMsg = '正在处理，请稍待。。。';
+	$.fn.datagrid.defaults.loadMsg = 'Processing，Please wait。。。';
 }
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
 }
 if ($.messager){
-	$.messager.defaults.ok = '确定';
-	$.messager.defaults.cancel = '取消';
+	$.messager.defaults.ok = 'Confirmed';
+	$.messager.defaults.cancel = 'cancel';
 }
 $.map(['validatebox','textbox','filebox','searchbox',
 		'combo','combobox','combogrid','combotree',
 		'datebox','datetimebox','numberbox',
 		'spinner','numberspinner','timespinner','datetimespinner'], function(plugin){
 	if ($.fn[plugin]){
-		$.fn[plugin].defaults.missingMessage = '该输入项为必输项';
+		$.fn[plugin].defaults.missingMessage = 'This item is required';
 	}
 });
 if ($.fn.validatebox){
-	$.fn.validatebox.defaults.rules.email.message = '请输入有效的电子邮件地址';
-	$.fn.validatebox.defaults.rules.url.message = '请输入有效的URL地址';
-	$.fn.validatebox.defaults.rules.length.message = '输入内容长度必须介于{0}和{1}之间';
-	$.fn.validatebox.defaults.rules.remote.message = '请修正该字段';
+	$.fn.validatebox.defaults.rules.email.message = 'Please enter a valid email address';
+	$.fn.validatebox.defaults.rules.url.message = 'Please enter a validURLaddress';
+	$.fn.validatebox.defaults.rules.length.message = 'Enter the content must be between the length of the{0}and{1}Between';
+	$.fn.validatebox.defaults.rules.remote.message = 'Please correct this field';
 }
 if ($.fn.calendar){
-	$.fn.calendar.defaults.weeks = ['日','一','二','三','四','五','六'];
-	$.fn.calendar.defaults.months = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+	$.fn.calendar.defaults.weeks = ['day','One','Two','Three','Four','Five','Six'];
+	$.fn.calendar.defaults.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 }
 if ($.fn.datebox){
-	$.fn.datebox.defaults.currentText = '今天';
-	$.fn.datebox.defaults.closeText = '关闭';
-	$.fn.datebox.defaults.okText = '确定';
+	$.fn.datebox.defaults.currentText = 'Today';
+	$.fn.datebox.defaults.closeText = 'Close';
+	$.fn.datebox.defaults.okText = 'Confirmed';
 	$.fn.datebox.defaults.formatter = function(date){
 		var y = date.getFullYear();
 		var m = date.getMonth()+1;

@@ -4,14 +4,14 @@
     * 
     * @requires jQuery,EasyUI
     * 
-    * 创建一个模式化的dialog
+    * Create a patterndialog
     * 
-    * @returns $.modalDialog.handler 这个handler代表弹出的dialog句柄
+    * @returns $.modalDialog.handler thishandlerOn behalf of the popdialoghandle
     * 
-    * @returns $.modalDialog.xxx 这个xxx是可以自己定义名称，主要用在弹窗关闭时，刷新某些对象的操作，可以将xxx这个对象预定义好
+    * @returns $.modalDialog.xxx thisxxxYou can define your own name，Mainly used in pop off，To refresh the operation of some objects，Can bexxxThis object is predefined.
     */
    $.modalDialog = function(options) {
-   	if ($.modalDialog.handler == undefined) {// 避免重复弹出
+   	if ($.modalDialog.handler == undefined) {// Avoid duplicate pop up
    		var opts = $.extend({
    			title : '',
    			width : 840,
@@ -24,12 +24,12 @@
    			onOpen : function() {
    				/*
    				$.messager.progress({
-   					title : '提示',
-   					text : '数据处理中，请稍后....'
+   					title : 'Prompt',
+   					text : 'Data processing，Please wait....'
    				}); */
    			}
    		}, options);
-   		opts.modal = true;// 强制此dialog为模式化，无视传递过来的modal参数
+   		opts.modal = true;// Force thisdialogAs a model，Oblivious transfermodalparameter
    		return $.modalDialog.handler = $('<div/>').dialog(opts);
    	}
    };

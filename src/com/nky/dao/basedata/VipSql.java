@@ -3,9 +3,9 @@ package com.nky.dao.basedata;
 import com.sys.jfinal.JdbcSql;
 
 /**
- * 客户管理.
+ * customer management.
  * @author Ken
- * @version 2016年8月26日 下午9:38:59
+ * @version 2016year8month26day Afternoon9:38:59
  */
 public class VipSql extends JdbcSql {
 

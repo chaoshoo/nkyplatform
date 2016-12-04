@@ -57,7 +57,7 @@
 								+ "/js/theme.js",
 						dataType : "script",
 						error : function() {
-							alert('当前皮肤加载出错，请确认皮肤【' + settings.theme + '】是否存在')
+							alert('Skin loading error，Please confirm skin【' + settings.theme + '】Whether exist')
 						}
 					});
 			// 读取主题对应的样式
@@ -226,7 +226,7 @@
 			var id = returnObj.id;
 			var elem = $("#" + id).get(0);
 			var isValid = returnObj.isValid;
-			var setting = returnObj.setting;// 正确:setting[0],错误:对应的setting[i]
+			var setting = returnObj.setting;// Correct:setting[0],error:Correspondingsetting[i]
 			var showmsg = "", showclass = "";
 			var intiConfig = $("body").data(elem.validatorGroup);
 			if (!isValid) {
@@ -347,7 +347,7 @@
 			e.dom = $("#" + id).get(0);
 			e.initConfig = $("body").data(e.dom.validatorGroup);
 			e.ajax = -1;
-			e.errormsg = ""; // 自定义错误信息
+			e.errormsg = ""; // Custom error messages
 			e.settings = e.dom.settings;
 			var settingslen = e.settings.length;
 			var validateType;
@@ -508,7 +508,7 @@
 			}
 			initConfig.status = "init";
 			if (isValid && initConfig.debug) {
-				alert("现在正处于调试模式(debug:true)，不能提交");
+				alert("Now is in debug mode(debug:true)，Cannot submit");
 			}
 			return !initConfig.debug && isValid;
 		},
@@ -524,7 +524,7 @@
 			if (formid == undefined) {
 				formid = initConfig.formID;
 				if (formid == "") {
-					alert('表单ID未传入');
+					alert('formIDNot introduced');
 					return false;
 				};
 			};
@@ -550,7 +550,7 @@
 						async : setting.async,
 						timeout : setting.timeout,
 						dataType : setting.dataType,
-						beforeSend : function(jqXHR, configs) {// 再服务器没有返回数据之前，先回调提交按钮
+						beforeSend : function(jqXHR, configs) {// Before the server does not return data，First callback submit button
 							if (setting.buttons && setting.buttons.length > 0) {
 								setting.buttons.attr({
 											"disabled" : true
@@ -824,7 +824,7 @@
 						setting.type = "size";
 					}
 					var type = setting.type;
-					if (type == "size") { // 获得输入的字符长度，并进行校验
+					if (type == "size") { // Get input character length，And verify
 						if (!emptyError) {
 							lb_go_on = true
 						}
@@ -998,13 +998,13 @@
 			var len = pwd.length;
 			for (var i = 0; i < len; i++) {
 				var c = pwd.charCodeAt(i);
-				if (c >= 48 && c <= 57) { // 数字
+				if (c >= 48 && c <= 57) { // number
 					sum1[0] += 1;
-				} else if (c >= 97 && c <= 122) { // 小写字母
+				} else if (c >= 97 && c <= 122) { // Lowercase letters
 					sum1[1] += 1;
-				} else if (c >= 65 && c <= 90) { // 大写字母
+				} else if (c >= 65 && c <= 90) { // Capital
 					sum1[2] += 1;
-				} else if (specicalChars.indexOf(pwd.substr(i, 1)) >= 0) { // 特殊字符
+				} else if (specicalChars.indexOf(pwd.substr(i, 1)) >= 0) { // Special character
 					sum1[3] += 1;
 				}
 			}
@@ -1286,7 +1286,7 @@
 							$("#" + setting.pwdTipID)
 									.html(passwordStrengthStatusHtml[level]);
 						} catch (e) {
-							alert("密码强度校验失败,错误原因:变量passwordStrengthStatusHtml语法错误或者为设置)");
+							alert("Password strength check failed,Wrong reason:variablepasswordStrengthStatusHtmlSyntax error or set)");
 						}
 					}
 				});
@@ -1504,30 +1504,30 @@
 
 var initConfig_setting = {
 	theme : "Default",
-	validatorGroup : "1", // 分组号
-	formID : "", // 表单ID
-	submitOnce : false, // 页面是否提交一次，不会停留
-	ajaxForm : null, // 如果不为null，表示整个表单ajax提交
-	mode : "FixTip", // 显示模式
-	errorFocus : true, // 第一个错误的控件获得焦点
-	wideWord : true, // 一个汉字当做2个长
-	forceValid : false, // 控件输入正确之后，才允许失去焦
-	debug : false, // 调试模式点
+	validatorGroup : "1", // Group number
+	formID : "", // formID
+	submitOnce : false, // Page is submitted once，Not stay
+	ajaxForm : null, // If not fornull，Represents the entire formajaxSubmit
+	mode : "FixTip", // display mode
+	errorFocus : true, // The first error of the control to get the focus
+	wideWord : true, // A Chinese character as2A long
+	forceValid : false, // Control after entering the correct，Only allowed to lose focus
+	debug : false, // Debug mode point
 	inIframe : false,
 	onSuccess : function() {
 		return true
-	}, // 提交成功后的回调函数
-	onError : $.noop, // 提交失败的回调函数度
+	}, // Post success callback function
+	onError : $.noop, // Submit a callback function for failure
 	onAlert : function() {
 		alert(arguments[0])
 	},
-	status : "", // 提交的状态：submited、sumbiting、sumbitingWithAjax
-	ajaxPrompt : "当前有数据正在进行服务器端校验，请稍候", // 控件失去焦点后，触发ajax校验，没有返回结果前的错误提示
-	validCount : 0, // 含ajaxValidator的控件个数
-	ajaxCountSubmit : 0, // 提交的时候触发的ajax验证个数
-	ajaxCountValid : 0, // 失去焦点时候触发的ajax验证个数
-	validObjects : [], // 参加校验的控件集合
-	ajaxObjects : [], // 传到服务器的控件列表
+	status : "", // Submitted status：submited、sumbiting、sumbitingWithAjax
+	ajaxPrompt : "Currently there is data being carried out on the server side validation，Please wait", // After the control loses focus，triggerajaxcheck，No error prompt before returning result
+	validCount : 0, // containajaxValidatorNumber of controls
+	ajaxCountSubmit : 0, // Triggered by the time of submissionajaxNumber of verification
+	ajaxCountValid : 0, // Triggered by losing focusajaxNumber of verification
+	validObjects : [], // To participate in the validation of the control set
+	ajaxObjects : [], // Control to the server list
 	showTextObjects : "",
 	validateType : "initConfig",
 	offsetChrome : {
@@ -1545,10 +1545,10 @@ var formValidator_setting = {
 		mouseOutColor : "#999999"
 	},
 	onShowFixText : "",
-	onShow : "请输入内容",
-	onFocus : "请输入内容",
-	onCorrect : "输入正确",
-	onEmpty : "输入内容为空",
+	onShow : "Please enter the content",
+	onFocus : "Please enter the content",
+	onCorrect : "Input correct",
+	onEmpty : "Your input is empty",
 	empty : false,
 	autoModify : false,
 	defaultValue : null,
@@ -1577,7 +1577,7 @@ var inputValidator_setting = {
 	type : "size",
 	min : 0,
 	max : 99999,
-	onError : "输入错误",
+	onError : "Input error",
 	validateType : "inputValidator",
 	empty : {
 		leftEmpty : true,
@@ -1591,7 +1591,7 @@ var compareValidator_setting = {
 	isValid : false,
 	desID : "",
 	operateor : "=",
-	onError : "输入错误",
+	onError : "Input error",
 	validateType : "compareValidator"
 };
 
@@ -1601,7 +1601,7 @@ var regexValidator_setting = {
 	param : "i",
 	dataType : "string",
 	compareType : "||",
-	onError : "输入的格式不正确",
+	onError : "Entry format is not correct",
 	validateType : "regexValidator"
 };
 
@@ -1631,8 +1631,8 @@ var ajaxValidator_setting = {
 	lastValid : "",
 	oneceValid : false,
 	randNumberName : "rand",
-	onError : "服务器校验没有通过",
-	onWait : "正在等待服务器返回数据",
+	onError : "Server check is not passed",
+	onWait : "Waiting for the server to return data",
 	validateType : "ajaxValidator"
 };
 $.extend(true, ajaxValidator_setting, ajaxForm_setting);
@@ -1643,16 +1643,16 @@ var functionValidator_setting = {
 		this.isValid = true;
 	},
 	validateType : "functionValidator",
-	onError : "输入错误"
+	onError : "Input error"
 };
 
 var passwordValidator_setting = {
 	isValid : true,
 	compareID : "",
 	validateType : "passwordValidator",
-	onErrorContinueChar : "密码字符为连续字符不被允许",
-	onErrorSameChar : "密码字符都相同不被允许",
-	onErrorCompareSame : "密码于用户名相同不被允许"
+	onErrorContinueChar : "Password is not allowed to be continuous",
+	onErrorSameChar : "Password characters are not allowed to be all the same",
+	onErrorCompareSame : "Password and user name are not allowed to be the same"
 };
 
 var fv_scriptSrc = document.getElementsByTagName('script')[document

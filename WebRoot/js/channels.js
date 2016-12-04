@@ -164,7 +164,7 @@ $(document).ready(function(){
             if(I18n.locale == 'zh'){
               tipWidth = 400;
               tipLeft = '64px';
-              tipText = '当您的渠道过多时，您可以在“设置-渠道”页面隐藏测试渠道、不关注的渠道。隐藏的渠道不再展示在页面上，但数据仍旧继续统计。';
+              tipText = 'When you channel too much，You can be in“Config-channel”Page hidden test channel、Not concerned channel。Hidden channels are no longer displayed on the page.，But the data continues to count。';
             } else {
               tipWidth = 433;
               tipLeft = '89px';

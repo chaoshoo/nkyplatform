@@ -3,9 +3,9 @@ package com.nky.dao.basedata;
 import com.sys.jfinal.JdbcSql;
 
 /**
- * 消息查询.
+ * Message query.
  * @author Ken
- * @version 2016年9月8日 下午2:06:16
+ * @version 2016year9month8day Afternoon2:06:16
  */
 public class MessageQuerySql extends JdbcSql {
 

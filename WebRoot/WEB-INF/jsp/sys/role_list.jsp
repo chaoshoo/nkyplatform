@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css"
 	href="css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="css/all.css" />
@@ -25,29 +25,29 @@
 <script type="text/javascript" src="js/sys/role_list.js"></script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'角色管理'" class="regionCenter">
+	<div data-options="region:'center',title:'Role management'" class="regionCenter">
 		<div id="common_search" class="common_search">
-			<button ype="button" id="role_add" class="btn btn-success btn-nomargin"><i class=" icon-plus"></i>&nbsp;添加角色</button>
+			<button ype="button" id="role_add" class="btn btn-success btn-nomargin"><i class=" icon-plus"></i>&nbsp;Add role</button>
 		</div>
 		<table id="role_table"></table>
 		<div id="role_detail_dialog"
-			data-options="closed:true,modal:true,title:'角色信息',iconCls:'icon-save'"
+			data-options="closed:true,modal:true,title:'Role information',iconCls:'icon-save'"
 			style="padding:5px;width:500px;height:500px;">
 			<form action="" id="role_detail_form">
 				<input type="hidden" id="roleId">
 				<table>
 					<tr>
-						<td>角色名称</td>
+						<td>Role name</td>
 						<td><input type="text" id="roleName"></td>
 					</tr>
 					<tr>
-						<td>是否发布</td>
+						<td>Whether release</td>
 						<td><select id="isEffective">
 								<m:getItems name="isEffective" />
 						</select></td>
 					</tr>
 					<tr>
-						<td>权限分配</td>
+						<td>Permission assignment</td>
 						<td>
 							<div id="auth_tree">
 								<ul id="treeDemo" class="ztree"></ul>
@@ -63,7 +63,7 @@
 								<br /> <input type="checkbox" id="py" class="checkbox first"
 									checked /> <input type="checkbox" id="sy"
 									class="checkbox first" checked /><input type="checkbox"
-									id="pn" class="checkbox first" checked /><span>关联父</span> <input
+									id="pn" class="checkbox first" checked /><span>Associated parent</span> <input
 									type="checkbox" id="sn" class="checkbox first" checked />
 							</p>
 						</li>

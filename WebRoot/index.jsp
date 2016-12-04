@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mosaddek">
 <meta name="keyword" content="">
-<title>欢迎页</title>
+<title>Welcome page</title>
 
 
 <style type="text/css">

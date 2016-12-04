@@ -17,14 +17,14 @@ import com.sys.jfinal.JFinalDb;
 /**
  * @see VipQuestionsQueryEntity
  * @author Ken
- * @version 2016年9月8日 下午1:41:03
+ * @version 2016year9month8day Afternoon1:41:03
  */
 @Controller
 @RequestMapping(value = "/vipquestionsquery")
 public class VipQuestionsQueryController extends BaseAction {
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class VipQuestionsQueryController extends BaseAction {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(),
 					"vipquestionsquery_list", param, "  i.create_time desc  ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.", e);
+			LOG.error("Query list failed.", e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;

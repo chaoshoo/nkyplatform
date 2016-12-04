@@ -3,9 +3,9 @@ package com.sys.jfinal;
 import org.slf4j.LoggerFactory;
 
 /**
- * 为jfinal的日志适配的logger.
+ * byjfinalLog adaptation.logger.
  * @author Ken
- * @version 2016年4月14日
+ * @version 2016year4month14day
  */
 public class LogbackJfinalLogger extends com.jfinal.log.Logger {
 

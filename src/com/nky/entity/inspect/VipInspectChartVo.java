@@ -8,9 +8,9 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * 图表数据.
+ * Chart data.
  * @author Ken
- * @version 2016年8月24日
+ * @version 2016year8month24day
  */
 public class VipInspectChartVo {
 
@@ -36,7 +36,7 @@ public class VipInspectChartVo {
 	private Integer totalRecord;
 
 	@JsonIgnore
-	private Integer pageSize = 7;//一页10条记录吧
+	private Integer pageSize = 7;//one page10Bar record bar
 
 	//	private Set<VipInspectData> datas = new HashSet<VipInspectData>();
 
@@ -74,7 +74,7 @@ public class VipInspectChartVo {
 	private int maxLine = 1;
 
 	/**
-	 * 计算各种上一页，下一页页面，及索引.
+	 * Calculate all kinds of last page，Next page，And index.
 	 */
 	public void calu() {
 		//totalPage计算出来 0 为没有

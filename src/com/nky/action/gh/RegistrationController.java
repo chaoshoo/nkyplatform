@@ -41,4 +41,3 @@ public class RegistrationController extends BaseAction{
 	}
 	
 }
-

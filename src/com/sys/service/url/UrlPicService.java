@@ -8,7 +8,7 @@ import com.sys.entity.bo.ScriptPage;
 import com.sys.entity.url.UrlPic;
 
 /**
- * 系统图片URL配置管理Service
+ * System pictureURLconfiguration managementService
  * @author 
  *
  */

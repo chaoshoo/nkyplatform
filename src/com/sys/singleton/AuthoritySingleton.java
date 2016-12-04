@@ -17,7 +17,7 @@ import com.sys.util.JsonUtil;
 import com.sys.util.SpringUtil;
 
 /**
- * 权限-单例模式
+ * Jurisdiction-Singleton pattern
  * @author liuchang
  *
  */
@@ -41,7 +41,7 @@ public class AuthoritySingleton {
 	}
 	
 	/**
-	 * 加载数据
+	 * Load data
 	 */
 	private void loadData(int flag) {
 //		if(flag ==0 && redisService.exists(RedisTypeEnum.SYSAUTH.toId())){
@@ -80,7 +80,7 @@ public class AuthoritySingleton {
 	}
 	
 	/**
-	 * 获取权限
+	 * Get permission
 	 * @param id
 	 * @return
 	 */
@@ -128,7 +128,7 @@ public class AuthoritySingleton {
 	}
 	
 	/**
-	 * 重新加载
+	 * Reload
 	 */
 	public void reload() {
 		loadData(1);

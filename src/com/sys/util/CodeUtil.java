@@ -5,7 +5,7 @@ import java.util.Random;
 public class CodeUtil {
 	
 	/**
-	 * 获得指定长度的随机码
+	 * Get the random code of the specified length
 	 * @param len
 	 * @return
 	 */

@@ -17,12 +17,12 @@ $(function() {
 	//初始化弹出框
 	$('#saveUpdateDepartment_detail_dialog').dialog({
 		buttons:[{
-			text:'确 定',
+			text:'Indeed set',
 			handler:function(){
 				submit_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#saveUpdateDepartment_detail_dialog').dialog('close');
 			}
@@ -54,28 +54,28 @@ function submit_model_window(){
 		$.post("departmentInfo/updateDepartment.json", department, function(data) {
 			if (data.code == 1) {
 				$('#saveUpdateDepartment_detail_dialog').dialog('close');
-				$.messager.show({title : titleInfo, msg : '修改成功！', timeout : timeoutValue, showType : 'slide'});
+				$.messager.show({title : titleInfo, msg : 'Changed！', timeout : timeoutValue, showType : 'slide'});
 				window.location.href = window.location.href;
 			} else if(data.code == 2) {
 				var parentName = $("#parent").find("option:selected").text();
 				var name = $("#name").val();
-				$.messager.alert(titleInfo, parentName + "已存在部门名称为“" + name + "”的部门！");
+				$.messager.alert(titleInfo, parentName + "Existing department name is“" + name + "”Departments！");
 			} else {
-				$.messager.alert(titleInfo, '修改失败！');
+				$.messager.alert(titleInfo, 'Change failed！');
 			}
 		}, "json");
 	} else {
 		$.post("departmentInfo/addDepartment.json", department, function(data) {
 			if (data.code == 1) {
 				$('#saveUpdateDepartment_detail_dialog').dialog('close');
-				$.messager.show({title : titleInfo, msg : '添加成功！', timeout : timeoutValue, showType : 'slide'});
+				$.messager.show({title : titleInfo, msg : 'Added！', timeout : timeoutValue, showType : 'slide'});
 				window.location.href = window.location.href;
 			} else if(data.code == 2) {
 				var parentName = $("#parent").find("option:selected").text();
 				var name = $("#name").val();
-				$.messager.alert(titleInfo, parentName + "已存在部门名称为“" + name + "”的部门！");
+				$.messager.alert(titleInfo, parentName + "Existing department name is“" + name + "”Departments！");
 			} else {
-				$.messager.alert(titleInfo, '添加失败！');
+				$.messager.alert(titleInfo, 'Add failed！');
 			}
 		}, "json");
 	}
@@ -96,7 +96,7 @@ function getAuthTree(treeData){
 				enable : true
 			}
 		},
-		callback : { //回调函数  
+		callback : { //callback  
 			onClick: zTreeOnRightClick
 		}
 	};
@@ -153,7 +153,7 @@ function addPrivilege(){
 }
 function editPrivilege(){
 	if (rightClickId == null) {
-		$.messager.alert(titleInfo,'请选择一个节点进行修改！');
+		$.messager.alert(titleInfo,'Please select a node to modify！');
 		return;
 	}
 	var department = {
@@ -164,37 +164,37 @@ function editPrivilege(){
 				$('#saveUpdateDepartment_detail_dialog').dialog('open');
 				generateDialog(data);
 			}else{
-				$.messager.alert(titleInfo,'查询失败！');
+				$.messager.alert(titleInfo,'Query failed！');
 			}
 		},"json");
 }
 function delPrivilege() {
 	if (rightClickId == null) {
-		$.messager.alert(titleInfo,'请选择一个节点进行删除！');
+		$.messager.alert(titleInfo,'Please select a node to delete！');
 		return;
 	}
 	if(isisParent) {
-		$.messager.alert('提示', "您选择的部门有下级部门，不能删除！");
+		$.messager.alert('Prompt', "The Department you have chosen has lower levels.，Cannot delete！");
 	} else {
-		$.messager.confirm('确认','确认删除?',function(row) {
+		$.messager.confirm('confirm','confirm deletion?',function(row) {
 			if (row) {
 				$.ajax({
 					url:'departmentInfo/delDepartment.json?tId=' + rightClickId,
 					async: true,
 					beforeSend: function() {
-						$.messager.progress({title : "删除部门", msg : "正在删除部门，请稍等……"});
+						$.messager.progress({title : "Department deleted", msg : "Deleting Department，One moment please……"});
 					},
 					success: function(data) {
 						$.messager.progress('close');
 						if(data.code == 1) {
-							$.messager.alert(titleInfo, '删除成功！', "info", function() {window.location.reload();});
+							$.messager.alert(titleInfo, 'Deleted！', "info", function() {window.location.reload();});
 						} else {
-							$.messager.alert(titleInfo,'删除失败！');
+							$.messager.alert(titleInfo,'Delete failed！');
 						}
 					},
 					fail: function() {
 						$.messager.progress('close');
-						$.messager.alert('提示', "调用接口失败！");
+						$.messager.alert('Prompt', "Failed to call interface！");
 					}
 				});
 			}

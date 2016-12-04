@@ -13,7 +13,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -29,65 +29,65 @@
 <script type="text/javascript" src="<%=basePath%>js/resizeimg/localResizeIMG.js?v=20160714"></script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'医院信息'" class="regionCenter">
+	<div data-options="region:'center',title:'Hospital information'" class="regionCenter">
 	  
 		<div id="common_search" class="common_search common_search_nopadding">	
 		<form action="hospital/save.json" id="hospital_form">
 		        <input type="hidden" id="id" name="id" value="${hospital.id}" />		
 		        <table id="dataTable">
 				    <tr>
-		            <td>医院编码</td>
+		            <td>Hospital code</td>
 		            <td><input style="width: 200px;"  type ="text" id="code" name="code" value="${hospital.code}" readonly="readonly" /></td>
-		            <td>创建时间</td>
+		            <td>Created time</td>
 		            <td><input style="width: 200px;"  type ="text" id="create_time" name="create_timestr" value="${hospital.create_time}" readonly="readonly" /></td>
 					</tr>
 		          <tr>	
-						<td>医院名字<font color="red">*</font></td>
+						<td>Hospital name<font color="red">*</font></td>
 						<td>
 					    	<input style="width: 200px;"  type ="text" id="name" name="name" value="${hospital.name}" />
 						</td>
-						<td>医院电话</td>
+						<td>Hospital telephone</td>
 						<td>
 					    	<input style="width: 200px;"  type ="text" id="mobile" name="mobile" value="${hospital.mobile}" />
 						</td>
 					</tr>
 					<tr>	
-						<td>医院级别<font color="red">*</font></td>
+						<td>Hospital level<font color="red">*</font></td>
 						<td>
 					    	<input style="width: 200px;"  class="easyui-combobox" id="hospitallever" name="lever"  value="${hospital.lever}"/>
 						</td>
-						<td>医院网站</td>
+						<td>Hospital website</td>
 						<td>
 					    	<input style="width: 200px;"  type ="text" id="website" name="website" value="${hospital.website}" />
 						</td>
 					</tr>
 					<tr>	
-						<td>地址</td>
+						<td>address</td>
 						<td colspan="3">
 						    <input type="hidden" id="areaid_" name="area" value="${hospital.area}" />
 						    <input type="hidden" id="arealever_" name="arealever_" value="${lever}" />
 						</td>
 					</tr>
 					<tr>	
-						<td>详细地址</td>
+						<td>Detailed address</td>
 						<td colspan="3">
 					    	<input style="width: 500px;"  type ="text" id="address" name="address" value="${hospital.address}" />
 						</td>
 					</tr>
 					<tr>
-		            <td style="width: 70px;">交通</td>
+		            <td style="width: 70px;">traffic</td>
 		            <td  colspan="3"><textarea style="width: 500px;" rows="3" cols="20" id="traffic" name="traffic">${hospital.traffic}</textarea></td>
 		          </tr>
 		          <tr>
-		            <td style="width: 70px;">特色</td>
+		            <td style="width: 70px;">characteristic</td>
 		            <td  colspan="3"><textarea style="width: 500px;" rows="3" cols="20" id="feature" name="feature">${hospital.feature}</textarea></td>
 		          </tr>
 		          <tr>
-		            <td style="width: 70px;">简介</td>
+		            <td style="width: 70px;">Introduction</td>
 		            <td  colspan="3"><textarea style="width: 500px;" rows="3" cols="20" id="info" name="info">${hospital.info}</textarea></td>
 		          </tr>  
 		          <tr>
-		            <td style="width: 70px;">图片</td>		            
+		            <td style="width: 70px;">picture</td>		            
 		            <td  colspan="3">
 		             <div id="pic"></div>
 		            </td>
@@ -98,10 +98,10 @@
 					<tr><td>					
 			       <div id="savediv" >
 				      <button type="button" id="d_save_button" onclick="dcommit()" class="btn btn-success btn-success-small" style="margin-left: 20px;">
-				        	保存
+				        	Save
 				      </button>
 <!-- 				      <button type="button" id="d_cancle_button" onclick="dialogClose2()" class="btn btn-success btn-success-small" style="margin-left: 20px;"> -->
-<!-- 				        	取消 -->
+<!-- 				        	cancel -->
 <!-- 				      </button> -->
 			      </div>
 			      
@@ -125,23 +125,23 @@ $(function() {
 		},*/
 	});
 	loadArea();
-	imginit('pic', '上传图片','${hospital.pic}');
+	imginit('pic', 'Upload pictures','${hospital.pic}');
 	imglookinit('lookpicdiv');
 });
 function dcommit(){
 	if($("#name").val()==null || $("#name").val()==""){
-		$.messager.alert(titleInfo,'请输入医院名字!');
+		$.messager.alert(titleInfo,'Please enter the hospital name!');
 		return;
 	}
 	if($('#hospitallever').combobox('getValue')==null || $('#hospitallever').combobox('getValue')==""){
-		$.messager.alert(titleInfo,'请选择医院级别!');
+		$.messager.alert(titleInfo,'Please select the hospital level!');
 		return;
 	} 
 	var formdata = $.serializeObject($("#hospital_form"));
 //	alert(JSON.stringify(formdata));
 		$.post("hospital/save.json",formdata,function(data){
 			if(data.code==1){
-				$.messager.alert(titleInfo,"保存成功！");
+				$.messager.alert(titleInfo,"Save success！");
 // 				dialogClose2();
 				dataGridload(parameter);
 			}else{

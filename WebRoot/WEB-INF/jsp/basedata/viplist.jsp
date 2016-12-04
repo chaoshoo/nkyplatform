@@ -11,7 +11,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link rel="stylesheet" type="text/css" href="<%=basePath%>css/jquery/tree/zTreeStyle.css" />
 <link rel="stylesheet" href="<%=basePath%>css/all.css" />
 <link rel="stylesheet" href="<%=basePath%>css/jquery/easyui.css" />
@@ -35,8 +35,8 @@ var dataForm={};
 var add = true; 
 
 var parameter2 = {};
-var parametertmp = {};//推送结果集的
-/* 尿酸历史数据*/
+var parametertmp = {};//Push result set
+/* Uric acid history data*/
 function questionsDatasC06Grid(card_code){
 	$('#C06_datas_table').datagrid({
 		nowrap: true,
@@ -51,21 +51,21 @@ function questionsDatasC06Grid(card_code){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...', 
+        loadMsg: 'One moment please...', 
 		idField:'ID',
 		columns:[[
-		          {field:'LEU',title:'白细胞',width:50},
-		          {field:'NIT',title:'亚硝酸盐',width:50},
-		          {field:'UBG',title:'尿胆原',width:50},
-		          {field:'PH',title:'酸碱度',width:50},
-		          {field:'BLD',title:'葡萄糖',width:50},
-		          {field:'GLU',title:'白细胞',width:50},
-		          {field:'KET',title:'酮体',width:50},
-		          {field:'PRO',title:'蛋白质',width:50},
-		          {field:'BIL',title:'胆红素',width:50},
-		          {field:'VC',title:'维生素',width:50},
-		          {field:'SG',title:'比重',width:50}, 
-				  {field:'INSPECT_TIME',title : '检测时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+		          {field:'LEU',title:'white blood cell',width:50},
+		          {field:'NIT',title:'nitrite',width:50},
+		          {field:'UBG',title:'Urinary bladder',width:50},
+		          {field:'PH',title:'Degree of acidity and alkalinity',width:50},
+		          {field:'BLD',title:'Glucose',width:50},
+		          {field:'GLU',title:'white blood cell',width:50},
+		          {field:'KET',title:'Ketone',width:50},
+		          {field:'PRO',title:'Protein',width:50},
+		          {field:'BIL',title:'bilirubin',width:50},
+		          {field:'VC',title:'Vitamin',width:50},
+		          {field:'SG',title:'proportion',width:50}, 
+				  {field:'INSPECT_TIME',title : 'Detection time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
 		]],
 		pagination:true,
 		rownumbers:true 
@@ -74,8 +74,8 @@ function questionsDatasC06Grid(card_code){
 }
 
 /*  
-   咨询"  id="questions_datas"> 		questions_datas_table
-消息"  id="messages_datas">   messages_datas_table
+   Consultation"  id="questions_datas"> 		questions_datas_table
+Message"  id="messages_datas">   messages_datas_table
 */
 function questionsDatasDGrid(id){
 	$('#questions_datas_table_d').datagrid({
@@ -89,24 +89,24 @@ function questionsDatasDGrid(id){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...', 
+        loadMsg: 'One moment please...', 
 		idField:'ID',
 		columns:[[
-			{field:'ANSWER_CODE',title:'客户或医生',width:100,
+			{field:'ANSWER_CODE',title:'A client or a doctor',width:100,
 				formatter : function(value) {
 					//if(obj.substring(0,4) == "idiv")
 					if(value != null && value!='' && value.length > 0){
 						if(value.substring(0,1) == "V" || value.substring(0,1) == "v" ){
-							return "客户";
+							return "Customer";
 						}else if(value.substring(0,1) == "D" || value.substring(0,1) == "d" ){
-							return "医生";
+							return "Doctor";
 						} 
 					}
 					return "";
 				}
 			}
-			,{field:'ANSWER_CONTENT',title:'内容',width:300}
-			,{field :'CREATE_TIME',title : '创建时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			,{field:'ANSWER_CONTENT',title:'content',width:300}
+			,{field :'CREATE_TIME',title : 'Created time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
 		]],
 		pagination:true,
 		rownumbers:true 
@@ -126,26 +126,26 @@ function questionsDatasGrid(vipCode){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...',
+        loadMsg: 'One moment please...',
 		idField:'ID',
 		columns:[[
 		          //SELECT i.id,i.vip_code,i.doctor_code,d.name,i.order_time,i.affirm_time,i.isZd,i.isDeal,i.zd_begin_time,i.zd_end_Time,i.create_time
-			{field:'VIP_CODE',title:'会员编码',width:100}
-			,{field:'NAME',title:'医生',width:100}
-			,{field:'TITLE',title:'标题',width:150}
-		    ,{field:'CONTENT',title:'内容',width:200} 
-			,{field :'CREATE_TIME',title : '创建时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-			,{field :'STATUS',title : '是否咨询',width : 100,formatter : function(value) {
+			{field:'VIP_CODE',title:'Member code',width:100}
+			,{field:'NAME',title:'Doctor',width:100}
+			,{field:'TITLE',title:'Title',width:150}
+		    ,{field:'CONTENT',title:'content',width:200} 
+			,{field :'CREATE_TIME',title : 'Created time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			,{field :'STATUS',title : 'Whether consultation',width : 100,formatter : function(value) {
 				if(null != value && value == "1"){
-					return "已咨询";
+					return "Consulted";
 				}else{
-					return "未咨询";
+					return "Not consulted";
 				}
 			} }
-/* 			//7：咨询 标记是否咨询  详情不需要
-			,{field:'ID',title:'操作',width:120,
+/* 			//7：Consultation Tag is advisory  No need for details
+			,{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){ 
-					return  '<a href="javascript:questionsDatasDGrid(\''+row.ID+'\')" >详情</a>';
+					return  '<a href="javascript:questionsDatasDGrid(\''+row.ID+'\')" >details</a>';
 					//return '<a href="javascript:initPassWord('+value+')">初始化密码</a> <a href="javascript:userEdit('+value+')">编辑</a> <a   onclick="del('+value+')" ><font color="red">删除</font></a>';
 				}
 			} */
@@ -191,11 +191,11 @@ function onselecttmps(){
 }
 
 /**
- * 更新页面查询处的标签.
+ * Update tab for page query.
  */
 function refreshSearchTag(){
 	$("#group-tag-list_select").empty();  
-	$("<option value='' >--请选择--</option>").appendTo("#group-tag-list_select")//添加下拉框的option
+	$("<option value='' >--Please select--</option>").appendTo("#group-tag-list_select")//Add drop boxoption
 	$.ajax({ 
           type : "post", 
           url : "vip/tags/@all.json?rand ="+Math.random(), 
@@ -204,7 +204,7 @@ function refreshSearchTag(){
           success : function(data){ 
         	  if(data.code==1 && data.categories != null && data.categories.length >0){
       			for(var o in data.categories){   
-      				$("<option value='"+data.categories[o].id+"' >"+data.categories[o].name +"</option>").appendTo("#group-tag-list_select")//添加下拉框的option
+      				$("<option value='"+data.categories[o].id+"' >"+data.categories[o].name +"</option>").appendTo("#group-tag-list_select")//Add drop boxoption
       		    }  
       		}
           } 
@@ -212,7 +212,7 @@ function refreshSearchTag(){
 }
 
 /**
- * 消息模版查询   msg-msg_template_select 
+ * Message template query   msg-msg_template_select 
  */
 function messagesTmpGrid(id){ 
 	$("#msg-msg_template_select").empty();
@@ -225,7 +225,7 @@ function messagesTmpGrid(id){
           dataType : "json",  
           success : function(data){ 
         	  if(data.code==1 && data.categories != null && data.categories.length >0){
-      			$("<option value='0'>--请选择模版--</option>").appendTo("#msg-msg_template_select")//添加下拉框的option
+      			$("<option value='0'>--Please select a template--</option>").appendTo("#msg-msg_template_select")//Add drop boxoption
       			for(var o in data.categories){  
       				var obj = {};
       				obj.id = data.categories[o].id;
@@ -237,7 +237,7 @@ function messagesTmpGrid(id){
       				}
       				obj.content = data.categories[o].content;
       				msgTmpJson.push(obj);
-      				$("<option value='"+data.categories[o].id+"' >"+tmpTitle +"</option>").appendTo("#msg-msg_template_select")//添加下拉框的option
+      				$("<option value='"+data.categories[o].id+"' >"+tmpTitle +"</option>").appendTo("#msg-msg_template_select")//Add drop boxoption
       		    } 
       		}
           } 
@@ -245,7 +245,7 @@ function messagesTmpGrid(id){
 }
 
 /**
- * 消息模版查询   msg-msg_template_select 
+ * Message template query   msg-msg_template_select 
  */
 function messagesTmpGrids(){ 
 	$("#msgs-msg_template_select").empty();
@@ -258,7 +258,7 @@ function messagesTmpGrids(){
           dataType : "json",  
           success : function(data){ 
         	  if(data.code==1 && data.categories != null && data.categories.length >0){
-      			$("<option value='0'>--请选择模版--</option>").appendTo("#msgs-msg_template_select")//添加下拉框的option
+      			$("<option value='0'>--Please select a template--</option>").appendTo("#msgs-msg_template_select")//Add drop boxoption
       			for(var o in data.categories){  
       				var obj = {};
       				obj.id = data.categories[o].id;
@@ -270,7 +270,7 @@ function messagesTmpGrids(){
       				}
       				obj.content = data.categories[o].content;
       				msgTmpJsons.push(obj); 
-      				$("<option value='"+data.categories[o].id+"' >"+tmpTitle+"</option>").appendTo("#msgs-msg_template_select")//添加下拉框的option
+      				$("<option value='"+data.categories[o].id+"' >"+tmpTitle+"</option>").appendTo("#msgs-msg_template_select")//Add drop boxoption
       		    } 
       		}
           } 
@@ -278,7 +278,7 @@ function messagesTmpGrids(){
 }
 
 /**
- * 消息管理 
+ * Message management 
  */
 function messagesDatasGrid(id){
 	$('#messages_datas_table').datagrid({
@@ -292,17 +292,17 @@ function messagesDatasGrid(id){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...',
+        loadMsg: 'One moment please...',
 		idField:'ID',
 		columns:[[
 		          //m.id,m.msg_type,m.creator  m.isvalid,m.create_time,c.reciver,c.send_time
-			{field:'MSG_TYPE',title:'消息类型',width:100,
+			{field:'MSG_TYPE',title:'Message type',width:100,
 				formatter : function(value) {
 					if(value !=null || value != '' ){
 						if(value == 1){
-							return "文本";
+							return "text";
 						}else if (value == 2){
-							return "链接";
+							return "link";
 						}else{
 							return "";
 						}
@@ -311,19 +311,19 @@ function messagesDatasGrid(id){
 					}
 				}
 			}
-			,{field:'TITLE',title:'标题',width:150}
-		    ,{field:'CONTENT',title:'内容',width:200,formatter : function(value) {
+			,{field:'TITLE',title:'Title',width:150}
+		    ,{field:'CONTENT',title:'content',width:200,formatter : function(value) {
 		    		if(value != null && value.length > 20){
 		    			return value.substring(0,20)+"...";
 		    		}
 		    		return value;
 		    	} 
 		    } 
-			/* ,{field :'CREATE_TIME',title : '创建时间',width : 100,formatter : function(value) {return getTimeStr(value);  } } */
-			,{field :'SEND_TIME',title : '发送时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-		    /* ,{field:'ID',title:'操作',width:120,
+			/* ,{field :'CREATE_TIME',title : 'Created time',width : 100,formatter : function(value) {return getTimeStr(value);  } } */
+			,{field :'SEND_TIME',title : 'Sending time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+		    /* ,{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){ 
-					return  '<a href="javascript:questionsDatasDGrid(\''+row.ID+'\')" >详情</a>';
+					return  '<a href="javascript:questionsDatasDGrid(\''+row.ID+'\')" >details</a>';
 				}
 			} */
 		]],
@@ -332,7 +332,7 @@ function messagesDatasGrid(id){
 	});  
 }
 
-/**远程咨询*/
+/**Remote consultation*/
 function remotesDatasDGrid(code){
 	$('#remotes_datas_table_d').datagrid({
 		nowrap: true,
@@ -345,22 +345,22 @@ function remotesDatasDGrid(code){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...', 
+        loadMsg: 'One moment please...', 
 		idField:'ID',
 		columns:[[
-			{field:'VIP_OR_DOCTOR',title:'客户或医生',width:100,
+			{field:'VIP_OR_DOCTOR',title:'A client or a doctor',width:100,
 				formatter : function(value) {
 					if(value == 'doc' || value == 'DOC' ){
-						return "医生";
+						return "Doctor";
 					}else if(value == 'vip' || value == 'VIP'){
-						return "客户";
+						return "Customer";
 					}else{
 						return "";
 					}
 				}
 			}
-			,{field:'DES',title:'内容',width:100}
-			,{field :'CREATE_TIME',title : '创建时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			,{field:'DES',title:'content',width:100}
+			,{field :'CREATE_TIME',title : 'Created time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
 		]],
 		pagination:true,
 		rownumbers:true 
@@ -380,41 +380,41 @@ function remotesDatasGrid(vipCode){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...',
+        loadMsg: 'One moment please...',
 		idField:'ID',
 		columns:[[
 		          //SELECT i.id,i.vip_code,i.doctor_code,d.name,i.order_time,i.affirm_time,i.isZd,i.isDeal,i.zd_begin_time,i.zd_end_Time,i.create_time
-			{field:'VIP_CODE',title:'会员编码',width:100},
-			{field:'NAME',title:'医生',width:100},
-		    {field:'ISZD',title:'是否应诊',width:100,
+			{field:'VIP_CODE',title:'Member code',width:100},
+			{field:'NAME',title:'Doctor',width:100},
+		    {field:'ISZD',title:'Meet?',width:100,
 				formatter : function(value) {
 					if(value == 1 ){
-						return "处理";
+						return "Handle";
 					}else if(value == 0){
-						return "不处理";
+						return "Not handle";
 					}else{
 						return "";
 					}
 				}
-			},{field:'ISDEAL',title:'是否处理',width:100,
+			},{field:'ISDEAL',title:'Whether to deal with',width:100,
 				formatter : function(value) {
 					if(value == 1 ){
-						return "处理";
+						return "Handle";
 					}else if(value == 0){
-						return "不处理";
+						return "Not handle";
 					}else{
 						return "";
 					}
 				}
-			},{field :'ORDER_TIME',title : '预约时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-			,{field :'AFFIRM_TIME',title : '医生确认时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-			/* ,{field :'ZD_BEGIN_TIME',title : '诊断开始时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-			,{field :'ZD_END_TIME',title : '诊断结束时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-			,{field :'CREATE_TIME',title : '创建时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-		    ,{field:'REMARK',title:'备注',width:100} 
-		     */,{field:'ID',title:'操作',width:120,
+			},{field :'ORDER_TIME',title : 'Appointment time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			,{field :'AFFIRM_TIME',title : 'Doctor confirmation time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			/* ,{field :'ZD_BEGIN_TIME',title : 'Diagnostic start time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			,{field :'ZD_END_TIME',title : 'End time of diagnosis',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			,{field :'CREATE_TIME',title : 'Created time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+		    ,{field:'REMARK',title:'Remarks',width:100} 
+		     */,{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){ 
-					return  '<a href="javascript:remotesDatasDGrid(\''+row.CODE+'\')" >详情</a>';
+					return  '<a href="javascript:remotesDatasDGrid(\''+row.CODE+'\')" >details</a>';
 					//return '<a href="javascript:initPassWord('+value+')">初始化密码</a> <a href="javascript:userEdit('+value+')">编辑</a> <a   onclick="del('+value+')" ><font color="red">删除</font></a>';
 				}
 			}
@@ -437,14 +437,14 @@ function ecgDatasGrid(cardCode){
 		remoteSort: false,
 		singleSelect:true,
         autoRowHeight: true,
-        loadMsg: '请稍等...',
+        loadMsg: 'One moment please...',
 		idField:'ID',
 		columns:[[
-			  {field:'ANALYZERESULTSTR',title : '检测结果',width : 200 },
-			  {field:'INSPECT_TIME',title : '检测时间',width : 100,formatter : function(value) {return getTimeStr(value);  } }
-			 ,{field:'ID',title:'操作',width:120,
+			  {field:'ANALYZERESULTSTR',title : 'detection result',width : 200 },
+			  {field:'INSPECT_TIME',title : 'Detection time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
+			 ,{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){ 
-					return  '<a href="<%=basePath%>vip/createEcg/'+row.ID+'.html" target="_blank" >查看</a>';
+					return  '<a href="<%=basePath%>vip/createEcg`+row.ID+'.html" target="_blank" >See</a>';
 				}
 			}
 		]],
@@ -469,14 +469,14 @@ function openmedirec(id)
 	if(rowInfo && rowInfo.CARD_CODE != null && rowInfo.VIP_CODE != null)
 	{
 		/* $('#dialog_medi_record').dialog({
-			title: '电子病历',
+			title: 'Electronic medical record',
 			width: 800,
 			height: 500,
 			cache: false,
 			href: 'medirec/show.html?vipCode='+rowInfo.VIP_CODE,
 			modal: true,
 			buttons:[{
-				text:'关闭',
+				text:'Close',
 				handler:function(){
 					$('#dialog_medi_record').panel('close');
 				}
@@ -491,11 +491,11 @@ function openDelete(id){
 	$('#base_table').datagrid('selectRecord',id);
 	var rowInfo =  $('#base_table').datagrid('getSelected');
 	if(rowInfo && rowInfo.ID != null){
-	    $.messager.confirm('确认','确认删除?',function(row){  
+	    $.messager.confirm('confirm','confirm deletion?',function(row){  
 	        if(row){  
 	        	$.post('vip/del.json?id='+rowInfo.ID,function(data){
 	    			if(data.code==1){
-	    				$.messager.show({title:titleInfo,msg:'删除成功！',timeout:timeoutValue,showType:'slide'});
+	    				$.messager.show({title:titleInfo,msg:'Deleted！',timeout:timeoutValue,showType:'slide'});
 	    			}else{
 	            		//alert("删除失败");
 	    				$.messager.alert(titleInfo,data.msg);
@@ -519,7 +519,7 @@ function openview(id){ //user_inspect_detail_dialog
 				if(data.categories != null && data.categories.length >0){
 					//last_inspect_datas">
 					htmls += '<table class="Tab" width="100%">';
-					htmls += "<tr><td>名字</td> <td>检测编码</td> <td>检测名字</td> <td>检测值</td> <td>检测时间</td> <td>操作</td> </tr>";
+					htmls += "<tr><td>Name</td> <td>Detection coding</td> <td>Test name</td> <td>Detection value</td> <td>Detection time</td> <td>Operation</td> </tr>";
 					for(var o in data.categories){  
 						//data.categories[o].inspect_value
 						
@@ -540,11 +540,11 @@ function openview(id){ //user_inspect_detail_dialog
 								if(tmpI == 1 ){
 									if(data.categories[o].code != "C06"){
 										//http://114.55.228.245:83/nkyplatform/vipInspectData/inspectchart/420984199109021741/C01/ALL/0-0/0.html 
-										htmls += "<td rowspan='"+data.categories[o].detail.length+"'><a href='<%=basePath%>vipInspectData/chartall/"+rowInfo.CARD_CODE+"/"+data.categories[o].code+"/ALL/0-0/0.html' target='_blank'>"+data.categories[o].name +"历史记录</a></td>";										
+										htmls += "<td rowspan='"+data.categories[o].detail.length+"'><a href='<%=basePath%>vipInspectData/chartall/"+rowInfo.CARD_CODE+"/"+data.categories[o].code+"/ALL/0-0/0.html' target='_blank'>"+data.categories[o].name +"History record</a></td>";										
 									}else{
 										//console.log("<td rowspan='"+data.categories[o].detail.length+"'><a href='javascript:void(0)' onClick='questionsDatasC06Grid(\'"+ rowInfo.CARD_CODE+"\')'>"+data.categories[o].name +"历史记录</a></td>");
 										//<a href="javascript:void(0)" onclick="questionsDatasC06Grid(" 429001198710264633')'="">血氧历史记录</a>
-										htmls += "<td rowspan='"+data.categories[o].detail.length+"'><a href='javascript:void(0)' onClick='questionsDatasC06Grid(\""+ rowInfo.CARD_CODE+"\")'>"+data.categories[o].name +"历史记录</a></td>";										
+										htmls += "<td rowspan='"+data.categories[o].detail.length+"'><a href='javascript:void(0)' onClick='questionsDatasC06Grid(\""+ rowInfo.CARD_CODE+"\")'>"+data.categories[o].name +"History record</a></td>";										
 									}
 								}
 								htmls +="</tr>";
@@ -554,12 +554,12 @@ function openview(id){ //user_inspect_detail_dialog
 					}
 				    htmls += '<table>';
 				}else{
-					 htmls +="<p>暂无数据</p>";
+					 htmls +="<p>No data</p>";
 				}
 				$("#last_inspect_datas").html(htmls); //TODO 
 				$('#user_inspect_detail_dialog').dialog('open'); 
 			}else{
-				$.messager.alert(titleInfo,"查看失败");
+				$.messager.alert(titleInfo,"View failed");
 			}
 		},"json"); 
 		
@@ -570,33 +570,33 @@ function openview(id){ //user_inspect_detail_dialog
 	}
 } 
 /**
- * 将数据提交到json
+ * Submit data tojson
  */
 function submit_message_model_window(){
 	if($("#msg_cardCode").val()==null || $("#msg_cardCode").val()==""){
-		$.messager.alert(titleInfo,'数据不足!');
+		$.messager.alert(titleInfo,'Insufficient data!');
 		return;
 	} 
 	if($("#msg_title").val()==null || $("#msg_title").val()==""){
-		$.messager.alert(titleInfo,'请输入消息标题!');
+		$.messager.alert(titleInfo,'Please enter a message header!');
 		return;
 	} 
 	if($("#msg_content").val()==null || $("#msg_content").val()==""){
-		$.messager.alert(titleInfo,'请输入消息内容!');
+		$.messager.alert(titleInfo,'Please enter the message content!');
 		return;
 	} 
 	var formdata = $.serializeObject($("#user_message_detail_form"));
 	$.post("vip/message.json",formdata,function(data){
 		if(data.code==1){
 			$('#user_msg_detail_dialog').dialog('close');
-			$.messager.show({title:titleInfo,msg:'消息已发送！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'Message sent！',timeout:timeoutValue,showType:'slide'});
 			dataGridload(parameter);
 		}else{
 			if(null != data.msg && "" != data.msg){
 				$.messager.alert(titleInfo,data.msg);
 				
 			}else{
-				$.messager.alert(titleInfo,"消息发送");
+				$.messager.alert(titleInfo,"Send message");
 			}
 		}
 	},"json");
@@ -607,20 +607,20 @@ function openGroupPush(){//group-tag-list_select
 	var geqAge =$("#FIT-GEQ-age").val();
 	if(geqAge != null && geqAge != "" ){
 		if((!isPInt(geqAge))){
-			$.messager.alert(titleInfo,"请输入合法的年龄");
+			$.messager.alert(titleInfo,"Please enter a valid age");
 			return ;
 		}else if(geqAge < 1 || geqAge>100){
-			$.messager.alert(titleInfo,"请输入合法的年龄段");
+			$.messager.alert(titleInfo,"Enter a valid age");
 			return ;
 		}
 	}
 	var leqAge =$("#FIT-LEQ-age").val();
 	if(leqAge != null && leqAge != ""){
 		if((!isPInt(leqAge))){
-			$.messager.alert(titleInfo,"请输入合法的年龄");
+			$.messager.alert(titleInfo,"Please enter a valid age");
 			return ;
 		}else if(leqAge < 1 || leqAge>100){
-			$.messager.alert(titleInfo,"请输入合法的年龄段");
+			$.messager.alert(titleInfo,"Enter a valid age");
 			return ;
 		}
 	}
@@ -628,58 +628,58 @@ function openGroupPush(){//group-tag-list_select
 	$.post("vip/list.json",parametertmp,function(data){
 		if(data!=null && data.total != null && data.total > 0){
 			messagesTmpGrids();
-			$('#msgs_groupname').html(data.total);//这里现在显示人说
+			$('#msgs_groupname').html(data.total);//Here now show people say
 			$('#msgs_total').val(data.total);
 			$('#users_msg_detail_dialog').dialog('open');
 		}else{
-			$.messager.alert(titleInfo,"结果集为空，无需推送消息.");
+			$.messager.alert(titleInfo,"Result set is empty，No push messages.");
 		}
 	},"json");
 }
 
-/**会员新增*/
+/**New member*/
 function openNew(){
 	document.getElementById("users_new_form").reset(); 
 	if(initAreaFlag && areaJsons != []  && areaJsons.length > 0){
-    	$("<option value='0'>--请选择--</option>").appendTo("#un_AREA")//添加下拉框的option
+    	$("<option value='0'>--Please select--</option>").appendTo("#un_AREA")//Add drop boxoption
 		for(var o in areaJsons){  
-			$("<option value='"+areaJsons[o].id+"' >"+areaJsons[o].name +"</option>").appendTo("#un_AREA")//添加下拉框的option
+			$("<option value='"+areaJsons[o].id+"' >"+areaJsons[o].name +"</option>").appendTo("#un_AREA")//Add drop boxoption
 	    }  
 	} 
 	$('#users_new_dialog').dialog('open');
 }
 
 /**
- * 将数据提交到json
+ * Submit data tojson
  */
 function submits_usernew_window(){
 	if($("#un_LOGIN_ACCOUNT").val()==null || $("#un_LOGIN_ACCOUNT").val()==""){
-		$.messager.alert(titleInfo,'请输入登录账户!');
+		$.messager.alert(titleInfo,'Please enter your login account!');
 		return;
 	} 
 	if($("#un_NICK_NAME").val()==null || $("#un_NICK_NAME").val()==""){
-		$.messager.alert(titleInfo,'请输入会员昵称!');
+		$.messager.alert(titleInfo,'Please enter a member nickname!');
 		return;
 	}  
 	if($("#un_REAL_NAME").val()==null || $("#un_REAL_NAME").val()==""){
-		$.messager.alert(titleInfo,'请输入真实姓名!');
+		$.messager.alert(titleInfo,'Please enter your real name!');
 		return;
 	}  
 	if($("#un_MOBILE").val()==null || $("#un_MOBILE").val()==""){
-		$.messager.alert(titleInfo,'请输入手机号!');
+		$.messager.alert(titleInfo,'Please enter your phone number!');
 		return;
 	}  
 	//birthday
 	if($("#users_new_form input[name='birthday']").val()==null || $("#users_new_form input[name='birthday']").val()==""){
-		$.messager.alert(titleInfo,'请输入出生日期!');
+		$.messager.alert(titleInfo,'Please enter birthday!');
 		return;
 	}  
 	if($("#un_AGE").val()==null || $("#un_AGE").val()==""){
-		$.messager.alert(titleInfo,'请输入年龄!');
+		$.messager.alert(titleInfo,'Please enter the age!');
 		return;
 	}  
 	if($("#un_PAPERS_NUM").val()==null || $("#un_PAPERS_NUM").val()==""){
-		$.messager.alert(titleInfo,'请输入证件号码!');
+		$.messager.alert(titleInfo,'Please enter the ID number!');
 		return;
 	}
 	
@@ -687,28 +687,28 @@ function submits_usernew_window(){
 	$.post("vip/save.json?rand ="+Math.random(),formdata,function(data){
 		if(data.code==1){
 			$('#users_new_dialog').dialog('close');
-			$.messager.show({title:titleInfo,msg:'新增成功！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'New success！',timeout:timeoutValue,showType:'slide'});
 			dataGridload(parameter);
 		}else{
 			if(data.code != null){
 				$.messager.alert(titleInfo,data.msg);
 			}else{
-				$.messager.alert(titleInfo,"新增失败");
+				$.messager.alert(titleInfo,"New failed");
 			}
 		}
 	},"json");
 }  
 
 /**
- * 将数据提交到json
+ * Submit data tojson
  */
 function submits_message_model_window(){
 	if($("#msgs_title").val()==null || $("#msgs_title").val()==""){
-		$.messager.alert(titleInfo,'请输入消息标题!');
+		$.messager.alert(titleInfo,'Please enter a message header!');
 		return;
 	} 
 	if($("#msgs_content").val()==null || $("#msgs_content").val()==""){
-		$.messager.alert(titleInfo,'请输入消息内容!');
+		$.messager.alert(titleInfo,'Please enter the message content!');
 		return;
 	} 
 	var formdata = $.serializeObject($("#users_message_detail_form"));
@@ -716,10 +716,10 @@ function submits_message_model_window(){
 	$.post("vip/message.json",formdata,function(data){
 		if(data.code==1){
 			$('#users_msg_detail_dialog').dialog('close');
-			$.messager.show({title:titleInfo,msg:'推送成功！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'Push success！',timeout:timeoutValue,showType:'slide'});
 			dataGridload(parameter);
 		}else{
-			$.messager.alert(titleInfo,"消息发送失败");
+			$.messager.alert(titleInfo,"Message sending failed");
 		}
 	},"json");
 }  
@@ -768,9 +768,9 @@ function openedit(id){
 	$('#base_table').datagrid('selectRecord',id);
 	var rowInfo =  $('#base_table').datagrid('getSelected');
 	if(initAreaFlag && areaJsons != []  && areaJsons.length > 0){
-    	$("<option value='0'>--请选择--</option>").appendTo("#u_AREA")//添加下拉框的option
+    	$("<option value='0'>--Please select--</option>").appendTo("#u_AREA")//Add drop boxoption
 		for(var o in areaJsons){  
-			$("<option value='"+areaJsons[o].id+"' >"+areaJsons[o].name +"</option>").appendTo("#u_AREA")//添加下拉框的option
+			$("<option value='"+areaJsons[o].id+"' >"+areaJsons[o].name +"</option>").appendTo("#u_AREA")//Add drop boxoption
 	    }  
 	} 
 
@@ -802,10 +802,10 @@ function openedit(id){
 		$('#u_BIRTHDAY').val(rowInfo.BIRTHDAY);      
 		$('#u_QQ').val(rowInfo.QQ);      
 		
-		$('#u_AREA').val(rowInfo.AREA);    //还要获取下拉列表TODO 
+		$('#u_AREA').val(rowInfo.AREA);    //Also get the drop-down listTODO 
 		$('#u_ADDRESS').val(rowInfo.ADDRESS);	
 		
-		$('#ub_vip_id').val(rowInfo.ID);//TODO 这里写入慢病表，这里考虑是不是可以放到一个对象中
+		$('#ub_vip_id').val(rowInfo.ID);//TODO Write slow table here，Here is whether you can put it in an object.
 		$('#ub_ischronic').val(0);
 		$('#ub_ill_name').val("");
 		$('#ub_inspect_time').val("");
@@ -852,7 +852,7 @@ function openedit(id){
 			} 
 		},"json"); 
 		
-		$("#tags_ids").html("<span style='color:red'>暂无</span>");
+		$("#tags_ids").html("<span style='color:red'>No</span>");
 		$("#group-list_select").empty(); 
 		$("#group_vipCode").val("");
 		
@@ -865,7 +865,7 @@ function openedit(id){
 }
 
 /**
- * 更新弹出的标签. 标签更新完后再打开弹出窗口
+ * Update pop up tab. After the label is updated, then open the pop-up window.
  */
 function refreshTag(VIP_CODE,open){
 	$("#tags_ids").html("");
@@ -892,7 +892,7 @@ function refreshTag(VIP_CODE,open){
       		    } 
       			/* $("#tags_ids").html(hs);
       			if(hs == ""){
-          			$("#tags_ids").html("<span style='color:red'>暂无</span>");
+          			$("#tags_ids").html("<span style='color:red'>No</span>");
       			} */
       		}
 
@@ -911,7 +911,7 @@ function addtag(){
 	var vipCode = $("#group_vipCode").val();
 	var tagids  = "tags";
 	if(vipCode == null || vipCode == ""  ){
-		$.messager.alert(titleInfo,"设置群组失败，数据不全");
+		$.messager.alert(titleInfo,"Set up group failed，Incomplete data");
 		return "";
 	}
 	
@@ -928,9 +928,9 @@ function addtag(){
       dataType : "json",  
       success : function(data){ 
     	  	if(data.code==1 ){
-    	  		$.messager.show({title:titleInfo,msg:'设置群组成功！',timeout:timeoutValue,showType:'slide'});
+    	  		$.messager.show({title:titleInfo,msg:'Set up group successfully！',timeout:timeoutValue,showType:'slide'});
   		}else{
-	  			$.messager.show({title:titleInfo,msg:'设置群组失败！',timeout:timeoutValue,showType:'slide'});
+	  			$.messager.show({title:titleInfo,msg:'Set up group failed！',timeout:timeoutValue,showType:'slide'});
 				//$.messager.alert(titleInfo,"添加失败");
   		}
       } 
@@ -940,20 +940,20 @@ function addtag(){
 
 
 /**
- * 数据表格刷新
+ * Data table refresh
  * @param param
  */
 function dataGridload(param){
 	$('#base_table').datagrid('reload');
 }
 
-function updateStatus(code){  //删除操作  
+function updateStatus(code){  //Delete operation  
 	var id = $('#u_ID').val();
 	var status =$("#u_ISVALID").val();
 	
 	$.post('vip/updateStatus/'+id+'/'+status+'.json',function(data){
 		if(data.code==1){
-			$.messager.show({title:titleInfo,msg:'更新状态成功！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'Status updated！',timeout:timeoutValue,showType:'slide'});
 		}else{ 
 			$.messager.alert(titleInfo,data.msg);
 		}
@@ -962,14 +962,14 @@ function updateStatus(code){  //删除操作
   }  
 
 /**
- * 将数据提交到json
+ * Submit data tojson
  */
 function submit_model_window(){ 
 	var formdata = $.serializeObject($("#user_detail_form"));
 	$.post("vip/update.json",formdata,function(data){
 		if(data.code==1){
 			$('#detail_dialog').dialog('close');
-			$.messager.show({title:titleInfo,msg:'更新成功！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'Updated！',timeout:timeoutValue,showType:'slide'});
 			dataGridload(parameter);
 		}else{
 			$.messager.alert(titleInfo,data.msg);
@@ -978,14 +978,14 @@ function submit_model_window(){
 }  
 
 /**
- * 将数据提交到json
+ * Submit data tojson
  */
 function submit_model_windowmb(){ 
 	var formdata = $.serializeObject($("#user_detail_form2"));
 	$.post("vip/updatemb.json",formdata,function(data){
 		if(data.code==1){
 			$('#detail_dialog').dialog('close');
-			$.messager.show({title:titleInfo,msg:'更新成功！',timeout:timeoutValue,showType:'slide'});
+			$.messager.show({title:titleInfo,msg:'Updated！',timeout:timeoutValue,showType:'slide'});
 		}else{
 			$.messager.alert(titleInfo,data.msg);
 		}
@@ -1004,20 +1004,20 @@ $(function() {
 		var geqAge =$("#FIT-GEQ-age").val();
 		if(geqAge != null && geqAge != "" ){
 			if((!isPInt(geqAge))){
-				$.messager.alert(titleInfo,"请输入合法的年龄");
+				$.messager.alert(titleInfo,"Please enter a valid age");
 				return ;
 			}else if(geqAge < 1 || geqAge>100){
-				$.messager.alert(titleInfo,"请输入合法的年龄段");
+				$.messager.alert(titleInfo,"Enter a valid age");
 				return ;
 			}
 		}
 		var leqAge =$("#FIT-LEQ-age").val();
 		if(leqAge != null && leqAge != ""){
 			if((!isPInt(leqAge))){
-				$.messager.alert(titleInfo,"请输入合法的年龄");
+				$.messager.alert(titleInfo,"Please enter a valid age");
 				return ;
 			}else if(leqAge < 1 || leqAge>100){
-				$.messager.alert(titleInfo,"请输入合法的年龄段");
+				$.messager.alert(titleInfo,"Enter a valid age");
 				return ;
 			}
 		}
@@ -1041,13 +1041,13 @@ $(function() {
 		buttons:[
        	<c:if test="${currentUser.roles eq '3'}">
 		   {
-			text:'更新',
+			text:'Update',
 			handler:function(){
 				submit_model_window();
 			}
 		},</c:if>
 		{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_detail_dialog').dialog('close');
 			}
@@ -1057,12 +1057,12 @@ $(function() {
 	//初始化弹出框
 	$('#user_msg_detail_dialog').dialog({
 		buttons:[{
-			text:'推送消息',
+			text:'Push message',
 			handler:function(){
 				submit_message_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_msg_detail_dialog').dialog('close');
 			}
@@ -1072,12 +1072,12 @@ $(function() {
 	//初始化弹出框
 	$('#users_msg_detail_dialog').dialog({
 		buttons:[{
-			text:'推送消息',
+			text:'Push message',
 			handler:function(){
 				submits_message_model_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#users_msg_detail_dialog').dialog('close');
 			}
@@ -1087,12 +1087,12 @@ $(function() {
 	//初始化弹出框
 	$('#users_new_dialog').dialog({
 		buttons:[{
-			text:'新增',
+			text:'Newly added',
 			handler:function(){
 				submits_usernew_window();
 			}
 		},{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#users_new_dialog').dialog('close');
 			}
@@ -1102,7 +1102,7 @@ $(function() {
 	//初始化弹出框
 	$('#user_group_detail_dialog').dialog({
 		buttons:[{
-			text:'取消',
+			text:'cancel',
 			handler:function(){
 				$('#user_group_detail_dialog').dialog('close');
 			}
@@ -1112,7 +1112,7 @@ $(function() {
 	//初始化弹出框
 	$('#user_inspect_detail_dialog').dialog({
 		buttons:[ {
-			text:'关闭',
+			text:'Close',
 			handler:function(){
 				$('#user_inspect_detail_dialog').dialog('close');
 			}
@@ -1122,7 +1122,7 @@ $(function() {
 	//初始化弹出框
 	$('#user_inspect_detail_dialog_d').dialog({
 		buttons:[ {
-			text:'关闭',
+			text:'Close',
 			handler:function(){
 				$('#user_inspect_detail_dialog_d').dialog('close');
 			}
@@ -1132,7 +1132,7 @@ $(function() {
 	//初始化弹出框
 	$('#user_inspect_detail_dialog_d2').dialog({
 		buttons:[ {
-			text:'关闭',
+			text:'Close',
 			handler:function(){
 				$('#user_inspect_detail_dialog_d2').dialog('close');
 			}
@@ -1142,7 +1142,7 @@ $(function() {
 	//初始化弹出框
 	$('#user_inspect_detail_dialog_C06').dialog({
 		buttons:[ {
-			text:'关闭',
+			text:'Close',
 			handler:function(){
 				$('#user_inspect_detail_dialog_C06').dialog('close');
 			}
@@ -1161,7 +1161,7 @@ $(function() {
 	
 });
 
-/** 初始化数据表格 */
+/** Initialize data form */
 function initDataGrid(){
 	$('#base_table').datagrid({
 		iconCls:'icon-save',
@@ -1178,43 +1178,43 @@ function initDataGrid(){
 		singleSelect:true,
 		idField:'ID',
 		columns:[[
-		    {field:'VIP_CODE',title:'会员编码',width:50},
-		    {field:'CARD_CODE',title:'卡号',width:80},
-		    {field:'LOGIN_ACCOUNT',title:'登录账户',width:50}, 
-		    {field:'NICK_NAME',title:'会员昵称',width:50}, 
-		    {field:'REAL_NAME',title:'真实姓名',width:50}, 
-		    {field:'MOBILE',title:'手机号',width:80}, 
-		    /* {field:'PAPERS_TYPE',title:'证件类型',width:100},  
-		    {field:'PAPERS_NUM',title:'证件号码',width:80}, */
-		  /*   {field:'WEIGHT',title:'体重',width:100}, 
-		    {field:'HEIGHT',title:'身高',width:100}, 
-		    {field:'SEX',title:'性别',width:100}, 
-		    {field:'AGE',title:'年龄',width:100}, 
+		    {field:'VIP_CODE',title:'Member code',width:50},
+		    {field:'CARD_CODE',title:'Credit Card Number',width:80},
+		    {field:'LOGIN_ACCOUNT',title:'Login account',width:50}, 
+		    {field:'NICK_NAME',title:'Member nickname',width:50}, 
+		    {field:'REAL_NAME',title:'Real name',width:50}, 
+		    {field:'MOBILE',title:'Cell number',width:80}, 
+		    /* {field:'PAPERS_TYPE',title:'Id type',width:100},  
+		    {field:'PAPERS_NUM',title:'Id Number',width:80}, */
+		  /*   {field:'WEIGHT',title:'weight',width:100}, 
+		    {field:'HEIGHT',title:'height',width:100}, 
+		    {field:'SEX',title:'Gender',width:100}, 
+		    {field:'AGE',title:'Age',width:100}, 
 		    {field:'WXOPENID',title:'wxopenid',width:100}, 
 		    {field:'ANDROID_TV_CHANNEL_ID',title:'channel_id',width:100},  */
-		    /* `heard_img_url` varchar(250) DEFAULT NULL COMMENT '头像地址',
-		    `isvalid` tinyint(4) DEFAULT NULL COMMENT '是否有效,1有效,0无效', 
-		    `account_mail` varchar(50) DEFAULT NULL COMMENT '邮箱', 
-		    `area` varchar(250) DEFAULT NULL COMMENT '省市区',
-		    `address` varchar(250) DEFAULT NULL COMMENT '详细地址',
-		    `birthday` varchar(32) DEFAULT NULL COMMENT '出生日期',
-		    `post_code` varchar(32) DEFAULT NULL COMMENT '邮编',
-		    `phone` varchar(32) DEFAULT NULL COMMENT '固定电话',
-		    `ill_history` text COMMENT '病史',
-		    `gm` varchar(250) DEFAULT NULL COMMENT '过敏史',
+		    /* `heard_img_url` varchar(250) DEFAULT NULL COMMENT 'Avatar address',
+		    `isvalid` tinyint(4) DEFAULT NULL COMMENT 'Whether effective,1effective,0invalid', 
+		    `account_mail` varchar(50) DEFAULT NULL COMMENT 'mailbox', 
+		    `area` varchar(250) DEFAULT NULL COMMENT 'Provincial city',
+		    `address` varchar(250) DEFAULT NULL COMMENT 'Detailed address',
+		    `birthday` varchar(32) DEFAULT NULL COMMENT 'Birthday',
+		    `post_code` varchar(32) DEFAULT NULL COMMENT 'Zip code',
+		    `phone` varchar(32) DEFAULT NULL COMMENT 'Landline',
+		    `ill_history` text COMMENT 'Medical history',
+		    `gm` varchar(250) DEFAULT NULL COMMENT 'Allergic History',
 		    `qq` varchar(15) DEFAULT NULL COMMENT 'QQ',
 		    `android_tv_token_id` varchar(40) DEFAULT NULL COMMENT 'android_tv_token',
-		    `modify_time` datetime DEFAULT NULL COMMENT '修改时间', */
-			/* {field : 'CREATE_TIME',title : '创建时间',width : 100,
+		    `modify_time` datetime DEFAULT NULL COMMENT 'Modification time', */
+			/* {field : 'CREATE_TIME',title : 'Created time',width : 100,
 				formatter : function(value) {
 					var date = new Date(value);
 					return formatterDateTime(date);
 				}
 			}, */
-			{field:'ID',title:'操作',width:150,
+			{field:'ID',title:'Operation',width:150,
 				formatter:function(value,row){  
 					//'<a href="javascript:openedit('+value+')">修改</a> &nbsp;<a onclick="javascript:del(\''+row.CODE+'\')" ><font color="red">删除</font></a>';
-					var hm = '<a href="javascript:openedit('+value+')">详情</a>&nbsp;<a href="javascript:openview('+value+')">检测情况</a>&nbsp;<a href="javascript:openmessage('+value+')">推消息</a>&nbsp;<a href="javascript:openmedirec('+value+')">电子病历</a>&nbsp;<a href="javascript:openDelete('+value+')">删除</a>&nbsp;';
+					var hm = '<a href="javascript:openedit('+value+')">details</a>&nbsp;<a href="javascript:openview('+value+')">Detection condition</a>&nbsp;<a href="javascript:openmessage('+value+')">Push messages</a>&nbsp;<a href="javascript:openmedirec('+value+')">Electronic medical record</a>&nbsp;<a href="javascript:openDelete('+value+')">delete</a>&nbsp;';
 					return hm;
 				}
 			}
@@ -1240,169 +1240,169 @@ $(document).ready(function(e) {
 </script>
 </head>
 <body class="easyui-layout">
-	<div data-options="region:'center',title:'客户查询'" class="regionCenter">
+	<div data-options="region:'center',title:'Customer inquiry'" class="regionCenter">
 		<div id="common_search" class="common_search common_search_nopadding">	
 		 <form action="" id="query_form">		
-			客户编码&nbsp;<input type="text" id="FIT-LIKE-vip_code" name="FIT-LIKE-vip_code"/>
-			&nbsp;姓名&nbsp;<input type="text" id="FIT-LIKE-real_name" name="FIT-LIKE-real_name"/>
-			&nbsp;电话&nbsp;<input type="text"  style="width: 100px;"  id="FIT-LIKE-mobile" name="FIT-LIKE-mobile"/>
-			&nbsp;年龄范围:<input type="text" style="width: 40px;" id="FIT-GEQ-age" name="FIT-GEQ-age"/>
+			Customer code&nbsp;<input type="text" id="FIT-LIKE-vip_code" name="FIT-LIKE-vip_code"/>
+			&nbsp;Name&nbsp;<input type="text" id="FIT-LIKE-real_name" name="FIT-LIKE-real_name"/>
+			&nbsp;Telephone&nbsp;<input type="text"  style="width: 100px;"  id="FIT-LIKE-mobile" name="FIT-LIKE-mobile"/>
+			&nbsp;Age range:<input type="text" style="width: 40px;" id="FIT-GEQ-age" name="FIT-GEQ-age"/>
 			-<input type="text" style="width: 40px;" id="FIT-LEQ-age" name="FIT-LEQ-age"/>
-       <!-- hospitals 2B C 标签-->
+       <!-- hospitals 2B C Label-->
        	<c:if test="${currentUser.roles eq '1'}">
-       	<br/>&nbsp;医院:<select id="FIT-EQ-hospital" name="FIT-EQ-hospital">
-			      <option value="">-请选择-</option> 
+       	<br/>&nbsp;Hospital:<select id="FIT-EQ-hospital" name="FIT-EQ-hospital">
+			      <option value="">-Please select-</option> 
 			      <c:forEach var="item" items="${hospitals}">
 							<option value="${item[0]}"><c:out value="${item[1]}" /></option>
 				  </c:forEach>
 				</select> 
        	</c:if>
-       	<!-- 医生的检索，是管理员或医院才可以看的 -->
+       	<!-- Doctor index，It`s an administrator or a hospital. -->
        	<c:if test="${currentUser.roles eq '2' or currentUser.roles eq '1'}">
-         	&nbsp; 医生编码&nbsp;<input type="text" id="FIT-LIKE-doctorc" name="FIT-LIKE-doctorc"/>  
-         	&nbsp;医生名字&nbsp;<input type="text" id="FIT-LIKE-doctor" name="FIT-LIKE-doctor"/>  
+         	&nbsp; Doctor code&nbsp;<input type="text" id="FIT-LIKE-doctorc" name="FIT-LIKE-doctorc"/>  
+         	&nbsp;Doctor name&nbsp;<input type="text" id="FIT-LIKE-doctor" name="FIT-LIKE-doctor"/>  
          </c:if>
        <%--   <c:if test="${currentUser.roles eq '3'}">
-       		&nbsp;&nbsp;客户群组:<select id="group-tag-list_select"  name="FIT-EQ-group"></select>
-				<button onclick="openGroupPush();" type="button" class="btn btn-success  ">推送群组消息</button>
+       		&nbsp;&nbsp;Customer group:<select id="group-tag-list_select"  name="FIT-EQ-group"></select>
+				<button onclick="openGroupPush();" type="button" class="btn btn-success  ">Push group messages</button>
        	</c:if> --%>
            <!-- style="padding: 6px 10px !important; " btn-success-min  -->
 				
          <c:if test="${currentUser.roles eq '3'}">
           	<c:if test="${not empty dgList}">
-	       		<br/>&nbsp; 选择群组:
+	       		<br/>&nbsp; Select group:
 			      <c:forEach var="item" items="${dgList}">
 	       				<input type="checkbox" name="FIT-IN-groupId" value="${item.id }" />&nbsp;${item.name }&nbsp;&nbsp;
 				  </c:forEach>
       	 	</c:if> 
        	</c:if>
-        <button type="button" id="auth_search"  class="btn btn-success  "><i class="icon-search"></i>&nbsp;查询</button>
-		<button onclick="openGroupPush();" type="button" class="btn btn-success">对结果集推送消息</button>
+        <button type="button" id="auth_search"  class="btn btn-success  "><i class="icon-search"></i>&nbsp;query</button>
+		<button onclick="openGroupPush();" type="button" class="btn btn-success">Push messages to result-group</button>
 		
          <c:if test="${currentUser.roles eq '3'}">
-			<button type="button" onclick="openNew();"  class="btn btn-success"><i class="icon-plus"></i>增&nbsp;加</button>
+			<button type="button" onclick="openNew();"  class="btn btn-success"><i class="icon-plus"></i>increase&nbsp;plus</button>
       	</c:if>
 	<!-- 	<button type="button"
-				id="auth_reset" class="btn btn-success btn-success-min" style="padding: 6px 10px !important; "><i class="icon-refresh"></i>&nbsp;重置</button> -->
-		<!-- <button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;添加</button> -->
+				id="auth_reset" class="btn btn-success btn-success-min" style="padding: 6px 10px !important; "><i class="icon-refresh"></i>&nbsp;Reset</button> -->
+		<!-- <button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button> -->
 		 </form>
 		</div>
 		<table id="base_table"></table>
         <div id="editfrom_dialog"></div>
  
-    <!-- 用户详情,用户能启停， 医生除了身份证和电话都可以修改 --> 
- 	<div id="user_detail_dialog" data-options="closed:true,modal:true,title:'客户信息',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 500px;">
+    <!-- User details,User can start and stop， In addition to the doctor in addition to the ID card and phone can be modified --> 
+ 	<div id="user_detail_dialog" data-options="closed:true,modal:true,title:'Customer information',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 500px;">
 		<div id="user_detail_dialog_detail_tab" class="easyui-tabs" style="width:680px;height:420px;"> 
-		     <div title="客户基本信息" >
+		     <div title="Customer basic information" >
 		     	<form action="vip/update.json" id="user_detail_form">
 			        <input type="hidden" id="u_ID" name="id" />
 			        <table style="margin-left: 10px"> 
 						<tr id="code_tr" >
-							<td>客户编码</td>
+							<td>Customer code</td>
 							<td>
 								<input style="width: 200px;background: #CCC" type="text" id="u_VIP_CODE" name="vip_code" readonly="readonly" />
 							</td> 
-							<td>卡号</td>
+							<td>Credit Card Number</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_CARD_CODE" name="card_code" readonly="readonly" />
 							</td>
 						</tr>
 						<tr id="code_tr" >
-							<!-- <td>出生日期</td>
+							<!-- <td>Birthday</td>
 							<td>
 								<input style="width: 200px;background: #CCC" type="text" id="u_BIRTHDAY" name="birthday"  readonly="readonly"/>
 							</td> -->
-							<td>证件号码</td>
+							<td>Id Number</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_PAPERS_NUM" name="papers_num" />
 							</td> 
-							<td>手机号</td>
+							<td>Cell number</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_MOBILE" name="mobile" />
 							</td>
 						</tr>
 						<tr id="code_tr" >
-							<td>登录账户</td>
+							<td>Login account</td>
 							<td>
 								<input style="width: 200px; " type="text" id="u_LOGIN_ACCOUNT" name="login_account" />
 							</td> 
-							<td>会员昵称</td>
+							<td>Member nickname</td>
 							<td>
 								<input style="width: 200px; " type="text" id="u_NICK_NAME" name="nick_name" />
 							</td>
 						</tr>
 						<tr id="code_tr" >
-							<td>真实姓名</td>
+							<td>Real name</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_REAL_NAME" name="real_name" />
 							</td> 
-							<!-- <td>手机号</td>
+							<!-- <td>Cell number</td>
 							<td>
 								<input style="width: 200px;background: #CCC" type="text" id="u_MOBILE" name="mobile"  readonly="readonly" />
 							</td> -->
 						</tr>
 						<tr id="code_tr" >
-							<!-- <td>证件类型</td>
+							<!-- <td>Id type</td>
 							<td>
 								<input style="width: 200px;background: #CCC" type="text" id="u_PAPERS_TYPE" name="papers_type"   readonly="readonly"/>
 							</td>  -->
-							<td>出生日期</td>
+							<td>Birthday</td>
 							<td>
 								<input class="easyui-datetimebox" type="text"  
 								data-options="formatter:myformatter,parser:myparser" 
 								style="width:200px;" name="birthday" id="u_BIRTHDAY"/>
 								<!-- <input style="width: 200px; " type="text" id="u_BIRTHDAY" name="birthday" /> -->
 							</td>
-							<td>年龄</td>
+							<td>Age</td>
 							<td>
 								<input style="width: 200px; "  type="text" id="u_AGE" name="age"  />
 							</td> 
 						</tr>
 						<tr id="code_tr" >
-							<td>体重(KG)</td>
+							<td>weight(KG)</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_WEIGHT" name="weight"  />
 							</td> 
-							<td>身高(CM)</td>
+							<td>height(CM)</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_HEIGHT" name="height"  />
 							</td>
 						</tr>
 						<tr id="code_tr" >
-							<td>性别</td>
+							<td>Gender</td>
 							<td>
 								<select id="u_SEX" name="sex">
 										<m:getItems name="gender" />
 								</select>
 								<!-- <input style="width: 200px;" type="text" id="u_SEX" name="sex"  /> -->
 							</td>
-							<td>是否有效</td>
+							<td>Whether effective</td>
 							<td>
 								<select id="u_ISVALID" name="isvalid">
 										<m:getItems name="isEffective" />
 								</select>
 								<!-- <input style="width: 200px;" type="text" id="u_ISVALID" name="isvalid"  /> -->
-								<button  type="button"  class="btn btn-success btn-success-min" style="padding: 6px 10px !important; " onclick="updateStatus()">更新状态</button>
+								<button  type="button"  class="btn btn-success btn-success-min" style="padding: 6px 10px !important; " onclick="updateStatus()">Update status</button>
 							</td>
 						</tr>
 						<tr id="code_tr" >
-							<td>过敏史</td>
+							<td>Allergic History</td>
 							<td>
 							<textarea style="width: 200px;" rows="3" cols="20" id="u_GM" name="gm"></textarea>
 								<!-- <input style="width: 200px;" type="text" id="u_GM" name="gm"  /> -->
 							</td> 
-							<td>病史</td>
+							<td>Medical history</td>
 							<td>
 							<textarea style="width: 200px;" rows="3" cols="20" id="u_ILL_HISTORY" name="ill_history"></textarea>
 								<!-- <input style="width: 200px;" type="text" id="u_ILL_HISTORY" name="ill_history"  /> -->
 							</td>
 						</tr>
 						<tr id="code_tr" >
-							<td>固定电话</td>
+							<td>Landline</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_PHONE" name="phone"  />
 							</td>
-							<td>邮编</td>
+							<td>Zip code</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_POST_CODE" name="post_code"  />
 							</td> 
@@ -1412,19 +1412,19 @@ $(document).ready(function(e) {
 							<td>
 								<input style="width: 200px;" type="text" id="u_QQ" name="qq"  />
 							</td> 
-							<td>邮箱</td>
+							<td>mailbox</td>
 							<td>
 								<input style="width: 200px;" type="text" id="u_ACCOUNT_MAIL" name="account_mail"  />
 							</td> 
 						</tr>
 						<tr>
-							<td >省市区</td>
+							<td >Provincial city</td>
 							<td>
 								<select id="u_AREA" name="area" style="width: 200px;" > 
 								</select>
 							<!-- <textarea style="width: 200px;" rows="3" cols="20" id="u_AREA" name="area"></textarea> -->
 							</td>
-							<td >详细地址</td>
+							<td >Detailed address</td>
 							<td>
 							<textarea style="width: 200px;" rows="3" cols="20" id="u_ADDRESS" name="address"></textarea>
 							</td>
@@ -1433,28 +1433,28 @@ $(document).ready(function(e) {
 							<td colspan="4" style="text-align: center">	
 								<c:if test="${currentUser.roles eq '3'}">
 									<button  onclick="submit_model_window();"   type="button"  
-									class="btn btn-success"  >更新</button>  
+									class="btn btn-success"  >Update</button>  
 								</c:if>
 							</td>
 						</tr> 
 					</table>
 			      </form>
 		     </div> 
-		      <div title="慢病管理" > 
+		      <div title="Chronic disease management" > 
 					<form action="vip/updatemb.json" id="user_detail_form2">
 			        <input type="hidden" id="ub_vip_id" name="vip_id" />
 			        <table style="margin-left: 10px;width:97%"> 
 						<tr id="code_tr" >
-							<td>是否慢性病</td>
+							<td>Chronic disease</td>
 							<td>
 								<select id="ub_ischronic" name="ischronic">
-										<option value="0">否</option>
-										<option value="1">是</option>
+										<option value="0">no</option>
+										<option value="1">yes</option>
 								</select>
 							</td>  
 						</tr>
 						<tr id="code_tr" >
-							<td>慢性病类型</td>
+							<td>Chronic disease types</td>
 							<td>
 							<c:if test="${not empty mbTypes}">
 								<table>
@@ -1469,7 +1469,7 @@ $(document).ready(function(e) {
 							</td>  
 						</tr>
 						<tr id="code_tr" >
-							<td>医保种类</td><!-- 1城镇居民职工医保，2新农合，3商业保险，4无保险 -->
+							<td>Medical insurance type</td><!-- 1Urban residents Health insurance，2ncms，3commercial insurance，4Not covered -->
 							<td>
 								<select id="ub_yb_type" name="yb_type">
 										<m:getItems name="ybtype" />
@@ -1477,13 +1477,13 @@ $(document).ready(function(e) {
 							</td>  
 						</tr>
 						<tr id="code_tr" >
-							<td>病名</td>
+							<td>Name of disease</td>
 							<td>
 								<input style="width: 200px;" type="text" id="ub_ill_name" name="ill_name"  />
 							</td>  
 						</tr>
 						<tr id="code_tr" >
-							<td>患病时间</td>
+							<td>Diagnosis date</td>
 							<td>
 								<input class="easyui-datetimebox" type="text"  
 								data-options="formatter:myformatter,parser:myparser" 
@@ -1491,14 +1491,14 @@ $(document).ready(function(e) {
 							</td>  
 						</tr>
 						<tr id="code_tr" >
-							<td >用药情况</td>
+							<td >Medication</td>
 							<td>
 							<textarea style="width: 200px;" rows="3" cols="20" id="ub_ill_med" name="ill_med"></textarea>
 							</td>
 						</tr>
 						
 						<tr id="code_tr" >
-							<td>疾病类型</td>
+							<td>Disease types</td>
 							<td>
 							<c:if test="${not empty illTypes}">
 							      <c:forEach var="item" items="${illTypes}">
@@ -1512,7 +1512,7 @@ $(document).ready(function(e) {
 							<td colspan="4" style="text-align: center">	
 								<c:if test="${currentUser.roles eq '3'}">
 									<button  onclick="submit_model_windowmb();"   type="button"  
-									class="btn btn-success"  >更新</button>  
+									class="btn btn-success"  >Update</button>  
 								</c:if>
 							</td>
 						</tr> 
@@ -1520,8 +1520,8 @@ $(document).ready(function(e) {
 					</form>
 		     </div> 
 		      <c:if test="${currentUser.roles eq '3'}">
-		      <div title="群组" > 
-		        <!-- <div id="user_group_detail_dialog" data-options="closed:true,modal:true,title:'群组',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;"> -->
+		      <div title="group" > 
+		        <!-- <div id="user_group_detail_dialog" data-options="closed:true,modal:true,title:'group',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;"> -->
 			      <form action="vip/tag.json" id="user_group_detail_form">
 			        <input type="hidden" id="group_vipCode" />
 			          <br/>
@@ -1529,13 +1529,13 @@ $(document).ready(function(e) {
 		       				<input type="checkbox"  name="usergroupIds" id="usergroupId${item.id }" class="usergroupIdClass" value="${item.id }" />&nbsp;${item.name }&nbsp;&nbsp;
 					  </c:forEach>
 					  <div style="text-align: center;margin: 0 auto;">
-					  	<button  onclick="addtag();"   type="button"  class="btn btn-success"  >设置群组</button>
+					  	<button  onclick="addtag();"   type="button"  class="btn btn-success"  >Set up group</button>
 					  </div>
 			            
 			        <!-- <table style="margin-left: 10px"> 
 						<tr id="code_tr" >
-							<td>客户已加群组:</td>
-						    <td id="tags_ids"><span style="color:red">暂无</span>
+							<td>Client joined group:</td>
+						    <td id="tags_ids"><span style="color:red">No</span>
 							</td> 
 						</tr> 
 					    <tr id="code_tr" >
@@ -1544,10 +1544,10 @@ $(document).ready(function(e) {
 						</tr>
 						
 						<tr id="code_tr" >
-							<td>选择群组</td>
+							<td>Select group</td>
 							<td>
 								<select id="group-list_select"></select>
-								<button  onclick="addtag();"   type="button"  class="btn btn-success"  >设置群组</button>  
+								<button  onclick="addtag();"   type="button"  class="btn btn-success"  >Set up group</button>  
 							</td>
 						</tr> 
 					</table> -->
@@ -1555,73 +1555,73 @@ $(document).ready(function(e) {
 			    </div>
 		         	 	
              </c:if>
-		     <!-- 再添加一个群组 hm += '<a href="javascript:opentag('+value+')">群组</a>'; -->
+		     <!-- Add another group hm += '<a href="javascript:opentag('+value+')">group</a>'; -->
 		     
 	     </div> 
     </div>
     
-    <!-- 远程咨询详情 -->
-	<div id="user_inspect_detail_dialog_d" data-options="closed:true,modal:true,title:'远程咨询详情'" style="padding: 5px; width: 850px; height: 450px;">
+    <!-- Remote consultation details -->
+	<div id="user_inspect_detail_dialog_d" data-options="closed:true,modal:true,title:'Remote consultation details'" style="padding: 5px; width: 850px; height: 450px;">
 			<table id="remotes_datas_table_d"></table>
 	</div>
     
-    <!-- 咨询详情 -->
-	<div id="user_inspect_detail_dialog_d2" data-options="closed:true,modal:true,title:'咨询详情'" style="padding: 5px; width: 850px; height: 450px;">
+    <!-- Consultation details -->
+	<div id="user_inspect_detail_dialog_d2" data-options="closed:true,modal:true,title:'Consultation details'" style="padding: 5px; width: 850px; height: 450px;">
 			<table id="questions_datas_table_d"></table>
 	</div>
     
-    <!-- 尿酸历史记录 -->
-	<div id="user_inspect_detail_dialog_C06" data-options="closed:true,modal:true,title:'尿酸历史记录'" style="padding: 5px; width: 900px; height: 450px;">
+    <!-- Uric acid history -->
+	<div id="user_inspect_detail_dialog_C06" data-options="closed:true,modal:true,title:'Uric acid history'" style="padding: 5px; width: 900px; height: 450px;">
 			<table id="C06_datas_table"></table>
 	</div>
     
-    <!-- 用户检测详情 -->
-	<div id="user_inspect_detail_dialog" data-options="closed:true,modal:true,title:'检测详情'" style="padding: 5px; width: 850px; height: 450px;">
+    <!-- User detection details -->
+	<div id="user_inspect_detail_dialog" data-options="closed:true,modal:true,title:'Detection details'" style="padding: 5px; width: 850px; height: 450px;">
 		<!-- <table id="base_detail_table"></table> -->
 		<div id="user_inspect_detail_tab" class="easyui-tabs" style="width:810px;height:330px;"> 
-		     <div title="最新检测记录  " id="last_inspect_datas">
-		     	暂无数据!
+		     <div title="Latest test record  " id="last_inspect_datas">
+		     	No data!
 		     </div> 
-		     <div title="心电图检测记录  " id="last_inspect_ecg_datas">
+		     <div title="ECG Test Records  " id="last_inspect_ecg_datas">
 				<table id="ecg_table"></table>
 		     </div> 
-		      <div title="远程咨询" id="remotes_datas"> 
+		      <div title="Remote consultation" id="remotes_datas"> 
 					<table id="remotes_datas_table"></table>
 		     </div> 
-		      <div title="咨询"  id="questions_datas"> 
+		      <div title="Consultation"  id="questions_datas"> 
 					<table id="questions_datas_table"></table>
 		     </div>
-		      <div title="消息"  id="messages_datas"> 
+		      <div title="Message"  id="messages_datas"> 
 					<table id="messages_datas_table"></table>
 		     </div>
 		 </div>   
     </div>
     
- 	<div id="user_msg_detail_dialog" data-options="closed:true,modal:true,title:'推送单个信息',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;">
+ 	<div id="user_msg_detail_dialog" data-options="closed:true,modal:true,title:'Push single message',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 400px;">
       <form action="vip/message.json" id="user_message_detail_form">
         <input type="hidden" id="msg_cardCode" name="cardCode"  />
         <table style="margin-left: 10px"> 
 			<tr id="code_tr" >
-				<td>消息类型</td>
+				<td>Message type</td>
 				<td>
 					<select id="msg-msg_type" name="msgType">
-				     	 <option value="1">文本</option>
-				     	 <option value="2">链接</option>
+				     	 <option value="1">text</option>
+				     	 <option value="2">link</option>
 					</select>  
 				</td>
-				<td>&nbsp;&nbsp;&nbsp;选择模版</td>
+				<td>&nbsp;&nbsp;&nbsp;Select template</td>
 				<td>
 					<select id="msg-msg_template_select" onchange="onselecttmp()"></select>  
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>消息标题</td>
+				<td>Message title</td>
 				<td colspan="3">
 				<input style="width: 200px;" type="text" name="title"  id="msg_title" />
 				</td>
 			</tr>
 			<tr>
-				<td>消息内容</td>
+				<td>Message content</td>
 				<td colspan="3">
 				<textarea style="width: 200px;" rows="3" cols="20" id="msg_content" name="content"></textarea>
 				<!-- <input style="width: 200px;" type="text" name="content"  id="msg_content"  /> -->
@@ -1631,36 +1631,36 @@ $(document).ready(function(e) {
       </form>
     </div>
     
- 	<div id="users_msg_detail_dialog" data-options="closed:true,modal:true,title:'推送结果集消息',iconCls:'icon-save'" style="padding: 5px; width: 800px; height: 400px;">
+ 	<div id="users_msg_detail_dialog" data-options="closed:true,modal:true,title:'Push result set message',iconCls:'icon-save'" style="padding: 5px; width: 800px; height: 400px;">
       <form action="vip/message.json" id="users_message_detail_form">
         <input type="hidden" id="msgs_groupid" name="recivergroupid"/>
         <table style="margin-left: 10px"> 
 			<tr id="code_tr" >
-				<td width="20%">接受消息客户人数：</td>
+				<td width="20%">Number of customers receiving news：</td>
 				<td colspan="3" id="msgs_groupname"></td>
 				<input type="hidden" name="total"  id="msgs_total" />
 			</tr>
 			<tr id="code_tr" >
-				<td width="20%">消息类型</td>
+				<td width="20%">Message type</td>
 				<td>
 					<select id="msgs-msg_type" name="msgType">
-				     	 <option value="1">文本</option>
-				     	 <option value="2">链接</option>
+				     	 <option value="1">text</option>
+				     	 <option value="2">link</option>
 					</select>  
 				</td>
-				<td>&nbsp;&nbsp;&nbsp;选择模版</td>
+				<td>&nbsp;&nbsp;&nbsp;Select template</td>
 				<td>
 					<select id="msgs-msg_template_select" onchange="onselecttmps()"></select>  
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>消息标题</td>
+				<td>Message title</td>
 				<td colspan="3">
 				<input style="width: 200px;" type="text" name="title"  id="msgs_title" maxlength="50"/>
 				</td>
 			</tr>
 			<tr>
-				<td>消息内容</td>
+				<td>Message content</td>
 				<td colspan="3">
 				<textarea style="width: 200px;" rows="3" cols="20" id="msgs_content" name="content"></textarea>
 				<!-- <input style="width: 200px;" type="text" name="content"  id="msgs_content"  /> -->
@@ -1670,76 +1670,76 @@ $(document).ready(function(e) {
       </form>
     </div>
     
- 	<div id="users_new_dialog" data-options="closed:true,modal:true,title:'客户新增',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 500px;">
+ 	<div id="users_new_dialog" data-options="closed:true,modal:true,title:'New customer',iconCls:'icon-save'" style="padding: 5px; width: 700px; height: 500px;">
       <form action="vip/save.json" id="users_new_form">
            <table style="margin-left: 10px"> 
 			<!-- <tr id="code_tr" >
-				<td>客户编码</td>
+				<td>Customer code</td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_VIP_CODE" name="vip_code" />
 				</td> 
-				<td>卡号</td>
+				<td>Credit Card Number</td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_CARD_CODE" name="card_code"  />
 				</td>
 			</tr> -->
 			<tr id="code_tr" >
-				<td>登录账户<span style="color:red">*</span></td>
+				<td>Login account<span style="color:red">*</span></td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_LOGIN_ACCOUNT" name="login_account" />
 				</td> 
-				<td>会员昵称<span style="color:red">*</span></td>
+				<td>Member nickname<span style="color:red">*</span></td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_NICK_NAME" name="nick_name"  />
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>真实姓名<span style="color:red">*</span></td>
+				<td>Real name<span style="color:red">*</span></td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_REAL_NAME" name="real_name"  />
 				</td> 
-				<td>手机号<span style="color:red">*</span></td>
+				<td>Cell number<span style="color:red">*</span></td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_MOBILE" name="mobile" />
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>出生日期<span style="color:red">*</span></td>
+				<td>Birthday<span style="color:red">*</span></td>
 				<td>
 					<!-- <input style="width: 200px;" type="text" id="un_BIRTHDAY" name="birthday" /> -->
 					<input class="easyui-datetimebox" type="text"  
 								data-options="formatter:myformatter,parser:myparser" 
 								style="width:200px;" name="birthday" id="un_BIRTHDAY"/>
 				</td>
-				<td>年龄<span style="color:red">*</span></td>
+				<td>Age<span style="color:red">*</span></td>
 				<td>
 					<input style="width: 200px;"  type="text" id="un_AGE" name="age" />
 				</td> 
 			</tr>
 			<tr id="code_tr" >
-				<td>证件号码<span style="color:red">*</span></td>
+				<td>Id Number<span style="color:red">*</span></td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_PAPERS_NUM" name="papers_num" />
 				</td> 
 			</tr>
 			<tr id="code_tr" >
-				<td>体重(KG)</td>
+				<td>weight(KG)</td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_WEIGHT" name="weight"  />
 				</td> 
-				<td>身高(CM)</td>
+				<td>height(CM)</td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_HEIGHT" name="height"  />
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>性别</td>
+				<td>Gender</td>
 				<td>
 					<select id="un_SEX" name="sex">
 							<m:getItems name="gender" />
 					</select>
 				</td>
-				<td>是否有效</td>
+				<td>Whether effective</td>
 				<td>
 					<select id="un_ISVALID" name="isvalid">
 							<m:getItems name="isEffective" />
@@ -1747,21 +1747,21 @@ $(document).ready(function(e) {
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>过敏史</td>
+				<td>Allergic History</td>
 				<td>
 				<textarea style="width: 200px;" rows="3" cols="20" id="un_GM" name="gm"></textarea>
 				</td> 
-				<td>病史</td>
+				<td>Medical history</td>
 				<td>
 				<textarea style="width: 200px;" rows="3" cols="20" id="un_ILL_HISTORY" name="ill_history"></textarea>
 				</td>
 			</tr>
 			<tr id="code_tr" >
-				<td>固定电话</td>
+				<td>Landline</td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_PHONE" name="phone"  />
 				</td>
-				<td>邮编</td>
+				<td>Zip code</td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_POST_CODE" name="post_code"  />
 				</td> 
@@ -1771,17 +1771,17 @@ $(document).ready(function(e) {
 				<td>
 					<input style="width: 200px;" type="text" id="un_QQ" name="qq"  />
 				</td> 
-				<td>邮箱</td>
+				<td>mailbox</td>
 				<td>
 					<input style="width: 200px;" type="text" id="un_ACCOUNT_MAIL" name="account_mail"  />
 				</td> 
 			</tr>
 			<tr>
-				<td >省市区</td>
+				<td >Provincial city</td>
 				<td>
 					<select id="un_AREA" name="area" style="width: 200px;" ></select>
 				</td>
-				<td >详细地址</td>
+				<td >Detailed address</td>
 				<td>
 				<textarea style="width: 200px;" rows="3" cols="20" id="un_ADDRESS" name="address"></textarea>
 				</td>

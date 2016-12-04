@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link type="text/css" rel="stylesheet" href="assets/login/css/bottstrap.css" />
 <script type="text/javascript" src="js/common/jquery/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/common/jquery/jquery.easyui.min.js"></script>
@@ -25,36 +25,36 @@
 </style>
 <body class="login-body">
 <div class="enter-con">
-<a href="d/login.html" >医生入口</a>
-<a href="h/login.html" >医院入口</a>
-<a href="login.html" >管理员入口</a>
+<a href="d/login.html" >Doctor entrance</a>
+<a href="h/login.html" >Hospital entrance</a>
+<a href="login.html" >Administrator access</a>
 </div>
 <div>
 	<div class="container" id="loginWindow">
       <form class="form-signin" action="login.html" method="post">
         <h2 class="form-signin-heading">
-        	宁康园<span style="color:red"><c:choose><c:when test="${type eq 'doctor'}">医生</c:when><c:when test="${type eq 'hospital'}">医院</c:when><c:when test="${type eq 'sys'}">管理员</c:when></c:choose></span>后台登录系统
+        	GD<span style="color:red"><c:choose><c:when test="${type eq 'doctor'}">Doctor</c:when><c:when test="${type eq 'hospital'}">Hospital</c:when><c:when test="${type eq 'sys'}">Admin</c:when></c:choose></span>System
         </h2>
         <div class="login-wrap">
 			<%-- <p class="l_ts">${logfail}</p>
 			<div class="info">
-				<input class="login-input username" id="userMail" name="username" placeholder="请输入用户名"  />
-				<input class="login-input password" type="password" id="userPwd" name="password" placeholder="请输入密码"  />
+				<input class="login-input username" id="userMail" name="username" placeholder="Please enter user name"  />
+				<input class="login-input password" type="password" id="userPwd" name="password" placeholder="Please input a password"  />
 			</div> --%>
 			<input type="hidden" id="exponent" value="${exponent}"/>
 			<input type="hidden" id="modulus" value="${modulus}"/>
 			<input type="hidden" name="type" value="${type}"/>
 			<p class="l_ts" style="color: red">${logfail}</p>
-            <input type="text" class="form-control" id="userMail" name="username" 	required="true" 	onvalidation="onUserNameValidation" placeholder="请输入用户名" autofocus>
+            <input type="text" class="form-control" id="userMail" name="username" 	required="true" 	onvalidation="onUserNameValidation" placeholder="Please enter user name" autofocus>
             <input type="password" class="form-control" id="userPwd" name="password" 
-							onvalidation="onPwdValidation" 	requiredErrorText="" required="true"  placeholder="请输入密码">
+							onvalidation="onPwdValidation" 	requiredErrorText="" required="true"  placeholder="Please input a password">
           <!--  <label class="checkbox">
-                <input type="checkbox" value="remember-me">记住密码
-                <span class="pull-right"> <a href="#"> 忘记密码?</a></span>
+                <input type="checkbox" value="remember-me">Remember password
+                <span class="pull-right"> <a href="#"> Forget password?</a></span>
             </label> -->
-            <button class="btn btn-lg btn-login btn-block" id="submit_login" type="submit" >登录</button>
+            <button class="btn btn-lg btn-login btn-block" id="submit_login" type="submit" >Sign in</button>
        		<c:if test="${type eq 'doctor'}">
-        		 <button class="btn btn-lg btn-login btn-block" id="submit_region" onclick="region('3')">注册</button>
+        		 <button class="btn btn-lg btn-login btn-block" id="submit_region" onclick="region('3')">register</button>
             </c:if>	
         </div>
       </form>

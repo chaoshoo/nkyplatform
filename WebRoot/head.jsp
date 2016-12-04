@@ -30,7 +30,7 @@ var util = {
 			$.ajax({
 				type : "get",
 				url : url,
-				async : false,//取消异步
+				async : false,//Cancel asynchronous
 				 cache:false, 
 				 dataType:"text",
 				 success : function(data){

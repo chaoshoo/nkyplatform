@@ -1,15 +1,15 @@
 (function() {
 	window.IM = window.IM || {
-        _appid : '8aaf070856bbb3c50156c093fa3b04ff', // 应用I
-        _onUnitAccount : 'KF10089', // 多渠道客服帐号，目前只支持1个
-        _3rdServer : 'http://123.57.230.158:8886/authen/', // 3rdServer，主要用来虚拟用户服务器获取SIG
-		/** 以下不要动，不需要改动 */
+        _appid : '8aaf070856bbb3c50156c093fa3b04ff', // applicationI
+        _onUnitAccount : 'KF10089', // Multi channel customer service account，Currently only supports1individual
+        _3rdServer : 'http://123.57.230.158:8886/authen`, // 3rdServer，Mainly used to obtain the virtual user serverSIG
+		/** Don't move，Do not need to change */
 		_timeoutkey: null,
 		_username: null,
-		_user_account: null,  //用户登录账号
-		_contact_type_c: 'C', // 代表联系人
-		_contact_type_g: 'G', // 代表群组
-		_contact_type_m: 'M', // 代表多渠道客服
+		_user_account: null,  //User login account
+		_contact_type_c: 'C', // Representative contact
+		_contact_type_g: 'G', // Representative group
+		_contact_type_m: 'M', // Multi channel customer service representative
 		_onMsgReceiveListener: null,
 		_onDeskMsgReceiveListener: null,
 		_noticeReceiveListener: null,
@@ -17,19 +17,19 @@
 		_onCallMsgListener: null,
 		_isMcm_active: false,
 		_local_historyver: 0,
-		_msgId: null, // 消息ID，查看图片时有用
-		_pre_range: null, // pre的光标监控对象
-		_pre_range_num: 0, // 计数，记录pre中当前光标位置，以childNodes为单位
+		_msgId: null, // MessageID，Useful when viewing pictures
+		_pre_range: null, // preCursor monitor object
+		_pre_range_num: 0, // count，RecordpreCurrent cursor position，withchildNodesAs unit
 		_fireMessage: 'fireMessage',
 		_serverNo: 'XTOZ',
 		_baiduMap: null,
-		_loginType: 1, //登录类型: 1账号登录，3voip账号密码登录
+		_loginType: 1, //Login type: 1Account login，3voipAccount password login
 		_Notification: null,
-		_extopts: [], // 新建一个数组存放@的人
+		_extopts: [], // Create a new array@The people
 		_transfer : 12,
 		_isNewSDK:false,
 		/**
-		 * 初始化
+		 * Initialization
 		 * 
 		 * @private
 		 */
@@ -37,10 +37,10 @@
 			// 初始化SDK
 			var resp = RL_YTX.init(IM._appid);
 			if (!resp) {
-				console.log('SDK初始化错误');
+				console.log('SDKInitialization error');
 				return;
 			};
-			if (200 == resp.code) { // 初始化成功
+			if (200 == resp.code) { // Initial success
 				$('#navbar_login').show();
 				$('#navbar_login_show').hide();
 				// 重置页面高度变化
@@ -50,22 +50,22 @@
 				};
 				// 初始化一些页面需要绑定的事件
 				IM.initEvent();
-				if ($.inArray(174004, resp.unsupport) > -1 || $.inArray(174009, resp.unsupport) > -1) { //不支持getUserMedia方法或者url转换
-					IM.Check_usermedie_isDisable(); //拍照、录音、音视频呼叫都不支持
-				} else if ($.inArray(174007, resp.unsupport) > -1) { //不支持发送附件
+				if ($.inArray(174004, resp.unsupport) > -1 || $.inArray(174009, resp.unsupport) > -1) { //I won't support itgetUserMediaOr methodurlTransformation
+					IM.Check_usermedie_isDisable(); //Photograph、Sound recording、Audio and video calls are not supported
+				} else if ($.inArray(174007, resp.unsupport) > -1) { //Send attachments not supported
 					IM.SendFile_isDisable();
-				} else if ($.inArray(174008, resp.unsupport) > -1) { //不支持音视频呼叫，音视频不可用
+				} else if ($.inArray(174008, resp.unsupport) > -1) { //Audio and video calls are not supported，Audio and video is not available
 					IM.SendVoiceAndVideo_isDisable();
 				};
-			} else if (174001 == resp.code) { // 不支持HTML5
+			} else if (174001 == resp.code) { // I won't support itHTML5
 				var r = confirm(resp.msg);
 				if (r == true || r == false) {
 					window.close();
 				}
-			} else if (170002 == resp.code) { //缺少必须参数
-				console.log("错误码：170002,错误码描述" + resp.msg);
+			} else if (170002 == resp.code) { //Missing must parameter
+				console.log("Error code：170002,Error code description" + resp.msg);
 			} else {
-				console.log('未知状态码');
+				console.log('Unknown state code');
 			};
 			IM._Notification = window.Notification || window.mozNotification || window.webkitNotification || window.msNotification || window.webkitNotifications;
 			if (!!IM._Notification) {
@@ -77,7 +77,7 @@
 			}
 		},
 		/**
-		 * 初始化一些页面需要绑定的事件
+		 * Initialize some of the pages that need to be bound to the event
 		 */
 		initEvent: function() {
 			$('#im_send_content').bind('paste', function() {
@@ -85,7 +85,7 @@
 			});
 		},
 		/**
-		 * 初始化表情
+		 * Initialization expression
 		 */
 		initEmoji: function() {
 			var emoji_div = $('#emoji_div').find('div[class="popover-content"]');
@@ -99,7 +99,7 @@
 			}
 		},
 		/**
-		 * 监控键盘
+		 * Monitor keyboard
 		 * 
 		 * @param event
 		 * @constructor
@@ -117,7 +117,7 @@
 			} else if (17 != IM._keyCode_1 && 13 == IM._keyCode_2) {
 				if ('block' == $('#navbar_login').css('display')) {
 				}
-			} else if (16 == IM._keyCode_1 && 50 == IM._keyCode_2) { //chrome、火狐、opear 英文输入法
+			} else if (16 == IM._keyCode_1 && 50 == IM._keyCode_2) { //chrome、Firefox、opear English input method
 				//判断如果是群组的话才展示成员列表
 				$('#im_contact_list').find('li').each(function() {
 					if ($(this).attr('class').indexOf("active") > -1) {
@@ -132,7 +132,7 @@
 						}
 					}
 				});
-			} else if (16 == IM._keyCode_1 && 229 == IM._keyCode_2) { //chrome中文输入法时返回229
+			} else if (16 == IM._keyCode_1 && 229 == IM._keyCode_2) { //chromeChinese input method229
 				setTimeout(function() {
 					var str = $("#im_send_content").text();
 					var startIndex = window.getSelection().anchorOffset;
@@ -152,7 +152,7 @@
 					};
 				}, 500)
 			} else if (50 == IM._keyCode_2) {
-				if (!!navigator.userAgent.match(/mobile/i)) { //判断是否移动端
+				if (!!navigator.userAgent.match(/mobile/i)) { //To determine whether the mobile terminal
 					setTimeout(function() {
 						var str = $("#im_send_content").text();
 						if ("@" == str.substring(str.length - 1)) {
@@ -171,9 +171,9 @@
 						}
 					}, 200);
 				}
-			} else if (8 == IM._keyCode_2) { //退格键
+			} else if (8 == IM._keyCode_2) { //Back key
 				$("#groupMemList_div").hide();
-			} else if (16 == IM._keyCode_2) { //火狐中文输入模式
+			} else if (16 == IM._keyCode_2) { //Firefox Chinese input mode
 				var userAgent = navigator.userAgent.toLowerCase();
 				if (userAgent.indexOf("firefox") > -1) {
 					setTimeout(function() {
@@ -199,24 +199,24 @@
 			}
 		},
 		/**
-		 * 正式处理登录逻辑，此方法可供断线监听回调登录使用 获取时间戳，获取SIG，调用SDK登录方法
+		 * Formal processing login logic，This method can be used to monitor callback callback login Get time stamp，ObtainSIG，callSDKLogin method
 		 * 
 		 * @param user_account
-		 * @param pwd 密码
+		 * @param pwd Password
 		 * @private
 		 */
 		_login: function(user_account, pwd) {
 			var timestamp = IM._getTimeStamp();
-			var appToken = 'cbdc3d2987abc1191a3763a1aceae319'; //使用是赋值为应用对应的appToken
+			var appToken = 'cbdc3d2987abc1191a3763a1aceae319'; //Use is the assignment for the application of the correspondingappToken
 			var sig = hex_md5(IM._appid + user_account + timestamp + appToken);
-			console.log("本地计算sig：" + sig);
+			console.log("Local computingsig：" + sig);
 			IM.EV_login(user_account, pwd, sig, timestamp);
 		},
 		/**
-		 * SIG获取 去第三方（客服）服务器获取SIG信息 并将SIG返回，传给SDK中的登录方法做登录使用
+		 * SIGObtain Go to the third party（Customer service）Server accessSIGinformation AndSIGReturn，PassSDKLogin method to login to use
 		 * 
 		 * @param user_account
-		 * @param timestamp -- 时间戳要与SDK登录方法中使用的时间戳一致
+		 * @param timestamp -- The time stamp must beSDKThe time stamps used in the logon method are consistent.
 		 * @param callback
 		 * @param onError
 		 * @private
@@ -259,12 +259,12 @@
 			});
 		},
 		/**
-		 * 事件，登录 去SDK中请求登录
+		 * Event，Sign in goSDKRequest login
 		 * 
 		 * @param user_account
 		 * @param sig
 		 * @param timestamp --
-		 *            时间戳要与生成SIG参数的时间戳保持一致
+		 *            Time stamp and generationSIGThe time stamp of the parameter is consistent.
 		 * @constructor
 		 */
 		EV_login: function(user_account, pwd, sig, timestamp) {
@@ -284,26 +284,26 @@
 					// 断线需要人工重连
 					if (1 == obj.code) {
 						ajaxLoadEnd();
-						$.messager.alert("提示","连接中断");
+						$.messager.alert("Prompt","Connection interrupt");
 						IM.DO_logout();
 						console.log('onConnectStateChangeLisenter obj.code:' + obj.msg);
 					} else if (2 == obj.code) {
 						IM.HTML_showAlert('alert-warning',
-							'网络状况不佳，正在试图重连服务器', 10 * 60 * 1000);
+							'Network situation is not good，Re-connecting server', 10 * 60 * 1000);
 						ajaxLoadEnd();
-						$.messager.alert("提示","网络状况不佳，正在试图重连服务器");
+						$.messager.alert("Prompt","Network situation is not good，Re-connecting server");
 						IM.DO_logout();
 //						$("#pop_videoView").hide();
 					} else if (3 == obj.code) {
-						IM.HTML_showAlert('alert-success', '连接成功');
+						IM.HTML_showAlert('alert-success', 'Connect successfully');
 					} else if (4 == obj.code) {
 						IM.DO_logout();
 					} else if (5 == obj.code) {
 						IM.HTML_showAlert('alert-warning',
-							'网络状况不佳，正在试图重连服务器');
+							'Network situation is not good，Re-connecting server');
 						IM.DO_logout();
 						ajaxLoadEnd();
-						$.messager.alert("提示","网络状况不佳，请稍候重试");
+						$.messager.alert("Prompt","Network situation is not good，Please try later");
 //						$("#pop_videoView").hide();
 //						IM._login(IM._user_account);
 					} else {
@@ -318,11 +318,11 @@
 					});
 				IM.HTML_LJ_none();
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 事件，登出
+		 * Event，Logout
 		 * 
 		 * @constructor
 		 */
@@ -332,11 +332,11 @@
 			RL_YTX.logout(function() {
 				console.log("EV_logout succ...");
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 登出
+		 * Logout
 		 * 
 		 * @constructor
 		 */
@@ -379,7 +379,7 @@
 			IM.HTML_LJ_block('black');
 		},
 		/**
-		 * 事件，push消息的监听器，被动接收信息
+		 * Event，pushMessage listener，Passive receiving information
 		 * 
 		 * @param obj
 		 * @constructor
@@ -388,7 +388,7 @@
 			console.log('Receive message sender:[' + obj.msgSender + ']...msgId:[' + obj.msgId + ']...content[' + obj.msgContent + ']');
 		},
 		/**
-		 * 事件，notice群组通知消息的监听器，被动接收消息
+		 * Event，noticeMonitor group notification message，Passive receive message
 		 * 
 		 * @param obj
 		 * @constructor
@@ -408,40 +408,40 @@
 			console.log("-------obj.state = " + obj.state);
 			console.log("-------obj.reason = " + obj.reason);
 			console.log("-------obj.code = " + obj.code);
-			var noticeMsg = ''; //桌面提醒消息
-			if (obj.callType == 1) { //视频
+			var noticeMsg = ''; //Desktop alert message
+			if (obj.callType == 1) { //video
 				if (200 == obj.code) {
-					if (obj.state == 1) { //收到振铃消息
+					if (obj.state == 1) { //Received ringing message
 						ajaxLoadEnd();
 						//本地播放振铃
 						document.getElementById("voipCallRing").play();
-					} else if (obj.state == 2) { //呼叫中
+					} else if (obj.state == 2) { //In call
 						
-					} else if (obj.state == 3) { //被叫接受
+					} else if (obj.state == 3) { //Called reception
 						ajaxLoadEnd();
 						$('#diagnose_operation_dialog').dialog('open');
 						document.getElementById("voipCallRing").pause();
-						$("#cancelVoipCall").text("结束");
-						noticeMsg = "[接收视频通话]";
+						$("#cancelVoipCall").text("End");
+						noticeMsg = "[Receive video calls]";
 						//开始视频诊断
 						startVideoDiagnose();
-					} else if (obj.state == 4) { //呼叫失败 对主叫设定：自动取消，对方拒绝或者忙 
+					} else if (obj.state == 4) { //call failed The calling set：Auto cancel，Refuse or busy 
 //						$("#pop_videoView").hide();
 						ajaxLoadEnd();
 						$('#diagnose_operation_dialog').dialog('close');
-						$.messager.alert("提示", '对方正在通话中');
-						IM.HTML_showAlert('alert-error', '对方正在通话中');
+						$.messager.alert("Prompt", 'The other is on the phone.');
+						IM.HTML_showAlert('alert-error', 'The other is on the phone.');
 						document.getElementById("voipCallRing").pause();
-						noticeMsg = "[视频通话结束]";
-					} else if (obj.state == 5) { //结束通话  或者主叫取消（对被叫而言）
+						noticeMsg = "[End of video call]";
+					} else if (obj.state == 5) { //End Call  Calling or cancel（For the called party）
 						document.getElementById("voipCallRing").pause();
 //						$("#pop_videoView").hide();
 						ajaxLoadEnd();
 						$('#diagnose_operation_dialog').dialog('close');
-						$.messager.alert("提示", '视频通话结束');
-						noticeMsg = "[视频通话结束]";
+						$.messager.alert("Prompt", 'End of video call');
+						noticeMsg = "[End of video call]";
 						finishVideoDiagnose();
-					} else if (obj.state == 6) { //呼叫到达
+					} else if (obj.state == 6) { //Call arrival
 						ajaxLoadEnd();
 						$("#videoView").show();
 						IM.HTML_videoView(obj.callId, obj.caller, obj.called, 1);
@@ -449,13 +449,13 @@
 						$("#refuseVoipCall").show();
 						//本地播放振铃
 						document.getElementById("voipCallRing").play();
-						noticeMsg = "[视频呼叫]";
+						noticeMsg = "[Video call]";
 					}
 				} else {
 					ajaxLoadEnd();
 					$('#diagnose_operation_dialog').dialog('close');
-					$.messager.alert("提示", '请求视频通话，请使用其他终端处理');
-					var str = '<pre>请求视频通话，请使用其他终端处理</pre>';
+					$.messager.alert("Prompt", 'Request video call，Please use other terminal processing');
+					var str = '<pre>Request video call，Please use other terminal processing</pre>';
 					IM.HTML_pushCall_addHTML(obj.caller, obj.callId, str);
 				}
 			}
@@ -465,7 +465,7 @@
 			}
 		},
 		/**
-		 * 事件，发送消息
+		 * Event，send message
 		 * 
 		 * @param msgid
 		 * @param text
@@ -497,17 +497,17 @@
 				if (isresend) {
 					var msg = $(document.getElementById(receiver + '_' + obj.msgClientNo));
 					$('#im_content_list').append(msg.prop("outerHTML"));
-					msg.remove(); // 删掉原来的展示
+					msg.remove(); // Delete the original display
 				};
 				$('#im_content_list').scrollTop($('#im_content_list')[0].scrollHeight);
 			}, function(obj) {
-				setTimeout(function() { //断线的时候如果不延迟会出现找不到标签的情况，延迟0.3秒可解决。
+				setTimeout(function() { //Break time, if not delay will appear to find the label of the situation，delay0.3Second can be solved。
 					if (170001 == obj.code) {
 						$(document.getElementById(receiver + '_' + obj.msgClientNo)).remove();
-						alert("发送消息内容超长，请分条发送");
+						alert("Message is too long，Please send in different messages");
 					} else if (174002 == obj.code) {
 						$(document.getElementById(receiver + '_' + obj.msgClientNo)).remove();
-						console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+						console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 					} else {
 						$('#im_send_content').html('');
 						var msgf = $(document.getElementById(receiver + '_' + obj.msgClientNo));
@@ -518,7 +518,7 @@
 						}
 
 						msgf.find('span[imtype="resend"]').css('display', 'block');
-						console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+						console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 					}
 				}, 300)
 			});
@@ -527,10 +527,10 @@
 			IM._extopts = [];
 		},
 		/**
-		 * 事件，重发消息
+		 * Event，Resend the message
 		 * 
 		 * @param id
-		 *            右侧展示模块元素的id
+		 *            On the right side of the display module elementid
 		 * 
 		 * @constructor
 		 */
@@ -540,11 +540,11 @@
 			var msgtype = msg.attr('im_msgtype');
 			var receiver = msg.attr('content_you');
 			var oldMsgid = msg.attr('id').substring(msg.attr('id').indexOf("_") + 1);
-			if (1 == msgtype) { // 文本消息
+			if (1 == msgtype) { // Text message
 				msg.find('span[imtype="resend"]').css('display', 'none');
 				var text = msg.find('pre[msgtype="resendMsg"]').html();
 				if (text.length > 2048) {
-					IM.HTML_showAlert('alert-error', '消息长度不能超过2048');
+					IM.HTML_showAlert('alert-error', 'Message length cannot be exceeded2048');
 					return false;
 				}
 				console.log('resend message: text[' + text + ']...receiver:[' + receiver + ']');
@@ -577,7 +577,7 @@
 							msgtype, receiver, true);
 					};
 				};
-			} else if (2 == msgtype) { //语音
+			} else if (2 == msgtype) { //Voice
 				var oFile = msg.find("object").val();
 				if (IM._contact_type_m == contact_type) {
 					IM.EV_sendToDeskAttachMsg(oldMsgid, oFile,
@@ -587,19 +587,19 @@
 						msgtype, receiver, true);
 				};
 			} else {
-				console.log('暂时不支持附件类型消息重发');
+				console.log('Do not support the attachment type message retransmission');
 			}
 		},
 		/**
-		 * 发送附件
+		 * Send attachments
 		 * 
 		 * @param msgid
 		 * @param file --
-		 *            file对象
+		 *            fileobject
 		 * @param type --
-		 *            附件类型 2 语音消息 3 视频消息 4 图片消息 5 位置消息 6 文件消息
+		 *            Attachment type 2 Voice message 3 Video message 4 Picture message 5 Location message 6 File message
 		 * @param receiver --
-		 *            接收者
+		 *            Recipient
 		 * @constructor
 		 */
 		EV_sendAttachMsg: function(oldMsgid, file, type, receiver, isresend) {
@@ -632,11 +632,11 @@
 					console.log('send Attach message succ');
 					if (isresend) {
 						$('#im_content_list').append(msg.prop("outerHTML"));
-						msg.remove(); // 删掉原来的展示
+						msg.remove(); // Delete the original display
 					}
 					$('#im_content_list').scrollTop($('#im_content_list')[0].scrollHeight);
 				}, 100)
-			}, function(obj) { // 失败
+			}, function(obj) { // fail
 				setTimeout(function() {
 					var msg = $(document.getElementById(receiver + "_" + obj.msgClientNo));
 					msg.find('span[imtype="resend"]').css(
@@ -645,9 +645,9 @@
 						'display', 'none');
 					msg.find('span[imtype="msg_attach"]').css(
 						'display', '');
-					console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+					console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 				}, 100)
-			}, function(sended, total, msgId) { // 进度条
+			}, function(sended, total, msgId) { // Progress bar
 				setTimeout(function() {
 					var msg = $(document.getElementById(receiver + "_" + msgId));
 					// console.log('send Attach message progress:' + (sended / total * 100 + '%'));
@@ -671,15 +671,15 @@
 			}
 		},
 		/**
-		 * 发送附件
+		 * Send attachments
 		 * 
 		 * @param msgid
 		 * @param file --
-		 *            file对象
+		 *            fileobject
 		 * @param type --
-		 *            附件类型 2 语音消息 3 视频消息 4 图片消息 5 位置消息 6 文件消息
+		 *            Attachment type 2 Voice message 3 Video message 4 Picture message 5 Location message 6 File message
 		 * @param receiver --
-		 *            接收者
+		 *            Recipient
 		 * @constructor
 		 */
 		EV_sendToDeskAttachMsg: function(oldMsgid, file, type, receiver, isresend) {
@@ -695,7 +695,7 @@
 			oldMsg.attr('msg', 'msg');
 			oldMsg.css('display', 'block');
 			$('#im_content_list').scrollTop($('#im_content_list')[0].scrollHeight);
-			var msgid = RL_YTX.sendToDeskMessage(obj, function(obj) { // 成功
+			var msgid = RL_YTX.sendToDeskMessage(obj, function(obj) { // Success
 				setTimeout(function() {
 					var msg = $(document.getElementById(receiver + "_" + obj.msgClientNo));
 					msg.find('span[imtype="resend"]').css(
@@ -708,11 +708,11 @@
 					console.log('send Attach message succ');
 					if (isresend) {
 						$('#im_content_list').append(msg.prop("outerHTML"));
-						msg.remove(); // 删掉原来的展示
+						msg.remove(); // Delete the original display
 					}
 					$('#im_content_list').scrollTop($('#im_content_list')[0].scrollHeight);
 				}, 100);
-			}, function(obj) { // 失败
+			}, function(obj) { // fail
 				setTimeout(function() {
 					var msg = $(document.getElementById(receiver + "_" + obj.msgClientNo));
 					msg.find('span[imtype="resend"]').css(
@@ -721,9 +721,9 @@
 						'display', 'none');
 					msg.find('span[imtype="msg_attach"]').css(
 						'display', 'block');
-					console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg);
+					console.log("Error code：" + obj.code + "; Error description：" + obj.msg);
 				}, 100);
-			}, function(sended, total, msgId) { // 进度条
+			}, function(sended, total, msgId) { // Progress bar
 				setTimeout(function() {
 					var msg = $(document.getElementById(receiver + "_" + msgId));
 					console.log('send Attach message progress:' + (sended / total * 100 + '%'));
@@ -744,10 +744,10 @@
 			oldMsg.attr("id", receiver + '_' + msgid);
 		},
 		/**
-		 * 事件，客服开始咨询
+		 * Event，Customer service consulting
 		 * 
 		 * @param receiver --
-		 *            客服号
+		 *            Customer service number
 		 * @constructor
 		 */
 		EV_startMcmMsg: function(receiver) {
@@ -758,14 +758,14 @@
 			RL_YTX.startConsultationWithAgent(obj, function() {
 				console.log('start MCM message succ...');
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 事件，客服停止咨询
+		 * Event，Customer service advisory
 		 * 
 		 * @param receiver --
-		 *            客服号
+		 *            Customer service number
 		 * @constructor
 		 */
 		EV_stopMcmMsg: function(receiver) {
@@ -776,16 +776,16 @@
 			RL_YTX.finishConsultationWithAgent(obj, function() {
 				console.log('stop MCM message succ...');
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 事件，客服发送消息
+		 * Event，Customer service to send a message
 		 * 
 		 * @param msgid
 		 * @param text
 		 * @param receiver --
-		 *            客服号
+		 *            Customer service number
 		 * @constructor
 		 */
 		EV_sendMcmMsg: function(oldMsgid, text, receiver, isresend) {
@@ -804,7 +804,7 @@
 				console.log('send MCM message succ...');
 				if (isresend) {
 					$('#im_content_list').append(msg.prop("outerHTML"));
-					msg.remove(); // 删掉原来的展示
+					msg.remove(); // Delete the original display
 				};
 				$('#im_content_list').scrollTop($('#im_content_list')[0].scrollHeight);
 			}, function(obj) {
@@ -814,12 +814,12 @@
 					msgf.append(resendStr);
 				}
 				msgf.find('span[imtype="resend"]').css('display', 'block');
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 			$(document.getElementById(receiver + "_" + oldMsgid)).attr("id", receiver + "_" + msgid);
 		},
 		/**
-		 * 事件，创建群组
+		 * Event，Create Group
 		 * 
 		 * @param groupName
 		 * @param permission
@@ -830,15 +830,15 @@
 			//如果有类型则传值
 			var declare = $("#createDeclare").val();
 			if (!!declare) {
-				var regx1 = /^[\\x00-\\x7F\a-zA-Z\u4e00-\u9fa5、，。！；《》【】”“’‘：:,.!;_\s-]{0,128}$/; //只含有汉字、数字、字母、下划线，下划线位置不限
+				var regx1 = /^[\\x00-\\x7F\a-zA-Z\u4e00-\u9fa5、，。！；《》【】”“’‘：:,.!;_\s-]{0,128}$/; //Only containing Chinese characters、number、Letter、Underline，The underline position is not restricted
 				if (regx1.exec(declare) == null) {
-					alert("群组说明只允许中英文数字和中文符号、，。！；《》【】”“’‘：及英文符号:,.!;和@_-，长度不超过128");
+					alert("Group instructions only allow Chinese and English numbers and Chinese symbols、，。！；《》【】”“’‘：And English symbols:,.!;and@_-，Length is shorter than128");
 					$("#createGroup_bt").removeAttr("disabled");
 					return;
 				};
 
 				if (declare.substring(0, 1) == "g" || declare.substring(0, 1) == "G") {
-					alert("群组说明不能以g或G开头");
+					alert("Group description cannot begorGStart");
 					$("#createGroup_bt").removeAttr("disabled");
 					return;
 				}
@@ -871,7 +871,7 @@
 				var memberSts = $("#pop_invite_area").val();
 				var memberArr = memberSts.split(",");
 				if (memberArr.length > 50) {
-					alert("邀请用户过多！");
+					alert("Invite too many users！");
 					$("#createGroup_bt").removeAttr("disabled");
 					return;
 				}
@@ -889,7 +889,7 @@
 			RL_YTX.createGroup(obj, function(obj) {
 				var groupId = obj.data;
 				console.log('create group succ... groupId[' + groupId + ']');
-				if (target == 1) { // 如果是讨论组，需要在讨论组创建成功之后随即添加账号
+				if (target == 1) { // If it is a discussion group，Need to add an account after the discussion group was created successfully
 					// 左侧名称列表
 					IM.EV_inviteGroupMember(groupId, permission, target, true, groupName);
 				} else {
@@ -901,12 +901,12 @@
 				}
 			}, function(obj) {
 				$("#createGroup_bt").removeAttr("disabled");
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 				return;
 			});
 		},
 		/**
-		 * 解散群组
+		 * ungroup
 		 * 
 		 * @param groupId
 		 * @constructor
@@ -922,11 +922,11 @@
 				// 隐藏群组详情页面
 				IM.HTML_pop_hide();
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 退出群组
+		 * Exit group
 		 * 
 		 * @param groupId
 		 * @constructor
@@ -936,7 +936,7 @@
 			var flagOne=true;
 			if (flag&&flagOne) {
 				flagOne=false;
-				var r = confirm("是否先转让群再退出");
+				var r = confirm("Whether to transfer the group and then exit");
 				if (r == true) {
 					return;
 				}
@@ -952,11 +952,11 @@
 				// 隐藏群组详情页面
 				IM.HTML_pop_hide();
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 事件，获取群组详情
+		 * Event，Get group details
 		 * 
 		 * @param groupId
 		 * @param target
@@ -969,7 +969,7 @@
 			RL_YTX.getGroupDetail(objBuilder, function(obj) {
 				console.log('get Group Detail SUCC...');
 				var getTarget = obj.target;
-				if (target == null) { // 推送的target参数为空
+				if (target == null) { // Push thetargetParameter is empty
 					// 构建页面
 					IM.DO_pop_show(groupId, isowner, getTarget);
 					// 调用SDK方法获取数据
@@ -984,18 +984,18 @@
 
 				}
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 事件，获取群组列表
+		 * Event，Get group list
 		 * 
 		 * @constructor
 		 */
 		EV_getGroupList: function() {
 			var obj = new RL_YTX.GetGroupListBuilder();
 			obj.setPageSize(-1);
-			obj.setTarget(125); // target传125是一起查， 1是讨论组 2是群组
+			obj.setTarget(125); // targetpass125Together with the investigation， 1Is a discussion group 2Is a group
 			RL_YTX.getGroupList(obj, function(obj) {
 				for (var i in obj) {
 					var groupId = obj[i].groupId;
@@ -1008,7 +1008,7 @@
 						owner, isNotice, target);
 				}
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		EV_getRecentConList: function() {
@@ -1017,22 +1017,22 @@
 				console.log("get recent Contact List success");
 				alert("succObj" + succObj);
 				//增加到左侧联系人列表中,zzx
-				if (obj.contact.substring(0, 1) != "g") { //如果是普通联系人
+				if (obj.contact.substring(0, 1) != "g") { //If it is an ordinary contact
 					IM.HTML_addContactToList(obj.contact, obj.name, IM._contact_type_c, true, true, false, null, null, null);
-				} else { //如果是群组或讨论组
+				} else { //If it is a group or a discussion group
 					IM.HTML_addContactToList(obj.contact, obj.name, IM._contact_type_g, false, false, true, null, null, null);
 				}
 			}, function(errObj) {
-				console.log("错误码： " + errObj.code + "; 错误描述：" + errObj.msg);
+				console.log("Error code： " + errObj.code + "; Error description：" + errObj.msg);
 			});
 		},
 		/**
-		 * 事件，获取群组成员列表
+		 * Event，Get group membership list
 		 * 
 		 * @param groupId
 		 * @param isowner
 		 * @param target
-		 *            1 讨论组 2 群组
+		 *            1 discussion group 2 group
 		 * @constructor
 		 */
 		EV_getGroupMemberList: function(groupId, target, startIndex, group) {
@@ -1043,7 +1043,7 @@
 			RL_YTX.getGroupMemberList(obj, function(obj) {
 				console.log('get Group Member List SUCC...');
 				if ("memberList" == target) {
-					console.log("展示群组成员列表");
+					console.log("Show group member list");
 					IM.HTML_memberList(obj, startIndex);
 				} else {
 					IM.DO_pop_show_help_GroupMemberList(obj, groupId, target);
@@ -1051,14 +1051,14 @@
 				var isadmin = false;
 				for (var i in obj) {
 					var member = obj[i];
-					if (member.role == 2 && member.member == IM._user_account) { //如果是管理员
-						if (member.member == IM._user_account) { //判断是当前对象
+					if (member.role == 2 && member.member == IM._user_account) { //If it is an administrator
+						if (member.member == IM._user_account) { //Judgment is the current object
 							isadmin = true;
 						}
 					}
 				}
 				if (group) {
-					IM.DO_pop_show_help_GroupDetail(group, groupId, target, isadmin); //当当前用户是管理员的时候，传入一个isadmin，让他有修改群组信息的权限
+					IM.DO_pop_show_help_GroupDetail(group, groupId, target, isadmin); //When the current user is an administrator，Incoming oneisadmin，Let him have the right to modify group information.
 					//走的还是成员的逻辑，给管理员多一个保存修改的按钮
 					if (isadmin && target == 2) {
 //						var saveChange = '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">保存修改</a>';
@@ -1066,11 +1066,11 @@
 					}
 				}
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 更新群组信息
+		 * Update group information
 		 * 
 		 * @param groupId
 		 * @constructor
@@ -1081,18 +1081,18 @@
 			var declaredObj = obj.children();
 			var declared = declaredObj.val();
 			if (declared.length > 200) {
-				IM.HTML_showAlert('alert-error', '公告长度不能超过200');
+				IM.HTML_showAlert('alert-error', 'Announcement length cannot exceed200');
 				return false;
 			}
 			obj = $('#pop').find('div[imtype="im_pop_group_name"]');
 			var nameObj = obj.children();
 			var groupName = nameObj.val();
 			if (!groupName) {
-				IM.HTML_showAlert('alert-error', '名字不为空');
+				IM.HTML_showAlert('alert-error', 'Name can`t be empty');
 				return false;
 			}
 			if (groupName.length > 50) {
-				IM.HTML_showAlert('alert-error', '名字长度不能超过50');
+				IM.HTML_showAlert('alert-error', 'Name length cannot exceed50');
 				return false;
 			}
 			var builder = new RL_YTX.ModifyGroupBuilder(groupId, groupName,
@@ -1104,11 +1104,11 @@
 					null, null);
 				IM.HTML_pop_hide();
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 更新群组个性化设置
+		 * Update group personalization
 		 * 
 		 * @param groupId
 		 * @param isNotice
@@ -1122,19 +1122,19 @@
 				console.log("set groupNotice suc");
 				// 切换btn样式
 				if (isNotice == 2) {
-					str = '<a href="javascript:void(0);" class="btn btn-primary" style="margin-left:10px;" >开启</a>' + '<a href="javascript:void(0);" class="btn" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',1)">关闭</a>';
+					str = '<a href="javascript:void(0);" class="btn btn-primary" style="margin-left:10px;" >open</a>' + '<a href="javascript:void(0);" class="btn" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',1)">Close</a>';
 				} else {
-					str = '<a href="javascript:void(0);" class="btn" style="margin-right:10px;" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',2)">开启</a>' + '<a href="javascript:void(0);" class="btn btn-primary" >关闭</a>';
+					str = '<a href="javascript:void(0);" class="btn" style="margin-right:10px;" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',2)">open</a>' + '<a href="javascript:void(0);" class="btn btn-primary" >Close</a>';
 				}
 				$('#pop').find('span[imtype="im_pop_group_notice"]').html(str);
 				// 修改左侧联系人列表attr值
 				$(document.getElementById('im_contact_' + groupId)).attr('im_isnotice', isNotice);
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 邀请成员加入群组
+		 * Invite members to join groups
 		 * 
 		 * @param groupId
 		 * @param permission
@@ -1145,7 +1145,7 @@
 			var memberArr = memberSts.split(",");
 			if (target != 1) {
 				if (memberArr.length > 50) {
-					alert("邀请用户过多！");
+					alert("Invite too many users！");
 					return;
 				}
 				for (var i in memberArr) {
@@ -1155,7 +1155,7 @@
 				}
 			};
 			var confirm = 2;
-			if (permission <= 1) { // 是否需要邀请者确认 可选 1 不需要 2 需要 默认为2
+			if (permission <= 1) { // Do you need an invitation to confirm Optional 1 Unwanted 2 Need By default2
 				confirm = 1;
 			}
 			if (target <= 1) {
@@ -1173,7 +1173,7 @@
 					}
 				}
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 				$("#createGroup_bt").removeAttr("disabled");
 			})
 			IM.HTML_addContactToList(groupId, groupName,
@@ -1183,14 +1183,14 @@
 			IM.HTML_pop_hide();
 		},
 		/**
-		 * 事件，用户申请加入确认操作
+		 * Event，Users to apply to join the confirmation operation
 		 * 
 		 * @param groupId
-		 *            群组id 必选
+		 *            groupid Mandatory
 		 * @param memberId
-		 *            成员id 必选
+		 *            memberid Mandatory
 		 * @param confirm
-		 *            是否同意 必选 1 不同意 2同意
+		 *            Whether or not to agree Mandatory 1 Disagree 2Agree！
 		 * @constructor
 		 */
 		EV_confirmJoinGroup: function(you_sender, version, groupId, memberId,
@@ -1204,23 +1204,23 @@
 			RL_YTX.confirmJoinGroup(obj, function() {
 				var str = '';
 				if (1 == confirm)
-					str = '{已拒绝}';
+					str = '{Refused}';
 				if (2 == confirm)
-					str = '{已同意}';
+					str = '{Agreed}';
 				$(document.getElementById(you_sender + '_' + version)).find('span[imtype="notice"]').html(str);
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 事件，管理员是否同意加入群组
+		 * Event，Administrators agree to join groups
 		 * 
 		 * @param invitor
-		 *            邀请者 必选
+		 *            Invitation Mandatory
 		 * @param groupId
-		 *            群组id 可选
+		 *            groupid Optional
 		 * @param confirm
-		 *            是否同意 1 不同意 2同意
+		 *            Whether or not to agree 1 Disagree 2Agree！
 		 * @constructor
 		 */
 		EV_confirmInviteJoinGroup: function(you_sender, groupName, version,
@@ -1233,9 +1233,9 @@
 			RL_YTX.confirmInviteJoinGroup(obj, function() {
 				var str = '';
 				if (1 == confirm)
-					str = '{已拒绝}';
+					str = '{Refused}';
 				if (2 == confirm)
-					str = '{已同意}';
+					str = '{Agreed}';
 				$(document.getElementById(you_sender + '_' + version)).find('span[imtype="notice"]').html(str);
 				if (2 == confirm) {
 					// 在群组列表中添加群组项
@@ -1249,11 +1249,11 @@
 						null, null, null);
 				}
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 更新群组成员禁言状态
+		 * Update the gag group member state
 		 * 
 		 * @param groupId
 		 * @param memberId
@@ -1271,18 +1271,18 @@
 				var deleobj = spanobj[1];
 				var speakobj = spanobj[2];
 				$(speakobj).remove();
-				console.log("修改成员禁言状态成功");
+				console.log("Member banned state changed");
 				if (status == 2) {
-					$(spanobj).eq(1).after('<span class="pull-right label label-success" imtype="im_pop_memberspeak' + memberId + '" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + memberId + '\',1)"> 恢复 </span>')
+					$(spanobj).eq(1).after('<span class="pull-right label label-success" imtype="im_pop_memberspeak' + memberId + '" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + memberId + '\',1)"> recovery </span>')
 				} else {
-					$(spanobj).eq(1).after('<span class="pull-right label label-important" imtype="im_pop_memberspeak' + memberId + '" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + memberId + '\',2)"> 禁言 </span>')
+					$(spanobj).eq(1).after('<span class="pull-right label label-important" imtype="im_pop_memberspeak' + memberId + '" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + memberId + '\',2)"> Gag </span>')
 				}
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			})
 		},
 		/**
-		 * 提出群组成语
+		 * Group idiom
 		 * 
 		 * @param groupId
 		 * @param memberId
@@ -1295,20 +1295,20 @@
 				console.log("delete group member suc");
 				IM.HTML_popDeleteMember(memberId);
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		},
 		/**
-		 * 事件，获取群组成员列表
+		 * Event，Get group membership list
 		 * 
 		 * @param obj
-		 *            obj.creator; //创建者 obj.groupName; //群组名称 obj.type; //群组类型
-		 *            obj.province; //省份 obj.city; //城市 obj.scope; //群组大小
-		 *            obj.declared; //群组公告 obj.dateCreated; //创建时间 obj.numbers;
-		 *            //群组人数 obj.isNotice; //是否免打扰 obj.permission; //群组权限
-		 *            1：默认可直接加入 2：需要身份验证 3:私有群组（不能主动加入，仅能管理员邀请） obj.groupDomain;
-		 *            //扩展信息 obj.isApplePush; //是否苹果离线推送 obj.target;//群组模式 1 讨论组
-		 *            2 普通群组
+		 *            obj.creator; //creator obj.groupName; //group name obj.type; //Group Type
+		 *            obj.province; //Province obj.city; //City obj.scope; //Group size
+		 *            obj.declared; //Group announcement obj.dateCreated; //Created time obj.numbers;
+		 *            //Group number obj.isNotice; //Whether or not to bother obj.permission; //Group permissions
+		 *            1：Default can be added directly to the 2：Need authentication 3:Private group（Can not take the initiative to join，Can only be invited to the administrator） obj.groupDomain;
+		 *            //Extension information obj.isApplePush; //Whether Apple offline push obj.target;//Group Mode 1 discussion group
+		 *            2 Common group
 		 * @param groupId
 		 * @param target
 		 * @constructor
@@ -1321,30 +1321,30 @@
 			}
 			var str = '';
 			$('#pop').find('div[im_isowner]').attr('im_isowner', isowner || isadmin);
-			if (isowner || isadmin || target == 1) {//如果是群主，或者管理员，或讨论组
-				$('#pop').find('table[imtype="im_pop_members_add"]').show(); //加号的框显示
+			if (isowner || isadmin || target == 1) {//If is the main group，Or administrator，Or discussion group
+				$('#pop').find('table[imtype="im_pop_members_add"]').show(); //Plus the box shows
 				str = '<input type="text" class="pull-right" style="width:95%;" value="' + obj.groupName + '"/>';
 				$('#pop').find('div[imtype="im_pop_group_name"]').html(str);
 
-				if (!obj.declared) { // 群组公告
+				if (!obj.declared) { // Group announcement
 					obj.declared = '';
 				}
 				str = '<textarea class="pull-right" rows="3" style="width:95%;">' + obj.declared + '</textarea>';
 				$('#pop').find('span[imtype="im_pop_group_declared"]')
 					.html(str);
-				var str_add = '<tr>' + '<td style="padding:0 0 0 0;"></td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;"><a href="javascript:void(0);" class="btn" style="font-size: 20px;" onclick="IM.HTML_showInviteArea(this)" >+</a></span>' + '<span class="pull-left" style="width: 25%; display: none;">' + '<a href="javascript:void(0);" class="btn" onclick="IM.EV_inviteGroupMember(\'' + groupId + '\',' + obj.permission + ',' + target + ',\'' + isowner + '\')" >邀请</a>' + '</span>' + '<span class="pull-right" style="width: 75%; display: none;">' + '<textarea class="pull-left" id="pop_invite_area" style="width:95%;" rows=3 placeholder="请输入邀请用户账号，中间使用英文逗号\“,”\分隔，' + '最多邀请50个"></textarea>' + '</span>' + '</td>' + '</tr>';
+				var str_add = '<tr>' + '<td style="padding:0 0 0 0;"></td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;"><a href="javascript:void(0);" class="btn" style="font-size: 20px;" onclick="IM.HTML_showInviteArea(this)" >+</a></span>' + '<span class="pull-left" style="width: 25%; display: none;">' + '<a href="javascript:void(0);" class="btn" onclick="IM.EV_inviteGroupMember(\'' + groupId + '\',' + obj.permission + ',' + target + ',\'' + isowner + '\')" >Invitation</a>' + '</span>' + '<span class="pull-right" style="width: 75%; display: none;">' + '<textarea class="pull-left" id="pop_invite_area" style="width:95%;" rows=3 placeholder="Please enter a user account，Use English comma\“,”\Separate，' + 'At most invite50individual"></textarea>' + '</span>' + '</td>' + '</tr>';
 				$('#pop').find('table[imtype="im_pop_members_add"]')
 					.html(str_add);
 				if(isowner && target == 2){
-					var adminAdd = '<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> 退出群组 </button> <a href="javascript:void(0);" class="btn" onclick="IM.EV_dismissGroup(\'' + groupId + '\')"> 解散群组 </a>' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">保存修改</a>';
+					var adminAdd = '<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> Exit group </button> <a href="javascript:void(0);" class="btn" onclick="IM.EV_dismissGroup(\'' + groupId + '\')"> ungroup </a>' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">Save changes</a>';
 					$('#pop').find('.modal-footer').html(adminAdd);
 				}
 				if(isadmin && target == 2){
-					var adminAdd = '<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> 退出群组 </button> ' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">保存修改</a>';
+					var adminAdd = '<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> Exit group </button> ' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">Save changes</a>';
 					$('#pop').find('.modal-footer').html(adminAdd);
 				}
 			} else {
-				$('#pop').find('table[imtype="im_pop_members_add"]').hide(); //加号的框不显示
+				$('#pop').find('table[imtype="im_pop_members_add"]').hide(); //Plus the box is not displayed
 				str = '<span class="pull-left" maxlength="128">' + obj.groupName + '</span>';
 				$('#pop').find('div[imtype="im_pop_group_name"]').html(str);
 				if (!obj.declared) {
@@ -1357,12 +1357,12 @@
 				$('#pop').find('span[imtype="im_pop_group_declared"] > textarea').css("background", "transparent");
 				$('#pop').find('span[imtype="im_pop_group_declared"] > textarea').css("border-style", "none");
 				$('#pop').find('span[imtype="im_pop_group_declared"] > textarea').css("cursor", "default");
-				$('#pop').find('.modal-footer').html('<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> 退出群组 </button>');
+				$('#pop').find('.modal-footer').html('<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> Exit group </button>');
 			}
 			if (obj.isNotice == 1) {
-				str = '<a href="javascript:void(0);" class="btn" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',2)" >开启</a>' + '<a href="javascript:void(0);" class="btn btn-primary" style="margin-left:10px;">关闭</a>';
+				str = '<a href="javascript:void(0);" class="btn" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',2)" >open</a>' + '<a href="javascript:void(0);" class="btn btn-primary" style="margin-left:10px;">Close</a>';
 			} else {
-				str = '<a href="javascript:void(0);" class="btn btn-primary" style="margin-left:10px;">开启</a>' + '<a href="javascript:void(0);" class="btn" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',1)">关闭</a>';
+				str = '<a href="javascript:void(0);" class="btn btn-primary" style="margin-left:10px;">open</a>' + '<a href="javascript:void(0);" class="btn" style="margin-left:10px;" onclick="IM.EV_groupPersonalization(\'' + groupId + '\',1)">Close</a>';
 			}
 			$('#pop').find('span[imtype="im_pop_group_notice"]').html(str);
 		},
@@ -1377,7 +1377,7 @@
 			var msg = $(document.getElementById(msgId));
 			var videoUrl = msg.find('img').attr("videourl");
 			var str = '';
-			var showHei = $("#lvjing").height() - 50; //客户端竖屏视频需要拖动滚动条才能露出控制按钮，所以减去50px
+			var showHei = $("#lvjing").height() - 50; //Client vertical screen video need to drag the scroll bar to expose the control button，So subtract50px
 			if (!!videoUrl) {
 				var type = videoUrl.substring(videoUrl.lastIndexOf(".") + 1);
 				str = '<video controls="controls" preload="auto" height="' + showHei + 'px" style="position:relative;top:-20px;left:0px;">' +
@@ -1391,26 +1391,26 @@
 			IM.HTML_pop_photo_show();
 		},
 		/**
-		 * lat 纬度
-		 * lon 经度
-		 * title 位置信息描述
+		 * lat latitude
+		 * lon longitude
+		 * title Location information description
 		 */
 		DO_show_map: function(lat, lon, title) {
 			$("#im_body").append("<div id='baiduMap' style='z-index:888899; margin-left: 10%;margin-right:10%; height: 550px; width: 80%;'></div>");
 			$("#carousels").empty();
-			var map = new BMap.Map("baiduMap"); // 创建地图实例 
-			var point = new BMap.Point(lon, lat); // 创建点坐标 
-			var marker = new BMap.Marker(point); // 创建标注    
+			var map = new BMap.Map("baiduMap"); // Create an instance of the map 
+			var point = new BMap.Point(lon, lat); // Create point coordinates 
+			var marker = new BMap.Marker(point); // Create annotation    
 			map.addOverlay(marker);
 			map.centerAndZoom(point, 15);
 			var opts = {
 				width: 200,
 				height: 100,
-				enableMessage: true //设置允许信息窗发送短息
+				enableMessage: true //Setting allows information to be sent to the window
 			};
-			var infoWindow = new BMap.InfoWindow(title, opts); // 创建信息窗口对象 
+			var infoWindow = new BMap.InfoWindow(title, opts); // Create an information window object 
 			marker.addEventListener("click", function() {
-				map.openInfoWindow(infoWindow, point); //开启信息窗口
+				map.openInfoWindow(infoWindow, point); //Open information window
 			});
 			IM._baiduMap = $("#baiduMap");
 			$("#carousels").append(IM._baiduMap);
@@ -1418,7 +1418,7 @@
 			IM.HTML_pop_photo_show();
 		},
 		/**
-		 * 向上选择图片，同一个对话框内
+		 * Up select Picture，In the same dialog box
 		 * 
 		 * @constructor
 		 */
@@ -1444,7 +1444,7 @@
 				return;
 			};
 			var str = '';
-			var showHei = $("#lvjing").height() - 50; //客户端竖屏视频需要拖动滚动条才能露出控制按钮，所以减去50px
+			var showHei = $("#lvjing").height() - 50; //Client vertical screen video need to drag the scroll bar to expose the control button，So subtract50px
 			if (prevMsg.attr("im_msgtype") == 4) {
 				var src = prevMsg.find('img').attr('src');
 				str = '<img src="' + src + '" />';
@@ -1465,7 +1465,7 @@
 			var q = 1;
 		},
 		/**
-		 * 向下选择图片,同一个对话框内
+		 * Select the picture down,In the same dialog box
 		 * 
 		 * @constructor
 		 */
@@ -1490,7 +1490,7 @@
 			if (nextMsg.length < 1) {
 				return;
 			}
-			var showHei = $("#lvjing").height() - 50; //客户端竖屏视频需要拖动滚动条才能露出控制按钮，所以减去50px
+			var showHei = $("#lvjing").height() - 50; //Client vertical screen video need to drag the scroll bar to expose the control button，So subtract50px
 			if (nextMsg.attr("im_msgtype") == 4) {
 				var src = nextMsg.find('img').attr('src');
 				str = '<img src="' + src + '" />';
@@ -1510,17 +1510,17 @@
 			}
 		},
 		/**
-		 * 添加群组事件消息，只处理页面
+		 * Add group event messages，Only handle page
 		 * 
-		 * @param obj:confirm 1拒绝 2同意  target 1讨论组 2群组
-		 *            auditType (1申请加入群组，2邀请加入群组，3直接加入群组，4解散群组，5退出群组，6踢出群组，7确认申请加入，8确认邀请加入，
-		 *                       9邀请加入群组的用户因本身群组个数超限加入失败(只发送给邀请者)10管理员修改群组信息，11用户修改群组成员名片12新增管理员变更通知)
+		 * @param obj:confirm 1refuse 2Agree！  target 1discussion group 2group
+		 *            auditType (1Application to join group，2Invite to join group，3Direct join group，4ungroup，5Exit group，6Kick out group，7Confirm the application to join，8Confirm invitation to join，
+		 *                       9Invited to join the group of users because of the number of groups to join the number of failed(Sent to the invitation only)10Administrators modify group information，11User modify group membership card12New administrator change notification)
 		 * @constructor
 		 */
 		DO_notice_createMsgDiv: function(obj) {
 			var you_sender = IM._serverNo;
 			var groupId = obj.groupId;
-			var name = '系统通知';
+			var name = 'System notification';
 			var groupName = obj.groupName;
 			var version = obj.msgId;
 			var peopleId = obj.member;
@@ -1530,13 +1530,13 @@
 			// 1,(1申请加入群组，2邀请加入群组，3直接加入群组，4解散群组，5退出群组，6踢出群组，7确认申请加入，8确认邀请加入，
 			//9邀请加入群组的用户因本身群组个数超限加入失败(只发送给邀请者)10管理员修改群组信息，11用户修改群组成员名片12新增管理员变更通知)
 			var auditType = obj.auditType;
-			var groupTarget = (obj.target == 2) ? "群组" : "讨论组";
+			var groupTarget = (obj.target == 2) ? "group" : "discussion group";
 			if (1 == auditType) {
-				you_msgContent = '[' + people + ']申请加入' + groupTarget + '[' + groupName + '] <span imtype="notice">{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmJoinGroup(\'' + you_sender + '\', \'' + version + '\', \'' + groupId + '\', \'' + peopleId + '\', 2)">同意</a>}{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmJoinGroup(\'' + you_sender + '\', \'' + version + '\', \'' + groupId + '\', \'' + peopleId + '\', 1)">拒绝</a>}</span>';
-				noticeContent = '[' + people + ']申请加入' + groupTarget + '[' + groupName + '] ';
+				you_msgContent = '[' + people + ']Apply to join' + groupTarget + '[' + groupName + '] <span imtype="notice">{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmJoinGroup(\'' + you_sender + '\', \'' + version + '\', \'' + groupId + '\', \'' + peopleId + '\', 2)">Agree！</a>}{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmJoinGroup(\'' + you_sender + '\', \'' + version + '\', \'' + groupId + '\', \'' + peopleId + '\', 1)">refuse</a>}</span>';
+				noticeContent = '[' + people + ']Apply to join' + groupTarget + '[' + groupName + '] ';
 			} else if (2 == auditType) {
 				if (1 == obj.confirm) {
-					you_msgContent = '[' + groupName + ']管理员邀请您加入' + groupTarget;
+					you_msgContent = '[' + groupName + ']Administrator invites you to join' + groupTarget;
 					noticeContent = you_msgContent;
 					// 在群组列表中添加群组项
 					var current_contact_type = IM.HTML_find_contact_type();
@@ -1548,25 +1548,25 @@
 						IM._contact_type_g, false, isShow, false, null,
 						null, null);
 				} else {
-					you_msgContent = '[' + groupName + ']管理员邀请您加入群组 <span imtype="notice">{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmInviteJoinGroup(\'' + you_sender + '\', \'' + groupName + '\', \'' + version + '\', \'' + obj.admin + '\', \'' + groupId + '\', 2)">同意</a>}{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmInviteJoinGroup(\'' + you_sender + '\', \'' + groupName + '\', \'' + version + '\', \'' + obj.admin + '\', \'' + groupId + '\', 1)">拒绝</a>}</span>';
-					noticeContent = '[' + groupName + ']管理员邀请您加入群组;';
+					you_msgContent = '[' + groupName + ']The administrator invites you to join the group <span imtype="notice">{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmInviteJoinGroup(\'' + you_sender + '\', \'' + groupName + '\', \'' + version + '\', \'' + obj.admin + '\', \'' + groupId + '\', 2)">Agree！</a>}{<a style="color: red; cursor: pointer;" onclick="IM.EV_confirmInviteJoinGroup(\'' + you_sender + '\', \'' + groupName + '\', \'' + version + '\', \'' + obj.admin + '\', \'' + groupId + '\', 1)">refuse</a>}</span>';
+					noticeContent = '[' + groupName + ']The administrator invites you to join the group;';
 				}
 			} else if (3 == auditType) {
-				you_msgContent = '[' + people + ']直接加入群组[' + groupName + ']';
+				you_msgContent = '[' + people + ']Direct join group[' + groupName + ']';
 				noticeContent = you_msgContent;
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, people);
 			} else if (4 == auditType) {
-				you_msgContent = '管理员解散了群组[' + groupName + ']';
+				you_msgContent = 'The administrator has dissolved the group[' + groupName + ']';
 				noticeContent = you_msgContent;
 				// 将群组从列表中移除
 				IM.HTML_remove_contact(groupId);
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, people);
 			} else if (5 == auditType) {
-				you_msgContent = '[' + people + ']退出了' + groupTarget + '[' + groupName + ']';
+				you_msgContent = '[' + people + ']Logout' + groupTarget + '[' + groupName + ']';
 				noticeContent = you_msgContent;
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, people);
 			} else if (6 == auditType) {
-				you_msgContent = '[' + groupName + ']管理员将[' + people + ']踢出' + groupTarget;
+				you_msgContent = '[' + groupName + ']Administrator will[' + people + ']Kick out' + groupTarget;
 				noticeContent = you_msgContent;
 				// 将群组从列表中移除
 				if (IM._user_account == people) {
@@ -1574,15 +1574,15 @@
 				}
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, people);
 			} else if (7 == auditType) {
-				you_msgContent = '管理员同意[' + people + ']加入群组[' + groupName + ']的申请';
+				you_msgContent = 'Administrator consent[' + people + ']Join group[' + groupName + ']Application for';
 				noticeContent = you_msgContent;
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, people);
 			} else if (8 == auditType) {
 				if (2 != obj.confirm) {
-					you_msgContent = '[' + people + ']拒绝了群组[' + groupName + ']的邀请';
+					you_msgContent = '[' + people + ']Rejected the group[' + groupName + ']The invitation';
 					noticeContent = you_msgContent;
 				} else {
-					you_msgContent = '[' + people + ']同意了管理员的邀请，加入群组[' + groupName + ']';
+					you_msgContent = '[' + people + ']Agreed to the administrator`s invitation，Join group[' + groupName + ']';
 					noticeContent = you_msgContent;
 					IM.DO_procesGroupNotice(auditType, groupId, peopleId,
 						people);
@@ -1590,9 +1590,9 @@
 			} else if (10 == auditType) {
 				people = (!!obj.adminName) ? obj.adminName : obj.admin;
 				if (obj.target == 2) {
-					you_msgContent = '管理员修改了群组[' + groupName + ']信息';
+					you_msgContent = 'The administrator changed the group[' + groupName + ']information';
 				} else {
-					you_msgContent = '用户[' + people + ']修改了讨论组[' + groupName + ']信息';
+					you_msgContent = 'user[' + people + ']Modified group[' + groupName + ']information';
 				}
 				noticeContent = you_msgContent;
 				if (!!obj.groupName) {
@@ -1602,12 +1602,12 @@
 				}
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, people, obj.groupName, obj.ext);
 			} else if (11 == auditType) {
-				you_msgContent = '用户[' + people + ']修改群组成员名片';
+				you_msgContent = 'user[' + people + ']Modify group membership';
 				noticeContent = you_msgContent;
 				// TODO obj.memberName有值，意味着要修改展示的名字
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, obj.memberName, obj.groupName, obj.ext);
 			} else if (12 == auditType) {
-				you_msgContent = '用户[' + people + ']成为' + groupTarget + '[' + groupName + ']管理员12';
+				you_msgContent = 'user[' + people + ']Become' + groupTarget + '[' + groupName + ']Admin12';
 				noticeContent = you_msgContent;
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId, obj.memberName, obj.groupName, obj.ext);
 			} else if (13 == auditType) {
@@ -1615,23 +1615,23 @@
 				var ext = JSON.parse(obj.ext);
 				switch (ext.role) {
 					case "1":
-						role = "群主";
+						role = "The main group";
 						break;
 					case "2":
-						role = "管理员";
+						role = "Admin";
 						break;
 					case "3":
-						role = "成员";
+						role = "member";
 						break;
 					default:
 						break;
 				}
-				you_msgContent = '用户[' + people + ']成为' + groupTarget + groupName + role;
+				you_msgContent = 'user[' + people + ']Become' + groupTarget + groupName + role;
 				noticeContent = you_msgContent;
 				IM.DO_procesGroupNotice(auditType, groupId, peopleId,
 					obj.memberName, obj.groupName, obj.ext);
 			} else {
-				you_msgContent = '未知type[' + auditType + ']';
+				you_msgContent = 'Unknowntype[' + auditType + ']';
 				noticeContent = you_msgContent;
 			}
 			// 添加左侧消息
@@ -1644,21 +1644,21 @@
 			IM.DO_deskNotice('', '', noticeContent, '', false, false);
 		},
 		/**
-		 * 处理群组成员变更通知,只处理pop页面
+		 * Processing group member change notification,Only dealpoppage
 		 * 
 		 * @param type
-		 *            通知类型 4解散群组，5退出群组，6踢出群组，7确认申请加入，8确认邀请加入
-		 *            10管理员修改群组信息，11用户修改群组成员名片)
+		 *            Notification type 4ungroup，5Exit group，6Kick out group，7Confirm the application to join，8Confirm invitation to join
+		 *            10Administrators modify group information，11User modify group membership card)
 		 * @param groupId
-		 *            群组id
+		 *            groupid
 		 * @param memberId
-		 *            用户id
+		 *            userid
 		 * @param memberName
-		 *            用户名称
+		 *            User name
 		 * @param groupName
-		 *            群组名称
+		 *            group name
 		 * @param ext
-		 *            扩展字段
+		 *            Extended field
 		 * @constructor
 		 */
 		DO_procesGroupNotice: function(type, groupId, memberId, memberName,
@@ -1667,11 +1667,11 @@
 				return;
 			}
 			if (type == 4) {
-				alert("管理员解散了该群组！");
+				alert("The administrator dissolved the group！");
 				IM.HTML_pop_hide();
 			} else if (type == 5 || type == 6) {
 				if (memberId == IM._user_account) {
-					alert("您被管理员移出该群组！");
+					alert("You are moved out of the group by the administrator！");
 					IM.HTML_pop_hide();
 				} else {
 					IM.HTML_popDeleteMember(memberId);
@@ -1710,7 +1710,7 @@
 			return true;
 		},
 		/**
-		 * 删除联系人，包括左侧和右侧
+		 * Delete Contact，Including the left and right
 		 * 
 		 * @param id
 		 * @constructor
@@ -1725,18 +1725,18 @@
 				});
 		},
 		/**
-		 * 添加消息列表的辅助方法 消息的联系人(you_sender)，是否是当前展示的联系人
-		 * 并处理左侧联系人列表的展示方式（新增条数，及提醒数字变化）
+		 * Auxiliary method for adding message list Contact information(you_sender)，Whether it is the current display of contacts
+		 * And to deal with the display of the left contact list（Number of new bars，And remind the number of changes）
 		 * 
 		 * @param you_sender
 		 * @param b_isGroupMsg --
-		 *            true:group消息列表 false:点对点消息列表
-		 * @returns {boolean} -- true:是当前展示的联系人；false:不是
+		 *            true:groupMessage list false:Point to point message list
+		 * @returns {boolean} -- true:Is the current display of contacts；false:No
 		 * @constructor
 		 */
 		DO_createMsgDiv_Help: function(you_sender, name, b_isGroupMsg) {
 			// 处理联系人列表，如果新联系人添加一条新的到im_contact_list，如果已经存在给出数字提示
-			var b_current_contact_you = false; // push消息的联系人(you_sender)，是否是当前展示的联系人
+			var b_current_contact_you = false; // pushContact information(you_sender)，Whether it is the current display of contacts
 			$('#im_contact_list').find('li').each(function() {
 				if (you_sender == $(this).attr('contact_you')) {
 					if ($(this).hasClass('active')) {
@@ -1757,7 +1757,7 @@
 			return b_current_contact_you;
 		},
 		/**
-		 * 查找当前选中的contact_type值
+		 * Find the currently selectedcontact_typevalue
 		 * 
 		 * @returns {*}
 		 * @constructor
@@ -1773,22 +1773,22 @@
 			return current_contact_type;
 		},
 		/**
-		 * 样式，push监听到消息时添加右侧页面样式
+		 * style，pushAdd the right page style when listening to the message
 		 * 
 		 * @param msgtype --
-		 *            消息类型1:文本消息 2：语音消息 3：视频消息 4：图片消息 5：位置消息 6：文件
+		 *            Message type1:Text message 2：Voice message 3：Video message 4：Picture message 5：Location message 6：file
 		 * @param you_sender --
-		 *            对方帐号：发出消息时对方帐号，接收消息时发送者帐号
+		 *            Each other account：Send a message when the other account，Sender account when receiving messages
 		 * @param version --
-		 *            消息版本号，本地发出时为long时间戳
+		 *            Message version number，Local issuelongtime stamp
 		 * @param content_type --
 		 *            C G or M
 		 * @param b --
-		 *            是否需要展示 true显示，false隐藏
+		 *            Whether you need to show truedisplay，falsehide
 		 * @param name --
-		 *            显示对话框中消息发送者名字
+		 *            Displays the name of the message sender in the dialog box.
 		 * @param you_msgContent --
-		 *            消息内容
+		 *            Message content
 		 * @constructor
 		 */
 		HTML_pushMsg_addHTML: function(msgtype, you_sender, version,
@@ -1807,7 +1807,7 @@
 					name = inforSender;
 				}
 				if (!inforSender || content_type.toUpperCase("G")) {
-					inforSender = you_sender; //由于系统消息没有发送者，所以这里给定义为系统的发送者.群消息的发送者为群。
+					inforSender = you_sender; //Because the system message does not have a sender，So here to define the system as the sender.The sender of the group message is a group。
 				}
 				var str = '<div msg="msg" im_carousel="' + carou + '" im_msgtype="' + msgtype + '" id="' + inforSender + '_' + version + '" content_type="' + content_type + '" content_you="' + you_sender + '" class="alert alert-left alert-info" style="display:' + ((b) ? 'block' : 'none') + '">' + '<code style=";text-overflow:ellipsis;overflow: hidden;">' + name + ':</code>&nbsp;' + you_msgContent + '</div>';
 			} else {
@@ -1851,7 +1851,7 @@
 				}
 				warn.show();
 			}
-			if (you_msgContent) $("#notice").html(""); //消息类型提示，发完消息接收方隐藏即可
+			if (you_msgContent) $("#notice").html(""); //Message type prompt，After the message is sent to the receiver.
 		},
 		HTML_pushCall_addHTML: function(you_sender, callId, you_msgContent) {
 			// push消息的联系人，是否是当前展示的联系人
@@ -1907,21 +1907,21 @@
 			}
 		},
 		/**
-		 * 样式，发送消息时添加右侧页面样式
+		 * style，Add the right page style when you send the message
 		 * 
 		 * @param msg --
-		 *            是否为临时消息 msg、temp_msg;msg
-		 *            右侧对话消息display为block；temp_msg用于发送本地文件；需要点击确定的时候resendMsg方法中修改属性为block
+		 *            Whether for temporary news msg、temp_msg;msg
+		 *            Right dialogdisplaybyblock；temp_msgUsed to send a local file；When you need to click OKresendMsgModify attribute toblock
 		 * @param msgtype --
-		 *            消息类型1:文本消息 2：语音消息 3：视频消息 4：图片消息 5：位置消息 6：文件
+		 *            Message type1:Text message 2：Voice message 3：Video message 4：Picture message 5：Location message 6：file
 		 * @param msgid --
-		 *            消息版本号，本地发出时均采用时间戳long
+		 *            Message version number，Time stamp is used for local issue.long
 		 * @param content_type --
 		 *            C G or M
 		 * @param content_you --
-		 *            对方帐号：发出消息时对方帐号，接收消息时发送者帐号
+		 *            Each other account：Send a message when the other account，Sender account when receiving messages
 		 * @param im_send_content --
-		 *            消息内容
+		 *            Message content
 		 * @constructor
 		 */
 		HTML_sendMsg_addHTML: function(msg, msgtype, msgid, content_type, content_you, im_send_content) {
@@ -1955,11 +1955,11 @@
 			return content_you + '_' + msgid;
 		},
 		/**
-		 * 选择联系人列表，并切换消息列表
+		 * Select a contact list，Switch message list
 		 * 
 		 * @param contact_type
 		 * @param contact_you
-		 * @param isNew 是否是5.2.1之后的SDK
+		 * @param isNew Whether it is5.2.1LaterSDK
 		 */
 		DO_chooseContactList: function(contact_type, contact_you, isNewUserState) {
 			newUserState = isNewUserState ? isNewUserState : false;
@@ -1970,8 +1970,8 @@
 			var warn = $(current_contact).find('span[contact_style_type="warn"]');
 			warn.hide();
 			warn.html(0);
-			/* 暂时屏蔽历史消息功能
-               $("#getHistoryMsgDiv").html('<a href="#" onclick="IM.DO_getHistoryMessage();" style="font-size: small;position: relative;top: -30px;">查看更多消息</a>');
+			/* Temporary shielding history message function
+               $("#getHistoryMsgDiv").html('<a href="#" onclick="IM.DO_getHistoryMessage();" style="font-size: small;position: relative;top: -30px;">View more messages</a>');
             $("#getHistoryMsgDiv").show();
           */
 			IM.HTML_clean_im_content_list(contact_you);
@@ -1982,8 +1982,8 @@
 				$("#voipInvite").show();
 				$("#voiceInvite").show();
 				$("#luodi").show();
-				contact_you = contact_you.split(","); //专为数组传入
-				IM.EV_getUserState(contact_you,newUserState); //这里需要见一个额开发任务获取用户状态的返回参数变了；由单个{}对象变成[{},...]这种数组对象了
+				contact_you = contact_you.split(","); //Array incoming
+				IM.EV_getUserState(contact_you,newUserState); //Here is a need to see a development task for the user to get the status of the return parameters changed；By single{}Object becomes[{},...]This array object
 			} else if (IM._contact_type_g == contact_type) {
 				$("#fireMessage").hide();
 				$("#voipInvite").hide();
@@ -2007,28 +2007,28 @@
 			getUserStateBuilder.setUseracc(contact_you);
 			var onlineState = $(current_contact).find('span[contact_style_type="onlineState"]');
 			RL_YTX.getUserState(getUserStateBuilder, function(obj) {
-				if (obj[0].state == 1) { //1在线 2离线
-					onlineState.html("在线");
+				if (obj[0].state == 1) { //1On-line 2Off-line
+					onlineState.html("On-line");
 					onlineState.show();
 					onlineState.css("background-color", "blue");
 				} else if (obj[0].state == 2) {
-					onlineState.html("离线");
+					onlineState.html("Off-line");
 					onlineState.show();
 				} else {
-					alert("错误码：" + obj[0].state + "; 错误描述：获得用户状态结果不合法")
+					alert("Error code：" + obj[0].state + "; Error description：Acquired user status is invalid")
 				}
 			}, function(obj) {
 				if (174006 != obj.code) {
-					console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+					console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 
 				}
 			});
 		},
 		/**
-		 * 清理右侧消息列表
+		 * Clean the right message list
 		 * 
 		 * @param contact_you --
-		 *            左侧联系人列表中的
+		 *            Left contact list
 		 */
 		HTML_clean_im_content_list: function(contact_you) {
 			$('#im_content_list').find('div[msg="msg"]').each(function() {
@@ -2041,7 +2041,7 @@
 			$('#im_content_list').scrollTop($('#im_content_list')[0].scrollHeight);
 		},
 		/**
-		 * 清理联系人列表样式
+		 * Clean contact list style
 		 */
 		HTML_clean_im_contact_list: function() {
 			// 清除选中状态class
@@ -2050,22 +2050,22 @@
 			});
 		},
 		/**
-		 * 添加联系人到列表中
+		 * Add a contact to the list
 		 */
 		DO_addContactToList: function() {
 			var contactVal = $('#im_add').find('input[imtype="im_add_contact"]').val();
-			if (!IM.DO_checkContact(contactVal)) { //校验联系人格式
+			if (!IM.DO_checkContact(contactVal)) { //Check contact format
 				return;
 			}
 			var im_contact = $('#im_contact_list').find('li[contact_type="' + IM._contact_type_c + '"][contact_you="' + contactVal + '"]');
 			if (im_contact.length <= 0) {
-				IM.HTML_clean_im_contact_list(); //清除原来选中的li
+				IM.HTML_clean_im_contact_list(); //Clear the original selectedli
 				IM.HTML_addContactToList(contactVal, contactVal, IM._contact_type_c, true, true, false, null, null, null);
 			}
 			$('#im_add').find('input[imtype="im_add_contact"]').val('');
 		},
 		/**
-		 * 检查联系名称规则是否合法
+		 * Check that the contact name rule is legal
 		 * 
 		 * @param contactVal
 		 * @returns {boolean}
@@ -2073,35 +2073,35 @@
 		 */
 		DO_checkContact: function(contactVal) { //zyhcontact
 			if (!contactVal) {
-				IM.HTML_showAlert('alert-warning', '请填写联系人');
+				IM.HTML_showAlert('alert-warning', 'Please input contact');
 				return false;
 			} else if (contactVal.length > 64) {
-				IM.HTML_showAlert('alert-error', '联系人长度不能超过64');
+				IM.HTML_showAlert('alert-error', 'Contact length should not exceed64');
 				return false;
 			}
 			if ('g' == contactVal.substr(0, 1)) {
-				IM.HTML_showAlert('alert-error', '联系人不能以"g"开始');
+				IM.HTML_showAlert('alert-error', 'Contact cannot be"g"start');
 				return false;
 			}
 			if (contactVal.indexOf("@") > -1) {
 				var regx2 = /^([a-zA-Z0-9]{32}#)?[a-zA-Z0-9_-]{1,}@(([a-zA-z0-9]-*){1,}.){1,3}[a-zA-z-]{1,}$/;
 				if (regx2.exec(contactVal) == null) {
 					IM.HTML_showAlert('alert-error',
-						'检查邮箱格式、如果是跨应用再检查应用Id长度是否为32且由数字或字母组成）');
+						'Check mailbox format、If it is cross application and then check the applicationIdWhether the length is32And consists of numbers or letters.）');
 					return false;
 				}
 			} else {
-				var regx1 = /^[A-Za-z0-9._-]+$/; // /^[a-zA-Z\u4e00-\u9fa5]+$/满足大小写字母数字和ascii码值;
+				var regx1 = /^[A-Za-z0-9._-]+$/; // /^[a-zA-Z\u4e00-\u9fa5]+$/Meet the size of the write letters and numbersasciiCode value;
 				if (regx1.exec(contactVal) == null) {
 					IM.HTML_showAlert('alert-error',
-						'只能是数字字母点下划线');
+						'Only numbers, letters and underlined allowed');
 					return false;
 				}
 			}
 			return true;
 		},
 		/**
-		 * 添加群组
+		 * add group
 		 * 
 		 * @param permission
 		 * @constructor
@@ -2109,23 +2109,23 @@
 		DO_addGroupToList: function(permission, target) {
 			var groupName = $('#im_add').find('input[imtype="im_add_group"]').val();
 			if (!groupName) {
-				IM.HTML_showAlert('alert-error', '请填写群组名称，用来创建群组');
+				IM.HTML_showAlert('alert-error', 'Please input group name，Used to create groups');
 				return;
 			} else if (groupName.trim() == "") {
-				IM.HTML_showAlert('alert-error', '请填写正确的群组名称');
+				IM.HTML_showAlert('alert-error', 'Please input a valid group name');
 				return;
-			} else { //校验群组名称的合法性
+			} else { //Verify the legitimacy of the group name
 				var regx1 = /^[\\x00-\\x7F\a-zA-Z\u4e00-\u9fa5_-]{0,50}$/;
 				if (regx1.exec(groupName) == null) {
-					alert("群组名只允许中英文数字@_-,长度不超过50")
+					alert("Group name only allowed in English and Chinese@_-,Length is shorter than50")
 					return;
 				}
 				if (groupName.substring(0, 1) == "g" || groupName.substring(0, 1) == "G") {
-					alert("群组名不能以g或G开头")
+					alert("Group name cannot begorGStart")
 					return;
 				}
 				if (groupName.indexOf("@") > -1) {
-					alert("群组名不能含有@符号")
+					alert("Group name cannot contain@Symbol")
 					return;
 				}
 			}
@@ -2133,7 +2133,7 @@
 			$('#im_add').find('input[imtype="im_add_group"]').val('');
 		},
 		/**
-		 * 样式，添加左侧联系人列表项
+		 * style，Add the left contact list item
 		 * 
 		 * @param contactVal
 		 * @param contact_type
@@ -2142,33 +2142,33 @@
 		 * @param bb
 		 *            true--display:block false--display:none
 		 * @param bbb
-		 *            true--需要改名字 false--不需要改名字
+		 *            true--Need to change the name false--Do not need to change the name
 		 * @param owner --
-		 *            当前群组创建者（只有content_type==G时才有值）
+		 *            Current group Creator（onlycontent_type==GWhen there is value）
 		 * @param isNotice --
-		 *            是否提醒 1：提醒；2：不提醒(只有content_type==G时才有值)
+		 *            Whether remind 1：remind；2：Not remind(onlycontent_type==GWhen there is value)
 		 * @param target --
-		 *            1表示讨论组 2表示群组
+		 *            1A discussion group 2Express Group
 		 * @constructor
 		 */
 		HTML_addContactToList: function(contactVal, contactName, content_type,
 			b, bb, bbb, owner, isNotice, target) {
 		},
 		/**
-		 * 选择群组管理事件，群组列表后面的扳手
+		 * Select group management events，Wrench on the back of the group list
 		 * 
 		 * @param groupId
 		 * @param owner
 		 * @param target
-		 *            1 讨论组 2 群组
+		 *            1 discussion group 2 group
 		 * @constructor
 		 */
-		DO_groupMenu: function(groupId, owner, target) { // 依据推送生成的左侧列表只有groupId参数
+		DO_groupMenu: function(groupId, owner, target) { // According to the left list of push generated onlygroupIdparameter
 			var isowner = false;
-			if (IM._user_account == owner) { // 自己创建的群组
+			if (IM._user_account == owner) { // The group you created
 				isowner = true;
 			};
-			if (target == null) { // 推送创建的页面参数没有target
+			if (target == null) { // Push to create the page parameters did nottarget
 				IM.EV_getGroupDetail(groupId, isowner, target);
 			} else {
 				// 构建页面
@@ -2179,65 +2179,65 @@
 			}
 		},
 		/**
-		 * 初始化讨论组弹窗
+		 * Initialize pop group
 		 */
 		DO_html_create: function(groupName, permission, target) {
 			var str = '<div class="modal" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%;">' + '<div class="modal-header">' + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="IM.HTML_pop_hide();">×</button>';
 			if (target == 1) {
-				str += '<h3>讨论组：';
+				str += '<h3>discussion group：';
 			} else {
-				str += '<h3>群组：';
+				str += '<h3>group：';
 			}
 			str += groupName + '</h3></div>' + '<div class="modal-body">' + '<table class="table table-bordered">' + '<tr>' + '<td>' + '<div style="height:auto; padding-bottom: 0px;">' + '<table imtype="im_pop_members_add" class="table table-striped">';
 			if (target == 1) {
-				str += '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;"><a href="javascript:void(0);" class="btn" style="font-size: 20px;" onclick="IM.HTML_showInviteArea(this)" >+</a></span>' + '<span class="pull-left" style="width: 25%; display: none;">' + '<span>邀请 :</span>' + '</span>' + '<span class="pull-right" style="width: 75%; display: none;">' + '<textarea class="pull-left" id="pop_invite_area" style="width:95%;" rows=3 placeholder="请输入邀请用户账号，中间使用英文逗号\“,”\分隔，' + '最多邀请50个"></textarea>' + '</span>' + '</td>' + '</tr>';
+				str += '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;"><a href="javascript:void(0);" class="btn" style="font-size: 20px;" onclick="IM.HTML_showInviteArea(this)" >+</a></span>' + '<span class="pull-left" style="width: 25%; display: none;">' + '<span>Invitation :</span>' + '</span>' + '<span class="pull-right" style="width: 75%; display: none;">' + '<textarea class="pull-left" id="pop_invite_area" style="width:95%;" rows=3 placeholder="Please enter a user account，Use English comma\“,”\Separate，' + 'At most invite50individual"></textarea>' + '</span>' + '</td>' + '</tr>';
 			} else {
-				str += '<tr>' + '<td>' + '<div style="height:auto">' + '<div style="height:auto;padding-bottom:30px">' + '<span style="float:left">分类 ：</span>' + '<div style="margin-left:90px;height:auto">' + '<div style="height:auto;min-width: 122px;float:left">' + '<input type="radio" name="groupType" value="1">&nbsp;&nbsp;&nbsp;同学' + '</div>' + '<div style="height:auto;min-width: 122px;float:left">' + '<input type="radio" name="groupType" value="2">&nbsp;&nbsp;&nbsp;朋友' + '</div>' + '<div style="height:auto;min-width: 122px;float:left">' + '<input type="radio" name="groupType" value="3">&nbsp;&nbsp;&nbsp;同事' + '</div>' + '</div>' + '</div>' + '<div style="height:auto;padding-bottom:5px;padding-top:10px;clear:both">' + '<span style="float:left;margin-top: 10px;">地区 ：</span>' + '<div style="margin-left:90px;height:auto;padding:0px">' + '<div style="height:auto;padding-top:5px;min-width:122px;float:left">' + '<span style="position:relative;top:-5px">省：</span><select id="province" size=1 onchange="IM.DO_getCity()" style="width:auto">' + '<option value=-1>--</option>' + '<option value=0>北京</option>' + '<option value=1>上海</option>' + '<option value=2>天津</option>' + '<option value=3>重庆</option>' + '<option value=4>河北</option>' + '<option value=5>山西</option>' + '<option value=6>内蒙古</option>' + '<option value=7>辽宁</option>' + '<option value=8>吉林</option>' + '<option value=9>黑龙江</option>' + '<option value=10>江苏</option>' + '<option value=11>浙江</option>' + '<option value=12>安徽</option>' + '<option value=13>福建</option>' + '<option value=14>江西</option>' + '<option value=15>山东</option>' + '<option value=16>河南</option>' + '<option value=17>湖北</option>' + '<option value=18>湖南</option>' + '<option value=19>广东</option>' + '<option value=20>广西</option>' + '<option value=21>海南</option>' + '<option value=22>四川</option>' + '<option value=23>贵州</option>' + '<option value=24>云南</option>' + '<option value=25>西藏</option>' + '<option value=26>陕西</option>' + '<option value=27>甘肃</option>' + '<option value=28>宁夏</option>' + '<option value=29>青海</option>' + '<option value=30>新疆</option>' + '<option value=31>香港</option>' + '<option value=32>澳门</option>' + '<option value=33>台湾</option>' + '</select>' + '</div>' + '<div style="height:auto;padding-top:5px;min-width:122px;float:left">' //如果屏幕过小的时候就分成两列 
-					+ '<span style="position:relative;top:-5px">市：</span><select id="city" style="width:auto">' + '<option value=-1>--</option>' + '</select>' + '</div>' + '</div>' + '</div>' + '<div style="height:auto;padding-top:10px;clear:both">' + '<span style="float:left;margin-top: 10px;">群组描述 ：</span>' + '<div style="height:auto;margin-left:90px;padding-top:10px">' + '<textarea id="createDeclare" class="pull-left" style="width:95%"></textarea>' + '</div>' + '</div>' + '</div>' + '</td></tr>';
+				str += '<tr>' + '<td>' + '<div style="height:auto">' + '<div style="height:auto;padding-bottom:30px">' + '<span style="float:left">classification ：</span>' + '<div style="margin-left:90px;height:auto">' + '<div style="height:auto;min-width: 122px;float:left">' + '<input type="radio" name="groupType" value="1">&nbsp;&nbsp;&nbsp;Classmate' + '</div>' + '<div style="height:auto;min-width: 122px;float:left">' + '<input type="radio" name="groupType" value="2">&nbsp;&nbsp;&nbsp;Friend' + '</div>' + '<div style="height:auto;min-width: 122px;float:left">' + '<input type="radio" name="groupType" value="3">&nbsp;&nbsp;&nbsp;Colleague' + '</div>' + '</div>' + '</div>' + '<div style="height:auto;padding-bottom:5px;padding-top:10px;clear:both">' + '<span style="float:left;margin-top: 10px;">region ：</span>' + '<div style="margin-left:90px;height:auto;padding:0px">' + '<div style="height:auto;padding-top:5px;min-width:122px;float:left">' + '<span style="position:relative;top:-5px">province：</span><select id="province" size=1 onchange="IM.DO_getCity()" style="width:auto">' + '<option value=-1>--</option>' + '<option value=0>Beijing</option>' + '<option value=1>Shanghai</option>' + '<option value=2>Tianjin</option>' + '<option value=3>Chongqing</option>' + '<option value=4>Hebei</option>' + '<option value=5>Shanxi</option>' + '<option value=6>Inner Mongolia</option>' + '<option value=7>Liaoning</option>' + '<option value=8>Jilin</option>' + '<option value=9>Heilongjiang</option>' + '<option value=10>Jiangsu</option>' + '<option value=11>Zhejiang</option>' + '<option value=12>Anhui</option>' + '<option value=13>Fujian</option>' + '<option value=14>Jiangxi</option>' + '<option value=15>Shandong</option>' + '<option value=16>Henan</option>' + '<option value=17>Hubei</option>' + '<option value=18>Hunan</option>' + '<option value=19>Guangdong</option>' + '<option value=20>Guangxi</option>' + '<option value=21>Hainan</option>' + '<option value=22>Sichuan</option>' + '<option value=23>Guizhou</option>' + '<option value=24>Yunnan</option>' + '<option value=25>Tibet</option>' + '<option value=26>Shaanxi</option>' + '<option value=27>Gansu</option>' + '<option value=28>Ningxia</option>' + '<option value=29>Qinghai</option>' + '<option value=30>Xinjiang</option>' + '<option value=31>Hong Kong</option>' + '<option value=32>Macao</option>' + '<option value=33>Taiwan</option>' + '</select>' + '</div>' + '<div style="height:auto;padding-top:5px;min-width:122px;float:left">' //If the screen is too small, it is divided into two columns. 
+					+ '<span style="position:relative;top:-5px">city：</span><select id="city" style="width:auto">' + '<option value=-1>--</option>' + '</select>' + '</div>' + '</div>' + '</div>' + '<div style="height:auto;padding-top:10px;clear:both">' + '<span style="float:left;margin-top: 10px;">Group description ：</span>' + '<div style="height:auto;margin-left:90px;padding-top:10px">' + '<textarea id="createDeclare" class="pull-left" style="width:95%"></textarea>' + '</div>' + '</div>' + '</div>' + '</td></tr>';
 			}
-			str += '</table></div></td></tr></table></div>' + '<div class="modal-footer">' + '<button href="#" id= "createGroup_bt" class="btn btn-primary" onclick="IM.EV_createGroup(\'' + groupName + '\',' + permission + ',' + target + ')" > 确定 </button>' + '<a href="javascript:void(0);" class="btn" onclick="IM.HTML_pop_hide()">取消</a>' + '</div>' + '</div>';
+			str += '</table></div></td></tr></table></div>' + '<div class="modal-footer">' + '<button href="#" id= "createGroup_bt" class="btn btn-primary" onclick="IM.EV_createGroup(\'' + groupName + '\',' + permission + ',' + target + ')" > Confirmed </button>' + '<a href="javascript:void(0);" class="btn" onclick="IM.HTML_pop_hide()">cancel</a>' + '</div>' + '</div>';
 			$('#pop').find('div[class="row"]').html(str);
 			IM.HTML_pop_show();
-			if (!!navigator.userAgent.match(/mobile/i) || $(window).width() < 600) { //浏览器兼容
+			if (!!navigator.userAgent.match(/mobile/i) || $(window).width() < 600) { //Browser compatibility
 				$("#city").parent().css("float", "none");
 			}
 		},
 		DO_getCity: function() {
 			var arr = new Array();
-			arr[0] = "东城,西城,崇文,宣武,朝阳,丰台,石景山,海淀,门头沟,房山,通州,顺义,昌平,大兴,平谷,怀柔,密云,延庆"
-			arr[1] = "黄浦,卢湾,徐汇,长宁,静安,普陀,闸北,虹口,杨浦,闵行,宝山,嘉定,浦东,金山,松江,青浦,南汇,奉贤,崇明"
-			arr[2] = "和平,东丽,河东,西青,河西,津南,南开,北辰,河北,武清,红挢,塘沽,汉沽,大港,宁河,静海,宝坻,蓟县"
-			arr[3] = "万州,涪陵,渝中,大渡口,江北,沙坪坝,九龙坡,南岸,北碚,万盛,双挢,渝北,巴南,黔江,长寿,綦江,潼南,铜梁,大足,荣昌,壁山,梁平,城口,丰都,垫江,武隆,忠县,开县,云阳,奉节,巫山,巫溪,石柱,秀山,酉阳,彭水,江津,合川,永川,南川"
-			arr[4] = "石家庄,邯郸,邢台,保定,张家口,承德,廊坊,唐山,秦皇岛,沧州,衡水"
-			arr[5] = "太原,大同,阳泉,长治,晋城,朔州,吕梁,忻州,晋中,临汾,运城"
-			arr[6] = "呼和浩特,包头,乌海,赤峰,呼伦贝尔盟,阿拉善盟,哲里木盟,兴安盟,乌兰察布盟,锡林郭勒盟,巴彦淖尔盟,伊克昭盟"
-			arr[7] = "沈阳,大连,鞍山,抚顺,本溪,丹东,锦州,营口,阜新,辽阳,盘锦,铁岭,朝阳,葫芦岛"
-			arr[8] = "长春,吉林,四平,辽源,通化,白山,松原,白城,延边"
-			arr[9] = "哈尔滨,齐齐哈尔,牡丹江,佳木斯,大庆,绥化,鹤岗,鸡西,黑河,双鸭山,伊春,七台河,大兴安岭"
-			arr[10] = "南京,镇江,苏州,南通,扬州,盐城,徐州,连云港,常州,无锡,宿迁,泰州,淮安"
-			arr[11] = "杭州,宁波,温州,嘉兴,湖州,绍兴,金华,衢州,舟山,台州,丽水"
-			arr[12] = "合肥,芜湖,蚌埠,马鞍山,淮北,铜陵,安庆,黄山,滁州,宿州,池州,淮南,巢湖,阜阳,六安,宣城,亳州"
-			arr[13] = "福州,厦门,莆田,三明,泉州,漳州,南平,龙岩,宁德"
-			arr[14] = "南昌市,景德镇,九江,鹰潭,萍乡,新馀,赣州,吉安,宜春,抚州,上饶"
-			arr[15] = "济南,青岛,淄博,枣庄,东营,烟台,潍坊,济宁,泰安,威海,日照,莱芜,临沂,德州,聊城,滨州,菏泽"
-			arr[16] = "郑州,开封,洛阳,平顶山,安阳,鹤壁,新乡,焦作,濮阳,许昌,漯河,三门峡,南阳,商丘,信阳,周口,驻马店,济源"
-			arr[17] = "武汉,宜昌,荆州,襄樊,黄石,荆门,黄冈,十堰,恩施,潜江,天门,仙桃,随州,咸宁,孝感,鄂州"
-			arr[18] = "长沙,常德,株洲,湘潭,衡阳,岳阳,邵阳,益阳,娄底,怀化,郴州,永州,湘西,张家界"
-			arr[19] = "广州,深圳,珠海,汕头,东莞,中山,佛山,韶关,江门,湛江,茂名,肇庆,惠州,梅州,汕尾,河源,阳江,清远,潮州,揭阳,云浮"
-			arr[20] = "南宁,柳州,桂林,梧州,北海,防城港,钦州,贵港,玉林,南宁地区,柳州地区,贺州,百色,河池"
-			arr[21] = "海口,三亚"
-			arr[22] = "成都,绵阳,德阳,自贡,攀枝花,广元,内江,乐山,南充,宜宾,广安,达川,雅安,眉山,甘孜,凉山,泸州"
-			arr[23] = "贵阳,六盘水,遵义,安顺,铜仁,黔西南,毕节,黔东南,黔南"
-			arr[24] = "昆明,大理,曲靖,玉溪,昭通,楚雄,红河,文山,思茅,西双版纳,保山,德宏,丽江,怒江,迪庆,临沧"
-			arr[25] = "拉萨,日喀则,山南,林芝,昌都,阿里,那曲"
-			arr[26] = "西安,宝鸡,咸阳,铜川,渭南,延安,榆林,汉中,安康,商洛"
-			arr[27] = "兰州,嘉峪关,金昌,白银,天水,酒泉,张掖,武威,定西,陇南,平凉,庆阳,临夏,甘南"
-			arr[28] = "银川,石嘴山,吴忠,固原"
-			arr[29] = "西宁,海东,海南,海北,黄南,玉树,果洛,海西"
-			arr[30] = "乌鲁木齐,石河子,克拉玛依,伊犁,巴音郭勒,昌吉,克孜勒苏柯尔克孜,博 尔塔拉,吐鲁番,哈密,喀什,和田,阿克苏"
-			arr[31] = "香港"
-			arr[32] = "澳门"
-			arr[33] = "台北,高雄,台中,台南,屏东,南投,云林,新竹,彰化,苗栗,嘉义,花莲,桃园,宜兰,基隆,台东,金门,马祖,澎湖"
+			arr[0] = "Dongcheng,Westlife,Chongwen,Xuanwu,Chaoyang,Fengtai,Shijingshan,Haidian,Mentougou,Fangshan,Tongzhou,Shunyi,Changping,Daxing,Pinggu,Huairou,Miyun,Yanqing"
+			arr[1] = "Huangpu,Luwan,Xuhui,Changning,Jingan,Putuo,a section of Shanghai,Hongkou,Yangpu,Minhang,Baoshan,Jiading,Pudong,Jinshan,Songjiang,Qingpu,Nanhui,Fengxian,Chongming"
+			arr[2] = "Hepin,toray,Hedong,Xiqing,Hexi,Jinnan,Nankai,Beichen,Hebei,Wuqing,Red Bridge,Tanggu,Hangu,Dagang,Ninghe,Jinghai,Baodi,Jixian County"
+			arr[3] = "Wanzhou,Fuling,Yuzhong,Dadukou,Jiangbei,Shapingba,Jiulongpo,Nan`an,Beibei,Maxell,Double bridge,Yubei,Banan,Qianjiang,longevity,Qijiang,Tongnan,Tongliang,Dazu,Rongchang,Bishan,Liangping,Chengkou,Fengdu,Dianjiang,Wulong,Zhongxian,Kaixian,Yunyang,Fengjie,Wushan,Wuxi,Stone,Xiushan,Youyang,Pengshui,Jiangjin,Hechuan,Yongchuan,Nanchuan"
+			arr[4] = "Shijiazhuang,Handan,Xingtai,Baoding,Zhangjiakou,Chengde,Langfang,Tangshan,Qinghuangdao,Cangzhou,Hengshui"
+			arr[5] = "Taiyuan,Da Tong,Yangquan,CiH,Jincheng,Shuozhou,Lvliang,Xinzhou,Jinzhong,Linfen,Yuncheng"
+			arr[6] = "Hohhot,Baotou,Wuhai,Chifeng,Hulun Buir Union,alxa league,Zhelimumeng,hinggan league,Wulanchabu Union,Xilinguole Meng,Bayannaoer Union,Yikezhaomeng"
+			arr[7] = "Shenyang,Dalian,Anshan,Fushun,Benxi,Dandong,Jinzhou,Yingkou,Fuxin,Liaoyang,Panjin,Tieling,Chaoyang,Huludao"
+			arr[8] = "Changchun,Jilin,Siping,Liaoyuan,Tonghua,Mount Bai,Songyuan,Baicheng,Yanbian"
+			arr[9] = "Harbin,Qiqihar,Mudanjiang,Jiamusi,Daqing,Suihua,Hegang,Jixi,Heihe,Shuangyashan,Yichun,Qitaihe,Greater Khingan Range"
+			arr[10] = "Nanjing,Zhenjiang,Suzhou,Nantong,Yangzhou,ynz,Xuzhou,Lianyungang,Changzhou,Wuxi,Suqian,Taizhou,Huaian"
+			arr[11] = "Hangzhou,Ningbo,Wenzhou,Jiaxing,Huzhou,Shaoxing,Jinhua,Quzhou,Zhoushan,former name of a region in eastern Zhejiang,Lishui"
+			arr[12] = "Hefei,Wuhu,Bengbu,Ma'anshan,Huaibei,Tongling,Anqing,Mount Huangshan,Chuzhou,Suzhou,Chizhou,Huainan,Chaohu Lake,Fuyang,Lu'an,Xuancheng,Bozhou"
+			arr[13] = "Fuzhou,Xiamen,Putian,Sanming,Quanzhou,Zhangzhou,Nanping,Longyan,Ningde"
+			arr[14] = "Nanchang City,Jingdezhen,Jiujiang,Yingtan,Pingxiang,New balance,Ganzhou,Ji'an,Yichun,Fuzhou,Shangrao"
+			arr[15] = "Ji'nan,Qingdao,Zibo,Zaozhuang,doy,Yantai,Weifang,Jining,Tai'an,Weihai,sunshine,Laiwu,Linyi,Texas,Liaocheng,Binzhou,Heze"
+			arr[16] = "Zhengzhou,Kaifeng,Luoyang,Pingdingshan,Anyang,Hebi,Xinxiang,Jiaozuo,Puyang,Xuchang,Luohe,Sanmenxia,Nanyang,Shangqiu,Xinyang,Zhoukou,Zhumadian,Jiyuan"
+			arr[17] = "Wuhan,Yichang,Jingzhou,Xiangfan,Huangshi,Jingmen,Huanggang,Shiyan,Enshi,Qianjiang,Tianmen,peach of immortality,Suizhou,Xianning,Xiaogan,Ezhou"
+			arr[18] = "Changsha,Changde,Zhuzhou,Xiangtan,city in Hunan,Yueyang,Shaoyang,Yiyang,Loudi,Huaihua,Chenzhou,Yongzhou,Xiangxi,Zhangjiajie"
+			arr[19] = "Guangzhou,Shenzhen,Zhuhai,Shantou,Dongguan,Zhongshan,Foshan,Shaoguan,Jiangmen,Zhanjiang,Maoming,Zhaoqing,Huizhou,Meizhou,Shanwei,Heyuan,Yangjiang,Qingyuan,Chaozhou,Jieyang,Yunfu"
+			arr[20] = "Nanning,city in Guangxi,Guilin,Wuzhou,The North Sea,Port of Fangcheng,Qinzhou,Guigang,Yulin,Nanning area,Liuzhou area,Hezhou,Baise,Hechi"
+			arr[21] = "Haikou,Sanya"
+			arr[22] = "Chengdu,Mianyang,Deyang,Zigong,Panzhihua,Guangyuan,Neijiang,Leshan,Nao,Yibin,Guang'an,Dalcheon,Ya'an,Meishan,Ganzi,Liangshan,Luzhou"
+			arr[23] = "Guiyang,Liupanshui,Zunyi,Anshun,Tongren,Guizhou,Bijie,Qiandongnan,Qiannan"
+			arr[24] = "Kunming,Dali,Qujing,Yuxi,Zhaotong,Chuxiong,Honghe,Wenshan,Simao,Xishuangbanna,Baoshan,Dehong,Lijiang,Nu River,Diqing,Lincang"
+			arr[25] = "Lhasa,Shigatse,Shannan,Linzhi,Changdu,Ali,Naqu"
+			arr[26] = "Xi'an,Baoji,Xianyang,Tongchuan,Weinan,Yan'an,Yulin,Hanzhoung,Ankang,Shangluo"
+			arr[27] = "Lanzhou,Jiayuguan,Jinchang,silver,Tianshui,Jiuquan,Zhangye,Wuwei of Gansu Province,Dingxi,Longnan,Pingliang,Qingyang,Linxia,Gannan"
+			arr[28] = "Yinchuan,Shizuishan,Wuzhong,Guyuan"
+			arr[29] = "Xining,Haidong,Hainan,Haibei,Huangnan,Yushu,Guoluo,Haixi"
+			arr[30] = "Urumchi,Shihezi,Karamay,Ili,Bayangol,Changji,Kirgiz,Bo Ertala,Turpan,Hami,Kashgar,Hotan,Akesu"
+			arr[31] = "Hong Kong"
+			arr[32] = "Macao"
+			arr[33] = "Taipei,Kaohsiung,Taichung,Tainan,Pingtung,Nantou,Yunlin,Hsinchu,changhua,Miaoli,Chiayi,Hualian,peach orchard,Yilan,Keelung,Taitung,Kinmen,Matsu,Pescadores Islands"
 			var pro = document.getElementById("province");
 			var city = document.getElementById("city");
 			var index = pro.selectedIndex - 1;
@@ -2249,7 +2249,7 @@
 			}
 		},
 		/**
-		 * 展现群组名称
+		 * Show group name
 		 * 
 		 * @param isowner
 		 * @param groupName
@@ -2265,7 +2265,7 @@
 			$('#pop').find('div[imtype="im_pop_group_name"]').html(str);
 		},
 		/**
-		 * 展现群组公告
+		 * Show group announcement
 		 * 
 		 * @param isowner
 		 * @param groupDeclared
@@ -2281,7 +2281,7 @@
 			$('#pop').find('span[imtype="im_pop_group_declared"]').html(str);
 		},
 		/**
-		 * 样式，展现邀请域
+		 * style，Show invitation domain
 		 * 
 		 * @constructor
 		 */
@@ -2292,7 +2292,7 @@
 			$(obj).parent().hide();
 		},
 		/**
-		 * 样式，隐藏邀请域
+		 * style，Hide invite fields
 		 * 
 		 * @constructor
 		 */
@@ -2304,16 +2304,16 @@
 			tdObj.children().next().next().hide();
 		},
 		/**
-		 * 处理群组成员列表展现
+		 * Group member list display
 		 * 
 		 * @param obj
-		 *            member.member;//成员id member.nickName;//昵称
-		 *            member.speakState;//禁言状态 1:不禁言 2:禁言 member.role;//角色 1:创建者
-		 *            2:管理员 3：成员 member.sex;//性别 1:男 2：女
+		 *            member.member;//memberid member.nickName;//nickname
+		 *            member.speakState;//Gag state 1:Don't talk 2:Gag member.role;//role 1:creator
+		 *            2:Admin 3：member member.sex;//Gender 1:male 2：female
 		 * @param isowner
 		 * @param groupId
 		 * @param target
-		 *            1 讨论组 2 群组
+		 *            1 discussion group 2 group
 		 * @constructor
 		 */
 		DO_pop_show_help_GroupMemberList: function(obj, groupId, target) {
@@ -2342,63 +2342,63 @@
 				if (!member.nickName) {
 					member.nickName = member.member;
 				}
-				if (member.role == 1) { // 判断是否是群主
-					if (member.member == IM._user_account) { //判断是当前对象
+				if (member.role == 1) { // To determine whether the main group
+					if (member.member == IM._user_account) { //Judgment is the current object
 						isowner = true;
 					}
 					if(target == 1){
-						str += '<tr contact_you="' + member.member + '">' + '<td><span class="pull-left"><span style="color: #b94a48" data-role="1">[管理员]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);" onclick="IM.DO_editNickName(this)" ' + ' style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span></td>' + '</tr>';
+						str += '<tr contact_you="' + member.member + '">' + '<td><span class="pull-left"><span style="color: #b94a48" data-role="1">[Admin]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);" onclick="IM.DO_editNickName(this)" ' + ' style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span></td>' + '</tr>';
 					}else{
-						str += '<tr contact_you="' + member.member + '">' + '<td><span class="pull-left"><span style="color: #b94a48" data-role="1">[群主]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);" onclick="IM.DO_editNickName(this)" ' + ' style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span></td>' + '</tr>';	
+						str += '<tr contact_you="' + member.member + '">' + '<td><span class="pull-left"><span style="color: #b94a48" data-role="1">[The main group]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);" onclick="IM.DO_editNickName(this)" ' + ' style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span></td>' + '</tr>';	
 					}
 					
-				} else if (member.role == 2) { //如果是管理员
-					if (member.member == IM._user_account) { //判断是当前对象
+				} else if (member.role == 2) { //If it is an administrator
+					if (member.member == IM._user_account) { //Judgment is the current object
 						isadmin = true;
 					}
-					str += '<tr contact_you="' + member.member + '">' + '<td><span class="pull-left"><span style="color: #b94a48" data-role="2">[管理员]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);" onclick="IM.DO_editNickName(this)" ' + ' style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span>';
+					str += '<tr contact_you="' + member.member + '">' + '<td><span class="pull-left"><span style="color: #b94a48" data-role="2">[Admin]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);" onclick="IM.DO_editNickName(this)" ' + ' style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span>';
 					if (isowner) {
-						str += '<span class="pull-right label label-warning" onclick="IM.EV_deleteGroupMember(\'' + groupId + '\',\'' + member.member + '\')"> 踢出 </span>';
+						str += '<span class="pull-right label label-warning" onclick="IM.EV_deleteGroupMember(\'' + groupId + '\',\'' + member.member + '\')"> Kick out </span>';
 						// 禁言状态 1:不禁言 2:禁言
 						if (target == 2) {
 							if (member.speakState == 2) {
-								str += '<span class="pull-right label label-success" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',1)"> 恢复 </span>';
+								str += '<span class="pull-right label label-success" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',1)"> recovery </span>';
 							} else {
-								str += '<span class="pull-right label label-important" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',2)"> 禁言 </span>'
+								str += '<span class="pull-right label label-important" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',2)"> Gag </span>'
 							}
 							if (!isadmin) {
-								str += '<span class="pull-right label label-important" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',3)"> 取消管理员资格 </span>'
-								str += '<span class="pull-right label label-important" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',1)"> 转让 </span>'
+								str += '<span class="pull-right label label-important" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',3)"> Cancel administrator qualification </span>'
+								str += '<span class="pull-right label label-important" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',1)"> Transfer the possession of </span>'
 							}
 						}
 					} else {
 						// 禁言状态 1:不禁言 2:禁言
 						if (member.speakState == 2) {
-							str += '<span class="pull-right label label-inverse" style="cursor: default;"> 已禁言 </span>'
+							str += '<span class="pull-right label label-inverse" style="cursor: default;"> Banned </span>'
 						}
 					}
 					str += '</td>' + '</tr>';
 				} else {
-					str += '<tr contact_you="' + member.member + '">' + '<td>' + '<span class="pull-left"><span style="color: #006dcc" data-role="3">[成员]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);"  onclick="IM.DO_editNickName(this)" ' + 'style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span>';
+					str += '<tr contact_you="' + member.member + '">' + '<td>' + '<span class="pull-left"><span style="color: #006dcc" data-role="3">[member]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);"  onclick="IM.DO_editNickName(this)" ' + 'style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + member.nickName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span>';
 					if (isowner || isadmin) {
-						str += '<span class="pull-right label label-warning" onclick="IM.EV_deleteGroupMember(\'' + groupId + '\',\'' + member.member + '\')"> 踢出 </span>';
+						str += '<span class="pull-right label label-warning" onclick="IM.EV_deleteGroupMember(\'' + groupId + '\',\'' + member.member + '\')"> Kick out </span>';
 						// 禁言状态 1:不禁言 2:禁言
 						if (target == 2) {
 							if (member.speakState == 2) {
-								str += '<span class="pull-right label label-success" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',1)"> 恢复 </span>';
+								str += '<span class="pull-right label label-success" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',1)"> recovery </span>';
 							} else {
-								str += '<span class="pull-right label label-important" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',2)"> 禁言 </span>'
+								str += '<span class="pull-right label label-important" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + member.member + '\',2)"> Gag </span>'
 							}
 							if (isowner) {
-								str += '<span class="pull-right label label-success" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',2)"> 设置为管理员 </span>';
-								str += '<span class="pull-right label label-important" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',1)"> 转让 </span>'
+								str += '<span class="pull-right label label-success" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',2)"> Set as Administrator </span>';
+								str += '<span class="pull-right label label-important" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member.member + '\',1)"> Transfer the possession of </span>'
 							}
 						}
 					}
 					else {
 						// 禁言状态 1:不禁言 2:禁言
 						if (member.speakState == 2) {
-							str += '<span class="pull-right label label-inverse" style="cursor: default;"> 已禁言 </span>'
+							str += '<span class="pull-right label label-inverse" style="cursor: default;"> Banned </span>'
 						}
 					}
 					str += '</td>' + '</tr>';
@@ -2412,7 +2412,7 @@
 			nameSpan.html(memberName);
 		},
 		/**
-		 * 样式，删除群组成员
+		 * style，Delete group members
 		 * 
 		 * @param memberId
 		 * @constructor
@@ -2422,7 +2422,7 @@
 			trobj.remove();
 		},
 		/**
-		 * 样式，新增群组成员
+		 * style，New group member
 		 * 
 		 * @param groupId
 		 * @param memberId
@@ -2436,11 +2436,11 @@
 			if ($('#pop').find('tr[contact_you=' + memberId + ']').length > 0) {
 				return;
 			}
-			var str = '<tr contact_you="' + memberId + '">' + '<td>' + '<span class="pull-left"><span style="color: #006dcc">[成员]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);"  onclick="IM.DO_editNickName(this)" ' + 'style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + memberName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span>';
+			var str = '<tr contact_you="' + memberId + '">' + '<td>' + '<span class="pull-left"><span style="color: #006dcc">[member]</span>&nbsp;&nbsp;' + '<a href="javascript:void(0);"  onclick="IM.DO_editNickName(this)" ' + 'style="word-break:keep-all;text-overflow:ellipsis;overflow: hidden;text-decoration:none;display: inline-block;width: 189px;vertical-align: bottom;">' + memberName + '</a><input style="display:none;padding:0px;margin-bottom:0px" type="text" onblur="IM.DO_checkNick(this);" /></span>';
 			if (isowner && isowner == 'true') {
-				str += '<span class="pull-right label label-warning" onclick="IM.EV_deleteGroupMember(\'' + groupId + '\',\'' + memberId + '\')"> 踢出 </span>';
+				str += '<span class="pull-right label label-warning" onclick="IM.EV_deleteGroupMember(\'' + groupId + '\',\'' + memberId + '\')"> Kick out </span>';
 				if (target == 2) {
-					str += '<span class="pull-right label label-important" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + memberId + '\',2)"> 禁言 </span>';
+					str += '<span class="pull-right label label-important" onclick="IM.EV_forbidMemberSpeak(\'' + groupId + '\',\'' + memberId + '\',2)"> Gag </span>';
 				};
 
 			};
@@ -2463,9 +2463,9 @@
 			modifyMemberCardBuilder.setBelong(belong);
 			modifyMemberCardBuilder.setDisplay(nick);
 			RL_YTX.modifyMemberCard(modifyMemberCardBuilder, function(obj) { //member belong
-				console.log("修改群组成员名片成功！");
+				console.log("Modify group membership card success！");
 			}, function(obj) {
-				console.log("修改群组成员名片失败！");
+				console.log("Failed to modify group membership！");
 			})
 		},
 		DO_checkNick: function(obj) {
@@ -2476,7 +2476,7 @@
 				return;
 			} else {
 				if (nick == null) {
-					alert("昵称不能为空");
+					alert("Nickname cannot be empty");
 					return;
 				} else {
 					$(obj).prev().text(nick);
@@ -2488,50 +2488,50 @@
 			IM._modifyName(obj);
 		},
 		/**
-		 * 群组详情页面数据处理
+		 * Group details page data processing
 		 * 
 		 * @param groupId
 		 * @param owner
-		 * @target 1 讨论组 2 群组
+		 * @target 1 discussion group 2 group
 		 * @constructor
 		 */
 		DO_pop_show: function(groupId, isowner, target) {
 			// 弹窗展示
 			var str = '<div class="modal" id="pop_group_' + groupId + '" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%;">' + '<div class="modal-header" im_isowner="' + isowner + '" im_target="' + target + '">' + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="IM.HTML_pop_hide();">×</button>';
 			if (target == 1) {
-				str += '<h3>讨论组Id：' + groupId + '</h3>';
+				str += '<h3>discussion groupId：' + groupId + '</h3>';
 			}
 			if (target == 2) {
-				str += '<h3>群组Id：' + groupId + '</h3>';
+				str += '<h3>groupId：' + groupId + '</h3>';
 			}
-			str += '</div>' + '<div class="modal-body">' + '<table class="table table-bordered">' + '<tr>' + '<td>' + '<div style="height:150px;overflow-y:auto;">' + '<table imtype="im_pop_members" class="table table-striped">' + '</table>' + '</div>' + '<div style="height:auto; padding-bottom: 0px;">' + '<table imtype="im_pop_members_add" style="display:none;" class="table table-striped">' + '</table>' + '</div>' + '<a href="javascript:void(0);" class="btn pull-right" style="margin-left:10px;" onclick="IM.DO_cleanChatHis(\'' + groupId + '\')">清除聊天记录</a>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left">消息免打扰：</span>' + '<span class="pull-right" imtype="im_pop_group_notice">'
+			str += '</div>' + '<div class="modal-body">' + '<table class="table table-bordered">' + '<tr>' + '<td>' + '<div style="height:150px;overflow-y:auto;">' + '<table imtype="im_pop_members" class="table table-striped">' + '</table>' + '</div>' + '<div style="height:auto; padding-bottom: 0px;">' + '<table imtype="im_pop_members_add" style="display:none;" class="table table-striped">' + '</table>' + '</div>' + '<a href="javascript:void(0);" class="btn pull-right" style="margin-left:10px;" onclick="IM.DO_cleanChatHis(\'' + groupId + '\')">Clear chat history</a>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left">Message without interruption：</span>' + '<span class="pull-right" imtype="im_pop_group_notice">'
 				//+ '<a href="javascript:void(0);" class="btn btn-primary" style="margin-left:10px;">开启</a>'
 				//+ '<a href="javascript:void(0);" class="btn" style="margin-left:10px;">关闭</a>'
 				+ '</span>' + '</td>' + '</tr>';
 			str += '<tr><td>';
 			if (target == 2) {
-				str += '<div class="pull-left" style="width: 25%;">群组名：</div>';
+				str += '<div class="pull-left" style="width: 25%;">Group name：</div>';
 			}
 			if (target == 1) {
-				str += '<div class="pull-left" style="width: 25%;">讨论组名：</div>';
+				str += '<div class="pull-left" style="width: 25%;">Group name：</div>';
 			}
-			str += '<div class="pull-right" style="width: 75%;" imtype="im_pop_group_name">' + '<input class="pull-right" type="text" style="width:95%;" />' + '</div>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;">公告：</span>' + '<span class="pull-right" style="width: 75%;" imtype="im_pop_group_declared">' + '<textarea class="pull-left" rows="3" style="width:95%;"></textarea>' + '</span>' + '</td>' + '</tr>' + '</table>';
+			str += '<div class="pull-right" style="width: 75%;" imtype="im_pop_group_name">' + '<input class="pull-right" type="text" style="width:95%;" />' + '</div>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;">Notice：</span>' + '<span class="pull-right" style="width: 75%;" imtype="im_pop_group_declared">' + '<textarea class="pull-left" rows="3" style="width:95%;"></textarea>' + '</span>' + '</td>' + '</tr>' + '</table>';
 			if (target == 2) {
-				str += '</div><div class="modal-footer">' + '<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> 退出群组 </button>'
+				str += '</div><div class="modal-footer">' + '<button class="btn btn-primary" type="button" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + isowner + ')"> Exit group </button>'
 				if (isowner) {
-					str += '<a href="javascript:void(0);" class="btn" onclick="IM.EV_dismissGroup(\'' + groupId + '\')"> 解散群组 </a>' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">保存修改</a>';
+					str += '<a href="javascript:void(0);" class="btn" onclick="IM.EV_dismissGroup(\'' + groupId + '\')"> ungroup </a>' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">Save changes</a>';
 				}
 				str += '</div>';
 			}
 			if (target == 1) {
-				str += '</div><div class="modal-footer">' + '<a href="javascript:void(0);" class="btn" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + false + ')">退出讨论组</a>' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">保存修改</a>' + '</div>';
+				str += '</div><div class="modal-footer">' + '<a href="javascript:void(0);" class="btn" onclick="IM.EV_quitGroup(\'' + groupId + '\',' + false + ')">Exit discussion group</a>' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateGroupInfo(\'' + groupId + '\')">Save changes</a>' + '</div>';
 			}
 			str += '</div>';
 			$('#pop').find('div[class="row"]').html(str);
 			IM.HTML_pop_show();
 		},
 		/**
-		 * 群组pop层展示
+		 * grouppopLayer presentation
 		 * 
 		 * @constructor
 		 */
@@ -2578,7 +2578,7 @@
 			pop_photo.show();
 		},
 		/**
-		 * 图片pop层隐藏
+		 * picturepopLayer hide
 		 * 
 		 * @constructor
 		 */
@@ -2593,7 +2593,7 @@
 			IM.HTML_LJ_none();
 		},
 		/**
-		 * 拍照pop层隐藏
+		 * PhotographpopLayer hide
 		 * 
 		 * @constructor
 		 */
@@ -2603,7 +2603,7 @@
 			IM.HTML_LJ_none();
 		},
 		/**
-		 * 样式，群组详情页面显示
+		 * style，Group details page display
 		 * 
 		 * @constructor
 		 */
@@ -2617,7 +2617,7 @@
 			pop.show();
 		},
 		/**
-		 * 样式，群组详情页面隐藏
+		 * style，Group details page
 		 * 
 		 * @constructor
 		 */
@@ -2626,7 +2626,7 @@
 			IM.HTML_LJ_none();
 		},
 		/**
-		 * 隐藏提示框
+		 * Hide prompt box
 		 * 
 		 * @param id
 		 */
@@ -2644,7 +2644,7 @@
 			}
 		},
 		/**
-		 * 显示提示框
+		 * Display prompt box
 		 * 
 		 * @param id
 		 * @param str
@@ -2669,7 +2669,7 @@
 			}, t);
 		},
 		/**
-		 * 样式，因高度变化而重置页面布局
+		 * style，Reset page layout due to changes in height
 		 * 
 		 * @constructor
 		 */
@@ -2686,7 +2686,7 @@
 			}
 		},
 		/**
-		 * canvas绘制滤镜层（HTML5）
+		 * canvasDraw the filter layer（HTML5）
 		 * 
 		 * @param style
 		 *            white, black
@@ -2752,7 +2752,7 @@
 			}, 20);
 		},
 		/**
-		 * 样式，滤镜隐藏
+		 * style，Hide filter
 		 * 
 		 * @constructor
 		 */
@@ -2760,7 +2760,7 @@
 			$('#lvjing').hide();
 		},
 		/**
-		 * 样式，滤镜显示
+		 * style，Display filter
 		 * 
 		 * @constructor
 		 */
@@ -2769,10 +2769,10 @@
 			$('#lvjing').show();
 		},
 		/**
-		 * 聊天模式选择
+		 * Chat mode selection
 		 * 
 		 * @param contact_type --
-		 *            'C':代表联系人; 'G':代表群组; 'M':代表多渠道客服
+		 *            'C':Representative contact; 'G':Representative group; 'M':Multi channel customer service representative
 		 * @constructor
 		 */
 		DO_choose_contact_type: function(contact_type) {
@@ -2793,21 +2793,21 @@
 			// 切换样式
 			var current_contact_type = IM.HTML_find_contact_type();
 			var im_add = $('#im_add');
-			if (IM._contact_type_c == current_contact_type) { // 点对点
+			if (IM._contact_type_c == current_contact_type) { // Point to point
 				im_add.find('i').attr('class', '').addClass('icon-user');
 				im_add.find('input[imtype="im_add_contact"]').show();
 				im_add.find('input[imtype="im_add_group"]').hide();
 				im_add.find('input[imtype="im_add_mcm"]').hide();
 				im_add.find('button[imtype="im_add_btn_contact"]').show();
 				im_add.find('div[imtype="im_add_btn_group"]').hide();
-			} else if (IM._contact_type_g == current_contact_type) { // 群组
+			} else if (IM._contact_type_g == current_contact_type) { // group
 				im_add.find('i').attr('class', '').addClass('icon-th-list');
 				im_add.find('input[imtype="im_add_contact"]').hide();
 				im_add.find('input[imtype="im_add_group"]').show();
 				im_add.find('input[imtype="im_add_mcm"]').hide();
 				im_add.find('button[imtype="im_add_btn_contact"]').hide();
 				im_add.find('div[imtype="im_add_btn_group"]').show();
-			} else if (IM._contact_type_m == current_contact_type) { // 客服
+			} else if (IM._contact_type_m == current_contact_type) { // Customer service
 				im_add.find('i').attr('class', '').addClass('icon-home');
 				im_add.find('input[imtype="im_add_contact"]').hide();
 				im_add.find('input[imtype="im_add_group"]').hide();
@@ -2819,7 +2819,7 @@
 			}
 		},
 		/**
-		 * 群组聊天的时候监控到@符号则展示群组成员列表
+		 * Group chat time to monitor@A list of group members is displayed
 		 */
 		HTML_memberList: function(obj, startIndex) {
 			var popoverContent = $("#groupMemList_div").find('div[class="popover-content"]');
@@ -2827,7 +2827,7 @@
 			var num = obj.length;
 			$("#groupMemList_div").css("top", (20 - (num - 1) * 30) + "px");
 			for (var i = 0; i < obj.length; i++) {
-				var member = obj[i].member; //账号  nickName 昵称
+				var member = obj[i].member; //Account number  nickName nickname
 				console.log("member = " + member + ";nickName=" + obj[i].nickName);
 				$("#groupMemList_div").show();
 				var str = '';
@@ -2869,7 +2869,7 @@
 			cursorPos += nickName.length;
 		},
 		/**
-		 * 样式，发送消息
+		 * style，send message
 		 */
 		DO_sendMsg: function() {
 			var str = IM.DO_pre_replace_content_to_db();
@@ -2895,11 +2895,11 @@
 				}
 			});
 			if (!b) {
-				alert("请选择要对话的联系人或群组");
+				alert("Select the contact or group you want to talk to");
 				return;
 			};
 			if (IM._serverNo == content_you) {
-				alert("系统消息禁止回复");
+				alert("System message no reply");
 				return;
 			}
 			if (im_send_content == undefined || im_send_content == null || im_send_content == '')
@@ -2930,11 +2930,11 @@
 				}
 			});
 			if (!b) {
-				alert("请选择要对话的联系人或群组");
+				alert("Select the contact or group you want to talk to");
 				return;
 			}
 			if (IM._serverNo == content_you) {
-				alert("系统消息禁止回复");
+				alert("System message no reply");
 				return;
 			}
 			var windowWid = $(window).width();
@@ -2953,10 +2953,10 @@
 			$(document.getElementById(id)).find('input[imtype="msg_attach_resend"]').click();
 		},
 		/**
-		 * 发送图片，页面选择完图片后出发
+		 * Send pictures，Page to choose the picture after departure
 		 * 
 		 * @param id --
-		 *            dom元素消息体的id
+		 *            domElement message bodyid
 		 * @param msgid
 		 * @constructor
 		 */
@@ -2984,7 +2984,7 @@
 			}
 		},
 		/**
-		 * 发送本地附件
+		 * Send local attachments
 		 */
 		DO_im_attachment_file: function() {
 			var msgid = new Date().getTime();
@@ -2999,12 +2999,12 @@
 				}
 			});
 			if (!b) {
-				alert("请选择要对话的联系人或群组");
+				alert("Select the contact or group you want to talk to");
 				$('#im_attachment_file').val('');
 				return;
 			};
 			if (IM._serverNo == content_you) {
-				alert("系统消息禁止回复");
+				alert("System message no reply");
 				return;
 			}
 			var str = '<div class="progress progress-striped active">' + '<div class="bar" style="width: 40%;"></div>' + '</div>' + '<span imtype="msg_attach">' + '<a imtype="msg_attach_href" href="javascript:void(0);" target="_blank">' + '<span>' + '<img style="width:32px; height:32px; margin-right:5px; margin-left:5px;" src="assets/img/attachment_icon.png" />' + '</span>' + '<span imtype="msg_attach_name"></span>' + '</a>' + '<span style="font-size: small;margin-left:15px;"></span>' + '<input imtype="msg_attach_resend" type="file" accept="" style="display:none;margin: 0 auto;" onchange="IM.DO_im_attachment_file_up(\'' + content_you + '_' + msgid + '\', \'' + msgid + '\')">' + '</span>';
@@ -3013,10 +3013,10 @@
 			$(document.getElementById(id)).find('input[imtype="msg_attach_resend"]').click();
 		},
 		/**
-		 * 打开本地文件时触发本方法
+		 * This method is triggered when the local file is opened
 		 * 
 		 * @param id --
-		 *            dom元素消息体的id
+		 *            domElement message bodyid
 		 * @param msgid
 		 * @constructor
 		 */
@@ -3077,7 +3077,7 @@
 			}
 		},
 		/**
-		 * 选择表情
+		 * Select expression
 		 * 
 		 * @param unified
 		 * @param unicode
@@ -3130,7 +3130,7 @@
 			var str = $('#im_send_content').html();
 			str = str.replace(/<(div|br|p)[/]?>/g, '\u000A');
 			str = str.replace(/\u000A+/g, '\u000D');
-			str = str.replace(/<[^img][^>]+>/g, ''); // 去掉所有的html标记
+			str = str.replace(/<[^img][^>]+>/g, ''); // Get rid of allhtmlsign
 			str = str.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(
 				/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&nbsp;/g,
 				' ');
@@ -3140,7 +3140,7 @@
 			return str;
 		},
 		/**
-		 * 隐藏或显示表情框
+		 * Hide or show the expression box
 		 * 
 		 * @constructor
 		 */
@@ -3152,7 +3152,7 @@
 			}
 		},
 		/**
-		 * 获取当前时间戳 YYYYMMddHHmmss
+		 * Gets the current time stamp YYYYMMddHHmmss
 		 * 
 		 * @returns {*}
 		 */
@@ -3162,7 +3162,7 @@
 			return timestamp;
 		},
 		/**
-		 * 修改用户信息
+		 * Modify user information
 		 */
 		DO_userMenu: function() {
 			// 构建用户信息页面
@@ -3171,10 +3171,10 @@
 			IM.EV_getMyMenu();
 		},
 		/**
-		 * 构建用户信息页面
+		 * Build user information page
 		 */
 		DO_userpop_show: function() {
-			var str = '<div class="modal" id="pop_MyInfo" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%;">' + '<div class="modal-header" >' + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="IM.HTML_pop_hide();">×</button>' + '<h3>个人信息 </h3>' + '</div>' + '<div class="modal-body">' + '<table class="table table-bordered">' + '<tr>' + '<td>' + '<div class="pull-left" style="width: 25%;">昵称：</div>' + '<div class="pull-right" style="width: 75%;" imtype="im_pop_MyInfo_nick">' + '<input id="nickName" class="pull-right" type="text" style="width:95%;" value="" />' + '</div>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<div class="pull-left" style="width: 25%;">性别：</div>' + '<div class="pull-right" style="width: 75%;" imtype="im_pop_MyInfo_sex">' + '<input name="sex" type="radio" value="1" />男' + '<input name="sex" style="margin-left:20%;" type="radio" value="2" />女' + '</div>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<div class="pull-left" style="width: 25%;">出生日期：</div>' + '<div class="pull-right" style="width: 75%;" >' + '<input id="birth" size="16" type="text" value="" class="form_date" readonly="readonly">' + '</div></td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;">个性签名：</span>' + '<span class="pull-right" style="width: 75%;" imtype="im_pop_MyInfo_sign">' + '<textarea id="sign" class="pull-left" style="width:95%;"></textarea>' + '</span>' + '</td>' + '</tr>' + '</table>' + '<div class="modal-footer">' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateMyInfo()"> 保存修改 </a>' + '<a href="javascript:void(0);" class="btn" onclick="IM.HTML_pop_hide();">取消</a>' + '</div></div>';
+			var str = '<div class="modal" id="pop_MyInfo" style="position: relative; top: auto; left: auto; right: auto; margin: 0 auto 20px; z-index: 1; max-width: 100%;">' + '<div class="modal-header" >' + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="IM.HTML_pop_hide();">×</button>' + '<h3>Personal information </h3>' + '</div>' + '<div class="modal-body">' + '<table class="table table-bordered">' + '<tr>' + '<td>' + '<div class="pull-left" style="width: 25%;">nickname：</div>' + '<div class="pull-right" style="width: 75%;" imtype="im_pop_MyInfo_nick">' + '<input id="nickName" class="pull-right" type="text" style="width:95%;" value="" />' + '</div>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<div class="pull-left" style="width: 25%;">Gender：</div>' + '<div class="pull-right" style="width: 75%;" imtype="im_pop_MyInfo_sex">' + '<input name="sex" type="radio" value="1" />male' + '<input name="sex" style="margin-left:20%;" type="radio" value="2" />female' + '</div>' + '</td>' + '</tr>' + '<tr>' + '<td>' + '<div class="pull-left" style="width: 25%;">Birthday：</div>' + '<div class="pull-right" style="width: 75%;" >' + '<input id="birth" size="16" type="text" value="" class="form_date" readonly="readonly">' + '</div></td>' + '</tr>' + '<tr>' + '<td>' + '<span class="pull-left" style="width: 25%;">Personalized signature：</span>' + '<span class="pull-right" style="width: 75%;" imtype="im_pop_MyInfo_sign">' + '<textarea id="sign" class="pull-left" style="width:95%;"></textarea>' + '</span>' + '</td>' + '</tr>' + '</table>' + '<div class="modal-footer">' + '<a href="javascript:void(0);" class="btn btn-primary" onclick="IM.EV_updateMyInfo()"> Save changes </a>' + '<a href="javascript:void(0);" class="btn" onclick="IM.HTML_pop_hide();">cancel</a>' + '</div></div>';
 			$('#pop').find('div[class="row"]').html(str);
 			// 时间控件
 			$('.form_date').datetimepicker({
@@ -3189,7 +3189,7 @@
 			IM.HTML_pop_show();
 		},
 		/**
-		 * 获取当前用户个人信息
+		 * Get current user personal information
 		 */
 		EV_getMyMenu: function() {
 			RL_YTX.getMyInfo(function(obj) {
@@ -3205,22 +3205,22 @@
 				}
 			}, function(obj) {
 				if (520015 != obj.code) {
-					console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+					console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 				}
 			});
 		},
 		/**
-		 * 整合用户信息传给服务器
+		 * Integrate user information to server
 		 */
 		EV_updateMyInfo: function() {
 			var nickName = $("#nickName").val();
 			if (nickName != IM._user_account) {
 				/*if (nickName.length > 6) {
-					alert("昵称长度不能超过6");
+					alert("The nickname length cannot exceed6");
 					return;
 				};*/
 				if (nickName == "") {
-					alert("昵称不能为空");
+					alert("Nickname cannot be empty");
 					return false;
 				}
 			}
@@ -3233,23 +3233,23 @@
 			var birth = $("#birth").val();
 			var sign = $("#sign").val();
 			if (sign.length > 100) {
-				alert("签名长度不能超过100");
+				alert("Signature length cannot exceed100");
 				return;
 			}
 			var uploadPersonInfoBuilder = new RL_YTX.UploadPersonInfoBuilder(nickName, sex, birth, sign);
 			RL_YTX.uploadPerfonInfo(uploadPersonInfoBuilder, function(obj) {
 				IM.HTML_pop_hide();
 				$('#navbar_login_show').find('span')[1].innerHTML = nickName;
-				$('#navbar_login_show').html('<span style="float: left;display: block;font-size: 20px;font-weight: 200;padding-top: 10px;padding-bottom: 10px;text-shadow: 0px 0px 0px;color:#eee" >您好:</span>' + '<a onclick="IM.DO_userMenu()" style="text-decoration: none;cursor:pointer;float: left;font-size: 20px;font-weight: 200;max-width:130px;' + 'padding-top: 10px;padding-right: 20px;padding-bottom: 10px;padding-left: 20px;text-shadow: 0px 0px 0px;color:#eee;word-break:keep-all;text-overflow:ellipsis;overflow: hidden;" >' + nickName + '</a>' + '<span onclick="IM.EV_logout()" style="cursor:pointer;float: right;font-size: 20px;font-weight: 200;' + 'padding-top: 10px;padding-bottom: 10px;text-shadow: 0px 0px 0px;color:#eeeeee">退出</span>');
+				$('#navbar_login_show').html('<span style="float: left;display: block;font-size: 20px;font-weight: 200;padding-top: 10px;padding-bottom: 10px;text-shadow: 0px 0px 0px;color:#eee" >Hello!:</span>' + '<a onclick="IM.DO_userMenu()" style="text-decoration: none;cursor:pointer;float: left;font-size: 20px;font-weight: 200;max-width:130px;' + 'padding-top: 10px;padding-right: 20px;padding-bottom: 10px;padding-left: 20px;text-shadow: 0px 0px 0px;color:#eee;word-break:keep-all;text-overflow:ellipsis;overflow: hidden;" >' + nickName + '</a>' + '<span onclick="IM.EV_logout()" style="cursor:pointer;float: right;font-size: 20px;font-weight: 200;' + 'padding-top: 10px;padding-bottom: 10px;text-shadow: 0px 0px 0px;color:#eeeeee">Sign out</span>');
 				IM._username = nickName;
 			}, function(obj) {
-				console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+				console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 			});
 		},
 		_cancelTakePic: function() {
 			IM.HTML_pop_takePicture_hide();
 			var onErr = function(obj) {
-				console.log("错误码：" + obj.code + "; 错误码描述：" + obj.msg);
+				console.log("Error code：" + obj.code + "; Error code description：" + obj.msg);
 			};
 			RL_YTX.photo.cancel();
 		},
@@ -3263,11 +3263,11 @@
 				}
 			});
 			if (!b) {
-				alert("请选择要对话的联系人或群组");
+				alert("Select the contact or group you want to talk to");
 				return;
 			};
 			if (IM._serverNo == content_you) {
-				alert("系统消息禁止回复");
+				alert("System message no reply");
 				return;
 			}
 			// 拍照按钮的浏览器兼容
@@ -3288,14 +3288,14 @@
 				IM.HTML_pop_takePicture_show();
 			};
 			var onErr = function(errObj) {
-				console.log("错误码：" + errObj.code + "; 错误描述：" + errObj.msg);
+				console.log("Error code：" + errObj.code + "; Error description：" + errObj.msg);
 				// IM.HTML_pop_takePicture_hide();
 				return;
 			};
 			RL_YTX.photo.apply(objTag, onCanPlay, onErr);
 		},
 		/**
-		 * 拍照
+		 * Photograph
 		 */
 		_snapshot: function() {
 			var content_type = '';
@@ -3308,8 +3308,8 @@
 			});
 			var resultObj = RL_YTX.photo.make();
 			IM.HTML_pop_takePicture_hide();
-			if ("174010" == resultObj.code) { //没有调用applay方法
-				alert("错误描述：" + resultObj.msg);
+			if ("174010" == resultObj.code) { //No callapplayMethod
+				alert("Error description：" + resultObj.msg);
 			} else {
 				var windowWid = $(window).width();
 				var msgid = new Date().getTime();
@@ -3338,7 +3338,7 @@
 				var firstMsg = null;
 				for (var i = 0; i < content_list.children().length; i++) {
 					var child = content_list.children()[i];
-					if (child.nodeName == "DIV" && child.id != "getHistoryMsgDiv") { // 判断标签是不是div
+					if (child.nodeName == "DIV" && child.id != "getHistoryMsgDiv") { // Judge whether the label isdiv
 						if (child.style.display != "none") {
 							firstMsg = child;
 							break;
@@ -3349,27 +3349,27 @@
 			}
 		},
 		/**
-		 * 获取历史消息GetHistoryMessageBuilder
+		 * Get history informationGetHistoryMessageBuilder
 		 * 
 		 * @param talker
-		 *            消息交互者或群组id
+		 *            Message interaction or groupid
 		 * @param pageSize
-		 *            获取消息数目 默认为10 最大为50
+		 *            Get the message number By default10 Max for50
 		 * @param version
-		 *            接收消息的消息版本号 分页条件
+		 *            Message version number for receiving message Page condition
 		 * @param msgId
-		 *            发送消息的msgId 分页条件
+		 *            Send messagemsgId Page condition
 		 * @param order
-		 *            排序方式 1升序 2降序 默认为1
+		 *            sort order 1Ascending 2Descending By default1
 		 * @param callback --
-		 *            function(obj){ var msg = obj[i]; //obj 为数组 msg.version;
-		 *            //消息版本号 msg.msgType; //消息类型 msg.msgContent; //文本消息内容
-		 *            msg.msgSender; //发送者 msg.msgReceiver; //接收者 msg.msgDomain;
-		 *            //扩展字段 msg.msgFileName; //消息文件名 msg.msgFileUrl; //消息下载地址
-		 *            msg.msgDateCreated; //服务器接收时间 msg.mcmEvent; //是否为mcm消息
-		 *            0普通im消息 1 start消息 2 end消息 53发送mcm消息 }
+		 *            function(obj){ var msg = obj[i]; //obj As array msg.version;
+		 *            //Message version number msg.msgType; //Message type msg.msgContent; //Text message content
+		 *            msg.msgSender; //sender msg.msgReceiver; //Recipient msg.msgDomain;
+		 *            //Extended field msg.msgFileName; //Message file name msg.msgFileUrl; //Message download address
+		 *            msg.msgDateCreated; //Server receive time msg.mcmEvent; //Whether asmcmMessage
+		 *            0ordinaryimMessage 1 startMessage 2 endMessage 53SendmcmMessage }
 		 * @param onError --
-		 *            function(obj){ obj.code; //错误码; }
+		 *            function(obj){ obj.code; //Error code; }
 		 * @constructor
 		 */
 		EV_getHistoryMessage: function(firstMsg) {
@@ -3378,9 +3378,9 @@
 			var order = 2;
 			var talker = null;
 			if (!!firstMsg) {
-				talker = $(firstMsg).attr("content_you"); // 接受者
+				talker = $(firstMsg).attr("content_you"); // recipient
 				console.log("talker" + talker + "," + IM._user_account);
-				var msgId = $(firstMsg).attr("id").substring(talker.length + 1); // 当前条为发送消息则提供参数msgId
+				var msgId = $(firstMsg).attr("id").substring(talker.length + 1); // The current article provides parameters for the send messagemsgId
 				console.log(msgId);
 				var sender = $(firstMsg).attr("contactor");
 				if (sender != "sender") {
@@ -3390,7 +3390,7 @@
 					getHistoryMessageBuilder = new RL_YTX.GetHistoryMessageBuilder(
 						talker, pageSize, 2, msgId, order);
 				}
-				console.log("talker=" + talker + ";pageSize=" + pageSize + ";msgId=" + msgId + ";(1升序2降序)order=" + order);
+				console.log("talker=" + talker + ";pageSize=" + pageSize + ";msgId=" + msgId + ";(1Ascending2Descending)order=" + order);
 			} else {
 				$('#im_contact_list').find('li').each(function() {
 					if ($(this).hasClass('active')) {
@@ -3398,7 +3398,7 @@
 					}
 				});
 				getHistoryMessageBuilder = new RL_YTX.GetHistoryMessageBuilder(talker, pageSize, "", "", order);
-				console.log("talker=" + talker + ";pageSize=" + pageSize + ";msgId=" + msgId + ";(1升序2降序)order=" + order);
+				console.log("talker=" + talker + ";pageSize=" + pageSize + ";msgId=" + msgId + ";(1Ascending2Descending)order=" + order);
 			}
 			// 调用接口
 			RL_YTX.getHistoryMessage(getHistoryMessageBuilder,
@@ -3423,11 +3423,11 @@
 							content_you = msg.msgSender;
 						};
 						var str = '';
-						if (msg.msgType == 1) { //1:文本消息 2：语音消息 3：视频消息 4：图片消息 5：位置消息 6：文件   msg.msgFileName; //消息文件名
+						if (msg.msgType == 1) { //1:Text message 2：Voice message 3：Video message 4：Picture message 5：Location message 6：file   msg.msgFileName; //Message file name
 							str = '<pre msgtype="content">' + msg.msgContent + '</pre>';
 						};
 						if (msg.msgType == 2) { //zzx
-							str = '<pre>您有一条语音消息,请用其他设备接收</pre>';
+							str = '<pre>You have a voice message.,Please use other devices to receive</pre>';
 						};
 						if (msg.msgType == 3) {
 							str = '<img onclick="IM.DO_pop_phone(\'' + content_you + '\', \'' + version + '\')" ' +
@@ -3439,9 +3439,9 @@
 						};
 						if (msg.msgType == 5) { //zzx
 							var jsonObj = eval('(' + obj.msgContent + ')');
-							var lat = jsonObj.lat; //纬度
-							var lon = jsonObj.lon; //经度
-							var title = jsonObj.title; //位置信息描述
+							var lat = jsonObj.lat; //latitude
+							var lon = jsonObj.lon; //longitude
+							var title = jsonObj.title; //Location information description
 							var windowWid = $(window).width();
 							var imgWid = 0;
 							var imgHei = 0;
@@ -3468,9 +3468,9 @@
 				},
 				function(obj) {
 					if (obj.code == "540016") {
-						$("#getHistoryMsgDiv").html('<a href="javascript:void(0);" style="font-size: small;position: relative;top: -30px;">没有更多历史消息</a>');
+						$("#getHistoryMsgDiv").html('<a href="javascript:void(0);" style="font-size: small;position: relative;top: -30px;">No more history information</a>');
 					} else {
-						console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+						console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 					}
 				});
 		},
@@ -3478,7 +3478,7 @@
 			//发起呼叫
 			var receiver = $("#callerId").val();
 			if (IM._serverNo == receiver) {
-				alert("系统消息禁止回复");
+				alert("System message no reply");
 				return;
 			};
 			var view = document.getElementById("receivedVideo");
@@ -3486,8 +3486,8 @@
 			localView.muted = true;
 			RL_YTX.setCallView(view, localView);
 			var makeCallBuilder = new RL_YTX.MakeCallBuilder();
-			makeCallBuilder.setCalled(receiver); //John的号码
-			makeCallBuilder.setCallType(callType); //呼叫的类型 0 音频 1视频 2 落地电话
+			makeCallBuilder.setCalled(receiver); //JohnNumber
+			makeCallBuilder.setCallType(callType); //Call type 0 audio frequency 1video 2 Floor telephone
 			makeCallBuilder.setNickName('65asdasd646d4');
 			console.log("called = " + receiver + "; " + "callType = " + callType);
 			var callId = RL_YTX.makeCall(makeCallBuilder,
@@ -3498,22 +3498,22 @@
 					ajaxLoadEnd();
 					$('#diagnose_operation_dialog').dialog('close');
 					if(obj.code == 174002){
-						$.messager.alert("提示", '连接用户不在线');
+						$.messager.alert("Prompt", 'Users not online');
 					} else if(obj.code == 174005) {
-						$.messager.alert("提示", '未检测到摄像头,请连接后重新尝试');
+						$.messager.alert("Prompt", 'No camera detected,Please connect and try again');
 					}
-					console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+					console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 				});
 			IM.HTML_videoView(callId, IM._user_account, receiver, callType);
 			$("#videoView").show();
 			$("#voiceCallDiv_audio").hide();
 			$("#cancelVoipCall").show();
-			$("#cancelVoipCall").text("取消");
+			$("#cancelVoipCall").text("cancel");
 			$("#acceptVoipCall").hide();
 			$("#refuseVoipCall").hide();
 		},
 		/**
-		 * 展示视频通话窗口
+		 * Show video call window
 		 */
 		HTML_videoView: function(callId, caller, called, type) {
 			var windowWidth = document.body.clientWidth;
@@ -3526,9 +3526,9 @@
 			if (!document.getElementById("cancelVoipCall")) {
 				var str = '<div style="width:100%;	background-color:black;margin-top:0px;' +
 					'padding-top:5px;padding-bottom:5px;"><a href="javascript:void(0);" id="cancelVoipCall" ' +
-					'class="btn" >取消</a><a href="javascript:void(0);" id="acceptVoipCall" ' +
-					'class="btn btn-primary" >接受视频</a><a href="javascript:void(0);" id="refuseVoipCall" ' +
-					'class="btn" >拒绝视频</a></div>';
+					'class="btn" >cancel</a><a href="javascript:void(0);" id="acceptVoipCall" ' +
+					'class="btn btn-primary" >Accept video</a><a href="javascript:void(0);" id="refuseVoipCall" ' +
+					'class="btn" >Refuse video chat</a></div>';
 				$("#videoView").append(str);
 				$("#cancelVoipCall").click(function() {
 					IM.DO_cancelVoipCall(callId, caller, called);
@@ -3544,7 +3544,7 @@
 				$("#cancelVoipCall").click(function() {
 					IM.DO_cancelVoipCall(callId, caller, called);
 				});
-				$("#cancelVoipCall").text("取消");
+				$("#cancelVoipCall").text("cancel");
 				$("#acceptVoipCall").unbind('click');
 				$("#acceptVoipCall").click(function() {
 					IM.DO_answerVoipCall(callId, caller, called, type);
@@ -3556,29 +3556,29 @@
 			};
 		},
 		/**
-		 * 取消呼叫
-		 * @param callId 消息的唯一标识
-		 * @param called 被叫号码
-		 * @param caller 主叫号码
+		 * cancel call
+		 * @param callId Message only identifier
+		 * @param called Called number
+		 * @param caller Calling number
 		 */
 		DO_cancelVoipCall: function(callId, caller, called) {
 			document.getElementById("voipCallRing").pause();
 			var releaseCallBuilder = new RL_YTX.ReleaseCallBuilder();
-			releaseCallBuilder.setCallId(callId); //请求的callId
-			releaseCallBuilder.setCaller(caller); //请求的主叫号码，即Tony的号码\n
-			releaseCallBuilder.setCalled(called); // 请求的被叫号码，即John的号码
+			releaseCallBuilder.setCallId(callId); //RequestedcallId
+			releaseCallBuilder.setCaller(caller); //Calling number request，That isTonyNumber\n
+			releaseCallBuilder.setCalled(called); // Requested number，That isJohnNumber
 			RL_YTX.releaseCall(releaseCallBuilder, function() {},
 				function(obj) {
-					console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+					console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 				});
 			$('#diagnose_operation_dialog').dialog('close');
 			finishVideoDiagnose();
-			$.messager.alert("提示", '通话已经结束');
+			$.messager.alert("Prompt", 'Call is over');
 		},
 		/**
-		 * 接受voipCall
-		 * @param callId 唯一消息标识
-		 * @param caller 主叫
+		 * acceptvoipCall
+		 * @param callId Unique message identifier
+		 * @param caller Calling
 		 */
 		DO_answerVoipCall: function(callId, caller, called, acceptType) {
 			if (acceptType == 1) {
@@ -3588,7 +3588,7 @@
 				var localView = document.getElementById("localVideo");
 				localView.muted = true;
 				RL_YTX.setCallView(view, localView);
-				$("#cancelVoipCall").text("结束");
+				$("#cancelVoipCall").text("End");
 				$("#cancelVoipCall").show();
 				$("#acceptVoipCall").hide();
 				$("#refuseVoipCall").hide();
@@ -3597,38 +3597,38 @@
 				//设置页面view句柄
 				var view = document.getElementById("voiceCallAudio");
 				RL_YTX.setCallView(view, null);
-				$("#cancelVoiceCall").text("结束");
+				$("#cancelVoiceCall").text("End");
 				$("#cancelVoiceCall").show();
 				$("#acceptVoiceCall").hide();
 				$("#refuseVoiceCall").hide();
 			}
 			var acceptCallBuilder = new RL_YTX.AcceptCallBuilder();
-			acceptCallBuilder.setCallId(callId); //请求的callId，
-			acceptCallBuilder.setCaller(caller); //请求的主叫号码，即Tony的号码
+			acceptCallBuilder.setCallId(callId); //RequestedcallId，
+			acceptCallBuilder.setCaller(caller); //Calling number request，That isTonyNumber
 			console.log("callId=" + callId + "; caller=" + caller);
 			RL_YTX.accetpCall(acceptCallBuilder,
 				function() {
 
 				},
 				function callback(obj) {
-					console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+					console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 				});
 		},
 		/**
-		 * 拒绝voipCall
-		 * @param callId 唯一消息标识
-		 * @param caller 主叫
-		 * @param reason 拒绝原因
+		 * refusevoipCall
+		 * @param callId Unique message identifier
+		 * @param caller Calling
+		 * @param reason Reasons for refusal
 		 */
 		DO_refuseVoipCall: function(callId, caller, refuseType) {
 			document.getElementById("voipCallRing").pause();
 			var rejectCallBuilder = new RL_YTX.RejectCallBuilder();
-			rejectCallBuilder.setCallId(callId); //请求的callId
-			rejectCallBuilder.setCaller(caller); //请求的主叫号码，即Tony的号码
+			rejectCallBuilder.setCallId(callId); //RequestedcallId
+			rejectCallBuilder.setCaller(caller); //Calling number request，That isTonyNumber
 			RL_YTX.rejectCall(rejectCallBuilder, function() {
 
 			}, function(obj) {
-				console.log("错误码：" + obj.code + "; 错误描述：" + obj.msg)
+				console.log("Error code：" + obj.code + "; Error description：" + obj.msg)
 			});
 		},
 		DO_fireMsg: function(obj) {
@@ -3639,7 +3639,7 @@
 			}
 		},
 		/**
-		 * 录音发送
+		 * Sound recording
 		 */
 		DO_startRecorder: function() {
 			IM.Do_notice(2, "t");
@@ -3652,11 +3652,11 @@
 				}
 			});
 			if (!b) {
-				alert("请选择要对话的联系人或群组");
+				alert("Select the contact or group you want to talk to");
 				return;
 			};
 			if (IM._serverNo == content_you) {
-				alert("系统消息禁止回复");
+				alert("System message no reply");
 				return;
 			}
 			var windowWidth = document.body.clientWidth;
@@ -3675,7 +3675,7 @@
 			RL_YTX.audio.apply(obj, function() {
 				//初始化录音成功回调
 			}, function(resp) {
-				console.log("错误码：" + resp.code + "; 错误描述：" + resp.msg)
+				console.log("Error code：" + resp.code + "; Error description：" + resp.msg)
 				$("#recorderCanvas").hide();
 				$("#pop_recorder").hide();
 			});
@@ -3721,7 +3721,7 @@
 			$("#recorderAudio").attr("src", "");
 		},
 		/**
-		 * 禁止发送附件
+		 * Prohibit sending attachments
 		 */
 		SendFile_isDisable: function() {
 			$("#file_button").append('<span style="color:#FF0000; font-size: 16px; font-weight:bold;margin-left:-15px;">X</span>');
@@ -3729,7 +3729,7 @@
 		},
 
 		/**
-		 * 禁止发送音视频
+		 * Prohibit sending audio and video
 		 */
 		SendVoiceAndVideo_isDisable: function() {
 			$("#voipInvite").append('<span style="color:#FF0000; font-size: 16px; font-weight:bold;margin-left:-15px;">X</span>');
@@ -3740,7 +3740,7 @@
 			$("#luodi").removeAttr("onclick");
 		},
 		/**
-		 * 不支持usermedie
+		 * I won't support itusermedie
 		 */
 		Check_usermedie_isDisable: function() {
 			$("#camera_button").removeAttr("onclick");
@@ -3753,7 +3753,7 @@
 			IM.SendVoiceAndVideo_isDisable();
 		},
 		/**
-		 * 切换按钮
+		 * Toggle button
 		 */
 		Check_login: function() {
 			$("div[name = 'loginType']").each(function() {
@@ -3777,13 +3777,13 @@
 			});
 		},
 		/**
-		 * 桌面提醒功能
-		 * @param you_sender 消息发送者账号
-		 * @param nickName 消息发送者昵称
-		 * @param you_msgContent 接收到的内容
-		 * @param msgType 消息类型
-		 * @param isfrieMsg 是否阅后即焚消息
-		 * @param isCallMsg 是否音视频呼叫消息
+		 * Desktop alert function
+		 * @param you_sender Message sender account
+		 * @param nickName Message sender nickname
+		 * @param you_msgContent Received content
+		 * @param msgType Message type
+		 * @param isfrieMsg Whether the burn after reading news
+		 * @param isCallMsg Whether audio and video call messages
 		 */
 		DO_deskNotice: function(you_sender, nickName, you_msgContent, msgType, isfrieMsg, isCallMsg, inforSender, isAtMsg) {
 			console.log("you_msgContent=" + you_msgContent + "；msgType=" + msgType + "；isCallMsg=" + isCallMsg);
@@ -3791,7 +3791,7 @@
 			var body = '';
 			if (!!you_sender || !!nickName) {
 				if ('g' == you_sender.substr(0, 1)) {
-					title = "群消息";
+					title = "Group message";
 					if (!!nickName) {
 						body =  isAtMsg+inforSender + ":" ;
 					} else {
@@ -3806,11 +3806,11 @@
 				}
 
 			} else {
-				title = "系统通知";
+				title = "System notification";
 				body = you_msgContent;
 			}
 			if (isfrieMsg) {
-				body += "[阅后即焚消息]";
+				body += "[Burn after reading news]";
 			} else if (isCallMsg) {
 				body += you_msgContent;
 			} else {
@@ -3820,17 +3820,17 @@
 					emoji.showText = false;
 					body += you_msgContent;
 				} else if (2 == msgType) {
-					body += "[语音]";
+					body += "[Voice]";
 				} else if (3 == msgType) {
-					body += "[视频]";
+					body += "[video]";
 				} else if (4 == msgType) {
-					body += "[图片]";
+					body += "[picture]";
 				} else if (5 == msgType) {
-					body += "[位置]";
+					body += "[position]";
 				} else if (6 == msgType || 7 == msgType) {
-					body += "[附件]";
+					body += "[Attachment]";
 				} else if (11 == msgType) {
-					body += you_msgContent; //@群组，type为11的时候
+					body += you_msgContent; //@group，typeby11At the time of
 				}
 			}
 			if (11 == msgType) {
@@ -3868,7 +3868,7 @@
 			};
 		},
 		/**
-		 * 获取hidden属性
+		 * Obtainhiddenattribute
 		 */
 		getBrowerPrefix: function() {
 			return 'hidden' in document ? null : function() {
@@ -3908,7 +3908,7 @@
 				}
 			});
 			if (flag != "f" & !b) {
-				alert("请选择要对话的联系人或群组");
+				alert("Select the contact or group you want to talk to");
 				return;
 			}
 			result[0] = msgid;
@@ -3918,9 +3918,9 @@
 			return result;
 		},
 		/*
-		 *发消息提示
-		 *bOn domain 状态参数 0表示结束，1表示正在写，2表示正在录音
-		 * t表示需要消息提示，f不需要消息提示
+		 *Send message prompt
+		 *bOn domain State parameter 0End of representation，1Said it was writing，2That is recording
+		 * tIndicates the need for message prompt，fNo message prompt
 		 * */
 		Do_notice: function(domain, bOn) {
 			console.log("focus");
@@ -3943,18 +3943,18 @@
 				var spanobj = tdobj.children();
 				var deleobj = spanobj[3];
 				$(deleobj).remove();
-				console.log("修改成员角色成功");
+				console.log("Member role Changed");
 				if (role == 1) {
 					IM.HTML_pop_hide();
 				} else if (role == 2) {
-					$(spanobj).eq(0).children("span").text("[管理员]");
-					$(spanobj).eq(2).after('<span class="pull-right label label-important" imtype="im_pop_memberspeak' + member + '" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member + '\',3)"> 取消管理员资格 </span>');
+					$(spanobj).eq(0).children("span").text("[Admin]");
+					$(spanobj).eq(2).after('<span class="pull-right label label-important" imtype="im_pop_memberspeak' + member + '" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member + '\',3)"> Cancel administrator qualification </span>');
 				} else {
-					$(spanobj).eq(0).children("span").text("[成员]");
-					$(spanobj).eq(2).after('<span class="pull-right label label-success" imtype="im_pop_memberspeak' + member + '" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member + '\',2)"> 设置为管理员 </span>');
+					$(spanobj).eq(0).children("span").text("[member]");
+					$(spanobj).eq(2).after('<span class="pull-right label label-success" imtype="im_pop_memberspeak' + member + '" onclick="IM.EV_GroupMemberRole(\'' + groupId + '\',\'' + member + '\',2)"> Set as Administrator </span>');
 				}
 			}, function(obj) {
-				console.log("错误码： " + obj.code + "; 错误描述：" + obj.msg);
+				console.log("Error code： " + obj.code + "; Error description：" + obj.msg);
 			});
 		}
 	};

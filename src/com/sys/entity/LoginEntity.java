@@ -11,12 +11,12 @@ public class LoginEntity {
 	int id;
 
 	/**
-	 * 登录统一编码
+	 * Login uniform code
 	 */
 	String codeId;
 
 	/**
-	 * 登录类型
+	 * Login type
 	 */
 	String type;
 

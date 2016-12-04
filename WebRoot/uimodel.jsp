@@ -19,7 +19,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mosaddek">
 <meta name="keyword" content="">
-<title>宁康园管理平台</title>
+<title>GD Administration</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/font-awesome.css" rel="stylesheet" />
@@ -30,36 +30,36 @@
 </head>
 <body>
 <div style="width:1000px; margin:0 auto;">
-  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// div自适应布局查询栏示例 //////////</p>
+  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// divExamples of adaptive layout query columns //////////</p>
   <div id="common_search" class="common_search datagrid-toolbar common_search_nopadding">
-    <span class="common_search_left_span"> 字典定义码：</span>
+    <span class="common_search_left_span"> Dictionary definition code：</span>
     <input type="text" id="dicType1">
-    <span class="common_search_left_span"> 字典定义值：</span>
+    <span class="common_search_left_span"> Dictionary definition：</span>
     <input type="text" id="dicName1">
     <button type="button" id="auth_search" class="btn btn-success" style="margin-left: 20px;">
-      <i class="icon-search"></i>&nbsp;查询
+      <i class="icon-search"></i>&nbsp;query
     </button>
     <button type="button" id="auth_reset" class="btn btn-success">
-      <i class="icon-refresh"></i>&nbsp;重置
+      <i class="icon-refresh"></i>&nbsp;Reset
     </button>
   </div>
-  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// table强制对齐布局查询栏示例 //////////</p>
+  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// tableForce alignment layout query bar sample //////////</p>
   <div id="common_search" class="common_search datagrid-toolbar">
     <table style="width: 100%">
       <tbody>
         <tr>
-          <td>订单编号：</td>
+          <td>Order number：</td>
           <td><input type="text" id="order_id"></td>
-          <td>客户姓名：</td>
+          <td>Customer name：</td>
           <td><input type="text" id="order_customer_name"></td>
         </tr>
         <tr>
-          <td>订单状态：</td>
+          <td>Order status：</td>
           <td><select id="order_state">
-              <option value="">--请选择--</option>
-              <option value="notstart">未开始</option>
+              <option value="">--Please select--</option>
+              <option value="notstart">Not start</option>
           </select></td>
-          <td>订单商品：</td>
+          <td>Order goods：</td>
           <td><input type="text" id="order_goods_name"></td>
          
         </tr>
@@ -68,40 +68,40 @@
          <td>&nbsp;</td>
           <td>
             <button type="button" id="order_search" class="btn btn-success">
-              <i class="icon-search"></i>&nbsp;查询
+              <i class="icon-search"></i>&nbsp;query
             </button>
           </td>
           <td>
             <button type="button" id="order_reset" class="btn btn-success">
-              <i class="icon-refresh"></i>&nbsp;重置
+              <i class="icon-refresh"></i>&nbsp;Reset
             </button>
           </td></tr>
       </tbody>
     </table>
   </div>
-  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// 这是工具栏示例 //////////</p>
+  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// This is an example of a toolbar //////////</p>
   <div class="second-btn-con">
     <button id="addPartner" class="btn btn-success btn-success-small" iconcls="icon-add">
-      <i class="icon-plus"></i>&nbsp;增加
+      <i class="icon-plus"></i>&nbsp;increase
     </button>
     &nbsp;
     <button id="deletePartner" class="btn btn-success btn-success-small" iconcls="icon-remove">
-      <i class="icon-remove"></i>&nbsp;移除
+      <i class="icon-remove"></i>&nbsp;remove
     </button>
     &nbsp;
     <button id="deletePartner" class="btn btn-success btn-success-small" iconcls="icon-remove">
-      <i class="icon-edit"></i>&nbsp;修改
+      <i class="icon-edit"></i>&nbsp;modify
     </button>
   </div>
-  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// 这是操作栏示例 //////////</p>
+  <p style="color: #900b09; font-size: 20px; padding: 10px 15px 0px; line-height: 40px;">///////// This is an example of the operation bar //////////</p>
   <div class="operationAcon">
-    <a class="operationA icon-edit" title="编辑">&nbsp;编辑</a>
-    <a class="operationA icon-ok" title="确认">&nbsp;确认</a>
-    <a class="operationA icon-refresh" title="初始化密码">&nbsp;初始化密码</a>
-    <a class="operationA icon-add" title="添加属性">&nbsp;添加属性</a>
-    <a class="operationA icon-eye-open" title="查看属性">&nbsp;查看属性</a>
-    <a class="operationA icon-pencil" title="修改属性">&nbsp;修改属性</a>
-    <a class="operationA icon-trash" title="删除" style="color: rgb(255, 0, 0);">&nbsp;删除</a>
+    <a class="operationA icon-edit" title="edit">&nbsp;edit</a>
+    <a class="operationA icon-ok" title="confirm">&nbsp;confirm</a>
+    <a class="operationA icon-refresh" title="Initialization code">&nbsp;Initialization code</a>
+    <a class="operationA icon-add" title="Add attribute">&nbsp;Add attribute</a>
+    <a class="operationA icon-eye-open" title="View properties">&nbsp;View properties</a>
+    <a class="operationA icon-pencil" title="Change attribute">&nbsp;Change attribute</a>
+    <a class="operationA icon-trash" title="delete" style="color: rgb(255, 0, 0);">&nbsp;delete</a>
   </div>
 
 </div>

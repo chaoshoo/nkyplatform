@@ -18,7 +18,7 @@ public class SysUserService {
 	private SysUserDao sysUserDao;
 
 	/**
-	 * 获取用户信息
+	 * Get user information
 	 * @param userId
 	 * @return
 	 */
@@ -27,7 +27,7 @@ public class SysUserService {
 	}
 
 	/**
-	 * 登录
+	 * Sign in
 	 * @param sysUser
 	 * @return
 	 */
@@ -46,7 +46,7 @@ public class SysUserService {
 	}
 
 	/**
-	 * 获取系统用户列表
+	 * Get system user list
 	 * @param isEffective
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class SysUserService {
 	}
 
 	/**
-	 * 修改用户
+	 * Modify user
 	 * @param user
 	 * @return
 	 */
@@ -80,7 +80,7 @@ public class SysUserService {
 	}
 
 	/**
-	 * 添加用户
+	 * Add user
 	 * @param user
 	 * @return
 	 */

@@ -28,9 +28,9 @@ import com.sys.entity.bo.ScriptPage;
 import com.sys.jfinal.JFinalDb;
 
 /**
- * 科室.
+ * Department.
  * @author Ken
- * @version 2016年8月25日
+ * @version 2016year8month25day
  */
 @Controller
 @RequestMapping(value = "/office")
@@ -42,7 +42,7 @@ public class OfficeAction extends BaseAction {
 	}
 
 	/**
-	 * 获取列表
+	 * Get list
 	 * @param area
 	 * @return
 	 */
@@ -55,7 +55,7 @@ public class OfficeAction extends BaseAction {
 			scriptPage = JFinalDb.findPageBySqlid(ajaxPage.getPageNo(), ajaxPage.getPageSize(), "office_list", param,
 					" name asc ");
 		} catch (Exception e) {
-			LOG.error("查询列表失败.",e);
+			LOG.error("Query list failed.",e);
 			scriptPage = new ScriptPage();
 		}
 		return scriptPage;
@@ -68,19 +68,19 @@ public class OfficeAction extends BaseAction {
 		try {
 			if(null == entity || StringUtils.isEmpty(entity.getCode()) || !isKsCode(entity.getCode())){
 				d.setCode(0);
-				d.setMsg("添加失败，编码不合法！");
+				d.setMsg("Add failed，Code is not valid！");
 				return d;
 			}
 			if(StringUtils.isEmpty(entity.getName()) || !isKsName(entity.getName())){
 				d.setCode(0);
-				d.setMsg("添加失败，名字不合法！");
+				d.setMsg("Add failed，The name is not valid！");
 				return d;
 			}
 			
 			Record record = Db.findFirst("select id from office where name=? or code = ?", entity.getName(),entity.getCode());
 			if (record != null) {
 				d.setCode(0);
-				d.setMsg("添加失败，编码或名字已经使用过！");
+				d.setMsg("Add failed，Code or name already used.！");
 				return d;
 			} else {
 //				entity.setCode(SysId.getNextHospitalCode());
@@ -98,7 +98,7 @@ public class OfficeAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(0);
-		d.setMsg("保存失败，请联系系统管理员");
+		d.setMsg("Save failed，Please contact system administrator");
 		return d;
 	}
 
@@ -109,24 +109,24 @@ public class OfficeAction extends BaseAction {
 		try {
 			if(null == entity || null == entity.getId()){
 				d.setCode(0);
-				d.setMsg("修改失败，请求非法！");
+				d.setMsg("Change failed，Invalid request！");
 				return d;
 			}
 			if( StringUtils.isEmpty(entity.getCode()) || !isKsCode(entity.getCode())){
 				d.setCode(0);
-				d.setMsg("修改失败，编码不合法！");
+				d.setMsg("Change failed，Code is not valid！");
 				return d;
 			}
 			if(StringUtils.isEmpty(entity.getName()) || !isKsName(entity.getName())){
 				d.setCode(0);
-				d.setMsg("修改失败，名字不合法！");
+				d.setMsg("Change failed，The name is not valid！");
 				return d;
 			}
 			
 			Record record = Db.findFirst("select code,name,create_time from office where id = ?", entity.getId());
 			if(record == null){
 				d.setCode(0);
-				d.setMsg("修改失败，请求非法！");
+				d.setMsg("Change failed，Invalid request！");
 				return d;
 			}
 			String code = record.getStr("CODE");
@@ -137,7 +137,7 @@ public class OfficeAction extends BaseAction {
 				Record checkRecord = Db.findFirst("select id from office where  code = ?",  entity.getCode());
 				if (checkRecord != null) {
 					d.setCode(0);
-					d.setMsg("修改失败，编码已经使用过！");
+					d.setMsg("Change failed，Code has been used.！");
 					return d;
 				} 
 			}
@@ -146,7 +146,7 @@ public class OfficeAction extends BaseAction {
 				Record checkRecord = Db.findFirst("select id from office where  name = ?",  entity.getName());
 				if (checkRecord != null) {
 					d.setCode(0);
-					d.setMsg("修改失败，名字已经使用过！");
+					d.setMsg("Change failed，The name has been used.！");
 					return d;
 				} 
 			}
@@ -160,7 +160,7 @@ public class OfficeAction extends BaseAction {
 			LOG.error(e.getMessage(), e);
 		}
 		d.setCode(1);
-		d.setMsg("更新失败，请联系系统管理员");
+		d.setMsg("Update failed，Please contact system administrator");
 		return d;
 	}
 
@@ -175,31 +175,31 @@ public class OfficeAction extends BaseAction {
 			Number num = Db.queryNumber("select count(1) as num from doctor where office_code=?", code);
 			if (num.longValue() > 0) {
 				d.setCode(0);
-				d.setMsg("医生已经使用了科室，删除失败");
+				d.setMsg("Doctor has used the Department name，Delete failed");
 			} else {
 				int x = Db.update("delete from office where code=?", code);
 				if (x > 0) {
 					d.setCode(1);
 				} else {
 					d.setCode(0);
-					d.setMsg("删除失败");
+					d.setMsg("Delete failed");
 				}
 			}
 		} else {
 			d.setCode(0);
-			d.setMsg("医院编码为空");
+			d.setMsg("Hospital code is empty");
 		}
 		return d;
 	}
 
-	/**科室编码规则*/
+	/**Section code rule*/
 	private static Pattern PATTERN_KSCODE = Pattern.compile("^[0-9A-Za-z]{2,10}$");
-	/**科室名字规则*/
+	/**Department name rule*/
 	private static Pattern PATTERN_KSNAME = Pattern.compile("^[0-9A-Za-z\\u4E00-\\u9FA5]{2,10}$");
 
 	/**
-	 * 检查输入的科室编码code是否合法.
-	 * @return 合法true.
+	 * Check the input section codecodeWhether legal.
+	 * @return legitimatetrue.
 	 */
 	public static boolean isKsCode(String ksCode) {
 		Matcher matcher = PATTERN_KSCODE.matcher(ksCode);
@@ -207,8 +207,8 @@ public class OfficeAction extends BaseAction {
 	}
 	
 	/**
-	 * 检查输入的科室名字是否合法.
-	 * @return 合法true.
+	 * Check the name of the office of the Department is legal.
+	 * @return legitimatetrue.
 	 */
 	public static boolean isKsName(String ksName) {
 		Matcher matcher = PATTERN_KSNAME.matcher(ksName);
@@ -216,7 +216,7 @@ public class OfficeAction extends BaseAction {
 	}
 	
 	/**
-	 * 获取科室的列表.
+	 * Get a list of departments.
 	 */
 	@RequestMapping(value = "/getItem")
 	@ResponseBody

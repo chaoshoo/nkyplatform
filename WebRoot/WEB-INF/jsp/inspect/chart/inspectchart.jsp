@@ -31,7 +31,7 @@
 			background-size: cover;
 		}
 		
-		/**1920*1080 前提：设置body的字体为100%。其具有一个简单的计算公式：100% = 16px = 1em = 14pt*/
+		/**1920*1080 premise：ConfigbodyFont for100%。It has a simple calculation formula：100% = 16px = 1em = 14pt*/
 		/**1920*946*/
 		
 	</style>
@@ -65,10 +65,10 @@
 			<td style="color:#FFF;" class="title"  align="left">${data.subTitle.title }</td>
 			<td class="abtn"  align="center">
 				<c:if test="${data.frontPage < data.currentPage }">
-					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.frontPage }.html">上一页</a> 
+					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.frontPage }.html">Previous page</a> 
 				</c:if>
 				<c:if test="${data.nextPage > data.currentPage }">
-					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.nextPage }.html">下一页</a>
+					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.nextPage }.html">next page</a>
 				</c:if>
 			</td> 
 			<td class="add">&nbsp;</td>
@@ -76,10 +76,10 @@
 		<tr style="width: 100%;" class="trheight2">
 			<td class="abtn2" align="center">
 				<c:if test="${data.frontPage < data.currentPage }">
-					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.frontPage }.html">上一页</a> 
+					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.frontPage }.html">Previous page</a> 
 				</c:if>
 				<c:if test="${data.nextPage > data.currentPage }">
-					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.nextPage }.html">下一页</a>
+					<a class="w3-btn w3-round-xxlarge" href="<%=basePath%>vipInspectData/inspectchart/${data.cardCode }/${data.inspectCode }/${data.subTitle.code }/${data.nextPage }.html">next page</a>
 				</c:if>
 			</td> 
 		</tr> --%>
@@ -109,7 +109,7 @@ $(function () {
         credits: {enabled: false },
 		exporting:{ enabled:false }, 
 		legend:{ enabled:false },
-        lang: {  noData: "暂时没有数据" },
+        lang: {  noData: "No data" },
         noData: {   style: { fontWeight: 'bold', fontSize: '15px',  color: '#FFF' } },
         title: {  text: '', style: {  color: '#FFF', fontWeight: 'bold', fontSize: '12px' } }, 
         loading: {
