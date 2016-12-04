@@ -36,7 +36,7 @@
 	            <td> <input type="text" id="card_code"  style="width: 200px;" /></td>
 	          <td>
 	           <button type="button" id="diagnose_search" class="btn btn-success">
-        	check&nbsp;Inquiry
+        	Search
      			 </button> 
 	          </td>
 			</tr>

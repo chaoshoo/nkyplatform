@@ -16,7 +16,7 @@
 <body class="easyui-layout">
     <div id="dg_vip_tb" style="padding:2px 5px;">
      <form action="" id="query_form">		
-      Member name: <input type="text" id="FIT-username" style="width: 120px;"/>
+      Member: <input type="text" id="FIT-username" style="width: 120px;"/>
      Membership card number: <input type="text" id="FIT-cardcode" style="width: 120px;"/> <br>
       Mobile phone: <input type="text" id="FIT-mobile" style="width: 120px;"/>
           <a href="javascript:void(0);" onclick="dialogSearch();" class="easyui-linkbutton" iconCls="icon-search">lookup</a>

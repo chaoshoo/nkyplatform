@@ -25,7 +25,7 @@ public class DeviceEntity extends JFinalEntity {
 
 	private String device_id;// 'equipmentID',
 
-	private String device_type;/`Equipment type',
+	private String device_type;//`Equipment type',
 
 	private String sn;//'SN',
 

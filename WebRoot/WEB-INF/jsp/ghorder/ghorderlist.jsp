@@ -26,7 +26,7 @@
      <form action="" id="ques_qry_form">
 		<table id="dataTable">
 		    <tr>
-	            <td>medicine&nbsp;&nbsp;courtyard</td>
+	            <td>Hospital</td>
 	            <td> <input style="width: 200px;"  type ="text" id="hospitalname" name="hospitalname"/>					    
 	  			</td>
 	            <td>section&nbsp;&nbsp;room</td>
@@ -44,7 +44,7 @@
 		</table> 
 	 </form> 
       <button type="button" id="diagnose_search" class="btn btn-success btn-success-small">
-        	check&nbsp;Inquiry
+        	Search
       </button>   
     </div>
     <table id="diagnose_table"></table>

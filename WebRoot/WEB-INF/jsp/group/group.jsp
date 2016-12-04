@@ -43,7 +43,7 @@
      <c:if test="${type == 'S'}">
      	<table id="dataTable">
      		<tr>
-	            <td>medicine&nbsp;&nbsp;courtyard</td>
+	            <td>Hospital</td>
 	            <td> <input style="width: 200px;"  type ="text" id="hospitalname" name="hospitalname" value="" readonly="readonly"/>					    
 	  				<button type="button" id="hospital_qry_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">Select hospital</button> 
 	  			</td>
@@ -86,14 +86,14 @@
    
      </form> 
       <button type="button" id="group_search" class="btn btn-success"><i class="icon-search"></i>
-        	check&nbsp;Inquiry
+        	Search
       </button>      
      <!--  <button type="button" id="group_reset" class="btn btn-success btn-success-small">
         	Re&nbsp;The
       </button>  -->
       <c:if test="${type == 'D'}">
       <button type="button" id="group_add" class="btn btn-success"><i class="icon-plus"></i>
-        	increase&nbsp;plus
+        	add
       </button>   
       </c:if> 
     </div>

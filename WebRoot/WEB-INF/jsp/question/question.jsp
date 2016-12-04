@@ -50,7 +50,7 @@
 		            <td>Created time</td>
 		            <td colspan='3'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
 	                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
-	                <button type="button" id="question_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>check&nbsp;Inquiry</button> 
+	                <button type="button" id="question_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>Search</button> 
 	                </td>
 				</tr>
 			</table> 
@@ -58,7 +58,7 @@
 	     <c:if test="${type == 'S'}">
 	     	<table id="dataTable">
 	     		<tr>
-		            <td>medicine&nbsp;&nbsp;courtyard</td>
+		            <td>Hospital</td>
 		            <td> <input style="width: 200px;"  type ="text" id="hospitalname" name="hospitalname" value="" readonly="readonly"/>					    
 		  				<button type="button" id="hospital_qry_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">Select hospital</button> 
 		  			</td>
@@ -86,7 +86,7 @@
 		            <td>Created time</td>
 		            <td colspan='3'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
 	                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
-	                <button type="button" id="question_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>check&nbsp;Inquiry</button> 
+	                <button type="button" id="question_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>Search</button> 
 	                </td>
 				</tr>
 			</table> 
@@ -118,7 +118,7 @@
 		            <td>Created time</td>
 		            <td colspan='5'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
 	                to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="end_time" />
-	                <button type="button" id="question_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>check&nbsp;Inquiry</button> 
+	                <button type="button" id="question_search" class="btn btn-success btn-success-small"><i class="icon-search"></i>Search</button> 
 	               </td>
 				</tr>
 			</table> 

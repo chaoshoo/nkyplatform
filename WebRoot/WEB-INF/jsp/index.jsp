@@ -40,7 +40,7 @@
         <ul class="dropdown-menu extended logout">
           <div class="log-arrow-up"></div>
           <li><a href="javascript:void(0)" onclick="Open('Change password','changepwd/changePwd.html')"><i class=" icon-suitcase"></i>Change password</a></li>
-          <li><a href="javascript:void(0)" onclick="Open('My message','myinfo/info.html')"><i class=" icon-suitcase"></i>My message</a></li>
+          <li><a href="javascript:void(0)" onclick="Open('My message','myinfo/info.html')"><i class=" icon-suitcase"></i>Profile</a></li>
           <li><a href="logout.html?type=${type}"><i class="icon-key"></i>Sign out</a></li>
         </ul>
       </li>

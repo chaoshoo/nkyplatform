@@ -32,7 +32,7 @@
 			equipmentSN&nbsp;&nbsp;<input
 				type="text" id="FIT-LIKE-sn" name="FIT-LIKE-sn"/> &nbsp;&nbsp;&nbsp;&nbsp;
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;search</button>
 		<!-- <button type="button"
 				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
 		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>
@@ -49,7 +49,7 @@
 			      <option value="0">Not related</option> 
 				</select> 
 				Doctor：<input type="text" id="FIT-LIKE-doctor" name="FIT-LIKE-doctor"/>  
-				<button type="button" id="auth_search" onclick="dataGridReload()"  class="btn btn-success  "><i class="icon-search"></i>&nbsp;query</button>
+				<button type="button" id="auth_search" onclick="dataGridReload()"  class="btn btn-success  "><i class="icon-search"></i>&nbsp;search</button>
 				
 			<div style="padding: 5px; width: 830px; height: 350px;">
 				<table id="device_doctor_table" style="width: 90%"></table>

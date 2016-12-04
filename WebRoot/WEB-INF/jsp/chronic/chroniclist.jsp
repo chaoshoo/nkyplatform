@@ -28,18 +28,18 @@
     <div id="common_search" class="common_search common_search_nopadding">       
      <form action="" id="ques_qry_form">
 	     		&nbsp;Customer code<input type="text"   id="FIT-vip_code" style="width: 100px;" name="FIT-vip_code"/>
-				&nbsp;surname  name<input type="text" id="FIT-real_name" style="width: 100px;" name="FIT-real_name"/>
-				&nbsp;Gender  other
+				&nbsp;surname<input type="text" id="FIT-real_name" style="width: 100px;" name="FIT-real_name"/>
+				&nbsp;Gender
 					<select id=FIT-sex name="FIT-sex" >
 				      <option value="">-Please select-</option>
 					  <m:getItems name="gender"></m:getItems>
 					</select>
-				&nbsp;electric  word&nbsp;<input type="text"   id="FIT-mobile" style="width: 100px;" name="FIT-mobile"/>
+				&nbsp;Cellphone&nbsp;<input type="text"   id="FIT-mobile" style="width: 100px;" name="FIT-mobile"/>
 				&nbsp;Age range:<input type="text"  id="FIT-GEQ-age" name="FIT-GEQ-age" style="width: 50px;"/>
 				-<input type="text"  id="FIT-LEQ-age" name="FIT-LEQ-age" style="width: 50px;"/>
        <!-- hospitals 2B C Label-->
 	       	<c:if test="${currentUser.roles eq '1'}">
-	       	<br/><br/>&nbsp;medicine  courtyard<select id="FIT-hospital" name="FIT-hospital">
+	       	<br/><br/>&nbsp;Hospital<select id="FIT-hospital" name="FIT-hospital">
 				      <option value="">-Please select-</option> 
 				      <c:forEach var="item" items="${hospitals}">
 								<option value="${item.value }"><c:out value="${item.key }" /></option>
@@ -52,7 +52,7 @@
 	         	&nbsp; Doctor code&nbsp;<input type="text" id="FIT-doctorc" name="FIT-doctorc"/>  
 	         	&nbsp;Doctor name&nbsp;<input type="text" id="FIT-doctor" name="FIT-doctor"/> 
 	         </c:if>
-	  		<br/>&nbsp;is chronic disease
+	  		<br/>&nbsp;chronic disease
 	            <select id="FIT-ischronic" name="FIT-ischronic" >
 			      <option value="">-Please select-</option>
 				  <m:getItems name="ischronic"></m:getItems>
@@ -60,8 +60,8 @@
 	            &nbsp;Physical examination time
 	            <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="FIT-beginTime" id="FIT-beginTime" />
                 to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="FIT-end_time" id="FIT-end_time" />
-					<button onclick="openGroupPush();" type="button" class="btn btn-success">Index Type</button>
-			    	<input type="radio" id="FIT-cond" name="FIT-cond" value="or" />perhaps
+					<button onclick="openGroupPush();" type="button" class="btn btn-success">Indices</button>
+			    	<input type="radio" id="FIT-cond" name="FIT-cond" value="or" />or
 			    	<input type="radio" id="FIT-cond"  checked="checked" name="FIT-cond" value="and" />and
 			<br/>&nbsp;Chronic disease types
 					<c:forEach var="item" items="${illtype}" varStatus="status">
@@ -74,7 +74,7 @@
 				  <m:getItems name="ill_type"></m:getItems>
 				</select>
 		           <button type="button" id="diagnose_search" class="btn btn-success">
-	        			check&nbsp;Inquiry
+	        			Search
 	     			 </button> 
 	 </form> 
        
@@ -82,7 +82,7 @@
     <table id="diagnose_table"></table>
   </div>
 	<div id="user_detail_dialog"
-		data-options="closed:true,modal:true,title:'Index Type',iconCls:'icon-save'"
+		data-options="closed:true,modal:true,title:'Indices',iconCls:'icon-save'"
 		style="padding: 5px; width: 500px; height: 350px;">
 		<form id="user_detail_form">
 			<table style="margin-left: 10px" width=450  border="1">

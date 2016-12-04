@@ -35,13 +35,13 @@
 		 
 		<table id="dataTable">
 		    <tr>
-	            <td>Member name</td>
+	            <td>Member</td>
 	            <td><input type="text" id="vip_name" style="width: 200px;" /></td>
 	            <td>Visit time</td>
 	            <td><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
                 to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
-                <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>check&nbsp;Inquiry</button>  
-                <button type="button" id="visit_add" class="btn btn-success"><i class="icon-plus"></i>increase&nbsp;plus </button>  
+                <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>Search</button>  
+                <button type="button" id="visit_add" class="btn btn-success"><i class="icon-plus"></i>add </button>  
                 </td>
 			</tr>
 		</table> 
@@ -49,22 +49,22 @@
      <c:if test="${type == 'S'}">
      	<table id="dataTable">
      		<tr>
-	            <td>medicine&nbsp;&nbsp;courtyard</td>
+	            <td>Hospital</td>
 	            <td> <input style="width: 200px;"  type ="text" id="hospitalname" name="hospitalname" value="" readonly="readonly"/>					    
 	  				<button type="button" id="hospital_qry_button" onclick="addhospital()" class="btn btn-success btn-success-small" style="margin-left: 20px;">Select hospital</button> 
 	  			</td>
 	            <td>section&nbsp;&nbsp;room</td>
 	            <td><input style="width: 200px;"  class="easyui-combobox" id="office_code" name="office_code"  value=""/> </td>
-	            <td>Member name</td>
+	            <td>Member</td>
 	            <td><input type="text" id="vip_name"  style="width: 200px;"/></td>
 	         </tr>
 			 <tr>
-	            <td>Doctor name</td>
+	            <td>Doctor</td>
 	            <td> <input type="text" id="doctor_name"  style="width: 200px;" /></td>
 	            <td>Visit time</td>
 	            <td colspan='3'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
                 to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
-                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>check&nbsp;Inquiry</button>
+                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>Search</button>
                  </td>
 			</tr>
 		</table> 
@@ -74,16 +74,16 @@
      		<tr>
 	            <td>section&nbsp;&nbsp;room</td>
 	            <td> <input style="width: 200px;"  class="easyui-combobox" id="office_code" name="office_code"  value=""/>
-	            <td>Member name</td>
+	            <td>Member</td>
 	            <td><input type="text" id="vip_name"  style="width: 200px;"/></td>
-	            <td>Doctor name</td>
+	            <td>Doctor</td>
 	            <td> <input type="text" id="doctor_name"  style="width: 200px;" /></td>
 			</tr>
 			<tr>
 	            <td>Visit time</td>
 	            <td colspan='5'><input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="beginTime" id="begin_time" />
                 to <input class="easyui-datetimebox" type="text" data-options="formatter:formattime,parser:timeparser" style="width:200px;" name="end_time" id="end_time" />
-                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>check&nbsp;Inquiry</button>
+                 <button type="button" id="visit_search" class="btn btn-success"><i class="icon-search"></i>Search</button>
                 </td>
 			</tr>
 		</table> 
@@ -104,7 +104,7 @@
         <input type="hidden" id="visitId">
         <table style="margin-left: 10px">
           <tr>
-            <td style="width:80px;">Member name：</td>
+            <td style="width:80px;">Member：</td>
             <td><input type="text" id="vipName" readonly > <input type="hidden" id="vipId"></td>
             <a id="btnSelVip" class="easyui-linkbutton" data-options="iconCls:'icon-search'" >&nbsp;Select members</a>
           </tr>                

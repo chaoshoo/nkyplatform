@@ -210,7 +210,7 @@ function initDataGrid(){
 				</select> 
 				
         <button type="button" id="auth_search" 
-				class="btn btn-success"><i class="icon-search"></i>&nbsp;query</button>
+				class="btn btn-success"><i class="icon-search"></i>&nbsp;search</button>
 		<!-- <button type="button"
 				id="auth_reset" class="btn btn-success"><i class="icon-refresh"></i>&nbsp;Reset</button> -->
 		<button type="button" id="data_add" class="btn btn-success"><i class="icon-plus"></i>&nbsp;Add</button>

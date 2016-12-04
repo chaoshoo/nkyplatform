@@ -444,7 +444,7 @@ function ecgDatasGrid(cardCode){
 			  {field:'INSPECT_TIME',title : 'Detection time',width : 100,formatter : function(value) {return getTimeStr(value);  } }
 			 ,{field:'ID',title:'Operation',width:120,
 				formatter:function(value,row){ 
-					return  '<a href="<%=basePath%>vip/createEcg`+row.ID+'.html" target="_blank" >See</a>';
+					return  '<a href="<%=basePath%>vip/createEcg'+row.ID+'.html" target="_blank" >See</a>';
 				}
 			}
 		]],
@@ -1280,7 +1280,7 @@ $(document).ready(function(e) {
 		<button onclick="openGroupPush();" type="button" class="btn btn-success">Push messages to result-group</button>
 		
          <c:if test="${currentUser.roles eq '3'}">
-			<button type="button" onclick="openNew();"  class="btn btn-success"><i class="icon-plus"></i>increase&nbsp;plus</button>
+			<button type="button" onclick="openNew();"  class="btn btn-success"><i class="icon-plus"></i>add</button>
       	</c:if>
 	<!-- 	<button type="button"
 				id="auth_reset" class="btn btn-success btn-success-min" style="padding: 6px 10px !important; "><i class="icon-refresh"></i>&nbsp;Reset</button> -->

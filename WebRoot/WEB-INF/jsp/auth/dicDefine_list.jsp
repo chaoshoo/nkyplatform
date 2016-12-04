@@ -26,7 +26,7 @@
       <input type="text" id="dicName1" />
    
       <button type="button" id="auth_search" class="btn btn-success " style="margin-left: 20px;">
-      <i class="icon-search"></i>&nbsp;query
+      <i class="icon-search"></i>&nbsp;search
       </button>
       <!-- <button type="button" id="auth_reset" class="btn btn-success " >
       <i class="icon-refresh"></i>&nbsp;Reset
